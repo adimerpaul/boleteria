@@ -52,15 +52,15 @@ class peliculas_model extends CI_Model {
     public function update()
     {
         $id=$this->input->post('idpelicula');
-        if ($this->input->post('acuerdo') == "on" or null)
+        if(($this->input->post('acuerdo')) == "on")
         $acuerdo=1;
         else
         $acuerdo=0;
-        if ($this->input->post('cartelera') == "on"  or null)
+        if(($this->input->post('cartelera'))=="on")
         $cartelara=1;
         else
         $cartelara=0;
-        if ($this->input->post('formato') == "on"  or null)
+        if(($this->input->post('formato'))=="on")
         $formato=1;
         else
         $formato=0;
@@ -82,5 +82,8 @@ class peliculas_model extends CI_Model {
         ];
         $this->db->where('idPelicula',$id);
         return $this->db->update('pelicula',$pelicula);
+    }
+    public function delete($idpelicula){
+        return $this->db->delete('pelicula', array('idPelicula' => $idpelicula));
     }
 }

@@ -67,4 +67,11 @@ class PeliculaCtrl extends CI_Controller {
         $this->peliculaver();  
     }
 
+    public function delete($idpelicula)
+    {
+
+        $this->peliculas_model->delete($idpelicula);
+        $this->peliculaver();
+    }
+
 }

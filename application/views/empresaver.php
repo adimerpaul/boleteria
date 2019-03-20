@@ -36,7 +36,7 @@
             <td><?php echo $empresa['agenciaAfip']; ?></td>
             <td>                
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idempresa="<?php echo $empresa['idEmpresa']?>"> Modificar</a>
-                    <a class="btn btn-outline-danger eli  btn-sm" href="<?php echo base_url();?>empresaCtrl/empresadel?id=<?php echo $empresa['idEmpresa']?>"> Eliminar</a>
+                    <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>EmpresaCtrl/delete/<?=$empresa['idEmpresa']?>"> Eliminar</a>
                    
             </td>
         </tr>

@@ -112,13 +112,13 @@
          <div id="item-51" class="collapse">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-plus"></i> Nuevo Tipo de Butaca</a>
+                    <a class="nav-link" href="<?=base_url()?>ButacaCtrl"><i class="fas fa-plus"></i> Nuevo Tipo de Butaca</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Activos</a>
+                    <a class="nav-link" href="<?=base_url()?>ButacaCtrl/butacaver"><i class="fas fa-list-ul"></i> Ver Activos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Inactivos</a>
+                    <a class="nav-link" href="<?=base_url()?>ButacaCtrl/butacaverinact"><i class="fas fa-list-ul"></i> Ver Inactivos</a>
                 </li>
             </ul>
         </div>

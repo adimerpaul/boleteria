@@ -29,9 +29,8 @@ class empresas_model extends CI_Model {
         return $this->db->insert("empresa",$empresa);
     }
 
-    public function delete($id)
-    {
-        $this->db->delete('empresa',array('idEmpresa'=>$id));
+    public function delete($idEmpresa){
+        return $this->db->delete('empresa', array('idEmpresa' => $idEmpresa));
     }
 
     public function getEmpresa($id)

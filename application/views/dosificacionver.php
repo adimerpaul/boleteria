@@ -36,7 +36,7 @@
             ?></td>
             <td>                
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idosif="<?php echo $dosif['idDosif']?>"> Modificar</a>
-                    <a class="btn btn-outline-danger eli  btn-sm" href=""> Eliminar</a>
+                    <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>DosificacionCtrl/delete/<?=$dosif['idDosif']?>"> Eliminar</a>
                    
             </td>
         </tr>

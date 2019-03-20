@@ -87,4 +87,11 @@ class EmpresaCtrl extends CI_Controller {
 
         echo json_encode($myObj);
     }
+
+    public function delete($idempresa)
+    {
+
+        $this->empresas_model->delete($idempresa);
+        $this->empresaver();
+    }
 }

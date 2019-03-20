@@ -32,21 +32,21 @@
                               $('#url').prop('value',datos.urlTrailer);
                               $('#sipnosis').prop('value',datos.sipnosis);
                               console.log(datos.formato);                               
-                             // if (datos.formato > 0)
-                              $('#formato').bootstrapToggle('on');
-                             // $('#formato').prop('checked', !($('#formato').is(':checked')));
-                             //   else
-                               // $("#formato").prop("checked", false);
-                              
-                              if (datos.cartelera === '1')                               
-                              $('#cartelera').attr('checked', "on");                     
-                                else
-                              $('#cartelera').attr('checked', "off");
+                             
+                             if (datos.formato == 1)
+                             $('#formato').bootstrapToggle('on');
+                             else
+                            $('#formato').bootstrapToggle('off');
+                             
+                              if (datos.cartelera == 1)                               
+                              $('#cartelera').bootstrapToggle('on');
+                              else
+                             $('#cartelera').bootstrapToggle('off');
 
                               if (datos.acuerdoAgent == 1)                               
-                              $('#acuerdo').attr('checked',true);                     
-                                else
-                              $('#acuerdo').attr('checked', false);
+                              $('#acuerdo').bootstrapToggle('on');
+                              else
+                             $('#acuerdo').bootstrapToggle('off');
                                                    
                           } 
                   });

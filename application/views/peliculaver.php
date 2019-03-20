@@ -34,12 +34,12 @@
             <td><?php echo $pelicula['genero']; ?></td>
             <td><?php echo $pelicula['clasificacion']; ?></td>
             <td><?php if ($pelicula['acuerdoAgent']==1) echo 'SI'; else echo 'NO'; ?></td>
-            <td><?php if ($pelicula['formato']==1) echo 'SI'; else echo 'NO'; ?></td>
+            <td><?php if ($pelicula['formato']==1) echo '3D'; else echo '2D'; ?></td>
             <td><?php if ($pelicula['cartelera']==1) echo 'SI'; else echo 'NO'; ?></td>
             
             <td>                
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idpelicula="<?php echo $pelicula['idPelicula']?>"> Modificar</a>
-                    <a class="btn btn-outline-danger eli  btn-sm" href=""> Eliminar</a>
+                    <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>PeliculaCtrl/delete/<?=$pelicula['idPelicula']?>"> Eliminar</a>
                    
             </td>
         </tr>
@@ -152,7 +152,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="acuerdo">Acuerdo Agentores:  </label><br>
-      <input id="acuerdo"  type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" >
+      <input id="acuerdo" name="acuerdo" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" >
     </div>
   </div>
 
@@ -163,7 +163,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="formato">Formato: </label><br>
-      <input  id="formato"  type="checkbox" data-toggle="toggle" data-on="3D" data-off="2D" data-onstyle="success" data-offstyle="primary" >
+      <input  id="formato" name="formato" type="checkbox" data-toggle="toggle" data-on="3D" data-off="2D" data-onstyle="success" data-offstyle="primary" >
 
     </div>
   </div>
@@ -175,7 +175,7 @@
      </div>
      <div class="form-group col-md-6">
       <label for="cartelera">Cartelera: </label><br>
-      <input id="cartelera"  type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="primary" data-offstyle="danger">
+      <input id="cartelera" name="cartelera" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="primary" data-offstyle="danger" >
 
     </div>
   </div>

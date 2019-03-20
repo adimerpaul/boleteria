@@ -50,4 +50,8 @@ class dosificaciones_model extends CI_Model {
         $this->db->where('idDosificacion',$id);
         return $this->db->update('dosificacion',$dosificacion);
     }
+    
+    public function delete($idDosif){
+        return $this->db->delete('dosificacion', array('idDosif' => $idDosif));
+    }
 }

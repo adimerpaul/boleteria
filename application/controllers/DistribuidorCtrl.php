@@ -60,4 +60,11 @@ class DistribuidorCtrl extends CI_Controller {
         echo json_encode($myObj);
     }
 
+    public function delete($idDistrib)
+    {
+
+        $this->distribuidores_model->delete($idDistrib);
+        $this->distribuidorver();
+    }
+
 }

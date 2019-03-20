@@ -35,7 +35,7 @@
 
             <td>                
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-iddistrib="<?php echo $distrib['idDistrib']?>"> Modificar</a>
-                    <a class="btn btn-outline-danger eli  btn-sm" href=""> Eliminar</a>
+                    <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>DistribuidorCtrl/delete/<?=$distrib['idDistrib']?>"> Eliminar</a>
                    
             </td>
         </tr>
