@@ -110,7 +110,7 @@
      </div>
      <div class="form-group col-md-6">
       <label for="cartelera">Cartelera: </label><br>
-      <input class="form-control" id="cartelera" name="cartelera" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="primary" data-offstyle="danger" checked>
+      <input class="form-control" id="cartelera" name="cartelera" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
 
     </div>
   </div>

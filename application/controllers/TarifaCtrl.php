@@ -7,7 +7,7 @@ class TarifaCtrl extends CI_Controller {
 	{
 		parent::__construct();
         $this->load->model('usuarios_model');
-        //$this->load->model('tarifas_model');
+        $this->load->model('tarifas_model');
 
 
 	}
@@ -25,5 +25,11 @@ class TarifaCtrl extends CI_Controller {
                 $this->load->view('templates/footer',$dato);
         }
         else redirect('');
+    }
+    
+    public function store()
+    {
+        $this->tarifas_model->store();
+        $this->index();
     }
 }

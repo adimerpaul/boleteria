@@ -39,12 +39,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="nroFila">nroFila:</label>
-                        <input type="number" class="form-control" id="nroFila" name="nroFila" required>
+                        <input type="number" class="form-control" id="nroFila" name="nroFila" required min=0>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="nroColumna">nroColumna:</label>
-                        <input type="number" class="form-control" id="nroColumna" name="nroColumna" required>
+                        <input type="number" class="form-control" id="nroColumna" name="nroColumna" required min=0>
                     </div>
                 </div>
                 <div class="form-row">

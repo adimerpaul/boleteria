@@ -9,15 +9,15 @@
       <h3>INFORMACION DE LA TARIFA</h3>
 <hr />
     
-  <form method="POST" action="<?php echo base_url();?>EmpresaCtrl/store" >
+  <form method="POST" action="<?php echo base_url();?>TarifaCtrl/store" >
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="serie">Serie:</label>   
-      <input type="text" class="form-control" id="serie" name="serie">  
+      <input type="text" class="form-control" id="serie" name="serie"  required>  
     </div>
     <div class="form-group col-md-6">
       <label for="precio">Precio: </label>
-      <input type="text" class="form-control" id="precio" name="precio  ">
+      <input type="text" class="form-control" id="precio" name="precio" required>
     </div>
   </div>
   <div class="form-row">
@@ -28,55 +28,86 @@
 
   </div>
   <div class="form-row">
-  <div class="form-group col-md-4">
-      <label for="telefono">Mostrar en Tv:</label>   
-      <input type="checkbox" class="" id="telefono" name="telefono">  
+    <div class="form-group row col-md-4">
+      <label for="tv" class="col-sm-6 col-form-label">Mostrar en Tv:  </label>   
+      <div class="col-sm-6">
+      <input type="checkbox" class="form-control" id="tv" name="tv" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger">  
+      </div>
     </div>
-    <div class="form-group col-md-4">
-      <label for="telefono">Defecto:</label>   
-      <input type="checkbox" class="" id="telefono" name="telefono">  
+    <div class="form-group row col-md-4">
+      <label for="defecto" class="col-sm-4 col-form-label">Defecto:    </label>   
+      <div class="col-sm-8">
+      <input type="checkbox" class="form-control" id="defecto" name="defecto" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger">    
+      </div>
     </div>
-    <div class="form-group col-md-4">
-      <label for="telefono">Venta Web:</label>   
-      <input type="checkbox" class="" id="telefono" name="telefono">  
+    <div class="form-group row col-md-4">
+      <label for="web" class="col-sm-4 col-form-label">Venta Web:   </label>   
+      <div class="col-sm-8">
+      <input type="checkbox" class="form-control" id="web" name="web" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger">   
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="direccion">Direccion: </label>
-    <input type="text" class="form-control" id="direccion" name="direccion">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="cinit">CI / NIT:</label>
-      <input type="text" class="form-control" id="cinit" name="cinit">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="ingbruto">Ingresos Brutos: </label>
-      <input type="text" id="ingbruto" class="form-control" name="ingbruto">
+  <div class="form-group row ">
+    <label for="mostrarbol" class="col-sm-2 col-form-label">Mostrar en boleteria: </label>
+      <div class="col-sm-10">
+      <input type="checkbox" class="form-control" id="mostrarbol" name="mostrarbol" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger">    
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="afip">Agencia AFIP:</label>
-      <input type="text" class="form-control" id="afip" name="afip">
+  <div class="col-md-1"></div>
+    <div class="form-check col-md-5 align-items-center">
+      <label for="lunes">Dias:</label><br>
+      <div class="form-check center-block">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="lunes" name="lunes">
+      Lunes
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="martes" name="dias">Martes
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="miercoles" name="dias">Miercoles
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="jueves" name="dias">Jueves
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="viernes" name="dias">Viernes
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="sabado" name="dias">Sabado
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="domingo" name="dias">Domingo
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="festivo" name="dias">Dias Festivos
+      </label><br></div>
     </div>
     <div class="form-group col-md-6">
-      <label for="urldom">URL Dominio: </label>
-      <input type="text" id="urldom" class="form-control" name="urldom">
+      <label for="peli">Peliculas: </label>
+      <div class="form-check center-block">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="dosd" name="dosd">2D
+      </label><br>
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="tresd" name="tresd">3D
+      </label><br></div>
     </div>
-  </div>
+  </div><br>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="fideliza">Fidelizacion:</label>
-      <select class="form-control" id="fideliza" name="fideliza">
-        <option selected value="Ninguno">Ninguno</option> 
-        <option value="Siempre">Siempre</option> 
-        <option value="Opcional">Opcional</option> 
-     </select>       
-     </div>
+  <div class="col-md-1"></div>
+    <div class="form-group row col-md-6">
+      <label for="activa" class="col-sm-2 col-form-label" >Activa:</label>
+      <div class="col-sm-10">
+      <input type="checkbox" class="form-control " id="activa" name="activa" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>    
+      </div>      
+    </div>
+
   </div>
+
   <input type="submit" class="btn btn-success" value="Registrar">
-  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>EmpresaCtrl/empresaver">Cancelar</a>
+  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>TarifaCtrl/tarifaaver">Cancelar</a>
 </form>
   </div>
 </div>

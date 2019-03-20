@@ -41,7 +41,8 @@ class UsuarioCtrl extends CI_Controller {
 		  	$dato=$this->usuarios_model->validaIngreso($user);
 			  $this->load->view('templates/header',$dato);
 			  $this->load->view('inicio');
-			  $this->load->view('templates/footer');
+			  $dato2['js']="<script src=''></script>";    
+			  $this->load->view('templates/footer',$dato2);
 		 }
 		 else
     		redirect('');
@@ -52,6 +53,33 @@ class UsuarioCtrl extends CI_Controller {
 	    redirect('');
 	}
 	
+	public function usuarioreg()
+	{
+		if($this->session->userdata('login')==1){
+            
+            $user = $this->session->userdata('idUs');
+
+            $dato=$this->usuarios_model->validaIngreso($user);
+           
+                $this->load->view('templates/header', $dato);
+				$this->load->view('usuarioreg');
+                $dato2['js']="<script src='".base_url()."assets/js/usuario.js'></script>";    
+                $this->load->view('templates/footer',$dato2);
+        }
+        else redirect('');
+	}
+
+    public function datos(){
+        $user=$_POST['user1'];
+		$query=$this->db->query("SELECT * FROM usuario WHERE user='$user'");
+		if($query->num_rows() > 0 ){
+        $row=$query->row();        
+        $myObj=($query->result_array())[0];
+		echo json_encode($myObj);}
+		else
+		echo '{"user":""}';
+		
+    }
 
 
 		

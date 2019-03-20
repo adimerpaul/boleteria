@@ -131,7 +131,7 @@
     <div id="item-6" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Registrar Nueva</a>
+            <a class="nav-link" href="<?=base_url()?>TarifaCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Tarifas</a>
@@ -267,7 +267,7 @@
     <div id="item-011" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Registrar Nuevo</a>
+            <a class="nav-link" href="<?=base_url()?>UsuarioCtrl/usuarioreg"><i class="fas fa-plus"></i> Registrar Nuevo</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Usuarios</a>
