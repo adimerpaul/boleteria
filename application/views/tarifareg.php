@@ -50,7 +50,7 @@
   <div class="form-group row ">
     <label for="mostrarbol" class="col-sm-2 col-form-label">Mostrar en boleteria: </label>
       <div class="col-sm-10">
-      <input type="checkbox" class="form-control" id="mostrarbol" name="mostrarbol" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger">    
+      <input type="checkbox" class="form-control" id="mostrarbol" name="mostrarbol" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>    
     </div>
   </div>
   <div class="form-row">
@@ -63,25 +63,25 @@
       Lunes
       </label><br>
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="martes" name="dias">Martes
+      <input type="checkbox" class="form-check-input" id="martes" name="martes">Martes
       </label><br>
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="miercoles" name="dias">Miercoles
+      <input type="checkbox" class="form-check-input" id="miercoles" name="miercoles">Miercoles
       </label><br>
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="jueves" name="dias">Jueves
+      <input type="checkbox" class="form-check-input" id="jueves" name="jueves">Jueves
       </label><br>
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="viernes" name="dias">Viernes
+      <input type="checkbox" class="form-check-input" id="viernes" name="viernes">Viernes
       </label><br>
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="sabado" name="dias">Sabado
+      <input type="checkbox" class="form-check-input" id="sabado" name="sabado">Sabado
       </label><br>
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="domingo" name="dias">Domingo
+      <input type="checkbox" class="form-check-input" id="domingo" name="domingo">Domingo
       </label><br>
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="festivo" name="dias">Dias Festivos
+      <input type="checkbox" class="form-check-input" id="festivo" name="festivo">Dias Festivos
       </label><br></div>
     </div>
     <div class="form-group col-md-6">
@@ -107,7 +107,7 @@
   </div>
 
   <input type="submit" class="btn btn-success" value="Registrar">
-  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>TarifaCtrl/tarifaaver">Cancelar</a>
+  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>TarifaCtrl/tarifaver">Cancelar</a>
 </form>
   </div>
 </div>

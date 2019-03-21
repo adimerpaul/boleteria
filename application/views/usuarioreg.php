@@ -37,9 +37,35 @@
  
   <div class="form-row">
     <div class="form-group col-md-6">
-
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="inicio1" name="inicio1">Inicio
+      </label><br>
+        <label class="form-check-label">      
+      <input type="checkbox" class="form-check-input" id="empresa1" name="empresa1">Empresas
+      </label><br>
+      <div id="empresa12" name="empresa12" hidden>
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="regempresa1" name="regempresa1">RegistrarNuevaEmpresa </label><br>
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="verempresa1" name="verempresa1">VerEmpresas </label><br>
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="modempresa1" name="modempresa1">ModificarEmpresa </label><br>
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="elempresa1" name="elempresa1">EliminarEmpresa </label><br>
+      </div>
+      </div>
     </div>
-    <div class="form-group col-md-6">
+
+        <label class="form-check-label">      
+      <input type="checkbox" class="form-check-input" id="pelicula1" name="pelicula1">Peliculas
+      </label><br>
+      <div id="pelicula12" name="pelicula12" hidden>
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="regempresa1" name="regempresa1">RegistrarNuevaEmpresa </label><br>
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="verempresa1" name="verempresa1">VerEmpresas </label><br>
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="modempresa1" name="modempresa1">ModificarEmpresa </label><br>
+        <label class="form-check-label"> <input type="checkbox" class="form-check-input" id="elempresa1" name="elempresa1">EliminarEmpresa </label><br>
+      </div>
+      </div>
 
     </div>
   </div>

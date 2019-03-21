@@ -134,10 +134,10 @@
             <a class="nav-link" href="<?=base_url()?>TarifaCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Tarifas</a>
+            <a class="nav-link" href="<?=base_url()?>TarifaCtrl/tarifaver"><i class="fas fa-list-ul"></i> Ver Tarifas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Tarifas Inactivas</a>
+            <a class="nav-link" href="<?=base_url()?>TarifaCtrl/tarifaverinact"><i class="fas fa-list-ul"></i> Ver Tarifas Inactivas</a>
         </li>
         <li class="nav-item">
          <a class="nav-link" data-toggle="collapse" href="#item-61" data-parent="#accordion1"><i class="far fa-calendar-alt"></i> Dias Festivos</a>

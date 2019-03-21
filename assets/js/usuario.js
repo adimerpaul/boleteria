@@ -18,6 +18,7 @@ function compararpass(){
 }
 }
 
+
 $('#textuser').keyup(verifiUser);
     function verifiUser(){
     var button = $(event.relatedTarget) // Button that triggered the modal
@@ -49,3 +50,13 @@ $('#textuser').keyup(verifiUser);
               });
       
   }
+
+$('#empresa1').change(checkempresa);
+function checkempresa(){
+    console.log($('#empresa1').is(':checked'));
+    if($('#empresa1').is(':checked')==true)
+        $('#empresa12').removeAttr('hidden');
+    else
+        $('#empresa12').attr('hidden',true);
+       
+}

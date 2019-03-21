@@ -83,6 +83,7 @@ class peliculas_model extends CI_Model {
         $this->db->where('idPelicula',$id);
         return $this->db->update('pelicula',$pelicula);
     }
+    
     public function delete($idpelicula){
         return $this->db->delete('pelicula', array('idPelicula' => $idpelicula));
     }
