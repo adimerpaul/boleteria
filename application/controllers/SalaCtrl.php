@@ -47,7 +47,8 @@ class SalaCtrl extends CI_Controller {
     public function store()
     {
         $this->sala_model->store();
-        $this->index();
+        header("Location: ".base_url()."SalaCtrl");
+       // echo $_POST['B1'];
     }
 
     public function datos(){
