@@ -82,7 +82,14 @@ class UsuarioCtrl extends CI_Controller {
     }
 
 
-		
+	public function recuperaSeccion(){
+        $query=$this->db->query("SELECT * FROM seccion");
+        $row=$query->row();
+        
+        $myObj=($query->result_array());
+
+        echo json_encode($myObj);
+    }	
 
 	
 }

@@ -51,12 +51,82 @@ $('#textuser').keyup(verifiUser);
       
   }
 
-$('#empresa1').change(checkempresa);
-function checkempresa(){
-    console.log($('#empresa1').is(':checked'));
+$(document).ready(
+    
+function(){
+    var cadenaSeccion="";
+            $.ajax({
+                    
+                    url:   'recuperaSeccion',
+
+                    beforeSend: function () {
+                            $("#secciones").html("Procesando, espere por favor...");
+                    },
+                    success:  function (response) {
+                        //console.log(response);
+                        var datos=JSON.parse(response);
+                        console.log(datos[0].nombreSec);
+                        datos.forEach(row => {
+                            if(row.seccion_padre_id==0){
+                        console.log(row.nombreSec);
+                        cadenaSeccion+='<label class="form-check-label">';
+                        cadenaSeccion+='<input type="checkbox" class="form-check-input" id="'+row.nombreSec+'" name="'+row.nombreSec+'">'+row.nombreSec;
+                        cadenaSeccion+='</label><br>';
+                    }
+                            
+                        });
+                        //$('#idemp').prop('value',datos.idEmpresa);
+
+                            $("#secciones").html(cadenaSeccion);
+                    }
+            });
+});
+
+
+$('#empresa1').change(function(){
     if($('#empresa1').is(':checked')==true)
         $('#empresa12').removeAttr('hidden');
     else
         $('#empresa12').attr('hidden',true);
-       
+});
+
+$('#pelicula1').change(checkpelicula);
+function checkpelicula(){
+    if($('#pelicula1').is(':checked')==true)
+        $('#pelicula12').removeAttr('hidden');
+    else
+        $('#pelicula12').attr('hidden',true);       
+}
+
+$('#distrib1').change(checkdistrib);
+function checkdistrib(){
+    if($('#distrib1').is(':checked')==true)
+        $('#distrib12').removeAttr('hidden');
+    else
+        $('#distrib12').attr('hidden',true);       
+}
+
+$('#sala1').change(checksala);
+function checksala(){
+    if($('#sala1').is(':checked')==true)
+        $('#sala12').removeAttr('hidden');
+    else
+        $('#sala12').attr('hidden',true);       
+}
+
+
+$('#tarifa1').change(checktarifa);
+function checktarifa(){
+    if($('#tarifa1').is(':checked')==true)
+        $('#tarifa12').removeAttr('hidden');
+    else
+        $('#tarifa12').attr('hidden',true);       
+}
+
+$('#programacion1').change(checkprogramacion);
+function checkprogramacion(){
+    if($('#programacion1').is(':checked')==true)
+        $('#programacion12').removeAttr('hidden');
+    else
+        $('#programacion12').attr('hidden',true);       
 }

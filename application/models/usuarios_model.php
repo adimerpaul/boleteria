@@ -49,16 +49,16 @@ class usuarios_model extends CI_Model {
         $veremp=false;
         $datosdosif=false;
        
-        $respuesta=$this->usuarios_model->verificaHabilita($user,'inicio');
+        $respuesta=$this->usuarios_model->verificaHabilita($user,'Inicio');
         if($respuesta)
             $inicio=true;
-        $respuesta=$this->usuarios_model->verificaHabilita($user,'empresas');	
+        $respuesta=$this->usuarios_model->verificaHabilita($user,'Empresas');	
         if($respuesta)
             $empre=true;
-        $respuesta=$this->usuarios_model->verificaHabilita($user,'registrarnuevaempresa');	
+        $respuesta=$this->usuarios_model->verificaHabilita($user,'RegistrarNuevaEmpresa');	
         if($respuesta)
             $nuevaemp=true;	
-        $respuesta=$this->usuarios_model->verificaHabilita($user,'datosdosificacion');	
+        $respuesta=$this->usuarios_model->verificaHabilita($user,'DatosDosificacion');	
         if($respuesta)
             $datosdosif=true;
         $data=['user'=>$user,'inicio'=>$inicio,'empre'=>$empre,'nuevaemp'=>$nuevaemp,'datosdosif'=>$datosdosif];
