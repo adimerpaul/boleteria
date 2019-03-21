@@ -1,3 +1,26 @@
+<style>
+    .pantalla{
+        width: 250px;
+        background: #2a6496;
+        font-size: 30px;
+        font-family: Cambria;
+        color: white;
+    }
+    .libre{
+        width: 45px;
+        background: #4cae4c;
+    }
+    .ocupado{
+        width: 45px;
+        background: #5a6268;
+    }
+    .disabledContent
+    {
+        cursor: not-allowed;
+        background-color: rgb(229, 229, 229) !important;
+    }
+
+</style>
 <div class="col-sm-11 col-md-10">
     <h3>DISTRIBUIDORES</h3>
     <br>
@@ -14,7 +37,6 @@
                     <th>Nro Fila</th>
                     <th>Nro Columna</th>
                     <th>Capacidad</th>
-                    <th>Invert</th>
                     <th>Opciones</th>
                 </tr>
                 </thead>
@@ -27,7 +49,6 @@
                         <td><?php echo $row['nroFila']; ?></td>
                         <td><?php echo $row['nroColumna']; ?></td>
                         <td><?php echo $row['capacidad']; ?></td>
-                        <td><?php echo $row['invert']; ?></td>
 
                         <td>
                             <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idsala="<?php echo $row['idSala']?>"> Modificar</a>
@@ -53,8 +74,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modificar Sala</h5>
@@ -65,40 +86,40 @@
             <div class="modal-body">
                 <form method="POST" action="<?php echo base_url();?>SalaCtrl/update" >
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="nroSala">nroSala:</label>
                             <input type="text" id="idSala" name="idSala" hidden>
                             <input type="number" class="form-control" id="nroSala" name="nroSala" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="nombreSala">nombreSala:</label>
                             <input type="text" class="form-control" id="nombreSala" name="nombreSala" required>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="nroFila">nroFila:</label>
-                            <input type="number" class="form-control" id="nroFila" name="nroFila" required>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="nroColumna">nroColumna:</label>
-                            <input type="number" class="form-control" id="nroColumna" name="nroColumna" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="capacidad">capacidad:</label>
                             <input type="number" class="form-control" id="capacidad" name="capacidad" required>
                         </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12" style="width: 100%;justify-content: center">
+                            <center>
+                                <div class="pantalla">Pantalla</div>
+                                <table id="tabla" class="table-bordered">
 
-                        <div class="form-group col-md-6">
-                            <label for="invert">invert:</label>
-                            <input type="text" class="form-control" id="invert" name="invert" required>
+                                    <thead id="head">
+                                    </thead>
+                                    <tbody id="body">
+
+                                    </tbody>
+                                </table>
+                                <div id="habilitados" hidden >
+
+                                </div>
+                            </center>
                         </div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Modificar">
-                    <a type="button" class="btn btn-warning" href="<?php echo base_url();?>SalaCtrl/salaver">Cancelar</a>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
                 </form>
             </div>
             <div class="modal-footer">

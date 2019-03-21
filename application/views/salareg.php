@@ -7,13 +7,19 @@
     color: white;
 }
     .libre{
-        width: 35px;
+        width: 45px;
         background: #4cae4c;
     }
     .ocupado{
-        width: 35px;
+        width: 45px;
         background: #5a6268;
     }
+.disabledContent
+{
+    cursor: not-allowed;
+    background-color: rgb(229, 229, 229) !important;
+}
+
 </style>
 <div class="col-sm-11 col-md-10">
     <h3>Registrar Nuevo Sala</h3>
@@ -37,25 +43,18 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="nroFila">nroFila:</label>
                         <input type="number" class="form-control" id="nroFila" name="nroFila" required min=0>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="nroColumna">nroColumna:</label>
                         <input type="number" class="form-control" id="nroColumna" name="nroColumna" required min=0>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="capacidad">capacidad:</label>
-                        <input type="number" class="form-control" id="capacidad" name="capacidad" required>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="invert">invert:</label>
-                        <input type="text" class="form-control" id="invert" name="invert" required>
+                        <input type="number" class="form-control disabledContent" value="0" id="capacidad" name="capacidad" >
                     </div>
                 </div>
                 <div class="form-row">
@@ -70,6 +69,9 @@
 
                             </tbody>
                         </table>
+                        <div id="habilitados" hidden >
+
+                        </div>
                         </center>
                     </div>
                 </div>
@@ -78,6 +80,5 @@
             </form>
         </div>
     </div>
-
 </div>
 
