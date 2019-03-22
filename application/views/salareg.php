@@ -69,7 +69,7 @@
 
                             </tbody>
                         </table>
-                        <div id="habilitados" hidden >
+                        <div id="habilitados" hidden>
 
                         </div>
                         </center>
