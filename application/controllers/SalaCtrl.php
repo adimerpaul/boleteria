@@ -56,7 +56,7 @@ class SalaCtrl extends CI_Controller {
         $where=$_POST['where'];
         $dato=$_POST['dato'];
         $query=$this->db->query("SELECT * FROM $tabla WHERE $where='$dato'");
-        $myObj=($query->result_array())[0];
+        $myObj=($query->result_array());
         echo json_encode($myObj);
     }
     public function update()
@@ -65,11 +65,18 @@ class SalaCtrl extends CI_Controller {
         $this->sala_model->update();
         header("Location: ".base_url()."SalaCtrl/Salaver");
     }
+    public function manual()
+    {
+
+        $this->sala_model->manual();
+        header("Location: ".base_url()."SalaCtrl/Salaver");
+    }
 
     public function delete($idSala)
     {
 
         $this->sala_model->delete($idSala);
+
         header("Location: ".base_url()."SalaCtrl/Salaver");
     }
 

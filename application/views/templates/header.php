@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="<?=base_url('assets/css');?>/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <title>Sistema Multicines</title>
+
+
+
+
+    <link href='<?=base_url('assets/');?>/packages/core/main.css' rel='stylesheet' />
+    <link href='<?=base_url('assets/');?>/packages/daygrid/main.css' rel='stylesheet' />
+    <script src='<?=base_url('assets/');?>/packages/core/main.js'></script>
+    <script src='<?=base_url('assets/');?>/packages/interaction/main.js'></script>
+    <script src='<?=base_url('assets/');?>/packages/daygrid/main.js'></script>
+
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
@@ -163,7 +174,7 @@
     <div id="item-7" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-calendar-alt"></i> Ver Programacion</a>
+            <a class="nav-link" href="<?=base_url()?>ProgramacionCtrl"><i class="fas fa-calendar-alt"></i> Ver Programacion</a>
         </li>
       </ul>
     </div>
