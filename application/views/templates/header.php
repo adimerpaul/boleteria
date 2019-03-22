@@ -118,22 +118,6 @@
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>SalaCtrl/salaver"><i class="fas fa-list-ul"></i> Ver Salas</a>
         </li>
-        <li class="nav-item">
-         <a class="nav-link" data-toggle="collapse" href="#item-51" data-parent="#accordion1"><i class="fas fa-bars"></i> Tipos de Butaca</a>
-         <div id="item-51" class="collapse">
-            <ul class="nav flex-column ml-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url()?>ButacaCtrl"><i class="fas fa-plus"></i> Nuevo Tipo de Butaca</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url()?>ButacaCtrl/butacaver"><i class="fas fa-list-ul"></i> Ver Activos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url()?>ButacaCtrl/butacaverinact"><i class="fas fa-list-ul"></i> Ver Inactivos</a>
-                </li>
-            </ul>
-        </div>
-        </li>
       </ul>
     </div>
   </li>
@@ -155,13 +139,13 @@
          <div id="item-61" class="collapse">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-plus"></i> Nuevo Dia Festivo</a>
+                    <a class="nav-link" href="<?=base_url()?>FestivoCtrl"><i class="fas fa-plus"></i> Nuevo Dia Festivo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Dias Festivos</a>
+                    <a class="nav-link" href="<?=base_url()?>FestivoCtrl/festivover"><i class="fas fa-list-ul"></i> Ver Dias Festivos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Dias Festivos Inactivos</a>
+                    <a class="nav-link" href="<?=base_url()?>FestivoCtrl/festivoverinact"><i class="fas fa-list-ul"></i> Ver Dias Festivos Inactivos</a>
                 </li>
             </ul>
         </div>

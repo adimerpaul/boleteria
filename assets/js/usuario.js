@@ -69,64 +69,71 @@ function(){
                         datos.forEach(row => {
                             if(row.seccion_padre_id==0){
                         console.log(row.nombreSec);
-                        cadenaSeccion+='<label class="form-check-label">';
-                        cadenaSeccion+='<input type="checkbox" class="form-check-input" id="'+row.nombreSec+'" name="'+row.nombreSec+'">'+row.nombreSec;
-                        cadenaSeccion+='</label><br>';
+
+
+                        cadenaSeccion += '<div class="row-fluid">';
+                        cadenaSeccion += '<div class="span6">';
+                        cadenaSeccion += '<div class="control-group">';
+                        cadenaSeccion += '<label class="control-label checkbox">';
+                        cadenaSeccion += row.nombreSec;
+                        cadenaSeccion += ' <input name="chkPermiso[]" type="checkbox" value="' + row.idSeccion + '"/>';
+                        cadenaSeccion += '</label>';
+                        cadenaSeccion += '<div class="controls" >';	
+                        cadenaSeccion += '<div class="col-md-2"></div>';	
+                        cadenaSeccion += '<div class="col-md-10">';	
+                        for(i=0;i<datos.length;i++){
+                            if(datos[i].seccion_padre_id==row.idSeccion)
+                            {
+                                cadenaSeccion += '<label class="checkbox line">';
+			            		cadenaSeccion += '<input name="chkPermiso[]" type="checkbox" value="' + datos[i].idSeccion + '"/> ';
+			            		cadenaSeccion += datos[i].nombreSec;
+			            		cadenaSeccion += '</label><br>';
+                            }
+                        }
+                        cadenaSeccion+='</div>';
+                        cadenaSeccion+='</div>';
+                        cadenaSeccion+='</div>';
+                        cadenaSeccion+='</div>';
+                        cadenaSeccion+='</div>';
+
                     }
-                            
+    
                         });
+ 
                         //$('#idemp').prop('value',datos.idEmpresa);
-
+;	
                             $("#secciones").html(cadenaSeccion);
+                            $("#secciones .controls").each(function(i,v){							
+                                $(this).hide();							
+                            });	
+                            setSeccionesPadreListener();
+    
+
                     }
+
             });
-});
+	
+ 							
 
+ 
 
-$('#empresa1').change(function(){
-    if($('#empresa1').is(':checked')==true)
-        $('#empresa12').removeAttr('hidden');
-    else
-        $('#empresa12').attr('hidden',true);
-});
-
-$('#pelicula1').change(checkpelicula);
-function checkpelicula(){
-    if($('#pelicula1').is(':checked')==true)
-        $('#pelicula12').removeAttr('hidden');
-    else
-        $('#pelicula12').attr('hidden',true);       
 }
+);
+setSeccionesPadreListener = function(){
+    $(".control-label input:checkbox").click(function(e){		
 
-$('#distrib1').change(checkdistrib);
-function checkdistrib(){
-    if($('#distrib1').is(':checked')==true)
-        $('#distrib12').removeAttr('hidden');
-    else
-        $('#distrib12').attr('hidden',true);       
-}
-
-$('#sala1').change(checksala);
-function checksala(){
-    if($('#sala1').is(':checked')==true)
-        $('#sala12').removeAttr('hidden');
-    else
-        $('#sala12').attr('hidden',true);       
-}
-
-
-$('#tarifa1').change(checktarifa);
-function checktarifa(){
-    if($('#tarifa1').is(':checked')==true)
-        $('#tarifa12').removeAttr('hidden');
-    else
-        $('#tarifa12').attr('hidden',true);       
-}
-
-$('#programacion1').change(checkprogramacion);
-function checkprogramacion(){
-    if($('#programacion1').is(':checked')==true)
-        $('#programacion12').removeAttr('hidden');
-    else
-        $('#programacion12').attr('hidden',true);       
+        if($(this).is(':checked')){						
+            $(this).closest(".control-group").find(".controls").show();						
+        
+        }else{						
+            $(this).closest(".control-group").find(".controls").hide();
+            $(this).closest(".control-group").find(".controls input:checkbox").each(function(i,v){
+                
+                if($(this).is(':checked')){
+                    $(this).click();								
+                }
+                
+            });					
+        }					
+    });	
 }
