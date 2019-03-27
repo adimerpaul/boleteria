@@ -9,7 +9,7 @@
       <h3>INFORMACION DEL CLIENTE</h3>
 <hr />
     <div class="col-md-10">
-  <form method="POST" action="<?php echo base_url();?>ClienteCtrl/store" >
+  <form id="formcliente" method="POST" action="<?php echo base_url();?>ClienteCtrl/store" >
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="cinit">CI / NIT:</label>   

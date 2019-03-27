@@ -52,11 +52,13 @@ $('#cinit').keyup(verifiCl);
                           if (datos.cinit==''){
                             $('#cinit_error').html("");
                             $('#cinit_error').hide();
+                            $('#formcliente').attr('action', ClienteCtrl/store);
                         }
                             else
                            {
                             $('#cinit_error').html("el cliente existe");
                             $('#cinit_error').show();
+                            $('#formcliente').attr('action', '');
                            
                           }                    
                       } 
