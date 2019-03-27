@@ -7,7 +7,7 @@ class ProgramacionCtrl extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('usuarios_model');
-        $this->load->model('peliculas_model');
+        $this->load->model('funcion_model');
     }
 
     public function index()
@@ -15,11 +15,11 @@ class ProgramacionCtrl extends CI_Controller {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
             $dato=$this->usuarios_model->validaIngreso($user);
-            $pelicula['pelicula'] = $this->peliculas_model->listaPeliculas();
-            $pelicula['distribuidor']=$this->peliculas_model->listaDistribuidores();
+            // $pelicula['pelicula'] = $this->peliculas_model->listaPeliculas();
+            //$pelicula['distribuidor']=$this->peliculas_model->listaDistribuidores();
             $this->load->view('templates/header', $dato);
-            $this->load->view('programacionver',$pelicula);
-            $dato2['js']="<script src='".base_url()."assets/js/pelicula.js'></script>";
+            $this->load->view('programacionver');
+            $dato2['js']="<script src='".base_url()."assets/js/programacion.js'></script>";
             $this->load->view('templates/footer',$dato2);
         }
         else redirect('');
@@ -27,27 +27,9 @@ class ProgramacionCtrl extends CI_Controller {
 
     public function store()
     {
-        $this->peliculas_model->store();
-        $this->index();
-    }
-
-    public function peliculaver()
-    {
-
-        if($this->session->userdata('login')==1){
-
-            $user = $this->session->userdata('idUs');
-
-            $dato=$this->usuarios_model->validaIngreso($user);
-
-            $pelicula['pelicula'] = $this->peliculas_model->listaPeliculas();
-            $pelicula['distribuidor']=$this->peliculas_model->listaDistribuidores();
-            $this->load->view('templates/header', $dato);
-            $this->load->view('peliculaver',$pelicula);
-            $dato2['js']="<script src='".base_url()."assets/js/pelicula.js'></script>";
-            $this->load->view('templates/footer',$dato2);
-        }
-        else redirect('');
+        $this->funcion_model->store();
+        //$this->index();
+        header('Location: '.base_url().'ProgramacionCtrl');
     }
 
     public function datos(){
