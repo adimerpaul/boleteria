@@ -33,13 +33,35 @@ class ProgramacionCtrl extends CI_Controller {
     }
 
     public function datos(){
+
+        header('Content-Type: application/json');
+
+        $query=$this->db->query("SELECT idFuncion as id, CONCAT(fecha,' ',horaInicio) `start` ,CONCAT(fecha,' ',horaFin) `end` , p.nombre as `title` FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula");
+        //foreach($query->result() as $rows)
+        //{
+            //$row=$rows->row();
+           // $events[] = $row;
+        //}
+        echo json_encode($query->result_array());
+        exit;
+
+        /*
+         * $idempresa=$_POST['idempresa'];
+        $query=$this->db->query("SELECT * FROM empresa WHERE idEmpresa='$idempresa'");
+        $row=$query->row();
+
+        $myObj=($query->result_array())[0];
+
+        echo json_encode($myObj);*/
+        /*
+
         $idpelicula=$_POST['idpelicula'];
         $query=$this->db->query("SELECT * FROM pelicula WHERE idPelicula='$idpelicula'");
         $row=$query->row();
 
         $myObj=($query->result_array())[0];
 
-        echo json_encode($myObj);
+        echo json_encode($myObj);*/
     }
 
     public function update()
@@ -54,5 +76,6 @@ class ProgramacionCtrl extends CI_Controller {
         $this->peliculas_model->delete($idpelicula);
         $this->peliculaver();
     }
+
 
 }

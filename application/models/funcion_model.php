@@ -13,20 +13,31 @@ class funcion_model extends CI_Model{
         $row=$query->row();
         $duracion=$row->duracion;
         $hora=$_POST['hora'];
-        $newDate = strtotime ( '+'.$duracion.' minute' , strtotime ($hora) ) ;
+        $newDate = strtotime ( '+'.$duracion.' minutes' , strtotime ($hora) ) ;
         $horaFin = date ( 'Y-m-j H:i:s' , $newDate);
 
-        $funcion= [
-            'fechaInicio'=> $this->input->post('fecha1'),
-            'fechaFin'=> $this->input->post('fecha2'),
-            'horaInicio'=> $this->input->post('hora'),
-            'horaFin'=> $horaFin,
-            'idUsuario'=> $_SESSION['idUs'],
-            'idSala'=> $this->input->post('idsala'),
-            'idPelicula'=> $this->input->post('idpelicula'),
-        ];
 
-        return $this->db->insert("funcion",$funcion);
+        $fecha=$_POST['fecha1'];
+        $dias=$_POST['dias'];
+
+
+        for ($i=0;$i<$dias;$i++){
+
+            $funcion= [
+                'fecha'=> $fecha,
+                'horaInicio'=> $this->input->post('hora'),
+                'horaFin'=> $horaFin,
+                'idUsuario'=> $_SESSION['idUs'],
+                'idSala'=> $this->input->post('idsala'),
+                'idPelicula'=> $this->input->post('idpelicula'),
+            ];
+            //echo $fecha."<br>";
+            $this->db->insert("funcion",$funcion);
+
+            $fecha = strtotime ( '+1 day' , strtotime ($fecha) );
+            $fecha = date ( 'Y-m-d' , $fecha);
+
+        }
 
 
         //echo $this->session->userdata('nombre');

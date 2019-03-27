@@ -7,14 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
         locale:'es',
         plugins: [ 'interaction', 'dayGrid' ],
         defaultView: 'dayGridWeek',
+        right: 'month,basicWeek,basicDay',
         firstDay:4,
-        events: [
-            {
-                title: 'All Day Event',
-                start: '2019-03-21'
-            }
-        ],
-        eventColor:'red'
+        events: "ProgramacionCtrl/datos"
     });
 
     calendar.render();

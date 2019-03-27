@@ -80,6 +80,7 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="date" name="fecha2" id="fecha2" required value="<?=date("Y-m-d",strtotime(date("Y-m-d")."+ 6 day"))?>" >
+                                    <input type="text" name="dias" id="dias" value="7" hidden>
                                 </div>
                             </div>
                         </div>
@@ -101,11 +102,13 @@
 <script !src="">
     var fecha1=document.getElementById('fecha1');
     var fecha2=document.getElementById('fecha2');
+    var dias=document.getElementById('dias');
     fecha1.addEventListener('change',function (e) {
         var days = 6;
         var date = new Date(fecha1.value);
         date.setDate(date.getDate() + parseInt(days));
         fecha2.valueAsDate = date;
+        dias.value=days+1;
         /*var fecha=new Date(fecha1.value);
         fecha.setDate(fecha.getDate()+7);
         //console.log(fecha.getUTCFullYear());
@@ -113,5 +116,13 @@
         console.log(fecha.getUTCFullYear()+"-"+(fecha.getMonth()+1)+"-"+(fecha.getDate()));
         //fecha2.value='2019-03-14';
         */
+    });
+
+    fecha2.addEventListener('change',function (e) {
+        var date1 = new Date(fecha1.value);
+        var date2 = new Date(fecha2.value);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        dias.value=diffDays+1;
     })
 </script>
