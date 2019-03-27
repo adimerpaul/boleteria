@@ -136,32 +136,36 @@ class UsuarioCtrl extends CI_Controller {
 				
 				$this->usuarios_model->regpermiso($idU,$row->idSeccion);
 			}
+			
 		}
 
 		$this->usuarioreg();
 	}
 
-	public function update(Type $var = null)
+	public function update()
 	{
 		$this->usuarios_model->updateUS();
-
 		$idU=$this->input->post('idusuario1');	
+		$this->eliminarPermiso($idU);
 		$query=$this->db->query("SELECT * FROM seccion");
-
-		foreach($query->result() as $row){
-			if(isset($_POST['s'.$row->idSeccion]))
-				$this->usuarios_model->existepermiso($idU,$row->idSeccion,1);
-									
-			else
-				$this->usuarios_model->existepermiso($idU,$row->idSeccion,0);
-				
 	
-
-			
+		foreach($query->result() as $row){
+			if(isset($_POST['s'.$row->idSeccion])){
+				$this->usuarios_model->regpermiso($idU,$row->idSeccion);
+				echo $row->idSeccion;				}					
 		}
 
 		$this->usuariover();
 	}
 
-	
+	public function updatepass(){
+		$this->usuarios_model->updatepassword();
+        header("Location: ".base_url()."UsuarioCtrl/usuariover");
+			
+	}
+
+	public function eliminarPermiso($idU){
+		$this->db->where('idUsuario',$idU);
+		return $this->db->delete('permiso');
+	} 
 }

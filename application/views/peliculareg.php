@@ -26,6 +26,11 @@
       <label for="nom">Nombre : </label>
       <input type="text" class="form-control" id="nom" name="nom" required>
     </div>
+
+    <div class="form-group col-md-6">
+      <label for="imagen">IMAGEN : </label>
+      <input type="file" class="form-control" id="imagen" name="imagen" >
+    </div>
   </div>
   <div class="form-row">
   <div class="form-group col-md-6">

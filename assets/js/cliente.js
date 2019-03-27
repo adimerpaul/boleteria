@@ -41,7 +41,7 @@ $('#cinit').keyup(verifiCl);
               };
               $.ajax({
                       data:  parametros,
-                      url:   'datocliente',
+                      url:   'ClienteCtrl/datocliente',
                       type:  'post',
                       beforeSend: function () {
                               //$("#resultado").html("Procesando, espere por favor...");
@@ -52,7 +52,7 @@ $('#cinit').keyup(verifiCl);
                           if (datos.cinit==''){
                             $('#cinit_error').html("");
                             $('#cinit_error').hide();
-                            $('#formcliente').attr('action', ClienteCtrl/store);
+                            $('#formcliente').attr('action', store);
                         }
                             else
                            {

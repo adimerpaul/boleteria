@@ -9,7 +9,7 @@
       <h3>INFORMACION DEL USUARIO</h3>
 <hr />
     
-  <form id="reguser" method="POST" action="<?php echo base_url();?>UsuarioCtrl/store" >
+  <form id="formregus" method="POST" action="<?php echo base_url();?>UsuarioCtrl/store" >
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>   

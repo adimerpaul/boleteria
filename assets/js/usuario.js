@@ -5,19 +5,17 @@ function compararpass(e){
     var cont2 = $('#confpass').prop('value');
     
     if ((cont == cont2) ) {
-        if ((cont=='') &&(cont2=='')) $('#mensaje_error').hide();
+        if ((cont=='') && (cont2=='')) $('#mensaje_error').hide();
         else{
         $('#mensaje_error').hide();
         $('#mensaje_error').attr("class", "control-label col-md-12 text-success");
         $('#mensaje_error').show();
         $('#mensaje_error').html("Las constraseñas si coinciden");
-        $('#regusuario').attr('disabled',true);
             
      }
     } else {
          $('#mensaje_error').html("Las constraseñas no coinciden");
         $('#mensaje_error').show();
-        $('#regusuario').attr('disabled',false);
     
 }
 }
@@ -44,15 +42,20 @@ $('#textuser').keyup(verifiUser);
                           if (datos.user==''){
                             $('#user_error').html("");
                             $('#user_error').hide();
-                            $('#regusuario').prop('disabled',false);
+                            var cont = $('#pass').prop('value');
+                            var cont2 = $('#confpass').prop('value');
+                            if(cont == cont2 && cont!='')
+                            $('#formregus').attr('action',store);
+                            else
+                            $('#formregus').attr('action','');
                         }
                             else
                            {
                             $('#user_error').html("el usuario existe");
                             $('#user_error').show();
+                            $('#formregus').attr('action','');
                             e.preventDefault();
                             return false;
-                            $('#regusuario').prop('disabled',true);
                           }                    
                       } 
               });      
@@ -83,7 +86,7 @@ function(){
                         cadenaSeccion += '<div class="control-group">';
                         cadenaSeccion += '<label class="control-label checkbox">';
                         cadenaSeccion += row.nombreSec;
-                        cadenaSeccion += ' <input id="s' + row.idSeccion + '" type="checkbox" value="' + row.idSeccion + '"/>';
+                        cadenaSeccion += ' <input name="s' + row.idSeccion + '" type="checkbox" value="' + row.idSeccion + '"/>';
                         cadenaSeccion += '</label>';
                         cadenaSeccion += '<div class="controls" >';	
                         cadenaSeccion += '<div class="col-md-2"></div>';	
@@ -92,7 +95,7 @@ function(){
                             if(datos[i].seccion_padre_id==row.idSeccion)
                             {
                                 cadenaSeccion += '<label class="checkbox line">';
-			            		cadenaSeccion += '<input id="s' + datos[i].idSeccion + '" type="checkbox" value="' + datos[i].idSeccion + '"/> ';
+			            		cadenaSeccion += '<input name="s' + datos[i].idSeccion + '" type="checkbox" value="' + datos[i].idSeccion + '"/> ';
 			            		cadenaSeccion += datos[i].nombreSec;
 			            		cadenaSeccion += '</label><br>';
                             }
@@ -175,23 +178,51 @@ $('#exampleModal').on('show.bs.modal', function (event) {
           url: 'userpermiso',
           type : 'post',
           beforeSend: function(){
-
+            $('input:checkbox').removeAttr('checked');
           },
           success: function(response){
             console.log(response);
             var datosper=JSON.parse(response);
             datosper.forEach(row => {
-                if(row.activo==1){
-                $('#s'+row.idSeccion).prop('checked',true);						
-                        $('#s'+row.idSeccion).closest(".control-group").find(".controls").show();		
-                }
-                else{
-                    $('#s'+row.idSeccion).prop('checked',false);
-                        
-                }
+                $('input[name=s'+row.idSeccion+']').prop('checked',true);						
+                        $('input[name=s'+row.idSeccion+']').closest(".control-group").find(".controls").show();		
+
                 
             });
               
           }
       });      
   })
+
+ $('#formuppass').submit(function(event){
+    var cont = $('#pass').prop('value');
+    var cont2 = $('#confpass').prop('value');
+    if(cont == cont2 && cont!='')
+    $('#formuppass').attr('action',updatepass);
+    else
+    $('#formuppass').attr('action','');  
+ });
+
+ $('#Modalpass').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)// Button that triggered the modal
+    var idusuario = button.data('idusuario') // Extract info from data-* attributes
+    var parametros = {
+                      "idusuario" : idusuario,
+                     "mostrar" : 'codigo'
+              };
+              $.ajax({
+                      data:  parametros,
+                      url:   'datoUser',
+                      type:  'post',
+                      beforeSend: function () {
+                              //$("#resultado").html("Procesando, espere por favor...");
+                      },
+                      success:  function (response) {
+                          console.log(response);
+                          var datoUser=JSON.parse(response);
+                          $('#idusuario2').prop('value',datoUser.idUsuario);
+                          
+                      } 
+              });
+    
+    })

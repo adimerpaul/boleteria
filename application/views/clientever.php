@@ -11,7 +11,9 @@
                 <tr>
                     <th>Ci/NIT</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
+                    <th>FechaNac</th>
+                    <th>E-Mail</th>
+                    <th>Telefono</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -20,8 +22,10 @@
         <?php foreach($cliente as $row): ?>
         <tr>
             <td><?php echo $row['cinit']; ?></td>
-            <td><?php echo $row['nombreCl']; ?></td>
-            <td><?php echo $row['apellidoCl']; ?></td>
+            <td><?php echo $row['nombreCl'].' '.$row['apellidoCl']; ?></td>
+            <td><?php echo $row['fechaNac']; ?></td>
+            <td><?php echo $row['email']; ?></td>
+            <td><?php echo $row['telefono']; ?></td>
             <td>                
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idcliente="<?php echo $row['idCliente']?>"> Modificar</a>
                     <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>ClienteCtrl/delete/<?=$row['idCliente']?>"> Eliminar</a>

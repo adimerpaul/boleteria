@@ -76,8 +76,7 @@ class usuarios_model extends CI_Model {
     {
         $permiso=[
             'idUsuario'=> $idU,
-            'idSeccion'=>$idSeccion,
-            'activo'=>1
+            'idSeccion'=>$idSeccion
         ];
 
         return $this->db->insert('permiso',$permiso);
@@ -87,14 +86,7 @@ class usuarios_model extends CI_Model {
         $this->db->where('idUsuario',$id);
         $this->db->where('idSeccion',$idsec);
         $permiso=['activo'=>$activo];
-        $this->db->update('permiso',$permiso);   
-        $res=$this->db->affected_rows();
-            
-		if ($res){
-          return true;
-        }
-		else $this->regpermiso($id,$idsec);
-        
+        return $this->db->update('permiso',$permiso);           
     }
 
 
@@ -102,6 +94,16 @@ class usuarios_model extends CI_Model {
         $id=$this->input->post('idusuario1');
         $usuario= [
             'nombreUser'=> $this->input->post('nombre')            
+        ];
+        $this->db->where('idUsuario',$id);
+        return $this->db->update("usuario",$usuario);
+        
+    }
+
+    public function updatepassword(){
+        $id=$this->input->post('idusuario2');
+        $usuario= [
+            'password'=> $this->input->post('pass')            
         ];
         $this->db->where('idUsuario',$id);
         return $this->db->update("usuario",$usuario);

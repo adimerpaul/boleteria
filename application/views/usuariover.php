@@ -98,7 +98,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form method="POST" action="<?php echo base_url();?>UsuarioCtrl/updatepass" >
+      <form id="formuppass" method="POST" action="<?php echo base_url();?>UsuarioCtrl/updatepass" >
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="pass">Password:</label>   
@@ -107,7 +107,8 @@
     </div>
     <div class="form-group col-md-6">
       <label for="pass">Password Confirmar:</label>   
-      <input type="password" class="form-control" id="passconf" name="passconf"  required>  
+      <input type="password" class="form-control" id="confpass" name="confpass"  required>  
+      <label id="mensaje_error" class="control-label col-md-6 text-danger" style="display: block;"></label>
     </div>
   </div>
   <hr>
