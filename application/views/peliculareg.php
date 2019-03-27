@@ -13,15 +13,15 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="codinca">Codigo INCAA:</label>   
-      <input type="text" class="form-control" id="codinca" name="codinca">  
+      <input type="text" class="form-control" id="codinca" name="codinca" readonly>  
+    </div>
+    <div class="form-group col-md-6">
+      <label for="codultra">Codigo Ultracine:</label>   
+      <input type="text" class="form-control" id="codultra" name="codultra" readonly>  
     </div>
   </div>
 
   <div class="form-row">
-  <div class="form-group col-md-6">
-      <label for="codultra">Codigo Ultracine:</label>   
-      <input type="text" class="form-control" id="codultra" name="codultra">  
-    </div>
     <div class="form-group col-md-6">
       <label for="nom">Nombre : </label>
       <input type="text" class="form-control" id="nom" name="nom" required>
@@ -85,10 +85,7 @@
           <option value="R">R</option>
     </select>
     </div>
-    <div class="form-group col-md-6">
-      <label for="acuerdo">Acuerdo Agentores:  </label><br>
-      <input class="form-control" id="acuerdo" name="acuerdo" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
-    </div>
+
   </div>
 
   <div class="form-row">

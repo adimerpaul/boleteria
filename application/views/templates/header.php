@@ -265,7 +265,7 @@
             <a class="nav-link" href="<?=base_url()?>UsuarioCtrl/usuarioreg"><i class="fas fa-plus"></i> Registrar Nuevo</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Usuarios</a>
+            <a class="nav-link" href="<?=base_url()?>UsuarioCtrl/usuariover"><i class="fas fa-list-ul"></i> Ver Usuarios</a>
         </li>
       </ul>
     </div>
@@ -275,10 +275,10 @@
     <div id="item-012" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Registrar Nuevo</a>
+            <a class="nav-link" href="<?=base_url()?>ClienteCtrl"><i class="fas fa-plus"></i> Registrar Nuevo</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Clientes</a>
+            <a class="nav-link" href="<?=base_url()?>ClienteCtrl/clientever"><i class="fas fa-list-ul"></i> Ver Clientes</a>
         </li>
       </ul>
     </div>

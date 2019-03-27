@@ -1,6 +1,6 @@
 $('#pass').keyup(compararpass);
 $('#confpass').keyup(compararpass);
-function compararpass(){
+function compararpass(e){
     var cont = $('#pass').prop('value');
     var cont2 = $('#confpass').prop('value');
     
@@ -10,17 +10,21 @@ function compararpass(){
         $('#mensaje_error').hide();
         $('#mensaje_error').attr("class", "control-label col-md-12 text-success");
         $('#mensaje_error').show();
-        $('#mensaje_error').html("Las constraseñas si coinciden");}
+        $('#mensaje_error').html("Las constraseñas si coinciden");
+        $('#regusuario').attr('disabled',true);
+            
+     }
     } else {
          $('#mensaje_error').html("Las constraseñas no coinciden");
         $('#mensaje_error').show();
+        $('#regusuario').attr('disabled',false);
     
 }
 }
 
 
 $('#textuser').keyup(verifiUser);
-    function verifiUser(){
+    function verifiUser(e){
     var button = $(event.relatedTarget) // Button that triggered the modal
     var user1 = $('#textuser').prop('value'); // Extract info from data-* attributes
     var parametros = {
@@ -39,16 +43,19 @@ $('#textuser').keyup(verifiUser);
                           var datos=JSON.parse(response);
                           if (datos.user==''){
                             $('#user_error').html("");
-                            $('#user_error').hide(); }
+                            $('#user_error').hide();
+                            $('#regusuario').prop('disabled',false);
+                        }
                             else
                            {
                             $('#user_error').html("el usuario existe");
                             $('#user_error').show();
-                           
+                            e.preventDefault();
+                            return false;
+                            $('#regusuario').prop('disabled',true);
                           }                    
                       } 
-              });
-      
+              });      
   }
 
 $(document).ready(
@@ -76,7 +83,7 @@ function(){
                         cadenaSeccion += '<div class="control-group">';
                         cadenaSeccion += '<label class="control-label checkbox">';
                         cadenaSeccion += row.nombreSec;
-                        cadenaSeccion += ' <input name="chkPermiso[]" type="checkbox" value="' + row.idSeccion + '"/>';
+                        cadenaSeccion += ' <input id="s' + row.idSeccion + '" type="checkbox" value="' + row.idSeccion + '"/>';
                         cadenaSeccion += '</label>';
                         cadenaSeccion += '<div class="controls" >';	
                         cadenaSeccion += '<div class="col-md-2"></div>';	
@@ -85,7 +92,7 @@ function(){
                             if(datos[i].seccion_padre_id==row.idSeccion)
                             {
                                 cadenaSeccion += '<label class="checkbox line">';
-			            		cadenaSeccion += '<input name="chkPermiso[]" type="checkbox" value="' + datos[i].idSeccion + '"/> ';
+			            		cadenaSeccion += '<input id="s' + datos[i].idSeccion + '" type="checkbox" value="' + datos[i].idSeccion + '"/> ';
 			            		cadenaSeccion += datos[i].nombreSec;
 			            		cadenaSeccion += '</label><br>';
                             }
@@ -121,19 +128,70 @@ function(){
 );
 setSeccionesPadreListener = function(){
     $(".control-label input:checkbox").click(function(e){		
-
         if($(this).is(':checked')){						
-            $(this).closest(".control-group").find(".controls").show();						
-        
+            $(this).closest(".control-group").find(".controls").show();						        
         }else{						
             $(this).closest(".control-group").find(".controls").hide();
             $(this).closest(".control-group").find(".controls input:checkbox").each(function(i,v){
                 
                 if($(this).is(':checked')){
                     $(this).click();								
-                }
-                
+                }                
             });					
         }					
     });	
 }
+
+
+
+
+
+
+$('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)// Button that triggered the modal
+    var idusuario = button.data('idusmod') // Extract info from data-* attributes
+    var parametros = {
+                      "idusuario" : idusuario,
+                     "mostrar" : 'codigo'
+              };
+              $.ajax({
+                      data:  parametros,
+                      url:   'datoUser',
+                      type:  'post',
+                      beforeSend: function () {
+                              //$("#resultado").html("Procesando, espere por favor...");
+                      },
+                      success:  function (response) {
+                          console.log(response);
+                          var datoUser=JSON.parse(response);
+                          $('#idusuario1').prop('value',datoUser.idUsuario);
+                          $('#nombre').prop('value',datoUser.nombreUser);
+                          
+                      } 
+              });
+
+      $.ajax({
+          data:parametros,
+          url: 'userpermiso',
+          type : 'post',
+          beforeSend: function(){
+
+          },
+          success: function(response){
+            console.log(response);
+            var datosper=JSON.parse(response);
+            datosper.forEach(row => {
+                if(row.activo==1){
+                $('#s'+row.idSeccion).prop('checked',true);						
+                        $('#s'+row.idSeccion).closest(".control-group").find(".controls").show();		
+                }
+                else{
+                    $('#s'+row.idSeccion).prop('checked',false);
+                        
+                }
+                
+            });
+              
+          }
+      });      
+  })

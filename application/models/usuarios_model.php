@@ -2,17 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class usuarios_model extends CI_Model {
-	public function insertar($nom,$usu,$con,$fot,$rol)
-	{
-	 $data= array(
-	 	'nombre'=>$nom,
-	 	'usuario'=>$usu,
-	 	'contra'=>$con,
-	 	'foto'=>$fot,
-	 	'rol'=>$rol
-	 );
-	 $this->db->insert('usuarios',$data);
-	}
+
+    public function listarUsuario()
+    {
+        $usuario = $this->db->get('usuario');
+        return $usuario->result_array();
+    }
+
 	public function verificalogin($usu,$con)
 	{
 		$this->db->where('user',$usu);
@@ -63,6 +59,52 @@ class usuarios_model extends CI_Model {
             $datosdosif=true;
         $data=['user'=>$user,'inicio'=>$inicio,'empre'=>$empre,'nuevaemp'=>$nuevaemp,'datosdosif'=>$datosdosif];
         return $data;
-}
-	
+    }
+
+    public function store(){
+        $usuario= [
+            'nombreUser'=> $this->input->post('nombre'),
+            'user'=> $this->input->post('textuser'),
+            'password'=> $this->input->post('pass')
+            
+        ];
+        $this->db->insert("usuario",$usuario);
+        return $this->db->insert_id();
+    }
+
+    public function regpermiso($idU,$idSeccion)
+    {
+        $permiso=[
+            'idUsuario'=> $idU,
+            'idSeccion'=>$idSeccion,
+            'activo'=>1
+        ];
+
+        return $this->db->insert('permiso',$permiso);
+    }
+
+    public function existepermiso($id,$idsec,$activo){
+        $this->db->where('idUsuario',$id);
+        $this->db->where('idSeccion',$idsec);
+        $permiso=['activo'=>$activo];
+        $this->db->update('permiso',$permiso);   
+        $res=$this->db->affected_rows();
+            
+		if ($res){
+          return true;
+        }
+		else $this->regpermiso($id,$idsec);
+        
+    }
+
+
+    public function updateUS(){
+        $id=$this->input->post('idusuario1');
+        $usuario= [
+            'nombreUser'=> $this->input->post('nombre')            
+        ];
+        $this->db->where('idUsuario',$id);
+        return $this->db->update("usuario",$usuario);
+        
+    }
 }

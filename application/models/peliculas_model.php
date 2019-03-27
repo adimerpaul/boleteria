@@ -18,10 +18,7 @@ class peliculas_model extends CI_Model {
 
     public function store()
     {
-        if ($this->input->post('acuerdo') == "on" or null)
-        $acuerdo=1;
-        else
-        $acuerdo=0;
+
         if ($this->input->post('cartelera') == "on"  or null)
         $cartelara=1;
         else
@@ -38,7 +35,6 @@ class peliculas_model extends CI_Model {
             'paisOrigen'=> $this->input->post('origen'),
             'genero'=> $this->input->post('genero'),            
             'clasificacion'=> $this->input->post('clasificacion'),            
-            'acuerdoAgent'=> $acuerdo,
             'cartelera'=> $cartelara,
             'formato'=> $formato,
             'sipnosis'=>$this->input->post('sipnosis'),
@@ -52,10 +48,7 @@ class peliculas_model extends CI_Model {
     public function update()
     {
         $id=$this->input->post('idpelicula');
-        if(($this->input->post('acuerdo')) == "on")
-        $acuerdo=1;
-        else
-        $acuerdo=0;
+
         if(($this->input->post('cartelera'))=="on")
         $cartelara=1;
         else
@@ -72,7 +65,6 @@ class peliculas_model extends CI_Model {
             'paisOrigen'=> $this->input->post('origen'),
             'genero'=> $this->input->post('genero'),            
             'clasificacion'=> $this->input->post('clasificacion'),            
-            'acuerdoAgent'=> $acuerdo,
             'cartelera'=> $cartelara,
             'formato'=> $formato,
             'sipnosis'=>$this->input->post('sipnosis'),

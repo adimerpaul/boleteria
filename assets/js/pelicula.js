@@ -42,11 +42,6 @@
                               $('#cartelera').bootstrapToggle('on');
                               else
                              $('#cartelera').bootstrapToggle('off');
-
-                              if (datos.acuerdoAgent == 1)                               
-                              $('#acuerdo').bootstrapToggle('on');
-                              else
-                             $('#acuerdo').bootstrapToggle('off');
                                                    
                           } 
                   });

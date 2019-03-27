@@ -16,7 +16,6 @@
                     <th>Distribuidor</th>
                     <th>Genero</th>
                     <th>Clasificacion</th>
-                    <th>Ac Argentores</th>
                     <th>Tipo</th>
                     <th>Cartelera</th>
                     <th>Opciones</th>
@@ -33,7 +32,6 @@
             <td><?php echo $pelicula['nombreDis']; ?></td>
             <td><?php echo $pelicula['genero']; ?></td>
             <td><?php echo $pelicula['clasificacion']; ?></td>
-            <td><?php if ($pelicula['acuerdoAgent']==1) echo 'SI'; else echo 'NO'; ?></td>
             <td><?php if ($pelicula['formato']==1) echo '3D'; else echo '2D'; ?></td>
             <td><?php if ($pelicula['cartelera']==1) echo 'SI'; else echo 'NO'; ?></td>
             
@@ -78,15 +76,15 @@
     <div class="form-group col-md-6">
       <label for="codinca">Codigo INCAA:</label> 
       <input type="hidden" id="idpelicula" name="idpelicula">  
-      <input type="text" class="form-control" id="codinca" name="codinca">  
+      <input type="text" class="form-control" id="codinca" name="codinca" readonly>  
+    </div>
+    <div class="form-group col-md-6">
+      <label for="codultra">Codigo Ultracine:</label>   
+      <input type="text" class="form-control" id="codultra" name="codultra" readonly>  
     </div>
   </div>
 
   <div class="form-row">
-  <div class="form-group col-md-6">
-      <label for="codultra">Codigo Ultracine:</label>   
-      <input type="text" class="form-control" id="codultra" name="codultra">  
-    </div>
     <div class="form-group col-md-6">
       <label for="nom">Nombre : </label>
       <input type="text" class="form-control" id="nom" name="nom" required>
@@ -150,10 +148,7 @@
           <option value="R">R</option>
     </select>
     </div>
-    <div class="form-group col-md-6">
-      <label for="acuerdo">Acuerdo Agentores:  </label><br>
-      <input id="acuerdo" name="acuerdo" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" >
-    </div>
+
   </div>
 
   <div class="form-row">
