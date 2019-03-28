@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         defaultView: 'dayGridWeek',
         right: 'month,basicWeek,basicDay',
         firstDay:4,
-        events: "ProgramacionCtrl/datos"
+        events: "ProgramacionCtrl/datos",
+        classNames:['eventos']
     });
 
     calendar.render();
