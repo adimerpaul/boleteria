@@ -146,10 +146,6 @@ setSeccionesPadreListener = function(){
 }
 
 
-
-
-
-
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)// Button that triggered the modal
     var idusuario = button.data('idusmod') // Extract info from data-* attributes
@@ -178,9 +174,9 @@ $('#exampleModal').on('show.bs.modal', function (event) {
           url: 'userpermiso',
           type : 'post',
           beforeSend: function(){
-            $('input:checkbox').removeAttr('checked');
-          },
+        },
           success: function(response){
+            $('input:checkbox').prop('checked',false);
             console.log(response);
             var datosper=JSON.parse(response);
             datosper.forEach(row => {
