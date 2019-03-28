@@ -36,7 +36,7 @@ class ProgramacionCtrl extends CI_Controller {
 
         header('Content-Type: application/json');
 
-        $query=$this->db->query("SELECT idFuncion as id, CONCAT(fecha,' ',horaInicio) `start` ,CONCAT(fecha,' ',horaFin) `end` , p.nombre as `title` FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula");
+        $query=$this->db->query("SELECT 'eventos' as classNames,idFuncion as id, CONCAT(fecha,' ',horaInicio) `start` ,CONCAT(fecha,' ',horaFin) `end` , p.nombre as `title` FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula");
         //foreach($query->result() as $rows)
         //{
             //$row=$rows->row();
