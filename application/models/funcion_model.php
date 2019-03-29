@@ -30,6 +30,8 @@ class funcion_model extends CI_Model{
                 'idUsuario'=> $_SESSION['idUs'],
                 'idSala'=> $this->input->post('idsala'),
                 'idPelicula'=> $this->input->post('idpelicula'),
+                'subtitulada'=> $this->input->post('subtitulada'),
+                'numerada'=> $this->input->post('numerada')
             ];
             //echo $fecha."<br>";
             $this->db->insert("funcion",$funcion);

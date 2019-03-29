@@ -34,34 +34,29 @@ class ProgramacionCtrl extends CI_Controller {
 
     public function datos(){
 
-        header('Content-Type: application/json');
+        //header('Content-Type: application/json');
 
-        $query=$this->db->query("SELECT 'eventos' as classNames,idFuncion as id, CONCAT(fecha,' ',horaInicio) `start` ,CONCAT(fecha,' ',horaFin) `end` , p.nombre as `title` FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula");
-        //foreach($query->result() as $rows)
-        //{
-            //$row=$rows->row();
-           // $events[] = $row;
-        //}
-        echo json_encode($query->result_array());
+        $query=$this->db->query("SELECT (CASE
+    WHEN s.idSala='1' THEN 'blue'
+    WHEN s.idSala='2' THEN 'fuchsia'
+    WHEN s.idSala='3' THEN 'red'
+    WHEN s.idSala='4' THEN 'yellow'
+    WHEN s.idSala='5' THEN 'lime'
+    WHEN s.idSala='6' THEN 'aqua'
+    WHEN s.idSala='7' THEN 'black'
+    
+END)as color,'description for Click for Google' as description ,  idFuncion as id, CONCAT(fecha,' ',horaInicio) `start` ,CONCAT(fecha,' ',horaFin) `end` , p.nombre  as `title` FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula");
+        $arr = array();
+        $t='[';
+        foreach ($query->result() as $row){
+            $arr[] = $row;
+            //echo json_encode($row).",";
+           }
+        $t=$t."{'id': '1','start': '2019-03-28 10:00:00','end': '2019-03-28 13:00:00','title': 'AQUAMAN 3D DOBLADA'}";
+        $t=$t.']';
+        echo json_encode($arr);
         exit;
 
-        /*
-         * $idempresa=$_POST['idempresa'];
-        $query=$this->db->query("SELECT * FROM empresa WHERE idEmpresa='$idempresa'");
-        $row=$query->row();
-
-        $myObj=($query->result_array())[0];
-
-        echo json_encode($myObj);*/
-        /*
-
-        $idpelicula=$_POST['idpelicula'];
-        $query=$this->db->query("SELECT * FROM pelicula WHERE idPelicula='$idpelicula'");
-        $row=$query->row();
-
-        $myObj=($query->result_array())[0];
-
-        echo json_encode($myObj);*/
     }
 
     public function update()

@@ -26,7 +26,6 @@
     }
 
     #calendar {
-        max-width: 900px;
         margin: 0 auto;
     }
     .eventos{
@@ -92,7 +91,16 @@
                         <label for="hora" class="col-sm-1 col-form-label">Hora</label>
                         <div class="col-sm-5">
                             <input type="time" name="hora" id="hora" style="width: 100%" required>
-                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="subtitulada" class="col-sm-2 col-form-label">Subtitulada</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="subtitulada" name="subtitulada" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
+                        </div>
+                        <label for="numerada" class="col-sm-2 col-form-label">Numerada</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="numerada" name="numerada" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
                         </div>
                     </div>
                     <div class="modal-footer">
