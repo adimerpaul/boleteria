@@ -21,20 +21,20 @@ class VentaCtrl extends CI_Controller {
             $dato=$this->usuarios_model->validaIngreso($user);
                 $this->load->view('templates/header', $dato);
                 $this->load->view('panelventa');
-                $dato['js']="<script></script>";    
-                $this->load->view('templates/footer',$dato);
+                $dato2['js']="<script src='".base_url()."assets/js/venta.js'></script>";    
+                $this->load->view('templates/footer',$dato2);
         }
         else redirect('');
     }
 
 
     public function listafuncion(){
-        $fecha=$_POST['fecfuncion'];
-        $query=$this->db->query("SELECT * FROM funcion WHERE fecha='$fecha'");
-        $row=$query->row();
-        
-        $myObj=($query->result_array())[0];
+        $fecha=$_POST['fecha1'];
+        $consulta="SELECT p.idPelicula,nombre,formato from pelicula p inner join funcion f on p.idPelicula = f.idPelicula where fecha ='$fecha' and activa='ACTIVADO'" ;
 
+        $query=$this->db->query($consulta);
+        $row=$query->row();        
+        $myObj=($query->result_array());
         echo json_encode($myObj);
     }
 }
