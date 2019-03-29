@@ -32,6 +32,10 @@ class VentaCtrl extends CI_Controller {
         $fecha=$_POST['fecha1'];
         $consulta="SELECT p.idPelicula,nombre,formato from pelicula p inner join funcion f on p.idPelicula = f.idPelicula where fecha ='$fecha' and activa='ACTIVADO'" ;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         $query=$this->db->query($consulta);
         $row=$query->row();        
         $myObj=($query->result_array());

@@ -5,8 +5,9 @@
 	Realizado por: Alejandro Lopez Gutierrez
 </footer>
   <script src="<?=base_url('assets/js');?>/jquery.min.js"></script>
+  <script src="<?=base_url('assets/js');?>/jquery-ui.js"></script>
   <script src="<?=base_url('assets/js');?>/popper.min.js"></script>
-    <script src="<?=base_url('assets/js');?>/bootstrap.min.js"></script>
+  <script src="<?=base_url('assets/js');?>/bootstrap.min.js"></script>
   <script src="<?=base_url('assets/js');?>/bootstrap-toggle.min.js"></script>
 
   <?=$js?>
@@ -15,8 +16,7 @@
   $(document).ready(function() {
     $('#example').DataTable(
         {
-            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}
-    
+            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}    
         }
     );
     } );
