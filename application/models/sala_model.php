@@ -25,7 +25,6 @@ class sala_model extends CI_Model {
         $letra = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
         for ($i=1;$i<=$fila;$i++){
             //echo $letra[$i-1];
-
             for ($j=1;$j<=$columna;$j++){
                 //echo $letra[$i-1]." ".$j."<br>";
                 if (isset($_POST[$letra[$i-1].$j])){

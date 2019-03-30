@@ -26,6 +26,7 @@ class funcion_model extends CI_Model{
             $funcion= [
                 'fecha'=> $fecha,
                 'horaInicio'=> $this->input->post('hora'),
+                'idTarifa'=> $this->input->post('idTarifa'),
                 'horaFin'=> $horaFin,
                 'idUsuario'=> $_SESSION['idUs'],
                 'idSala'=> $this->input->post('idsala'),
