@@ -2,9 +2,24 @@
     <div class="mt-1">
         <i class="fas fa-clock"></i> <span>Programacion</span>
     </div>
-    <button style="width: 120px;font-size: 12px;" type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#exampleModal">
+
+    <button style="font-size: 12px;" type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#exampleModal">
         Agregar funcion <i class="fas fa-plus"></i>
     </button>
+    <?php
+        $color = array("#01579b", "#006064", "#1b5e20", "#ff5722","#795548","e65100","#827717");
+        $query=$this->db->query("SELECT * FROM sala");
+        $con=0;
+        foreach ($query->result() as $row){
+            echo "<a  href='".base_url()."ProgramacionCtrl/index/$row->idSala' style='width: 110px;font-size: 12px; background: ".$color[$con]."' type='button' class='btn mb-1 text-white'>
+               $row->nombreSala <i class='fas fa-film'></i>
+                     </a>";
+            $con++;
+        }
+    ?>
+    <a href="<?=base_url()?>ProgramacionCtrl" style="font-size: 12px;" type="button" class="btn btn-success text-white mb-1">
+        Todas la funciones <i class="fas fa-circle"></i>
+    </a>
     <div class="card ">
         <div class="card-header text-white bg-warning" >
             Programacion
@@ -154,7 +169,9 @@
         dias.value=diffDays+1;
     })
 </script>
-
+<script !src="">
+    var url='<?=base_url()?>';
+</script>
 
 <!-- Modal -->
 <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -171,6 +188,7 @@
                     <div class="form-group row">
                         <label for="idsala2" class="col-sm-1 col-form-label">Sala</label>
                         <div class="col-sm-5">
+                            <input type="text" name="idfuncion" id="idfuncion2" hidden>
                             <select name="idsala" id="idsala2" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
@@ -218,7 +236,7 @@
                     <div class="form-group row">
                         <label for="idtarifa2" class="col-sm-1 col-form-label">Tarifa</label>
                         <div class="col-sm-5">
-                            <select name="idTarifa" id="idtarija2" required class="form-control">
+                            <select name="idTarifa" id="idtarifa2" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
                                 $query=$this->db->query("SELECT * FROM tarifa");
@@ -234,10 +252,20 @@
                             <i class="fas fa-stop"></i> Cancelar
                         </button>
                         <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Modificar</button>
-                        <button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> Eliminar</button>
+                        <a href="ProgramacionCtrl/delete/" id="eliminar2" class="btn btn-danger text-white" > <i class="fas fa-trash"></i> Eliminar</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script !src="">
+    var eliminar2=document.getElementById('eliminar2');
+    eliminar2.addEventListener('click',function (e) {
+
+        //e.preventDefault();
+        if (!confirm("Seguro de eliminiar?")){
+            e.preventDefault();
+        }
+    })
+</script>
