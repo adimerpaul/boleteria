@@ -2,9 +2,24 @@
     <div class="mt-1">
         <i class="fas fa-clock"></i> <span>Programacion</span>
     </div>
-    <button style="width: 120px;font-size: 12px;" type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#exampleModal">
+
+    <button style="font-size: 12px;" type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#exampleModal">
         Agregar funcion <i class="fas fa-plus"></i>
     </button>
+    <?php
+        $color = array("#01579b", "#006064", "#1b5e20", "#ff5722","#795548","e65100","#827717");
+        $query=$this->db->query("SELECT * FROM sala");
+        $con=0;
+        foreach ($query->result() as $row){
+            echo "<a  href='".base_url()."ProgramacionCtrl/index/$row->idSala' style='width: 110px;font-size: 12px; background: ".$color[$con]."' type='button' class='btn mb-1 text-white'>
+               $row->nombreSala <i class='fas fa-film'></i>
+                     </a>";
+            $con++;
+        }
+    ?>
+    <a href="<?=base_url()?>ProgramacionCtrl" style="font-size: 12px;" type="button" class="btn btn-success text-white mb-1">
+        Todas la funciones <i class="fas fa-circle"></i>
+    </a>
     <div class="card ">
         <div class="card-header text-white bg-warning" >
             Programacion
@@ -50,7 +65,7 @@
             <div class="modal-body">
                 <form method="post" action="<?=base_url()?>ProgramacionCtrl/store">
                     <div class="form-group row">
-                        <label for="idsala" class="col-sm-1 col-form-label">Sala</label>
+                        <label  class="col-sm-1 col-form-label">Sala</label>
                         <div class="col-sm-5">
                             <select name="idsala" required class="form-control">
                                 <option value="">Seleccionar..</option>
@@ -62,7 +77,7 @@
                                 ?>
                             </select>
                         </div>
-                        <label for="idpelicula" class="col-sm-1 col-form-label">Pelicula</label>
+                        <label  class="col-sm-1 col-form-label">Pelicula</label>
                         <div class="col-sm-5">
                             <select name="idpelicula" required class="form-control">
                                 <option value="">Seleccionar..</option>
@@ -103,6 +118,21 @@
                             <input class="form-control" id="numerada" name="numerada" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="idtarifa" class="col-sm-1 col-form-label">Tarifa</label>
+                        <div class="col-sm-5">
+                            <select name="idTarifa" required class="form-control">
+                                <option value="">Seleccionar..</option>
+                                <?php
+                                $query=$this->db->query("SELECT * FROM tarifa");
+                                foreach ($query->result() as $row){
+                                    echo "<option value='".$row->idTarifa."'> $row->serie $row->precio Bs.</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
@@ -137,5 +167,105 @@
         var timeDiff = Math.abs(date2.getTime() - date1.getTime());
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         dias.value=diffDays+1;
+    })
+</script>
+<script !src="">
+    var url='<?=base_url()?>';
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar funciòn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?=base_url()?>ProgramacionCtrl/update">
+                    <div class="form-group row">
+                        <label for="idsala2" class="col-sm-1 col-form-label">Sala</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="idfuncion" id="idfuncion2" hidden>
+                            <select name="idsala" id="idsala2" required class="form-control">
+                                <option value="">Seleccionar..</option>
+                                <?php
+                                $query=$this->db->query("SELECT * FROM SALA");
+                                foreach ($query->result() as $row){
+                                    echo "<option value='".$row->idSala."'>".$row->nombreSala."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <label for="idpelicula2" class="col-sm-1 col-form-label">Pelicula</label>
+                        <div class="col-sm-5">
+                            <select name="idpelicula" id="idpelicula2" required class="form-control">
+                                <option value="">Seleccionar..</option>
+                                <?php
+                                $query=$this->db->query("SELECT * FROM pelicula");
+                                foreach ($query->result() as $row){
+                                    echo "<option value='".$row->idPelicula."'>".$row->nombre."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fecha12" class="col-sm-1 col-form-label">Fechas</label>
+                        <div class="col-sm-5">
+                            <span style="padding: 50px;font-weight: bold;font-size: medium" id="fecha12">01/01/2000</span>
+                        </div>
+                        <label for="hora2" class="col-sm-1 col-form-label">Hora</label>
+                        <div class="col-sm-5">
+                            <input type="time" name="hora" id="hora2" style="width: 100%" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="subtitulada2" class="col-sm-2 col-form-label">Subtitulada</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="subtitulada2" name="subtitulada" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
+                        </div>
+                        <label for="numerada2" class="col-sm-2 col-form-label">Numerada</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="numerada2" name="numerada" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="idtarifa2" class="col-sm-1 col-form-label">Tarifa</label>
+                        <div class="col-sm-5">
+                            <select name="idTarifa" id="idtarifa2" required class="form-control">
+                                <option value="">Seleccionar..</option>
+                                <?php
+                                $query=$this->db->query("SELECT * FROM tarifa");
+                                foreach ($query->result() as $row){
+                                    echo "<option value='".$row->idTarifa."'> $row->serie $row->precio Bs.</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <i class="fas fa-stop"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Modificar</button>
+                        <a href="ProgramacionCtrl/delete/" id="eliminar2" class="btn btn-danger text-white" > <i class="fas fa-trash"></i> Eliminar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script !src="">
+    var eliminar2=document.getElementById('eliminar2');
+    eliminar2.addEventListener('click',function (e) {
+
+        //e.preventDefault();
+        if (!confirm("Seguro de eliminiar?")){
+            e.preventDefault();
+        }
     })
 </script>

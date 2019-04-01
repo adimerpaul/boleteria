@@ -15,11 +15,38 @@
 
 
 
-    <link href='<?=base_url('assets/');?>/packages/core/main.css' rel='stylesheet' />
-    <link href='<?=base_url('assets/');?>/packages/daygrid/main.css' rel='stylesheet' />
-    <script src='<?=base_url('assets/');?>/packages/core/main.js'></script>
-    <script src='<?=base_url('assets/');?>/packages/interaction/main.js'></script>
-    <script src='<?=base_url('assets/');?>/packages/daygrid/main.js'></script>
+    <!--link href='<?=base_url('assets/');?>packages/core/main.css' rel='stylesheet' />
+    <link href='<?=base_url('assets/');?>packages/daygrid/main.css' rel='stylesheet' />
+    <script src='<?=base_url('assets/');?>packages/core/main.js'></script>
+    <script src='<?=base_url('assets/');?>packages/interaction/main.js'></script>
+    <script src='<?=base_url('assets/');?>packages/daygrid/main.js'></script-->
+    <!--link href='<?=base_url();?>assets/demo-topbar.css' rel='stylesheet' />
+    <link href='<?=base_url();?>releases/core/4.0.1/main.min.css' rel='stylesheet' />
+
+
+    <link href='<?=base_url();?>releases/daygrid/4.0.1/main.min.css' rel='stylesheet' />
+
+    <link href='<?=base_url();?>releases/timegrid/4.0.1/main.min.css' rel='stylesheet' />
+
+
+    <script src='<?=base_url();?>assets/demo-to-codepen.js'></script>
+
+    <script src='<?=base_url();?>releases/core/4.0.1/main.min.js'></script>
+
+
+
+
+    <script-- src='<?=base_url();?>releases/daygrid/4.0.1/main.min.js'></script-->
+    <link href='<?=base_url()?>assets/packages/core/main.css' rel='stylesheet' />
+    <link href='<?=base_url()?>assets/packages/daygrid/main.css' rel='stylesheet' />
+    <link href='<?=base_url()?>assets/packages/timegrid/main.css' rel='stylesheet' />
+    <link href='<?=base_url()?>assets/packages/list/main.css' rel='stylesheet' />
+    <script src='<?=base_url()?>assets/packages/core/main.js'></script>
+    <script src='<?=base_url()?>assets/packages/core/locales-all.js'></script>
+    <script src='<?=base_url()?>assets/packages/interaction/main.js'></script>
+    <script src='<?=base_url()?>assets/packages/daygrid/main.js'></script>
+    <script src='<?=base_url()?>assets/packages/timegrid/main.js'></script>
+    <script src='<?=base_url()?>assets/packages/list/main.js'></script>
 
 
 </head>
