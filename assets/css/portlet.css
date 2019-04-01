@@ -4,6 +4,12 @@
 #selectable { list-style-type: none; margin: 0; padding: 0; }
 #selectable li { margin: 3px; padding: 2px; float: left; width: 150px; height: 120px; text-align: center; }
 
+#selecfun .ui-selecting { background: lightgrey; color: white }
+#selecfun .ui-selected { background: royalblue; color:white; }
+
+#selecfun { list-style-type: none; margin: 0; padding: 0; }
+#selecfun li { margin: 3px; padding: 2px; float: left; width: 160px; height: 30px; text-align: center; border-radius: 5px;}
+
 .ui-widget-content{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   background: slategrey;
@@ -46,4 +52,12 @@
 .titulo{
   position: absolute;
   width: 150px; height: 120px; 
+}
+
+
+li>.bloque{
+ border: 1px solid blue;
+ color: blue;
+ 
+  
 }

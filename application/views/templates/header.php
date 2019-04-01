@@ -196,7 +196,7 @@
     <div id="item-8" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Panel Ventas</a>
+            <a class="nav-link" href="<?=base_url()?>VentaCtrl"><i class="fas fa-plus"></i> Panel Ventas</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Panel Ventas Web</a>

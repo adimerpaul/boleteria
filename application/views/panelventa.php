@@ -24,13 +24,78 @@
             
             <hr>
         <div class="row">
-            <div class="col-md-4">
-            <h4><i class="far fa-clock"></i> Funciones</h4><br>
-            <span>You've selected:</span> <span id="select-result">none</span>.
-            <div id="horariopelicula"></div>  
+            <div class="col-md-3">
+            <h5><i class="far fa-clock"></i> Funciones</h5><br>
+            <div id="horariopelicula">
+                <ol id="selecfun">
+                    <li class="ui-widget-content"><span style="border-image: initial; border: 3px solid blue;">S1</span> 15:15 (18:00)</li>
+                    
+                </ol>
+            </div>  
             </div>
 
+            <div class="col-md-2">
+                <h5><i class="fas fa-dollar-sign"></i> Tarifas</h5><br>
+                <div id="listacosto">
 
+                </div>
+                
+            </div>
+
+            <div class="col-md-4">
+                <h5>Operaciones</h5><br>
+                
+                <div id="pnlOperaciones" class="portlet-body">
+                                <div class="row-fluid">
+                                    <a id="btnEntradaMenos" href="#" class="btn btn-light  " style="width:40%">
+                                        <i class="fas fa-minus-circle"></i>
+                                        <div>Entrada</div>
+                                    </a>
+                                    <a id="btnEntradaMas" href="#" class="btn btn-light  " style="width:40%">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <div>Entrada</div>
+                                    </a>
+                                </div>
+                                </br>
+                                <div class="row-fluid">
+                                    <a id="btnCancelar" href="#" class="btn btn-danger" style="width:40%">
+                                        <i class="fas fa-times"></i>
+                                        <div>Cancelar</div>
+                                    </a>
+                                        <a id="btnAgregar" href="#" class="btn btn-primary " style="width:40%">
+                                            <i class="fas fa-plus"></i>
+                                            <div>Agregar</div>
+                                        </a>
+                                </div>
+                                </br>
+                                <div class="row-fluid row">
+                                    <a id="btnAceptar" href="#" class="btn btn-success " style="width:40%">
+                                        <i class="fas fa-check"></i>
+                                        <div>Cerrar Venta</div>
+                                    </a>
+                                    <div><p>&nbsp;</p></div>
+                                            <div class="pricing-head pricing-head-active">
+                                                <h3 style="height: 40px;background: transparent;border: 3px solid;">
+                                                    <strong>
+                                                        <a href="#" id="lblCantidadEntradas" data-type="text" data-pk="1" style="display: inline">
+                                                            0
+                                                        </a>
+                                                    </strong>
+                                                    <p style="color: #000; display: inline"> / </p>
+                                                    <strong>
+                                                        <p id="lblPrecio" style="color: green; display: inline">0,00Bs</p>
+                                                    </strong>
+                                                </h3>
+                                    </div>
+        </div>  
+            </div>
+
+            </div>
+            <div class="col-md-3">
+                <h5>Detalle Venta</h5><br>
+                
+                
+            </div>
         </div>
 
             

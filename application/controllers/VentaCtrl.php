@@ -29,7 +29,7 @@ class VentaCtrl extends CI_Controller {
 
     public function horario(){
         $idpelicula=$_POST['idpel'];
-        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,horaInicio,horaFin, serie,precio FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala inner join tarifa t on t.idTarifa = f.idTarifa where p.idPelicula = " +$idpelicula;
+        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, serie,precio FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala inner join tarifa t on t.idTarifa = f.idTarifa where p.idPelicula = ".$idpelicula;
 
         $query=$this->db->query($consulta);
         $row=$query->row();        
