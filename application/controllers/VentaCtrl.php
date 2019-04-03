@@ -27,18 +27,24 @@ class VentaCtrl extends CI_Controller {
         else redirect('');
     }
 
+    public function horario(){
+        $idpelicula=$_POST['idpel'];
+        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,horaInicio,horaFin, serie,precio FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala inner join tarifa t on t.idTarifa = f.idTarifa where p.idPelicula = " +$idpelicula;
 
-    public function listafuncion(){
-        $fecha=$_POST['fecha1'];
-        $consulta="SELECT p.idPelicula,nombre,formato from pelicula p inner join funcion f on p.idPelicula = f.idPelicula where fecha ='$fecha' and activa='ACTIVADO'" ;
-
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         $query=$this->db->query($consulta);
         $row=$query->row();        
         $myObj=($query->result_array());
         echo json_encode($myObj);
     }
+    
+    public function listafuncion(){
+        $fecha=$_POST['fecha1'];
+        $consulta="SELECT DISTINCT p.idPelicula,nombre,formato from pelicula p inner join funcion f on p.idPelicula = f.idPelicula where fecha ='$fecha' and activa='ACTIVADO'" ;
+
+        $query=$this->db->query($consulta);
+        $row=$query->row();        
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
+
 }
