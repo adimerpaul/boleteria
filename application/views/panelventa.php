@@ -1,3 +1,31 @@
+<style>
+    .pantalla{
+        width: 250px;
+        background: #2a6496;
+        font-size: 30px;
+        font-family: Cambria;
+        color: white;
+    }
+    .libre{
+        width: 45px;
+        background: #4cae4c;
+    }
+    .ocupado{
+        width: 45px;
+        background: #5a6268;
+    }
+    .disabledContent
+    {
+        cursor: not-allowed;
+        background-color: rgb(229, 229, 229) !important;
+    }
+    .asignado
+    {
+        width: 45px;
+        background: #ffffff; 
+    }
+
+</style>
 
 <div class="col-sm-11 col-md-10">
     <h3>PANEL DE VENTAS</h3>
@@ -36,10 +64,11 @@
 
             <div class="col-md-2">
                 <h5><i class="fas fa-dollar-sign"></i> Tarifas</h5><br>
-                <div id="listacosto">
+                <div id="lcosto">
+                    <ol id="selecost">
 
+                    </ol> 
                 </div>
-                
             </div>
 
             <div class="col-md-4">
@@ -77,9 +106,7 @@
                                             <div class="pricing-head pricing-head-active">
                                                 <h3 style="height: 40px;background: transparent;border: 3px solid;">
                                                     <strong>
-                                                        <a href="#" id="lblCantidadEntradas" data-type="text" data-pk="1" style="display: inline">
-                                                            0
-                                                        </a>
+                                                        <a href="#" id="lblCantidadEntradas" data-type="text" data-pk="1" style="display: inline">0</a>
                                                     </strong>
                                                     <p style="color: #000; display: inline"> / </p>
                                                     <strong>
@@ -101,4 +128,56 @@
             
         </div>
     </div>  
+</div>
+
+
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Sala</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="<?php echo base_url();?>SalaCtrl/update" >
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="nroSala">nroSala:</label>
+                            <input type="text" id="idSala" name="idSala" hidden>
+                            <input type="text" id="nroFila" name="nroFila" hidden>
+                            <input type="text" id="nroColumna" name="nroColumna" hidden>
+                            <input type="number" class="form-control" id="nroSala" name="nroSala" required>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12" style="width: 100%;justify-content: center">
+                            <center>
+                                <div class="pantalla">Pantalla</div>
+                                <table id="tabla" class="table-bordered">
+
+                                    <thead id="head">
+                                    </thead>
+                                    <tbody id="body">
+
+                                    </tbody>
+                                </table>
+                                <div id="habilitados" hidden >
+
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Modificar">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
 </div>
