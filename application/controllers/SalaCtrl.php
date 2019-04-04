@@ -59,6 +59,14 @@ class SalaCtrl extends CI_Controller {
         $myObj=($query->result_array());
         echo json_encode($myObj);
     }
+    public function datos2(){
+        $tabla=$_POST['tabla'];
+        $where=$_POST['where'];
+        $dato=$_POST['dato'];
+        $query=$this->db->query("SELECT * FROM $tabla WHERE $where='$dato' ORDER BY fila,columna DESC ");
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
     public function update()
     {
 

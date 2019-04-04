@@ -12,7 +12,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     };
     $.ajax({
         data:  parametros,
-        url:   'datos',
+        url:   'datos2',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
@@ -57,17 +57,21 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 })
 
 function cambio(fila,columna) {
+    //console.log(asientos);
     var t="";
     var h="<td></td>";
     var c="";
     var cont=0;
     var L=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-    for (var i=1;i<=columna;i++) {
+    for (var i=columna;i>=1;i--) {
         h=h+"<td class='numero'>"+i+"</td>";
     }
+
+    var co=columna-1;
+    var fi=fila-1;
     for (var i=0;i<fila;i++) {
         c="";
-        for (var j=1;j<=columna;j++) {
+        for (var j=columna;j>=1;j--) {
             if (asientos[cont].activo=="ACTIVO"){
                 c=c+"<td data-numero='"+j+"' data-estado='1' class='lugar libre'></td>";
             }else{
