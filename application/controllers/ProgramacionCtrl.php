@@ -62,7 +62,8 @@ END)as 'color'
 ,subtitulada
 ,numerada
 ,idTarifa 
-FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula");
+FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
+AND fecha>=date_add(NOW(), INTERVAL -1 DAY)");
         $arr = array();
         foreach ($query->result() as $row){
             $arr[] = $row;

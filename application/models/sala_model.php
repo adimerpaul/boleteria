@@ -20,6 +20,7 @@ class sala_model extends CI_Model {
         ];
         $this->db->insert("sala",$sala);
         $idsala=$this->db->insert_id();
+
         $fila=$_POST['nroFila'];
         $columna=$_POST['nroColumna'];
         $letra = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
@@ -35,6 +36,7 @@ class sala_model extends CI_Model {
                 }
             }
         }
+        $query=$this->db->query("UPDATE sala SET capacidad=(select count(*) from asiento where activo='ACTIVO' and idSala='$idsala') WHERE idSala='$idsala'");
     }
     public function update(){
         $sala= [
