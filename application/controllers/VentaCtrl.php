@@ -32,7 +32,7 @@ class VentaCtrl extends CI_Controller {
         $fecha=$_POST['fecha1'];
         
         $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, serie,precio FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala inner join tarifa t on t.idTarifa = f.idTarifa where fecha ='$fecha' and  p.idPelicula = ".$idpelicula;
-       $query=$this->db->query($consulta);
+        $query=$this->db->query($consulta);
         $row=$query->row();        
         $myObj=($query->result_array());
         echo json_encode($myObj);
@@ -44,6 +44,24 @@ class VentaCtrl extends CI_Controller {
 
         $query=$this->db->query($consulta);
         $row=$query->row();        
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
+
+    public function datos(){
+        $tabla=$_POST['tabla'];
+        $where=$_POST['where'];
+        $dato=$_POST['dato'];
+        $query=$this->db->query("SELECT * FROM $tabla WHERE $where='$dato'");
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
+    
+    public function datos2(){
+        $tabla=$_POST['tabla'];
+        $where=$_POST['where'];
+        $dato=$_POST['dato'];
+        $query=$this->db->query("SELECT * FROM $tabla WHERE $where='$dato' ORDER BY fila,columna DESC ");
         $myObj=($query->result_array());
         echo json_encode($myObj);
     }

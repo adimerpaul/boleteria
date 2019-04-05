@@ -22,7 +22,7 @@
     .asignado
     {
         width: 45px;
-        background: #ffffff; 
+        background: #FFE738; 
     }
 
 </style>
@@ -91,10 +91,11 @@
                                         <i class="fas fa-times"></i>
                                         <div>Cancelar</div>
                                     </a>
-                                        <a id="btnAgregar" href="#" class="btn btn-primary " style="width:40%">
+                                        <a id="btnAgregar" href="#" class="btn btn-primary " style="width:40%" data-toggle="modal" data-target="#exampleModal" data-idsala="">
                                             <i class="fas fa-plus"></i>
                                             <div>Agregar</div>
                                         </a>
+                                        
                                 </div>
                                 </br>
                                 <div class="row-fluid row">
@@ -142,14 +143,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="<?php echo base_url();?>SalaCtrl/update" >
+                <form method="POST" action="<?php echo base_url();?>VentaCtrl/insertboltemp" >
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="nroSala">nroSala:</label>
                             <input type="text" id="idSala" name="idSala" hidden>
                             <input type="text" id="nroFila" name="nroFila" hidden>
                             <input type="text" id="nroColumna" name="nroColumna" hidden>
-                            <input type="number" class="form-control" id="nroSala" name="nroSala" required>
+                            <input type="text" id="idfunmodal" name="idfunmodal" hidden>
+                            <input type="text" class="form-control" id="nroSala" name="nroSala" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div>
+                                <i class="fas fa-tags"></i>
+                                <label for="">Butacas Asignadas:</label>
+                                <label id="numasignada">0</label>
+                            </div>
+                            <div>
+                                <i class="far fa-credit-card"></i>
+                                <label for="">Entradas: </label>
+                                <label id="totalentrada"> </label>
+                            </div>
                         </div>
 
                     </div>
@@ -171,7 +185,7 @@
                             </center>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success" value="Modificar">
+                    <input type="submit" class="btn btn-success" value="Aceptar">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
                 </form>
             </div>

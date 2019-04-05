@@ -30,12 +30,13 @@ $( function() {
             $("#lblCantidadEntradas").html("0");
             desbloqueobtn();
             
+            
         })}
  
     });
    
 
-$("#selectable" ).selectable(
+$("#selectable").selectable(
     {
     stop: function(){
         var id=0;
@@ -63,7 +64,9 @@ $("#selectable" ).selectable(
                                   console.log(response);
                                 var datos=JSON.parse(response);
                                     datos.forEach(row => {
-                                        cadenahorario=cadenahorario+'<li class="ui-widget-content" value="'+row.idFuncion+'"><span style="border-image: initial; border: 3px solid blue;">S'+row.nroSala+'</span> '+row.horaIn+' ('+row.horaF+')</li>';
+                                        cadenahorario=cadenahorario+'<li class="ui-widget-content" value="'+row.idFuncion+'"><span style="border-image: initial; border: 3px solid blue;">S'+row.nroSala+'</span> '+row.horaIn+' ('+row.horaF+')';
+                                        cadenahorario=cadenahorario+'<input type=hidden value='+ row.idSala+'>';
+                                        cadenahorario=cadenahorario+'</li>';
                                         cadenacosto=cadenacosto+'<li class="ui-widget-content" value="'+row.precio+'">'+row.serie+' => ' +row.precio+' Bs</il>';
                                      }),
 
@@ -93,6 +96,11 @@ $('#lblCantidadEntradas').bind("DOMSubtreeModified",function(){
     console.log(tarifa);
     
     $('#lblPrecio').html(total+'Bs');
+    if(parseInt($('#lblCantidadEntradas').html()) > 0)
+    $('#lblCantidadEntradas').removeClass("disabled");
+    else
+    $('#lblCantidadEntradas').addClass("disabled");
+    
 });
 
 $('#btnEntradaMenos').click(function(){
@@ -107,12 +115,14 @@ $('#btnEntradaMenos').click(function(){
 
 $('#btnEntradaMas').click(function(){
     var valor=parseInt($('#lblCantidadEntradas').html());
-    if(valor < 10){
+    if(valor < 200){
         valor = valor + 1;
     $('#lblCantidadEntradas').html("");
     $('#lblCantidadEntradas').html(valor);
+    
     }
-    else alert("SOLO SE PERMITE UN MAXIMO DE 10 ENTRADAS");
+    else alert("SOLO SE PERMITE UN MAXIMO DE 200 ENTRADAS");
+    
 });
     
 function listado(){
@@ -167,7 +177,6 @@ function listado(){
         $('#btnCancelar').removeClass("disabled");
         $('#btnAgregar').removeClass("disabled");
         $('#btnAceptar').removeClass("disabled");
-        $('#lblCantidadEntradas').removeClass("disabled");
     }
  
   
@@ -175,8 +184,9 @@ var capacidad=0;
 var asientos;
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
-    var idsala = button.data('idsala') // Extract info from data-* attributes
-
+    var idsala = $('#selecfun .ui-selected input').prop('value') // Extract info from data-* attributes
+    var cantidad = parseInt( $('#lblCantidadEntradas').html())
+    var cantaux = 0
     $('#habilitados').html("");
     var parametros = {
         "tabla" : 'asiento',
@@ -185,7 +195,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     };
     $.ajax({
         data:  parametros,
-        url:   'datos2',
+        url:   'VentaCtrl/datos2',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
@@ -201,7 +211,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
             };
             $.ajax({
                 data:  parametros,
-                url:   'datos',
+                url:   'VentaCtrl/datos',
                 type:  'post',
                 beforeSend: function () {
                     //$("#resultado").html("Procesando, espere por favor...");
@@ -213,20 +223,42 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
                     $('#idSala').prop('value',datos.idSala);
                     $('#nombreSala').prop('value',datos.nombreSala);
-                    $('#nroSala').prop('value',datos.nroSala);
+                    $('#nroSala').prop('value','SALA '+datos.nroSala+'');
                      $('#nroColumna').prop('value',datos.nroColumna);
                     $('#nroFila').prop('value',datos.nroFila);
+                    $('#idfunmodal').prop('value',$('#selecfun li .ui-selected').prop('value'));
                     $('#capacidad').prop('value',datos.capacidad);
                     capacidad=datos.capacidad;
                     // $('#invert').prop('value',datos.invert);
                     var fila=(datos.nroFila);
                     var columna=(datos.nroColumna);
                     cambio(fila,columna);
+                    $('#totalentrada').html(cantidad);
+
+                    $('.lugar').click(function (event) {
+                       var varest = $(this).data('estado');
+                        console.log($(this).data('estado') );
+                        if (varest=="1" && cantaux < cantidad){
+                            $(this).removeClass('libre');
+                            $(this).addClass('asignado');
+                            $(this).data("estado","2");
+                            cantaux++;
+                        }
+                        
+                        if(varest== "2"){
+                            $(this).removeClass('asignado');
+                            $(this).addClass('libre');
+                            $(this).data("estado","1");
+                            cantaux--;
+                        }
+                        $('#numasignada').html(cantaux);
+                        
+                    });
+                   
                 }
             });
         }
     });
-
 })
 
 function cambio(fila,columna) {
@@ -246,9 +278,9 @@ function cambio(fila,columna) {
         c="";
         for (var j=columna;j>=1;j--) {
             if (asientos[cont].activo=="ACTIVO"){
-                c=c+"<td data-numero='"+j+"' data-estado='1' class='lugar libre'></td>";
+                c=c+"<td data-numero='"+j+"' data-estado='1' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar libre'></td>";
             }else{
-                c=c+"<td data-numero='"+j+"' data-estado='1' class='lugar ocupado'></td>";
+                c=c+"<td data-numero='"+j+"' data-estado='0' class='lugar ocupado'></td>";
             }
             cont=cont+1;
         }
@@ -257,27 +289,7 @@ function cambio(fila,columna) {
     $('#body').html(t);
     $('#head').html(h);
 
-    $('#capacidad').prop('value',capacidad);
+}
 
-    $('.lugar').click(function () {
-        var letra = "";
-        $(this).parents("tr").find(".letra").each(function() {
-            letra = $(this).html();
-        });
-        var numero=$(this).data("numero");
-        //console.log($(this).data("estado") );
-        $(this).removeClass('libre');
-        $(this).addClass('ocupado');
-        $(this).add('disable',true);
-        if ($(this).data("estado")=="1"){
-            capacidad=capacidad-1;
-            $('#capacidad').prop('value',capacidad);
-            $(this).attr('data-estado',"0");
-            //console.log(numero);
-            aumentar(letra,numero);
-        }
-    });
-}
-function aumentar(letra,numero){
-    $('#habilitados').append("<input name='"+letra+numero+"' value='INACTIVO' />");
-}
+
+
