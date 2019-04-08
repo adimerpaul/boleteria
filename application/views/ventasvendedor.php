@@ -6,12 +6,38 @@
         <ol class="breadcrumb ">
             <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> Home</a></li>
             <li class="breadcrumb-item"><a href="#"> <i class="fas fa-signal"></i> Resumen ventas</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Ver resumen ventas</li>
+            <li class="breadcrumb-item active" aria-current="page"> <i class="fa fa-ticket-alt" ></i> Ver resumen ventas</li>
         </ol>
     </nav>
+    <div class="row">
+        <div class="col">
+            <form>
+                <div class="form-group row">
+                    <label for="venderor" class="col-sm-1 col-form-label">Vendedor:</label>
+                    <div class="col-sm-5">
+                        <select name="vendedor" id="venderor" class="form-control">
+                            <option value="">Seleccionar...</option>
+                            <?php
+                            $query=$this->db->query("SELECT * FROM usuario");
+                            foreach ($query->result() as $row){
+                                echo "<option value='isUsuario'>$row->nombreUser</option>";
+                            }
+
+                            ?>
+                        </select>
+                    </div>
+                    <label for="staticEmail" class="col-sm-1 col-form-label">Fecha:</label>
+                    <div class="col-sm-5">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
+            </form>
+        </div>
+    </div>
 
     <div class="card ">
-        <div class="card-header text-white bg-success" >
+        <div class="card-header text-white bg-info" >
             Informacion de Registro Empresa
         </div>
         <div class="card-body">
