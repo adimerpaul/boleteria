@@ -41,6 +41,8 @@
     <link href='<?=base_url()?>assets/packages/daygrid/main.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/packages/timegrid/main.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/packages/list/main.css' rel='stylesheet' />
+    <link href='<?=base_url()?>assets/css/style.css' rel='stylesheet' />
+
     <script src='<?=base_url()?>assets/packages/core/main.js'></script>
     <script src='<?=base_url()?>assets/packages/core/locales-all.js'></script>
     <script src='<?=base_url()?>assets/packages/interaction/main.js'></script>
@@ -221,7 +223,7 @@
     <div id="item-9" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Ventas por Vendedor</a>
+            <a class="nav-link" href="<?=base_url()?>Ventasvendedor"><i class="fas fa-plus"></i> Ventas por Vendedor</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen Ventas (Gross Office)</a>
