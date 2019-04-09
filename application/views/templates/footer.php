@@ -9,6 +9,8 @@
   <script src="<?=base_url('assets/js');?>/popper.min.js"></script>
   <script src="<?=base_url('assets/js');?>/bootstrap.min.js"></script>
   <script src="<?=base_url('assets/js');?>/bootstrap-toggle.min.js"></script>
+<script src="<?=base_url('assets/js');?>/moment.min.js"></script>
+<script src="<?=base_url('assets/js');?>/daterangepicker.js"></script>
 
   <?=$js?>
   <script src="<?=base_url('assets/js');?>/jquery.dataTables.min.js"></script>

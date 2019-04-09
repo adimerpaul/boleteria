@@ -22,7 +22,7 @@ class Ventasvendedor extends CI_Controller
             $dato = $this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header', $dato);
             $this->load->view('ventasvendedor');
-            $dato['js'] = "<script></script>";
+            $dato['js'] = "<script src='".base_url()."assets/js/ventasvendedor.js'></script>";
             $this->load->view('templates/footer', $dato);
         } else redirect('');
     }

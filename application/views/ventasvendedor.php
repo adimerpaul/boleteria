@@ -28,7 +28,11 @@
                     </div>
                     <label for="staticEmail" class="col-sm-1 col-form-label">Fecha:</label>
                     <div class="col-sm-5">
-                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                        <div type="text" class="form-control" id="fecha" value="<?=date('Y-m-d')?>">
+                            <i class="fa fa-calendar"></i>
+                            <span></span>
+                            <i class="fa fa-caret-down"></i>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
@@ -38,7 +42,7 @@
 
     <div class="card ">
         <div class="card-header text-white bg-info" >
-            Informacion de Registro Empresa
+            <i class="fas fa-money-check"></i> Datos Ventas Por Periodo
         </div>
         <div class="card-body">
             <h3>INFORMACION DE LA EMPRESA</h3>

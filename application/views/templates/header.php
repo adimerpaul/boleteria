@@ -41,6 +41,7 @@
     <link href='<?=base_url()?>assets/packages/daygrid/main.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/packages/timegrid/main.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/packages/list/main.css' rel='stylesheet' />
+    <link href='<?=base_url()?>assets/css/daterangepicker.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/css/style.css' rel='stylesheet' />
 
     <script src='<?=base_url()?>assets/packages/core/main.js'></script>
