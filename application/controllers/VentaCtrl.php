@@ -66,4 +66,16 @@ class VentaCtrl extends CI_Controller {
         echo json_encode($myObj);
     }
 
+    public function datosBoleto(){
+        $idfuncion = $_POST['dato'];
+        //$query=$this->db->query("SELECT * FROM boleto WHERE idFuncion="+$idfuncion);
+
+        $consulta=" SELECT a.idAsiento,s.idSala,columna,fila,letra,activo,IF( (select count(*) from boleto b where a.idAsiento = b.idAsiento)>0, true, false) as asignado ";
+        $consulta=$consulta."FROM sala s, funcion f, asiento a ";
+        $consulta=$consulta."where s.idSala = f.idSala and s.idSala = a.idSala and f.idFuncion = ".$idfuncion." ORDER BY fila,columna DESC";
+        $query=$this->db->query($consulta);
+        $row=$query->row();            
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
 }

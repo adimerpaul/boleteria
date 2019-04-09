@@ -22,9 +22,13 @@
     .asignado
     {
         width: 45px;
-        background: #FFE738; 
+        background: #004DFF; 
     }
-
+    .vendido
+    {
+        width: 45px;
+        background: #FF0000; 
+    }
 </style>
 
 <div class="col-sm-11 col-md-10">
@@ -143,7 +147,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="<?php echo base_url();?>VentaCtrl/insertboltemp" >
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="nroSala">nroSala:</label>
@@ -185,9 +188,8 @@
                             </center>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success" value="Aceptar">
+                    <input type="button" class="btn btn-success" value="Aceptar" id="bolacepta">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                </form>
             </div>
             <div class="modal-footer">
 

@@ -97,9 +97,10 @@ $('#lblCantidadEntradas').bind("DOMSubtreeModified",function(){
     
     $('#lblPrecio').html(total+'Bs');
     if(parseInt($('#lblCantidadEntradas').html()) > 0)
-    $('#lblCantidadEntradas').removeClass("disabled");
+    $('#btnAgregar').removeClass("disabled");
     else
-    $('#lblCantidadEntradas').addClass("disabled");
+    $('#btnAgregar').addClass("disabled");
+;
     
 });
 
@@ -129,7 +130,7 @@ function listado(){
     var cadenapelicula="";
     $("#selecost").html("");
     $("#selecfun").html("");
-    $('#btnEntradaMenos').prop( "disabled", true );
+    bloqueobtn();
     var parametros = {
                         "fecha1" : $('#fecfuncion').prop('value')
                 };
@@ -175,7 +176,6 @@ function listado(){
         $('#btnEntradaMenos').removeClass("disabled");
         $('#btnEntradaMas').removeClass("disabled");
         $('#btnCancelar').removeClass("disabled");
-        $('#btnAgregar').removeClass("disabled");
         $('#btnAceptar').removeClass("disabled");
     }
  
@@ -188,21 +188,22 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     var cantidad = parseInt( $('#lblCantidadEntradas').html())
     var cantaux = 0
     $('#habilitados').html("");
+    console.log($('#selecfun .ui-selected').prop('value'));
     var parametros = {
         "tabla" : 'asiento',
-        "where" : 'idsala',
-        "dato" : idsala,
+        "where" : 'idsala',         
+        "dato" : $('#selecfun .ui-selected').prop('value'),
     };
     $.ajax({
         data:  parametros,
-        url:   'VentaCtrl/datos2',
+        url:   'VentaCtrl/datosBoleto',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
         },
         success:  function (response){
             asientos=JSON.parse(response);
-            //console.log(sientos[1].activoa);
+            console.log(asientos);
 
             parametros= {
                 "tabla" : 'sala',
@@ -234,31 +235,47 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                     var columna=(datos.nroColumna);
                     cambio(fila,columna);
                     $('#totalentrada').html(cantidad);
-
-                    $('.lugar').click(function (event) {
-                       var varest = $(this).data('estado');
-                        console.log($(this).data('estado') );
-                        if (varest=="1" && cantaux < cantidad){
-                            $(this).removeClass('libre');
-                            $(this).addClass('asignado');
-                            $(this).data("estado","2");
-                            cantaux++;
-                        }
-                        
-                        if(varest== "2"){
-                            $(this).removeClass('asignado');
-                            $(this).addClass('libre');
-                            $(this).data("estado","1");
-                            cantaux--;
-                        }
-                        $('#numasignada').html(cantaux);
-                        
-                    });
+                    var idfun = $('#selecfun .ui-selected').prop('value');
+                             console.log(idfun );
+                             pfuncion= {
+                        "idFuncion" : idfun,};
+                        $('.lugar').click(function (event) {
+                            var varest = $(this).data('estado');
+                             console.log($(this).data('estado') );
+                             if (varest=="1" && cantaux < cantidad){
+                                 $(this).removeClass('libre');
+                                 $(this).addClass('asignado');
+                                 $(this).data('estado',2);
+                                 cantaux++;
+                             }
+                             
+                             if(varest== "2"){
+                                 $(this).removeClass('asignado');
+                                 $(this).addClass('libre');
+                                 $(this).data('estado',1);
+                                 cantaux--;
+                             }
+                             $('#numasignada').html(cantaux);
+                             
+                         });
+                         $('#bolacepta').on('click',function(){
+                             var total="";
+                         console.log($('td .asignado').data('idasiento'));
+                                //$('#body td .lugar.asignado').each(
+                                //total = total + " "+$('#body td .asignado').data('idasiento'),
+                            //console.log($('#body td .asignado').data('idasiento'))
+                                
+                           // )
+                            
+                        });
                    
                 }
             });
+
         }
+        
     });
+
 })
 
 function cambio(fila,columna) {
@@ -278,6 +295,9 @@ function cambio(fila,columna) {
         c="";
         for (var j=columna;j>=1;j--) {
             if (asientos[cont].activo=="ACTIVO"){
+                if(asientos[cont].asignado == 1)
+                c=c+"<td data-numero='"+j+"' data-estado='3' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar vendido'></td>";
+                else
                 c=c+"<td data-numero='"+j+"' data-estado='1' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar libre'></td>";
             }else{
                 c=c+"<td data-numero='"+j+"' data-estado='0' class='lugar ocupado'></td>";
