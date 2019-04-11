@@ -56,8 +56,8 @@
             
             <hr>
         <div class="row">
-            <div class="col-md-3">
-            <h5><i class="far fa-clock"></i> Funciones</h5><br>
+            <div class="col-md-2">
+            <h6><i class="far fa-clock"></i> Funciones</h6><br>
             <div id="horariopelicula">
                 <ol id="selecfun">
                     <li class="ui-widget-content"><span style="border-image: initial; border: 3px solid blue;">S1</span> 15:15 (18:00)</li>
@@ -67,7 +67,7 @@
             </div>
 
             <div class="col-md-2">
-                <h5><i class="fas fa-dollar-sign"></i> Tarifas</h5><br>
+                <h6><i class="fas fa-dollar-sign"></i> Tarifas</h6><br>
                 <div id="lcosto">
                     <ol id="selecost">
 
@@ -76,7 +76,7 @@
             </div>
 
             <div class="col-md-4">
-                <h5>Operaciones</h5><br>
+                <h6>Operaciones</h6><br>
                 
                 <div id="pnlOperaciones" class="portlet-body">
                                 <div class="row-fluid">
@@ -123,9 +123,35 @@
             </div>
 
             </div>
-            <div class="col-md-3">
-                <h5>Detalle Venta</h5><br>
+            <div class="col-md-4">
+            <div class="card ">
+                 
+                <h6 class="card-header text-white bg-dark">  <a href="#" class="btn btn-danger">Cancelar venta</a></h6>
                 
+                 
+            <div class="card-body">
+                <h5 class="card-title">Detalle Venta</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cant</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Pelicula</th>
+                            <th scope="col">subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+
                 
             </div>
         </div>
@@ -147,6 +173,7 @@
                 </button>
             </div>
             <div class="modal-body">
+            <form action="">
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="nroSala">nroSala:</label>
@@ -191,6 +218,7 @@
                     <input type="button" class="btn btn-success" value="Aceptar" id="bolacepta">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
             </div>
+            </form>
             <div class="modal-footer">
 
             </div>

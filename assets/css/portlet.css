@@ -2,13 +2,13 @@
 #selectable .ui-selected { background: royalblue; color:white; }
 
 #selectable { list-style-type: none; margin: 0; padding: 0; }
-#selectable li { margin: 3px; padding: 2px; float: left; width: 150px; height: 120px; text-align: center; }
+#selectable li { margin: 3px; padding: 2px; float: left; width: 150px; height: 120px; text-align: center; font-size: 16px;}
 
 #selecfun .ui-selecting { background: lightgrey; color: white }
 #selecfun .ui-selected { background: royalblue; color:white; }
 
 #selecfun { list-style-type: none; margin: 0; padding: 0; }
-#selecfun li { margin: 3px; padding: 2px; float: left; width: 160px; height: 30px; text-align: center; border-radius: 5px;}
+#selecfun li { margin: 3px; padding: 2px; float: left; width: 130px; height: 30px; text-align: center; border-radius: 5px;}
 
 #selecost .ui-selecting { background: lightgrey; color: white }
 #selecost .ui-selected { background: royalblue; color:white; }
@@ -29,7 +29,7 @@
   box-shadow: 0 8px 15px 0 rgba(0,0,0,0.2);
 }
 
-.detalle>.pnumero{  
+.pnumero{  
   position: absolute;
   bottom: 0;
   right: 0;
@@ -44,16 +44,21 @@
   width: 10px; height: 10px;
 }
 
-.detalle>.ptipo{  
-  position: relative;
+.ptipo{  
+  position: absolute;
 
-  font-size: 14px;
+  bottom: 0px;
+  left: 10px;
+  font-size: 15px;
   color: #ffffff;
-  text-align: center;
 }
 .detalle
 {
-  position: static;  
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  height: 70%;
+
 }
 .titulo{
   position: absolute;

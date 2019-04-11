@@ -60,14 +60,16 @@ $("#selectable").selectable(
                               success:  function (response) {
                                 $("#selecfun").html("");
                                 $("#selecost").html("");
-          
-                                  console.log(response);
+                                 console.log(response);
                                 var datos=JSON.parse(response);
                                     datos.forEach(row => {
-                                        cadenahorario=cadenahorario+'<li class="ui-widget-content" value="'+row.idFuncion+'"><span style="border-image: initial; border: 3px solid blue;">S'+row.nroSala+'</span> '+row.horaIn+' ('+row.horaF+')';
+                                        cadenahorario=cadenahorario+'<li class="ui-widget-content" value="'+row.idFuncion+'"><span>S'+row.nroSala+'     </span> '+row.horaIn+' ('+row.horaF+')';
                                         cadenahorario=cadenahorario+'<input type=hidden value='+ row.idSala+'>';
+                                        cadenahorario=cadenahorario+'<label hidden>'+ row.horaIn+'</label>';
                                         cadenahorario=cadenahorario+'</li>';
-                                        cadenacosto=cadenacosto+'<li class="ui-widget-content" value="'+row.precio+'">'+row.serie+' => ' +row.precio+' Bs</il>';
+                                        cadenacosto=cadenacosto+'<li class="ui-widget-content" value="'+row.precio+'">'+row.serie+' => ' +row.precio+' Bs';
+                                        cadenacosto=cadenacosto+'<input type=hidden value='+ row.serie+'>';
+                                        cadenacosto=cadenacosto+'</il>';
                                      }),
 
 
@@ -75,6 +77,9 @@ $("#selectable").selectable(
                                          $("#selecost").html(cadenacosto);
                                          $('#selecfun li:first').addClass('ui-selected');
                                          $('#selecost li:first').addClass('ui-selected');
+                                         $("#lblPrecio").html("0Bs");
+                                         $("#lblCantidadEntradas").html("0");
+          
                                          desbloqueobtn();          
                               },
                           })
@@ -130,6 +135,7 @@ function listado(){
     var cadenapelicula="";
     $("#selecost").html("");
     $("#selecfun").html("");
+
     bloqueobtn();
     var parametros = {
                         "fecha1" : $('#fecfuncion').prop('value')
@@ -150,8 +156,9 @@ function listado(){
                         datos.forEach(row => {
                             if(row.formato == 1) dd="3D";
                             else dd="2D";   
-                            cadenapelicula=cadenapelicula+'<li class="ui-widget-content" value="'+row.idPelicula+'" >';
-                            cadenapelicula=cadenapelicula+''+row.nombre+' ' + dd;
+                            cadenapelicula=cadenapelicula+'<li class="ui-widget-content" value="'+row.idPelicula+'" > ';
+                            cadenapelicula=cadenapelicula+'<input type="hidden" value="'+row.nombre+' '+dd+'">';
+                            cadenapelicula=cadenapelicula+''+row.nombre+' <br> <div class="detalle"><div class="ptipo">'+dd+'</div></div> ';
                             cadenapelicula=cadenapelicula+'</li>'; 
                         }),
                          $("#selectable").html(cadenapelicula)
@@ -184,11 +191,11 @@ var capacidad=0;
 var asientos;
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
-    var idsala = $('#selecfun .ui-selected input').prop('value') // Extract info from data-* attributes
+    var idsala = $("#selecfun .ui-selected input").prop('value') // Extract info from data-* attributes
     var cantidad = parseInt( $('#lblCantidadEntradas').html())
     var cantaux = 0
     $('#habilitados').html("");
-    console.log($('#selecfun .ui-selected').prop('value'));
+    console.log($("#selecfun .ui-selected input").prop('value'));
     var parametros = {
         "tabla" : 'asiento',
         "where" : 'idsala',         
@@ -203,8 +210,9 @@ $('#exampleModal').on('show.bs.modal', function (event) {
         },
         success:  function (response){
             asientos=JSON.parse(response);
+            asi=JSON.parse(response)[0];
             console.log(asientos);
-
+            var numerofuncion=asi.nroFuncion;
             parametros= {
                 "tabla" : 'sala',
                 "where" : 'idsala',
@@ -225,6 +233,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                     $('#idSala').prop('value',datos.idSala);
                     $('#nombreSala').prop('value',datos.nombreSala);
                     $('#nroSala').prop('value','SALA '+datos.nroSala+'');
+                    var nunSala = datos.nroSala;
                      $('#nroColumna').prop('value',datos.nroColumna);
                     $('#nroFila').prop('value',datos.nroFila);
                     $('#idfunmodal').prop('value',$('#selecfun li .ui-selected').prop('value'));
@@ -258,15 +267,49 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                              $('#numasignada').html(cantaux);
                              
                          });
-                         $('#bolacepta').on('click',function(){
+                         $('#bolacepta').click(function(){
                              var total="";
-                         console.log($('td .asignado').data('idasiento'));
-                                //$('#body td .lugar.asignado').each(
-                                //total = total + " "+$('#body td .asignado').data('idasiento'),
-                            //console.log($('#body td .asignado').data('idasiento'))
-                                
-                           // )
-                            
+                             var tarSerie=$('#selecost .ui-selected input').prop('value');
+                             var costo=$('#selecost .ui-selected').prop('value');
+                             var codSala=$('#selecfun .ui-selected input').prop('value');
+                             var fecfun=$('#fecfuncion').prop('value');
+                             var idfunreg=$('#selecfun .ui-selected').prop('value');
+                             var pelicula=$('#selectable .ui-selected input').prop('value');
+                             $('.lugar.asignado').each(function(){
+                                 var idsien=$(this).data('idasiento');
+                                 var col=$(this).data('numero');
+                                 var fil=$(this).data('fila');
+                                 var ptemporal = {
+                                                   "idasiento" : idsien,
+                                                   "numerofuncion" :numerofuncion,
+                                                   "serietarifa":tarSerie,
+                                                   "codigosala":codSala,
+                                                   "numerosala":nunSala,
+                                                   "fechafun": fecfun,
+                                                   "precio":costo,
+                                                   "columna":col,
+                                                   "fila":fil,
+                                                   "idfuncion":idfunreg,
+                                                   "titulo":pelicula
+                                                   
+                                            };
+                                            $.ajax({
+                                                    data:  ptemporal,
+                                                    url:   'VentaCtrl/insertTemporal',
+                                                    type:  'post',
+                                                    beforeSend: function () {
+                                                            //$("#resultado").html("Procesando, espere por favor...");
+                                                    },
+                                                    success:  function (response) {
+
+                                                    }
+                                                })
+                                console.log(idsien+' '+idfunreg+' '+numerofuncion+' '+tarSerie+' '+nunSala+' '+codSala+' '+fecfun+' '+costo+' '+col+' '+fil+' '+pelicula);
+                            }                                
+                           )
+                            $("#exampleModal").modal('hide');//ocultamos el modal
+                            $('#lblCantidadEntradas').html("0");
+                            $('#lblPrecio').html('0Bs');
                         });
                    
                 }
@@ -296,11 +339,11 @@ function cambio(fila,columna) {
         for (var j=columna;j>=1;j--) {
             if (asientos[cont].activo=="ACTIVO"){
                 if(asientos[cont].asignado == 1)
-                c=c+"<td data-numero='"+j+"' data-estado='3' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar vendido'></td>";
+                c=c+"<td data-numero='"+j+"' data-fila='"+asientos[cont].fila+"' data-estado='3' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar vendido'></td>";
                 else
-                c=c+"<td data-numero='"+j+"' data-estado='1' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar libre'></td>";
+                c=c+"<td data-numero='"+j+"' data-fila='"+asientos[cont].fila+"' data-estado='1' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar libre'></td>";
             }else{
-                c=c+"<td data-numero='"+j+"' data-estado='0' class='lugar ocupado'></td>";
+                c=c+"<td data-numero='"+j+"' data-fila='"+asientos[cont].fila+"' data-estado='0' class='lugar ocupado'></td>";
             }
             cont=cont+1;
         }
@@ -310,6 +353,5 @@ function cambio(fila,columna) {
     $('#head').html(h);
 
 }
-
 
 

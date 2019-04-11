@@ -70,12 +70,39 @@ class VentaCtrl extends CI_Controller {
         $idfuncion = $_POST['dato'];
         //$query=$this->db->query("SELECT * FROM boleto WHERE idFuncion="+$idfuncion);
 
-        $consulta=" SELECT a.idAsiento,s.idSala,columna,fila,letra,activo,IF( (select count(*) from boleto b where a.idAsiento = b.idAsiento)>0, true, false) as asignado ";
+        $consulta=" SELECT a.idAsiento,s.idSala,columna,fila,letra,activo, ";
+        $consulta=$consulta."IF(((select count(*) from boleto b  where a.idAsiento = b.idAsiento and b.idFuncion= f.idFuncion) > 0 OR";
+        $consulta=$consulta." (select count(*) from temporal tm where a.idAsiento = tm.idAsiento and tm.idFuncion= f.idFuncion) > 0), true, false) as asignado, f.nroFuncion ";
         $consulta=$consulta."FROM sala s, funcion f, asiento a ";
         $consulta=$consulta."where s.idSala = f.idSala and s.idSala = a.idSala and f.idFuncion = ".$idfuncion." ORDER BY fila,columna DESC";
+        $consulta2="select count(*) from temporal b where a.idAsiento = b.idAsiento and b.idFuncion= f.idFuncion";
         $query=$this->db->query($consulta);
         $row=$query->row();            
         $myObj=($query->result_array());
         echo json_encode($myObj);
+    }
+
+    public function insertTemporal(){
+        $idAsiento=$_POST['idasiento'];
+        $idfuncion=$_POST['idfuncion'];
+        $numeroFuncion=$_POST['numerofuncion'];
+        $numeroSala=$_POST['numerosala'];
+        $serieTarifa=$_POST['serietarifa'];
+        $codSala=$_POST['codigosala'];
+        $fechaFuncion=$_POST['fechafun'];
+        $idUser=$this->session->userdata('idUs');
+        $precio=$_POST['precio'];
+        $columna=$_POST["columna"];
+        $fila=$_POST["fila"];
+        $titulo=$_POST["titulo"];
+        $insertar=" INSERT INTO temporal (idAsiento, idFuncion, numeroFuncion, numeroSala, serieTarifa, codSala, fechaFuncion, idUser, fila, columna, costo, titulo) VALUES ";
+        $insertar=$insertar." (".$idAsiento.",".$idfuncion.",".$numeroFuncion.",".$numeroSala.",'".$serieTarifa."',".$codSala.",'".$fechaFuncion."',".$idUser.",".$fila.",".$columna.",".$precio.",'".$titulo."')";
+        $this->db->query($insertar);
+    }
+
+    public function listaTemporal()
+    {
+        $idUser=$this->session->userdata('idUs');
+                
     }
 }
