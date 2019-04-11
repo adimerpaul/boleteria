@@ -1,9 +1,30 @@
 $('#fecfuncion').change(listado);
+$('#fecfuncion').change(function(){
+    if($(this).prop('value') < new Date())
+    bloqueobtn();
+});
 $(document).ready(listado());  
+$(document).ready(calculo());
+$(document).ready(
+    function(){
+        console.log($('#tabPreVenta tr').length);
+if ($('#tabPreVenta tr').length > 0)
+    $('#btnAgregar').removeClass("disabled");
+    else 
+    $('#btnAgregar').addClass("disabled");
+}
+);  
 
-
-
-$( function() {  
+$( function() { 
+    
+$('#elimVentaTemp').click(function(){
+    var r =confirm("Seguro que Desea Eliminar");
+    if(r==true)
+        $(this).attr('href',"VentaCtrl/deleteTempAll");
+        else
+        $(this).attr('href','');
+    
+}); 
     $( "#selecost" ).selectable({
         stop: function(){
             var id=0;
@@ -14,6 +35,9 @@ $( function() {
             $("#selecfun li:eq("+index+")").addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
+            if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
+            bloqueobtn();
+            else
             desbloqueobtn();
         })}
     });
@@ -28,6 +52,9 @@ $( function() {
             $("#selecost li:eq("+index+")").addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
+            if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
+            bloqueobtn();
+            else
             desbloqueobtn();
             
             
@@ -79,8 +106,10 @@ $("#selectable").selectable(
                                          $('#selecost li:first').addClass('ui-selected');
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
-          
-                                         desbloqueobtn();          
+                                         if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
+                                         bloqueobtn();
+                                         else
+                                         desbloqueobtn();      
                               },
                           })
                
@@ -101,7 +130,7 @@ $('#lblCantidadEntradas').bind("DOMSubtreeModified",function(){
     console.log(tarifa);
     
     $('#lblPrecio').html(total+'Bs');
-    if(parseInt($('#lblCantidadEntradas').html()) > 0)
+    if ($('#tabPreVenta tr').length > 0)
     $('#btnAgregar').removeClass("disabled");
     else
     $('#btnAgregar').addClass("disabled");
@@ -171,6 +200,9 @@ function listado(){
         $('#btnEntradaMenos').addClass("disabled");
         $('#btnEntradaMas').addClass("disabled");
         $('#btnCancelar').addClass("disabled");
+        if ($('#tabPreVenta tr').length > 0)
+        $('#btnAgregar').removeClass("disabled");
+        else
         $('#btnAgregar').addClass("disabled");
         $('#btnAceptar').addClass("disabled");
         $('#lblCantidadEntradas').addClass("disabled");
@@ -274,6 +306,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                              var codSala=$('#selecfun .ui-selected input').prop('value');
                              var fecfun=$('#fecfuncion').prop('value');
                              var idfunreg=$('#selecfun .ui-selected').prop('value');
+                             var horafun=$('#selecfun .ui-selected label').html()+":00";
                              var pelicula=$('#selectable .ui-selected input').prop('value');
                              $('.lugar.asignado').each(function(){
                                  var idsien=$(this).data('idasiento');
@@ -286,6 +319,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                                                    "codigosala":codSala,
                                                    "numerosala":nunSala,
                                                    "fechafun": fecfun,
+                                                   "horafun":horafun,
                                                    "precio":costo,
                                                    "columna":col,
                                                    "fila":fil,
@@ -304,12 +338,15 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
                                                     }
                                                 })
-                                console.log(idsien+' '+idfunreg+' '+numerofuncion+' '+tarSerie+' '+nunSala+' '+codSala+' '+fecfun+' '+costo+' '+col+' '+fil+' '+pelicula);
+                                console.log(idsien+' '+idfunreg+' '+numerofuncion+' '+tarSerie+' '+nunSala+' '+codSala+' '+fecfun+' '+costo+' '+col+' '+fil+' '+pelicula+' '+horafun);
                             }                                
                            )
                             $("#exampleModal").modal('hide');//ocultamos el modal
                             $('#lblCantidadEntradas').html("0");
                             $('#lblPrecio').html('0Bs');
+                            location.reload();
+                            calculo();
+
                         });
                    
                 }
@@ -354,4 +391,50 @@ function cambio(fila,columna) {
 
 }
 
+$('#buscarCliente').click(function(){
+    var cinit = $('#cinit1').prop('value');
+    var parametros = {
+        "cinit" : cinit
+    };
+    $.ajax({
+        data:  parametros,
+        url:   'ClienteCtrl/datocliente',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            var datos=JSON.parse(response);
+            if (datos.cinit==''){
+                $('#idcliente').prop('value','');
+                $('#cinit').prop('value',cinit);
+                $('#nombre').prop('value','');
+                $('#apellido').prop('value','');
+                $('#email').prop('value','');
+                $('#telef').prop('value','');}
+            else{
+                idcliente
+                $('#idcliente').prop('value',datos.idCliente);
+                $('#cinit').prop('value',datos.cinit);
+                $('#nombre').prop('value',datos.nombreCl);
+                $('#apellido').prop('value',datos.apellidoCl);
+                $('#email').prop('value',datos.email);
+                $('#telef').prop('value',datos.telefono);}
 
+        }
+    })
+});
+
+function calculo(){
+    var total=0;
+    $('.costo').each(function(){    
+        console.log(($(this).html())),
+        total = total + parseFloat($(this).html())
+    
+});
+    $('#totalPre').html(total);
+};
+
+function insertVenta(){
+    var totalventa=$('#totalPre').html();
+} 

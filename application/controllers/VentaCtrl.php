@@ -7,7 +7,7 @@ class VentaCtrl extends CI_Controller {
 	{
 		parent::__construct();
         $this->load->model('usuarios_model');
-        //$this->load->model('tarifas_model');
+        $this->load->model('temporal_model');
 
 
 	}
@@ -18,9 +18,10 @@ class VentaCtrl extends CI_Controller {
             
             $user = $this->session->userdata('idUs');
 
+            $temporal['temporal'] = $this->temporal_model->listaTemporal();
             $dato=$this->usuarios_model->validaIngreso($user);
                 $this->load->view('templates/header', $dato);
-                $this->load->view('panelventa');
+                $this->load->view('panelventa',$temporal);
                 $dato2['js']="<script src='".base_url()."assets/js/venta.js'></script>";    
                 $this->load->view('templates/footer',$dato2);
         }
@@ -95,14 +96,27 @@ class VentaCtrl extends CI_Controller {
         $columna=$_POST["columna"];
         $fila=$_POST["fila"];
         $titulo=$_POST["titulo"];
-        $insertar=" INSERT INTO temporal (idAsiento, idFuncion, numeroFuncion, numeroSala, serieTarifa, codSala, fechaFuncion, idUser, fila, columna, costo, titulo) VALUES ";
-        $insertar=$insertar." (".$idAsiento.",".$idfuncion.",".$numeroFuncion.",".$numeroSala.",'".$serieTarifa."',".$codSala.",'".$fechaFuncion."',".$idUser.",".$fila.",".$columna.",".$precio.",'".$titulo."')";
+        $horaFuncion=$_POST["horafun"];
+        $insertar=" INSERT INTO temporal (idAsiento, idFuncion, numeroFuncion, numeroSala, serieTarifa, codSala, fechaFuncion, idUser, fila, columna, costo, titulo, horaFuncion) VALUES ";
+        $insertar=$insertar." (".$idAsiento.",".$idfuncion.",".$numeroFuncion.",".$numeroSala.",'".$serieTarifa."',".$codSala.",'".$fechaFuncion."',".$idUser.",".$fila.",".$columna.",".$precio.",'".$titulo."','".$horaFuncion."')";
         $this->db->query($insertar);
     }
 
-    public function listaTemporal()
-    {
-        $idUser=$this->session->userdata('idUs');
-                
+    public function deleteTemporal($id){
+        $this->temporal_model->deleteTemp($id);
+        $this->index();
     }
+
+    public function deleteTempAll(){
+        $idUser=$this->session->userdata('idUs');
+        $this->temporal_model->deleteAll($idUser);
+        header("Location: ".base_url()."VentaCtrl");
+        $this->index();       
+        
+    }
+
+    public function registrarVenta(){
+        
+    }
+
 }

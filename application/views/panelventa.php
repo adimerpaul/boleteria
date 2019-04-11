@@ -103,9 +103,10 @@
                                 </div>
                                 </br>
                                 <div class="row-fluid row">
-                                    <a id="btnAceptar" href="#" class="btn btn-success " style="width:40%">
+                                    <a id="btnAceptar" href="#" class="btn btn-success " data-toggle="modal" data-target="#clienteModal" style="width:40%">
                                         <i class="fas fa-check"></i>
                                         <div>Cerrar Venta</div>
+                                        
                                     </a>
                                     <div><p>&nbsp;</p></div>
                                             <div class="pricing-head pricing-head-active">
@@ -126,37 +127,42 @@
             <div class="col-md-4">
             <div class="card ">
                  
-                <h6 class="card-header text-white bg-dark">  <a href="#" class="btn btn-danger">Cancelar venta</a></h6>
+                <h6 class="card-header text-white bg-dark">  <a href="<?=base_url()?>VentaCtrl/deleteTempAll" class="btn btn-danger" id="elimVentaTemp">Cancelar venta</a></h6>
                 
                  
             <div class="card-body">
                 <h5 class="card-title">Detalle Venta</h5>
-                <table class="table">
+                <table class="table table-sm">
                     <thead>
                         <tr>
                             <th scope="col">Cant</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Pelicula</th>
                             <th scope="col">subtotal</th>
+                            <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tabPreVenta">
+                    <?php foreach($temporal as $row): ?>                        
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td><?php echo $row['fechaFuncion'].' '.$row['horaFuncion']; ?></td>
+                            <td><?php echo $row['titulo']; ?></td>
+                            <td class="costo"><?php echo $row['costo']; ?></td>
+                            <td><a class="btn btn-outline-danger btn-sm" href="<?=base_url()?>VentaCtrl/deleteTemporal/<?=$row['idTemporal']?>"><i class="far fa-trash-alt"></i></a></td>                                                        
                         </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
+                <hr>
+                <div style="text-align: right; background-color: #CD853F; color: white; font-size:20px;">
+                <label for="">TOTAL:</label>
+                <label for="" id="totalPre">0,0</label>Bs
+                </div>
             </div>
+            </div>                
             </div>
-
-                
-            </div>
-        </div>
-
-            
+        </div>            
         </div>
     </div>  
 </div>
@@ -225,3 +231,74 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h5>Datos de Cliente</h5>
+          <hr>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cinit1">CI / NIT:</label>   
+                <input type="text" class="form-control" id="cinit1" name="cinit1" required>  
+            </div>
+            <div class="form-group col-md-6">
+                <label for="buscar"></label>  <br> 
+               <a href="#" class="btn btn-info" id="buscarCliente"><i class="fas fa-search"></i> BUSCAR</a> 
+            </div>
+         </div>
+      <form method="POST" action="<?php echo base_url();?>VentaCtrl/registroVenta" >
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="cinit">CI / NIT:</label>   
+      <input type="text" class="form-control" id="cinit" name="cinit" readonly required>  
+      <input type="hidden" id="idcliente" name="idcliente">  
+      <label id="cinit_error" class="control-label col-md-6 text-danger" style="display: block;"></label>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="nombre">Nombre:</label>   
+      <input type="text" class="form-control" id="nombre" name="nombre">  
+      <input type="hidden" id="idcliente" name="idcliente">  
+    </div>
+    <div class="form-group col-md-6">
+      <label for="apellido">Apellido:</label>   
+      <input type="text" class="form-control" id="apellido" name="apellido" Required>  
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email:</label>   
+      <input type="text" class="form-control" id="email" name="email">  
+    </div>
+    <div class="form-group col-md-6">
+      <label for="telef">Telefono:</label>   
+      <input type="text" class="form-control" id="telef" name="telef">  
+    </div>
+  </div>
+
+  <input type="submit" class="btn btn-success" value="Registrar">
+  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>VentaCtrl">Cancelar</a>
+</form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

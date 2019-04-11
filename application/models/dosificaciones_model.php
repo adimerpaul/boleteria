@@ -47,7 +47,7 @@ class dosificaciones_model extends CI_Model {
             'leyenda'=> $this->input->post('leyenda')
 
         ];
-        $this->db->where('idDosificacion',$id);
+        $this->db->where('idDosif',$id);
         return $this->db->update('dosificacion',$dosificacion);
     }
     

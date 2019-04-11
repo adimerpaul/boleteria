@@ -47,20 +47,8 @@
      </div>
   </div>
   <input type="submit" class="btn btn-success" value="Registrar">
-  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>DosificacionCtrl/dosificaver">Cancelar</a>
+  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>DosificacionCtrl/dosificacionver">Cancelar</a>
 </form>
-
-<script >
-	$(document).ready(function()
-		{
-		$("input[name=fechad]").change(function () {	
-            var fec=document.getElementById("fechad").value;
-            console.log(fec); 
-			document.getElementById("fechah").min=fec;
-			});
- 
-		 });
-</script>
 </div>
 
 </div>

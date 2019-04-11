@@ -55,7 +55,7 @@ class DosificacionCtrl extends CI_Controller {
 
     public function datos(){
         $iddosificacion=$_POST['idDosif'];
-        $query=$this->db->query("SELECT * FROM dosificacion WHERE idDosif='$iddosificacion'");
+        $query=$this->db->query("SELECT * FROM dosificacion WHERE idDosif=".$iddosificacion);
         $row=$query->row();
         
         $myObj=($query->result_array())[0];
