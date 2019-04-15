@@ -23,17 +23,8 @@ class clientes_model extends CI_Model {
         ];
         return $this->db->insert("cliente",$cliente);
     }
-    public function insertVenta($cinit,$nombre,$apellido,$email,$telefono)
-    {
-        $cliente= [
-            'cinit'=> $cinit,
-            'nombreCl'=> $nombre,
-            'apellidoCl'=> $apellido,
-            'email'=> $email,
-            'telefono'=> $telefono,
-        ];
-        return $this->db->insert("cliente",$cliente);
-    }
+    
+
 
     public function delete($idCliente){
         return $this->db->delete('cliente', array('idCliente' => $idCliente));

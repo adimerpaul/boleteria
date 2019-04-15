@@ -80,22 +80,22 @@
                 
                 <div id="pnlOperaciones" class="portlet-body">
                                 <div class="row-fluid">
-                                    <a id="btnEntradaMenos" href="#" class="btn btn-light  " style="width:40%">
+                                    <a id="btnEntradaMenos"  class="btn btn-light  " style="width:40%">
                                         <i class="fas fa-minus-circle"></i>
                                         <div>Entrada</div>
                                     </a>
-                                    <a id="btnEntradaMas" href="#" class="btn btn-light  " style="width:40%">
+                                    <a id="btnEntradaMas"  class="btn btn-light  " style="width:40%">
                                         <i class="fas fa-plus-circle"></i>
                                         <div>Entrada</div>
                                     </a>
                                 </div>
                                 </br>
                                 <div class="row-fluid">
-                                    <a id="btnCancelar" href="#" class="btn btn-danger" style="width:40%">
+                                    <a id="btnCancelar" class="btn btn-danger" style="width:40%">
                                         <i class="fas fa-times"></i>
                                         <div>Cancelar</div>
                                     </a>
-                                        <a id="btnAgregar" href="#" class="btn btn-primary " style="width:40%" data-toggle="modal" data-target="#exampleModal" data-idsala="">
+                                        <a id="btnAgregar"  class="btn btn-primary " style="width:40%" data-toggle="modal" data-target="#exampleModal" data-idsala="">
                                             <i class="fas fa-plus"></i>
                                             <div>Agregar</div>
                                         </a>
@@ -103,7 +103,7 @@
                                 </div>
                                 </br>
                                 <div class="row-fluid row">
-                                    <a id="btnAceptar" href="#" class="btn btn-success " data-toggle="modal" data-target="#clienteModal" style="width:40%">
+                                    <a id="btnAceptar"  class="btn btn-success " data-toggle="modal" data-target="#clienteModal" style="width:40%">
                                         <i class="fas fa-check"></i>
                                         <div>Cerrar Venta</div>
                                         
@@ -255,13 +255,11 @@
                <a href="#" class="btn btn-info" id="buscarCliente"><i class="fas fa-search"></i> BUSCAR</a> 
             </div>
          </div>
-      <form method="POST" action="<?php echo base_url();?>VentaCtrl/registroVenta" >
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="cinit">CI / NIT:</label>   
       <input type="text" class="form-control" id="cinit" name="cinit" readonly required>  
       <input type="hidden" id="idcliente" name="idcliente">  
-      <label id="cinit_error" class="control-label col-md-6 text-danger" style="display: block;"></label>
     </div>
   </div>
 
@@ -289,9 +287,8 @@
     </div>
   </div>
 
-  <input type="submit" class="btn btn-success" value="Registrar">
+  <input type="button" class="btn btn-success" value="Registrar" id="registrarVenta">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>VentaCtrl">Cancelar</a>
-</form>
       </div>
       <div class="modal-footer">
 

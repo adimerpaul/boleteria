@@ -116,7 +116,21 @@ class VentaCtrl extends CI_Controller {
     }
 
     public function registrarVenta(){
-        
+        $cinit=$_POST['cinit'];
+        $nombre=$_POST['nombre'];
+        $apellido=$_POST['apellido'];
+        $email=$_POST['email'];
+        $telefono=$_POST['telefono'];
+        $cliente= [
+            'cinit'=> $cinit,
+            'nombreCl'=> $nombre,
+            'apellidoCl'=> $apellido,
+            'email'=> $email,
+            'telefono'=> $telefono
+        ];
+        $this->db->insert("cliente",$cliente);
+        echo $this->db->insert_id();
+        //eturn "aaa";
     }
 
 }

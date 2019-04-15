@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class dosificaciones_model extends CI_Model {
 
     public function listaDosificacion()
-    {
+    {   
+        $this->db->where('tipo','BOLETERIA');
         $dosif = $this->db->get('dosificacion');
         return $dosif->result_array();
     }
@@ -20,7 +21,8 @@ class dosificaciones_model extends CI_Model {
             'fechaDesde'=> $this->input->post('fechad'),
             'fechaHasta'=> $this->input->post('fechah'),
             'activo'=> 1,
-            'leyenda'=> $this->input->post('leyenda')
+            'leyenda'=> $this->input->post('leyenda'),
+            'tipo'=>'BOLETERIA'
 
         ];
         return $this->db->insert("dosificacion",$dosificacion);

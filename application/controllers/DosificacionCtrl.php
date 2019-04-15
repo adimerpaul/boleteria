@@ -70,4 +70,11 @@ class DosificacionCtrl extends CI_Controller {
         $this->dosificacionver();
     }
 
+    public function ultimaDosificacion(){
+        
+        $query=$this->db->query("SELECT * FROM dosificacion WHERE activo=1 and tipo = 'BOLETERIA' and fechaHasta>=(select CURDATE())");
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
+
 }
