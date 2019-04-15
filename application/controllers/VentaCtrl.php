@@ -9,6 +9,7 @@ class VentaCtrl extends CI_Controller {
         $this->load->model('usuarios_model');
         $this->load->model('temporal_model');
 
+        $this->load->library('ControlCode'); // This loads the library
 
 	}
 
@@ -131,6 +132,18 @@ class VentaCtrl extends CI_Controller {
         $this->db->insert("cliente",$cliente);
         echo $this->db->insert_id();
         //eturn "aaa";
+    }
+
+    public function cControl(){
+
+        $nautorizacion=$_POST['numeroa'];
+        $nroFact=$_POST["nroFact"];
+        $cinit=$_POST["cinit"];
+        $fecVenta=$_POST["fecha"];
+        $monto=$_POST["total"];
+        $kDosif=$_POST["llave"];
+        echo $nautorizacion.$nroFact.$cinit.$fecVenta.$monto.$kDosif;
+        echo $this->ControlCode->generate($nautorizacion,$nroFact,$cinit,$fecVenta,$monto,$kDosif);  // This calls the creation of ajax methods
     }
 
 }

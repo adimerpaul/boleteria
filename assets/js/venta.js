@@ -484,8 +484,27 @@ $('#registrarVenta').click(function(){
             varleyenda=vardosif.leyenda;
             varnroFactura=parseInt(vardosif.nroFactura) + 1;
             
-            codControl=varnroAutorizacion+','+varnroFactura+','+factCinit+','+moment().format('Y/MM/DD')+','+montoTotal+','+varllaveDosif;
+            codControl=varnroAutorizacion+','+varnroFactura+','+factCinit+','+moment().format('YMMDD')+','+montoTotal+','+varllaveDosif;
             console.log(codControl);
+            parametro={
+                "numeroa": varnroAutorizacion,
+                "nroFact":varnroFactura,
+                "cinit":factCinit,
+                "fecha":moment().format('YMMDD'),
+                "total":montoTotal,
+                "llave":varllaveDosif
+            };
+            $.ajax({
+                data:  parametro,                
+                url: 'VentaCtrl/cControl', 
+                type: 'post',
+                beforeSend: function () {
+                    //$("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response){
+                    console.log(response);
+                }
+            })
         }
 
     })
