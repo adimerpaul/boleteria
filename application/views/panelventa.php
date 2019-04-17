@@ -242,7 +242,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body"> 
           <h5>Datos de Cliente</h5>
           <hr>
           <div class="form-row">
@@ -252,14 +252,38 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="buscar"></label>  <br> 
-               <a href="#" class="btn btn-info" id="buscarCliente"><i class="fas fa-search"></i> BUSCAR</a> 
+               <a class="btn btn-info" id="buscarCliente"><i class="fas fa-search"></i> BUSCAR</a> 
             </div>
          </div>
+         <hr>
+         <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="pago">Monto:</label>   
+                <input type="number" step="any" class="form-control" id="pago" name="pago" >  
+            </div>
+            <div class="form-group col-md-4">
+                <label for="prepago">Monto a Cancelar:</label>   
+                <input type="number" step="any" class="form-control" id="prepago" name="prepago" readonly>  
+            </div>
+            <div class="form-group col-md-4">
+                <label for="resultado">Vuelto:</label>   
+                <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly>  
+            </div>
+        </div>
+         <hr>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="cinit">CI / NIT:</label>   
       <input type="text" class="form-control" id="cinit" name="cinit" readonly required>  
       <input type="hidden" id="idcliente" name="idcliente">  
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Nota de Venta:</label>   
+        
+        <select class="form-control" id="vtipo" name="vtipo">
+            <option value="FACTURA" selected>FACTURA</option>
+            <option value="RECIBO">RECIBO</option>
+        </select>
     </div>
   </div>
 

@@ -82,7 +82,7 @@
     </div>
     <div class="form-group col-md-4">
       <label for="inicial">Nro Factura Inicial: </label>
-      <input type="number" class="form-control" id="inicial" name="inicial" required>
+      <input type="number" class="form-control" id="inicial" name="inicial" required min=1>
     </div>
   </div>
  

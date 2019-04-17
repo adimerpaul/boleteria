@@ -17,6 +17,7 @@ class dosificaciones_model extends CI_Model {
             'nroTramite'=> $this->input->post('tramite'),
             'nroAutorizacion'=> $this->input->post('autorizacion'),
             'nroFactIni'=> $this->input->post('inicial'),
+            'nroFactura'=> parseInt($this->input->post('inicial')) - 1,
             'llaveDosif'=> $this->input->post('llave'),
             'fechaDesde'=> $this->input->post('fechad'),
             'fechaHasta'=> $this->input->post('fechah'),
@@ -55,5 +56,9 @@ class dosificaciones_model extends CI_Model {
     
     public function delete($idDosif){
         return $this->db->delete('dosificacion', array('idDosif' => $idDosif));
+    }
+
+    public function updatenfactura($id){
+        $this->db->query("UPDATE dosificacion set nroFactura= nroFactura + 1 where tipo='BOLETERIA' AND activo=1 AND idDosif='$id'");
     }
 }

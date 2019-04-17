@@ -201,11 +201,11 @@ function listado(){
         $('#btnEntradaMenos').addClass("disabled");
         $('#btnEntradaMas').addClass("disabled");
         $('#btnCancelar').addClass("disabled");
-    if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html())>0)
-    $('#btnAgregar').removeClass("disabled");
+        if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html())>0)
+            $('#btnAceptar').removeClass("disabled");
         else
+            $('#btnAceptar').addClass("disabled");
         $('#btnAgregar').addClass("disabled");
-        $('#btnAceptar').addClass("disabled");
         $('#lblCantidadEntradas').addClass("disabled");
         $('#lblCantidadEntradas').html("0");
         $('#lblPrecio').html('0Bs');
@@ -436,12 +436,16 @@ $('#registrarVenta').click(function(){
     var varfechaHasta;
     var varleyenda;
     var varnroFactura;
-
+    var varfechaventa;
     var codControl;
     var factCinit;
     var codControl="";
     var nitEmpresa;
-  
+    var codqr;
+    var tipo;
+    
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='')
+    {   
     if($('#idcliente').prop('value')==''){
         var parametros = {
             "cinit" : $('#cinit').prop('value'),
@@ -450,7 +454,7 @@ $('#registrarVenta').click(function(){
             "email": $('#email').prop('value'),
             "telefono":$('#telef').prop('value')
         };
-       /* $.ajax({
+        $.ajax({
             data:  parametros,
             url:   'VentaCtrl/registrarVenta',
             type:  'post',
@@ -462,7 +466,7 @@ $('#registrarVenta').click(function(){
                 console.log(response);
                 idcl=response;
             }
-        })   */                    
+        })                    
     }
     else
     idcl=$('#idcliente').prop('value');
@@ -482,15 +486,16 @@ $('#registrarVenta').click(function(){
             varllaveDosif=vardosif.llaveDosif;
             varfechaHasta=vardosif.fechaHasta;
             varleyenda=vardosif.leyenda;
-            varnroFactura=parseInt(vardosif.nroFactura) + 1;
+            varnroFactura=parseInt(vardosif.nroFactura);
+            varfechaqr=moment().format('YMMDD');
+            varfechaventa=moment().format('Y-MM-DD H:i:s');
             
-            codControl=varnroAutorizacion+','+varnroFactura+','+factCinit+','+moment().format('YMMDD')+','+montoTotal+','+varllaveDosif;
-            console.log(codControl);
+            //console.log(codControl);
             parametro={
                 "numeroa": varnroAutorizacion,
                 "nroFact":varnroFactura,
                 "cinit":factCinit,
-                "fecha":moment().format('YMMDD'),
+                "fecha":varfechaqr,
                 "total":montoTotal,
                 "llave":varllaveDosif
             };
@@ -503,12 +508,51 @@ $('#registrarVenta').click(function(){
                 },
                 success:  function (response){
                     console.log(response);
+                    codControl=response;
+
+
+
+                    codqr= '329448023|'+varnroFactura+'|'+varnroAutorizacion+'|'+varfechaqr+'|'+montoTotal+'|'+montoTotal+'|'+codControl+'|'+factCinit+'|0|0|0|0.00';
+                        tipo=$('#vtipo').prop('value');
+                        var parventa = {
+                            'total':montoTotal,
+                            'ccontrol':codControl ,
+                            'codigoqr': codqr,
+                            'tipo':tipo ,
+                            'idCliente': idcl,
+                            'iddosif':varidDosif
+                        };
+                        $.ajax({
+                            data:  parventa,
+                            url:   'VentaCtrl/regVenta',
+                            type:  'post',
+                            beforeSend: function () {
+                                //$("#resultado").html("Procesando, espere por favor...");
+                            },
+                            success:  function (response){
+                                console.log(response);
+                            $("#clienteModal").modal('hide');//ocultamos el modal
+                            location.reload();
+
+                            }
+                        })
+
+
+
+
+
                 }
             })
+            
+
+
+
         }
 
     })
+    
 
+    }   
     /*codigo de control:  numero de autorizacion; numerode orden; cinit; fecha venta; monto ; keydosificacion/*/
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
     
@@ -517,15 +561,28 @@ $('#registrarVenta').click(function(){
 });
 
 function calculo(){
-    var total=0;
+    var total=0.0;
     $('.costo').each(function(){    
         console.log(($(this).html())),
         total = total + parseFloat($(this).html())
     
 });
     $('#totalPre').html(total);
+    $('#prepago').prop('value',total);
 };
 
 function insertVenta(){
     var totalventa=$('#totalPre').html();
 } 
+
+
+$('#pago').keypress(function(event){
+    $p = $('#pago').prop('value');
+    $pp= $('#prepago').prop('value');
+    if(event.key === "Enter" && $p>$pp){
+        $res=$p - $pp;
+        $('#resultado').prop('value',($p - $pp));
+    }
+    else
+        $('#resultado').prop('value',0);
+});

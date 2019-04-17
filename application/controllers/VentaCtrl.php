@@ -9,8 +9,8 @@ class VentaCtrl extends CI_Controller {
         $this->load->model('usuarios_model');
         $this->load->model('temporal_model');
 
-        $this->load->library('ControlCode'); // This loads the library
-
+        $this->load->model('ventas_model'); // This loads the library
+        $this->load->model('dosificaciones_model');
 	}
 
     public function index()
@@ -111,9 +111,9 @@ class VentaCtrl extends CI_Controller {
     public function deleteTempAll(){
         $idUser=$this->session->userdata('idUs');
         $this->temporal_model->deleteAll($idUser);
-        header("Location: ".base_url()."VentaCtrl");
-        $this->index();       
-        
+       
+       
+     header("Location: ".base_url()."VentaCtrl");
     }
 
     public function registrarVenta(){
@@ -142,8 +142,146 @@ class VentaCtrl extends CI_Controller {
         $fecVenta=$_POST["fecha"];
         $monto=$_POST["total"];
         $kDosif=$_POST["llave"];
-        echo $nautorizacion.$nroFact.$cinit.$fecVenta.$monto.$kDosif;
-        echo $this->ControlCode->generate($nautorizacion,$nroFact,$cinit,$fecVenta,$monto,$kDosif);  // This calls the creation of ajax methods
+        
+        //echo $nautorizacion.$nroFact.$cinit.$fecVenta.$monto.$kDosif;
+       echo $this->ventas_model->generate($nautorizacion,$nroFact,$cinit,$fecVenta,$monto,$kDosif);  // This calls the creation of ajax methods
+       //echo "aa";
     }
+
+    public function regVenta(){
+        $total=$_POST['total'];
+        $codControl=$_POST['ccontrol'];
+        $codqr=$_POST['codigoqr'];
+        $tipo=$_POST['tipo'];
+        $idu=$this->session->userdata('idUs');
+        $idCl=$_POST['idCliente'];
+        $idd=$_POST['iddosif'];
+        
+        
+        if($tipo=='FACTURA'){
+            
+            $this->dosificaciones_model->updatenfactura($idd);
+       $query=$this->db->query("SELECT idDosif,nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1 ORDER BY idDosif DESC");
+        $row=$query->row();
+        $nroComprobante=$row->nroFactura;
+            $query="INSERT INTO venta(
+                total,
+                codigoControl,
+                codigoQR,
+                nroComprobante,
+                tipoVenta,
+                idUsuario,
+                idCliente,
+                idDosif) VALUES (
+                    '$total',
+                    '$codControl',
+                    '$codqr',
+                    '$nroComprobante',
+                    '$tipo',
+                    '$idu',
+                    '$idCl',
+                    '$idd')";
+        $this->db->query($query);
+       // $query.= ",'".$codControl."','".$codqr."',(SELECT nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1)";
+            
+    }
+        else{
+            $query=$this->db->query("SELECT max(nroComprobante)+1 as numero from venta where tipoVenta='RECIBO'");
+        $row=$query->row();
+        $nroComprobante=$row->numero;
+            $query="INSERT INTO venta(
+                total,
+                codigoControl,
+                codigoQR,
+                nroComprobante,
+                tipoVenta,
+                idUsuario,
+                idCliente,
+                idDosif) VALUES (
+                    '$total',
+                    '',
+                    '',
+                    '$nroComprobante',
+                    '$tipo',
+                    '$idu',
+                    '$idCl',
+                    '$idd')";
+        $this->db->query($query);
+        }
+        $idVenta=$this->db->insert_id();
+        
+       
+       // echo $idVenta;
+
+        $query=$this->db->query("SELECT * FROM `temporal` WHERE `idUser`='$idu'");
+        foreach($query->result() as $row){
+            $numsala = $row->numeroSala;
+            $codigosala = $row->codSala;
+            $originalDate = $row->fechaFuncion;
+            $fechafuncion = date("Ymd", strtotime($originalDate));
+            $nfuncion = $row->numeroFuncion;
+            $serietarifa = $row->serieTarifa;
+            $query2=$this->db->query("SELECT count(*) + 1 as num FROM boleto WHERE idFuncion='$row->idFuncion'");
+            $numboleto=$query2->row()->num;
+            $numboc="$numsala$codigosala$fechafuncion$nfuncion$serietarifa-$numboleto";
+            $this->db->query("INSERT INTO `boleto` (
+             `numboc`,
+              `numero`,
+              `idFuncion`, 
+              `idUsuario`, 
+              `idAsiento`, 
+              `numeroFuncion`, 
+              `numeroSala`, 
+              `serieTarifa`, 
+              `codigoSala`, 
+              `fechaFuncion`, 
+              `horaFuncion`, 
+              `fila`, 
+              `columna`, 
+              `costo`, 
+              `titulo`, 
+              `idVenta`) VALUES (
+                  '$numboc', 
+                  '$numboleto',
+                  '$row->idFuncion', 
+                  '$idu', 
+                  '$row->idAsiento', 
+                  '$nfuncion', 
+                  '$numsala', 
+                  '$serietarifa', 
+                  '$codigosala', 
+                  '$originalDate', 
+                  '$row->horaFuncion', 
+                  '$row->fila', 
+                  '$row->columna', 
+                  '$row->costo', 
+                  '$row->titulo', 
+                  '$idVenta');");
+        };
+        //header("Location inde.php");
+
+        $idUser=$this->session->userdata('idUs');
+        $this->temporal_model->deleteAll($idUser);
+        echo "ok";
+        
+    } 
+
+    public function listaVenta(){
+        if($this->session->userdata('login')==1){
+            
+            $user = $this->session->userdata('idUs');
+
+            $dato=$this->usuarios_model->validaIngreso($user);
+            $venta['venta'] = $this->ventas_model->listaventa();
+            $this->load->view('templates/header', $dato);
+                $this->load->view('listadoventa',$venta);
+                $dato['js']="<script></script>";    
+                $this->load->view('templates/footer',$dato);
+        }
+        else redirect('');
+    
+    }
+
+
 
 }

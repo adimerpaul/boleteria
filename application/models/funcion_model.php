@@ -27,16 +27,21 @@ class funcion_model extends CI_Model{
         }else{
             $numerada='off';
         }
+        $idsala=$this->input->post('idsala');
         for ($i=0;$i<$dias;$i++){
+            $query=$this->db->query("SELECT count(*) as total FROM `funcion` WHERE `fecha`='$fecha' AND idSala='$idsala'");
+            $row=$query->row();
+            $nrofuncion=$row->total+1;
             $funcion= [
                 'fecha'=> $fecha,
                 'horaInicio'=> $this->input->post('hora'),
                 'idTarifa'=> $this->input->post('idTarifa'),
                 'horaFin'=> $horaFin,
                 'idUsuario'=> $_SESSION['idUs'],
-                'idSala'=> $this->input->post('idsala'),
+                'idSala'=> $idsala,
                 'idPelicula'=> $this->input->post('idpelicula'),
                 'subtitulada'=> $subtitulada,
+                'nroFuncion'=> $nrofuncion,
                 'numerada'=> $numerada
             ];
             //echo $fecha."<br>";
