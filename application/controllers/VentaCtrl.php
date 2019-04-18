@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+require_once('tcpdf.php');
+include "qrlib.php";
+include "NumerosEnLetras.php";
 class VentaCtrl extends CI_Controller {
     
 	function __construct()
@@ -281,7 +283,179 @@ class VentaCtrl extends CI_Controller {
         else redirect('');
     
     }
+    public function imprimirF(){
 
 
 
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 300), true, 'UTF-8', false);
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
+$pdf->SetFont('times', '', 8);
+
+// add a page
+$pdf->AddPage();
+$total="189.52";
+$d = explode('.',$total);
+$entero=$d[0];
+$decimal=$d[1];
+// set some text to print
+$ca = "MULTI CINES PLAZA SRL.
+Av. Tacna y Jaen - Oruro -Bolvia
+NIT: 329448023 Tel: 591-25281290
+Nro Autorizacion: 332401800005322
+Nro Factura:13723
+";
+
+$html = "<b>Fecha: </b>".date('d/m/Y')."<br>
+<b>Nombre Cliente:</b> Adimer paucl chambi ajata adimer <br>
+<b>NIT Cliente:</b> 7336199013 <br>
+<b>Vendedor:</b> Juanito benabides alcachofa <br>
+<table>
+<tr>
+<td><b>Cantidad</b></td>
+<td><b>Pelicula</b></td>
+<td><b>Precio</b></td>
+<td><b>Subtotal</b></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Luna nueva corazon de leon 3D</td>
+<td>50</td>
+<td>150</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Luna nueva corazon de leon 3D</td>
+<td>50</td>
+<td>150</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Luna nueva corazon de leon 3D</td>
+<td>50</td>
+<td>150</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b>TOTAL</b></td>
+<td>$total</td>
+</tr>
+</table>
+SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
+<b>Cod. de Control:</b> 00-90-84-71-8C <br>
+<b>Fecha Lim. de Emision:</b> 01/04/2019".'
+<div align="center">
+<img src="QR.jpg"   alt="" width="85" height="85"> 
+</div>
+'."ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PASI. EL USO ILICITO DE ESTA SERA SANCIONADO DEACUREDO A LEY <br>
+ Ley N 453: Tienes derecho a un contratoequitativo sin descriminacion
+";
+
+$pdf->Write(0, $ca, '', 0, 'C', true, 0, false, false, 0);
+$pdf->writeHTML($html, true, 0, true, 0, '');
+
+$pdf->Output();
+
+    }
+public function imprimirR(){
+
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 150), true, 'UTF-8', false);
+
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(false);
+    $pdf->SetFont('times', '', 8);
+
+// add a page
+    $pdf->AddPage();
+    $total="189.52";
+    $d = explode('.',$total);
+    $entero=$d[0];
+    $decimal=$d[1];
+// set some text to print
+    $ca = "MULTI CINES PLAZA SRL.
+Av. Tacna y Jaen - Oruro -Bolvia
+NIT: 329448023 Tel: 591-25281290
+RECIBO
+";
+    $html = "<b>Fecha: </b>".date('d/m/Y')."<br>
+<b>Nombre Cliente:</b> SN <br>
+<b>NIT Cliente:</b> 0 <br>
+<b>Vendedor:</b> Juanito benabides alcachofa <br>
+<table>
+<tr>
+<td><b>Cantidad</b></td>
+<td><b>Pelicula</b></td>
+<td><b>Precio</b></td>
+<td><b>Subtotal</b></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Luna nueva corazon de leon 3D</td>
+<td>50</td>
+<td>150</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b>TOTAL</b></td>
+<td>$total</td>
+</tr>
+</table>
+SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
+";
+
+    $pdf->writeHTML($html, true, false, true, false, '');
+
+    $pdf->Output();
+
+}
+function imprimirB(){
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 100), true, 'UTF-8');
+
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(false);
+    $pdf->SetFont('times', '', 8);
+    $pdf->SetMargins(0, 0, 0,0);
+    $pdf->AddPage();
+    $html = '
+<style>
+.titulo { 
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+</style><div  align="center">
+<small class="titulo">Multicines</small><br>
+<small class="titulo">Plaza</small><br>
+NIT: 329448023 <br>
+
+---------------------------------------------------<br>
+
+AQUAMAN 3D <br>
+SALA 1 <br>
+
+Fecha: 21/12/2018 <br>
+Hora: 15:00     Bs.: 40.- <br>
+
+Butaca: F-8 <br>
+
+-------------------------------------------------- <br>
+
+Código: <br>
+Trans: <br>
+Usuario: <br>
+
+</div>';
+    $pdf->writeHTML($html);
+    $pdf->Output();
+
+}
+public function qr(){
+    $filename = 'temp/qr.png';
+    $errorCorrectionLevel = 'L';
+    $matrixPointSize = 4;
+    QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+}
 }
