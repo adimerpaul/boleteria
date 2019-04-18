@@ -414,13 +414,14 @@ $('#buscarCliente').click(function(){
                 $('#email').prop('value','');
                 $('#telef').prop('value','');}
             else{
-                idcliente
                 $('#idcliente').prop('value',datos.idCliente);
                 $('#cinit').prop('value',datos.cinit);
                 $('#nombre').prop('value',datos.nombreCl);
                 $('#apellido').prop('value',datos.apellidoCl);
                 $('#email').prop('value',datos.email);
-                $('#telef').prop('value',datos.telefono);}
+                $('#telef').prop('value',datos.telefono);
+                //if($('#cinit').prop('value')=='0') $('#vtipo option[value=RECIBO]').attr('selected',true);
+            }
 
 
         }

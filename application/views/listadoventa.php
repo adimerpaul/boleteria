@@ -31,7 +31,7 @@
             <td><?php echo $row['total']; ?></td>
             <td><?php echo $row['tipoVenta']; ?></td>
             <td>                
-                    <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idBoleto="" Modificar</a>
+                    <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idBoleto=""> Modificar</a>
                    
             </td>
         </tr>

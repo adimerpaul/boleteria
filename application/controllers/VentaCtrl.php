@@ -346,7 +346,6 @@ SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
 <b>Cod. de Control:</b> 00-90-84-71-8C <br>
 <b>Fecha Lim. de Emision:</b> 01/04/2019".'
 <div align="center">
-<img src="QR.jpg"   alt="" width="85" height="85"> 
 </div>
 '."ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PASI. EL USO ILICITO DE ESTA SERA SANCIONADO DEACUREDO A LEY <br>
  Ley N 453: Tienes derecho a un contratoequitativo sin descriminacion
