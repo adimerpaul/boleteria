@@ -205,7 +205,7 @@
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Panel Ventas Web</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas</a>
+            <a class="nav-link" href="<?=base_url()?>VentaCtrl/listaVenta"><i class="fas fa-list-ul"></i> Listado Ventas</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas Web</a>
@@ -214,11 +214,12 @@
             <a class="nav-link" href="#"><i class="fas fa-minus"></i> Panel Devoluciones</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="far fa-credit-card"></i> Ver Entradas Vendidas</a>
+            <a class="nav-link" href="<?=base_url()?>BoletoCtrl"><i class="far fa-credit-card"></i> Ver Entradas Vendidas</a>
         </li>
       </ul>
     </div>
   </li>
+  
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-9" data-parent="#accordion1"><i class="far fa-chart-bar"></i> Estadisticas</a>
     <div id="item-9" class="collapse">

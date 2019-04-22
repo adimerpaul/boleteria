@@ -26,4 +26,18 @@ class BoletoCtrl extends CI_Controller {
         }
         else redirect('');
     }
+
+    public function listaBoletos()
+    {
+        $idventa=$_POST['idventa'];
+        $query=$this->db->query("SELECT * FROM boleto WHERE idVenta='$idventa'");
+        $row=$query->row();
+        
+        $myObj=($query->result_array());
+
+        echo json_encode($myObj);
+    } 
+
+    
+
 }

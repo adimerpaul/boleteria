@@ -9,6 +9,11 @@ class ventas_model extends CI_Model {
             return $venta->result_array();
         }            
 
+        public function devolVenta($id){
+            $this->db->set('estado','ANULADO');
+            $this->db->where('idVenta',$id);
+            return $this->db->update("venta");
+        }
 
         /**
          * @param String $authorizationNumber Numero de autorizacion

@@ -9,4 +9,11 @@ class boletos_model extends CI_Model {
         $boleto = $this->db->get('boleto');
         return $boleto->result_array();
     }
+
+    public function devolBoleto($id){
+        $this->db->set('idAsiento',NULL);
+        $this->db->set('devuelto','SI');
+        $this->db->where('idVenta',$id);
+        return $this->db->update('boleto');
+    }
 }

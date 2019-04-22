@@ -13,6 +13,7 @@ class VentaCtrl extends CI_Controller {
 
         $this->load->model('ventas_model'); // This loads the library
         $this->load->model('dosificaciones_model');
+        $this->load->model('boletos_model');
 	}
 
     public function index()
@@ -277,12 +278,46 @@ class VentaCtrl extends CI_Controller {
             $venta['venta'] = $this->ventas_model->listaventa();
             $this->load->view('templates/header', $dato);
                 $this->load->view('listadoventa',$venta);
-                $dato['js']="<script></script>";    
+                $dato['js']="<script src='".base_url()."assets/js/listaventa.js'></script>";    
                 $this->load->view('templates/footer',$dato);
         }
-        else redirect('');
-    
+        else redirect('');    
     }
+
+
+    public function verdatoventa(){
+        $idventa=$_POST['idventa'];
+        $query=$this->db->query("SELECT * FROM venta v
+        join cliente c on v.idCliente = c.idCliente
+        join usuario u on v.idUsuario = v.idUsuario
+        WHERE idVenta='$idventa'");
+        $row=$query->row();
+        
+        $myObj=($query->result_array())[0];
+
+        echo json_encode($myObj);
+    }
+
+    public function devolucion(){
+        $idventa=$_POST['idventa'];
+        $user = $this->session->userdata('idUs');
+        $this->ventas_model->devolVenta($idventa);
+        $this->boletos_model->devolBoleto($idventa);
+        $this->db->query("INSERT INTO devolucion (idVenta,idUsuario) values ('$idventa','$user')");
+        echo $this->db->insert_id();
+
+    }
+
+    public function listaBoletos(){
+        $idventa=$_POST['idventa'];
+        $query=$this->db->query("SELECT * FROM boleto
+        WHERE idVenta='$idventa'");
+        $row=$query->row();
+        $myObj=($query->result_array());
+
+        echo json_encode($myObj); 
+    }
+
     public function imprimirF(){
 
 
