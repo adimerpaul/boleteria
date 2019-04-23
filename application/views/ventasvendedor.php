@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
+                <button type="button" id="consultar" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
             </form>
         </div>
     </div>
