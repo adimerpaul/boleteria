@@ -11,7 +11,7 @@
     </nav>
     <div class="row">
         <div class="col">
-            <form>
+            <form >
                 <div class="form-group row">
                     <label for="venderor" class="col-sm-1 col-form-label">Vendedor:</label>
                     <div class="col-sm-5">
@@ -35,87 +35,61 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" id="consultar" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
+                <button type="submit" id="consultar" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
             </form>
         </div>
     </div>
-
+    <br>
     <div class="card ">
         <div class="card-header text-white bg-info" >
             <i class="fas fa-money-check"></i> Datos Ventas Por Periodo
         </div>
         <div class="card-body">
-            <h3>INFORMACION DE LA EMPRESA</h3>
-            <hr />
-            <div class="col-md-10">
-                <form method="POST" action="<?php echo base_url();?>EmpresaCtrl/store" >
+            <h3><b>INFORMACION DEL PERIODO</b></h3>
+            <hr>
+            <div class="">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="codigo">Codigo:</label>
-                            <input type="text" class="form-control" id="codigo" name="codigo">
+                            <label for="codigo"><b>Fecha Inicial:</b></label>
+                            <label for="" id="fechaI"></label>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="razonsocial">Razon Social: </label>
-                            <input type="text" class="form-control" id="razonsocial" name="razonsocial">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="nomfant">Nombre Fantasia:</label>
-                            <input type="text" class="form-control" id="nomfant" name="nomfant">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="nomsuc">Nombre Sucursal: </label>
-                            <input type="text" class="form-control" id="nomsuc" name="nomsuc">
+                            <label for="razonsocial">Fecha Final: </label>
+                            <label for="" id="fechaF"></label>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="telefono">Telefono:</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono">
+                            <label for="codigo">Usuario:</label>
+                            <label for="" id="userN"></label>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="localidad">Localidad: </label>
-                            <input type="text" class="form-control" id="localidad" name="localidad">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="direccion">Direccion: </label>
-                        <input type="text" class="form-control" id="direccion" name="direccion">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="cinit">CI / NIT:</label>
-                            <input type="text" class="form-control" id="cinit" name="cinit">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="ingbruto">Ingresos Brutos: </label>
-                            <input type="text" id="ingbruto" class="form-control" name="ingbruto">
+                            <label for="razonsocial">Ventas: </label>
+                            <label for="" id="ventatotal"></label>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="afip">Agencia AFIP:</label>
-                            <input type="text" class="form-control" id="afip" name="afip">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="urldom">URL Dominio: </label>
-                            <input type="text" id="urldom" class="form-control" name="urldom">
+                            <label for="codigo">Devoluciones:</label>
+                            <label for="" id="devolucion"></label>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="fideliza">Fidelizacion:</label>
-                            <select class="form-control" id="fideliza" name="fideliza">
-                                <option selected value="Ninguno">Ninguno</option>
-                                <option value="Siempre">Siempre</option>
-                                <option value="Opcional">Opcional</option>
-                            </select>
-                        </div>
-                    </div>
-                    <input type="submit" class="btn btn-success" value="Registrar">
-                    <a type="button" class="btn btn-warning" href="<?php echo base_url();?>EmpresaCtrl/empresaver">Cancelar</a>
-                </form>
+                    <hr>
+                    <table  style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Funcion</th>
+                            <th>Fecha</th>
+                            <th>Pelicula</th>
+                            <th>Vendidas</th>
+                            <th>Devueltas</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <hr>
             </div>
         </div>
 

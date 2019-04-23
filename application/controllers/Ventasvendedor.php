@@ -26,4 +26,8 @@ class Ventasvendedor extends CI_Controller
             $this->load->view('templates/footer', $dato);
         } else redirect('');
     }
+
+    public function ventaVendedor(){
+        
+    }
 }

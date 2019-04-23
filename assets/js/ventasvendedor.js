@@ -23,6 +23,10 @@ var fecfin;
 
 $('#consultar').click(function(){
     var idu=$('#venderor').prop('value');
-
+    var param = {
+        'iduser': idu,
+        'fechaini': fecini,
+        'fechafin': fecfin
+    }; 
     console.log(fecini);
 });
