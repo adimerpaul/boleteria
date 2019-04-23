@@ -107,7 +107,7 @@ class VentaCtrl extends CI_Controller {
 
     public function deleteTemporal($id){
         $this->temporal_model->deleteTemp($id);
-        $this->index();
+        header("Location: ".base_url()."VentaCtrl");
     }
 
     public function deleteTempAll(){
@@ -264,7 +264,7 @@ class VentaCtrl extends CI_Controller {
 
         $idUser=$this->session->userdata('idUs');
         $this->temporal_model->deleteAll($idUser);
-        echo "ok";
+        echo $idVenta;
         
     } 
 
@@ -283,139 +283,314 @@ class VentaCtrl extends CI_Controller {
         else redirect('');
     
     }
-    public function imprimirF(){
+    public function imprimirF($idventa){
+        $fecha=date('d/m/Y');
+        $total=0;
+        $hora=date("H:i:s");
+        $query=$this->db->query("SELECT * FROM venta v 
+INNER JOIn cliente c ON v.idCliente=c.idCliente 
+INNER JOIn usuario u ON v.idUsuario=u.idUsuario
+INNER JOIn dosificacion d ON d.idDosif=v.idDosif
+WHERE idVenta='$idventa'");
+        $row=$query->row();
+        $nombre=$row->nombreCl;
+
+        $apellido=$row->apellidoCl;
+        $ci=$row->cinit;
+        $nrocomprobante=$row->nroComprobante;
+
+        $nroautorizacion=$row->nroAutorizacion;
+        $vendero=$row->nombreUser;
+        $codigocontrol=$row->codigoControl;
+        $fechahasta=$row->fechaHasta;
+        $leyenda=$row->leyenda;
+        $qr=$row->codigoQR;
+        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad 
+FROM boleto b 
+INNER JOIN funcion f ON f.idFuncion=b.idFuncion 
+INNER JOIN tarifa t ON t.idTarifa=f.idTarifa 
+INNER JOIN pelicula p ON p.idPelicula=f.idPelicula 
+WHERE idVenta='$idventa'
+GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
+        $tabla="<table>
+            <tr>".'
+                <td width="15%"><b>Cant.</b></td>
+                <td width="47%"><b>Pelicula</b></td>
+                <td width="19%"><b>Precio</b></td>
+                <td width="19%"><b>Subt.</b></td>
+                '."
+            </tr>
+            ";
+        foreach ($query->result() as $row){
+            $nombrepelicula=$row->nombre;
+            $formato=$row->formato;
+            $precio=$row->precio;
+            $cantidad=$row->cantidad;
+            $subtotal=$cantidad*$precio;
+            if ($formato==1){
+                $for="3D";
+            }else{
+                $for="2D";
+            }
+            $tabla=$tabla."
+    <tr>
+<td>$cantidad</td>
+<td>$nombrepelicula  $for</td>".
+                '<td align="right">'.$precio.'</td>'.
+                '<td align="right">'.$subtotal.'</td>'."
+</tr>";
+            $total=$total+$subtotal;
+            $total=number_format($total,2);
+        }
+
+
+        $tabla=$tabla."<tr>
+<td></td>
+<td></td>
+<td><b>Total</b></td>".
+            '<td align="right">'.$total.'</td>'."
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b>Desc.</b></td>".
+            '<td align="right">'.'0.00'.'</td>'."
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b>Pagar:</b></td>".
+            '<td align="right">'.$total.'</td>'."
+</tr>
+</table>";
+
+
+        $filename = 'temp/qr.png';
+        $errorCorrectionLevel = 'L';
+        $matrixPointSize = 4;
+        QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
 
 
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 300), true, 'UTF-8', false);
+
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 250), true, 'UTF-8', false);
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
-$pdf->SetFont('times', '', 8);
-
+$pdf->SetFont('times', '', 10);
+        $pdf->SetMargins(10, 0, 10,0);
 // add a page
 $pdf->AddPage();
-$total="189.52";
 $d = explode('.',$total);
 $entero=$d[0];
 $decimal=$d[1];
 // set some text to print
 $ca = "MULTI CINES PLAZA SRL.
 Av. Tacna y Jaen - Oruro -Bolvia
-NIT: 329448023 Tel: 591-25281290
-Nro Autorizacion: 332401800005322
-Nro Factura:13723
+ Tel: 591-25281290
+ORURO - BOLIVIA
+-------------------------------
+FACTURA
+NIT: 329448023
+NRO FACTURA:$nrocomprobante
+NRO AUTORIZACION: $nroautorizacion
+-------------------------------
 ";
 
-$html = "<b>Fecha: </b>".date('d/m/Y')."<br>
-<b>Nombre Cliente:</b> Adimer paucl chambi ajata adimer <br>
-<b>NIT Cliente:</b> 7336199013 <br>
-<b>Vendedor:</b> Juanito benabides alcachofa <br>
-<table>
-<tr>
-<td><b>Cantidad</b></td>
-<td><b>Pelicula</b></td>
-<td><b>Precio</b></td>
-<td><b>Subtotal</b></td>
-</tr>
-<tr>
-<td>3</td>
-<td>Luna nueva corazon de leon 3D</td>
-<td>50</td>
-<td>150</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Luna nueva corazon de leon 3D</td>
-<td>50</td>
-<td>150</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Luna nueva corazon de leon 3D</td>
-<td>50</td>
-<td>150</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><b>TOTAL</b></td>
-<td>$total</td>
-</tr>
-</table>
+$html = "<b>Fecha: </b>".date('d/m/Y')." <b>Hora</b> $hora<br>
+<b>Señor(es):</b> $nombre $apellido <br>
+<b>NIT/CI:</b> $ci <br>
+$tabla
 SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
-<b>Cod. de Control:</b> 00-90-84-71-8C <br>
-<b>Fecha Lim. de Emision:</b> 01/04/2019".'
+------------------------------------------------
+<b>Cod. de Control:</b> $codigocontrol <br>
+<b>Fecha Lim. de Emision:</b> ". substr($fechahasta,0,10).'
 <div align="center">
-</div>
-'."ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PASI. EL USO ILICITO DE ESTA SERA SANCIONADO DEACUREDO A LEY <br>
- Ley N 453: Tienes derecho a un contratoequitativo sin descriminacion
+<img src="temp/qr.png" width="80" alt=""><br>
+ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY</div> <br>'."
+$leyenda <br>
+<b>PUNTO:</b> 01-CAJA-CENTRAL <br>
+<b>USUARIO:</b> $vendero <br>
+<b>NUMERO:</b> $idventa <br>
 ";
 
 $pdf->Write(0, $ca, '', 0, 'C', true, 0, false, false, 0);
 $pdf->writeHTML($html, true, 0, true, 0, '');
 
+
+        $query=$this->db->query("SELECT * FROM venta v 
+INNER JOIn usuario u ON v.idUsuario=u.idUsuario
+INNER JOIn boleto b ON b.idVenta=v.idVenta
+INNER JOIn funcion f ON f.idFuncion=b.idFuncion
+INNER JOIn pelicula p ON p.idPelicula=f.idPelicula
+INNER JOIn sala s ON s.idSala=f.idSala
+INNER JOIn tarifa t ON t.idTarifa=f.idTarifa
+INNER JOIn asiento a ON a.idAsiento=b.idAsiento
+WHERE v.idVenta='$idventa'");
+foreach ($query->result() as $row){
+    $pdf->SetFont('times', '', 11);
+    $pdf->SetMargins(12, 0, 12,0);
+    $pdf->AddPage();
+    if ($row->formato==1){
+        $for="3D";
+    }else{
+        $for="2D";
+    }
+    $html = '
+<style>
+.titulo { 
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+</style>
+<div  align="center">
+<small class="titulo">MULTICINES</small><br>
+<small class="titulo">PLAZA</small><br>
+NIT: 329448023 
+-----------------------------
+<small class="titulo">
+'.$row->titulo.' <br>
+'.$row->nombreSala.'
+</small>
+</div>
+<b>Fecha:</b> '.$row->fechaFuncion.'<br>
+<b>Hora:</b> '.$row->horaFuncion.'     <b>Bs.:</b> '.$row->precio.'.- <br>
+<b>Butaca:</b> '.$row->letra.'-'.$row->columna.'
+------------------------------------
+Cód.:'.$row->numboc.' <br>
+Trans:'.$idventa.'<br>
+Usuario:'.$row->nombreUser.'<br>
+';
+    $pdf->writeHTML($html);
+
+}
+
+
+
+
 $pdf->Output();
 
     }
-public function imprimirR(){
+
+
+
+public function imprimirR($idventa){
+	$fecha=date('d/m/Y');
+	$total=0;
+	$hora=date("H:i:s");
+    $query=$this->db->query("SELECT * FROM venta v 
+INNER JOIn cliente c ON v.idCliente=c.idCliente 
+INNER JOIn usuario u ON v.idUsuario=u.idUsuario
+WHERE idVenta='$idventa'");
+    $row=$query->row();
+    $nombre=$row->nombreCl;
+    $apellido=$row->apellidoCl;
+    $ci=$row->cinit;
+    $vendero=$row->nombreUser;
+    $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad 
+FROM boleto b 
+INNER JOIN funcion f ON f.idFuncion=b.idFuncion 
+INNER JOIN tarifa t ON t.idTarifa=f.idTarifa 
+INNER JOIN pelicula p ON p.idPelicula=f.idPelicula 
+WHERE idVenta='$idventa'
+GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
+    $tabla="<table>
+            <tr>".'
+                <td width="12%"><b>Cant.</b></td>
+                <td width="50%"><b>Pelicula</b></td>
+                <td width="20%"><b>Precio</b></td>
+                <td width="18%"><b>Subtotal</b></td>
+                '."
+            </tr>
+            ";
+    foreach ($query->result() as $row){
+    $nombrepelicula=$row->nombre;
+    $formato=$row->formato;
+    $precio=$row->precio;
+    $cantidad=$row->cantidad;
+    $subtotal=$cantidad*$precio;
+    if ($formato==1){
+        $for="3D";
+    }else{
+        $for="2D";
+    }
+    $tabla=$tabla."
+    <tr>
+<td>$cantidad</td>
+<td>$nombrepelicula  $for</td>".
+'<td align="right">'.$precio.'</td>'.
+'<td align="right">'.$subtotal.'</td>'."
+</tr>";
+    $total=$total+$subtotal;
+    $total=number_format($total,2);
+    }
+
+
+    $tabla=$tabla."<tr>
+<td></td>
+<td></td>
+<td><b>Total</b></td>".
+        '<td align="right">'.$total.'</td>'."
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b>Desc.</b></td>".
+        '<td align="right">'.'0.00'.'</td>'."
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b>a Pagar:</b></td>".
+        '<td align="right">'.$total.'</td>'."
+</tr>
+</table>";
 
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 150), true, 'UTF-8', false);
 
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
     $pdf->SetFont('times', '', 8);
+    $pdf->SetMargins(5, 0, 5,0);
 
 // add a page
     $pdf->AddPage();
-    $total="189.52";
     $d = explode('.',$total);
     $entero=$d[0];
     $decimal=$d[1];
 // set some text to print
     $ca = "MULTI CINES PLAZA SRL.
 Av. Tacna y Jaen - Oruro -Bolvia
-NIT: 329448023 Tel: 591-25281290
-RECIBO
-";
-    $html = "<b>Fecha: </b>".date('d/m/Y')."<br>
-<b>Nombre Cliente:</b> SN <br>
-<b>NIT Cliente:</b> 0 <br>
-<b>Vendedor:</b> Juanito benabides alcachofa <br>
-<table>
-<tr>
-<td><b>Cantidad</b></td>
-<td><b>Pelicula</b></td>
-<td><b>Precio</b></td>
-<td><b>Subtotal</b></td>
-</tr>
-<tr>
-<td>3</td>
-<td>Luna nueva corazon de leon 3D</td>
-<td>50</td>
-<td>150</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><b>TOTAL</b></td>
-<td>$total</td>
-</tr>
-</table>
-SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
+SUCURSAL N: 0
+Tel: 591-25281290
+
 ";
 
+
+$html = "
+".'<h3 align="center">ORDEN CANCELADA</h3>'."
+<b>Fecha: </b>".date('d/m/Y')."<br>
+<b>Nombre Cliente:</b> $nombre $apellido <br>
+<b>NIT Cliente:</b> $ci <br>
+$tabla
+SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
+<b>Vendedor:</b> $vendero <br>
+Hora: $hora
+";
+
+    $pdf->Write(0, $ca, '', 0, 'C', true, 0, false, false, 0);
     $pdf->writeHTML($html, true, false, true, false, '');
 
     $pdf->Output();
 
 }
 function imprimirB(){
-    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 100), true, 'UTF-8');
-
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 110), true, 'UTF-8');
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
-    $pdf->SetFont('times', '', 8);
-    $pdf->SetMargins(0, 0, 0,0);
+    $pdf->SetFont('times', '', 13);
+    $pdf->SetMargins(12, 0, 12,0);
     $pdf->AddPage();
     $html = '
 <style>
@@ -425,28 +600,25 @@ function imprimirB(){
   padding: 0px;
   border: 0px;
 }
-</style><div  align="center">
-<small class="titulo">Multicines</small><br>
-<small class="titulo">Plaza</small><br>
-NIT: 329448023 <br>
-
----------------------------------------------------<br>
-
+</style>
+<div  align="center">
+<small class="titulo">MULTICINES</small><br>
+<small class="titulo">PLAZA</small><br>
+NIT: 329448023 
+-----------------------------
+<small class="titulo">
 AQUAMAN 3D <br>
-SALA 1 <br>
-
-Fecha: 21/12/2018 <br>
-Hora: 15:00     Bs.: 40.- <br>
-
-Butaca: F-8 <br>
-
--------------------------------------------------- <br>
-
-Código: <br>
+SALA 1
+</small>
+</div>
+<b>Fecha:</b> '.date('d/m/Y').'<br>
+<b>Hora:</b> 15:00     <b>Bs.:</b> 40.- <br>
+<b>Butaca:</b> F-8
+------------------------------------
+Código <br>
 Trans: <br>
 Usuario: <br>
-
-</div>';
+';
     $pdf->writeHTML($html);
     $pdf->Output();
 

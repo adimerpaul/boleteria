@@ -420,6 +420,9 @@ $('#buscarCliente').click(function(){
                 $('#apellido').prop('value',datos.apellidoCl);
                 $('#email').prop('value',datos.email);
                 $('#telef').prop('value',datos.telefono);
+                if (datos.cinit=='0'){
+                    $('#vtipo').prop('value','RECIBO');
+                }
                 //if($('#cinit').prop('value')=='0') $('#vtipo option[value=RECIBO]').attr('selected',true);
             }
 
@@ -533,15 +536,13 @@ $('#registrarVenta').click(function(){
                             success:  function (response){
                                 console.log(response);
                             $("#clienteModal").modal('hide');//ocultamos el modal
-                            location.reload();
-
+                                // location.reload();
+                                if($('#vtipo').val()=='RECIBO')
+                                    location.href=location.href+'/imprimirR/'+response;
+                                else
+                                    location.href=location.href+'/imprimirF/'+response;
                             }
                         })
-
-
-
-
-
                 }
             })
             
