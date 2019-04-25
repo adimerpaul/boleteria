@@ -420,7 +420,7 @@ SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
 <img src="temp/qr.png" width="80" alt=""><br>
 ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY</div> <br>'."
 $leyenda <br>
-<b>PUNTO:</b> 01-CAJA-CENTRAL <br>
+<b>PUNTO:</b> ".gethostname()." <br>
 <b>USUARIO:</b> $vendero <br>
 <b>NUMERO:</b> $idventa <br>
 ";

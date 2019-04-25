@@ -11,7 +11,6 @@
     </nav>
     <div class="row">
         <div class="col">
-            <form >
                 <div class="form-group row">
                     <label for="venderor" class="col-sm-1 col-form-label">Vendedor:</label>
                     <div class="col-sm-5">
@@ -20,7 +19,7 @@
                             <?php
                             $query=$this->db->query("SELECT * FROM usuario");
                             foreach ($query->result() as $row){
-                                echo "<option value='isUsuario'>$row->nombreUser</option>";
+                                echo "<option value='$row->idUsuario'>$row->nombreUser</option>";
                             }
 
                             ?>
@@ -35,8 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" id="consultar" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
-            </form>
+                <button type="button" id="consultar" class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Consultar</button>
         </div>
     </div>
     <br>
@@ -54,28 +52,28 @@
                             <label for="" id="fechaI"></label>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="razonsocial">Fecha Final: </label>
+                            <label for="razonsocial"><b>Fecha Final: </b></label>
                             <label for="" id="fechaF"></label>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="codigo">Usuario:</label>
+                            <label for="codigo"><b>Usuario:</b></label>
                             <label for="" id="userN"></label>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="razonsocial">Ventas: </label>
+                            <label for="razonsocial"><b>Ventas: </b></label>
                             <label for="" id="ventatotal"></label>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="codigo">Devoluciones:</label>
+                            <label for="codigo"><b>Devoluciones:</b></label>
                             <label for="" id="devolucion"></label>
                         </div>
                     </div>
                     <hr>
-                    <table  style="width:100%">
+                    <table  class="table"   style="width:100%">
                     <thead>
                         <tr>
                             <th>Funcion</th>
@@ -86,7 +84,7 @@
                             <th>Total</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tresumen">
                     </tbody>
                 </table>
                 <hr>

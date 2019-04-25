@@ -490,7 +490,7 @@ $('#registrarVenta').click(function(){
             varllaveDosif=vardosif.llaveDosif;
             varfechaHasta=vardosif.fechaHasta;
             varleyenda=vardosif.leyenda;
-            varnroFactura=parseInt(vardosif.nroFactura);//incrementar 1!!!!!!!
+            varnroFactura=parseInt(vardosif.nroFactura) + 1;//incrementar 1!!!!!!!
             varfechaqr=moment().format('YMMDD');
             varfechaventa=moment().format('Y-MM-DD H:i:s');
             
