@@ -288,10 +288,6 @@ class VentaCtrl extends CI_Controller {
         else redirect('');
 
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     public function imprimirF($idventa){
         $fecha=date('d/m/Y');
         $total=0;
@@ -379,12 +375,6 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
         $matrixPointSize = 4;
         QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> master
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 250), true, 'UTF-8', false);
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
@@ -632,7 +622,6 @@ WHERE v.idVenta='$idventa'");
             $for = "2D";
         }
 
-<<<<<<< HEAD
         $printer->setJustification(Printer::JUSTIFY_CENTER);
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
         $printer->text("\n"."MULTICINES" . "\n");
@@ -662,11 +651,8 @@ Cód.:' . $row->numboc . ' <br>
 Trans:' . $idventa . '<br>
 Usuario:' . $row->nombreUser . '<br>
 ';
-=======
 /*pdf->writeHTML($html, false, false, false, false, ''); //Salida PDF
 $pdf->Output('reporte.pdf', 'I'); */
-
->>>>>>> master
     }
 
     /* Pulse */
