@@ -211,7 +211,7 @@
             <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas Web</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-minus"></i> Panel Devoluciones</a>
+            <a class="nav-link" href="<?=base_url()?>VentaCtrl/paneldevol"><i class="fas fa-minus"></i> Panel Devoluciones</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>BoletoCtrl"><i class="far fa-credit-card"></i> Ver Entradas Vendidas</a>

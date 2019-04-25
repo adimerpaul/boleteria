@@ -15,13 +15,10 @@ class ProgramacionCtrl extends CI_Controller {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
             $dato=$this->usuarios_model->validaIngreso($user);
-            // $pelicula['pelicula'] = $this->peliculas_model->listaPeliculas();
-            //$pelicula['distribuidor']=$this->peliculas_model->listaDistribuidores();
+
             $this->load->view('templates/header', $dato);
 
             $this->load->view('programacionver');
-
-
 
             $dato2['js']="<script src='".base_url()."assets/js/programacion.js'></script>";
 

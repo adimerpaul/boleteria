@@ -288,6 +288,10 @@ class VentaCtrl extends CI_Controller {
         else redirect('');
 
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     public function imprimirF($idventa){
         $fecha=date('d/m/Y');
         $total=0;
@@ -375,9 +379,12 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
         $matrixPointSize = 4;
         QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> master
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 250), true, 'UTF-8', false);
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
@@ -414,7 +421,7 @@ SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
 </div>
 '.'<div align="center">ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY</div> <br>'."
 $leyenda <br>
-<b>PUNTO:</b> 01-CAJA-CENTRAL <br>
+<b>PUNTO:</b> ".gethostname()." <br>
 <b>USUARIO:</b> $vendero <br>
 <b>NUMERO:</b> $idventa <br>
 ";
@@ -625,6 +632,7 @@ WHERE v.idVenta='$idventa'");
             $for = "2D";
         }
 
+<<<<<<< HEAD
         $printer->setJustification(Printer::JUSTIFY_CENTER);
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
         $printer->text("\n"."MULTICINES" . "\n");
@@ -654,6 +662,11 @@ Cód.:' . $row->numboc . ' <br>
 Trans:' . $idventa . '<br>
 Usuario:' . $row->nombreUser . '<br>
 ';
+=======
+/*pdf->writeHTML($html, false, false, false, false, ''); //Salida PDF
+$pdf->Output('reporte.pdf', 'I'); */
+
+>>>>>>> master
     }
 
     /* Pulse */
@@ -776,6 +789,7 @@ Hora: $hora
     $pdf->Output();
 
 }
+
 function imprimirB(){
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 110), true, 'UTF-8');
     $pdf->setPrintHeader(false);
@@ -812,12 +826,132 @@ Usuario: <br>
 ';
     $pdf->writeHTML($html);
     $pdf->Output();
-
+//<?php echo gethostname();//
 }
 public function qr(){
     $filename = 'temp/qr.png';
     $errorCorrectionLevel = 'L';
     $matrixPointSize = 4;
     QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+}
+
+public function devolucion(){
+    $idventa=$_POST['idventa'];
+    $user = $this->session->userdata('idUs');
+    $this->ventas_model->devolVenta($idventa);
+    $this->boletos_model->devolBoleto($idventa);
+    $this->db->query("INSERT INTO devolucion (idVenta,idUsuario) values ('$idventa','$user')");
+    echo $this->db->insert_id();
+
+}
+
+public function listaBoletos(){
+    $idventa=$_POST['idventa'];
+    $query=$this->db->query("SELECT * FROM boleto
+    WHERE idVenta='$idventa'");
+    $row=$query->row();
+    $myObj=($query->result_array());
+
+    echo json_encode($myObj); 
+}
+
+public function paneldevol($id="")
+{
+    if($this->session->userdata('login')==1){
+        $user = $this->session->userdata('idUs');
+        $dato=$this->usuarios_model->validaIngreso($user);
+        $this->load->view('templates/header', $dato);
+
+        $this->load->view('paneldevolucion');
+
+        $dato2['js']="<script src='".base_url()."assets/js/progdevolucion.js'></script>";
+
+        $this->load->view('templates/footer',$dato2);
+    }
+    else redirect('');
+}
+public function programacion1(){
+
+    //header('Content-Type: application/json');
+
+    $query=$this->db->query("SELECT (CASE
+WHEN s.idSala='1' THEN '#01579b'
+WHEN s.idSala='2' THEN '#006064'
+WHEN s.idSala='3' THEN '#1b5e20'
+WHEN s.idSala='4' THEN '#ff5722'
+WHEN s.idSala='5' THEN '#795548'
+WHEN s.idSala='6' THEN '#e65100'
+WHEN s.idSala='7' THEN '#827717'
+
+END)as 'color'
+,  idFuncion as id
+, CONCAT(fecha,' ',horaInicio) as 'start' 
+,CONCAT(fecha,' ',horaFin) as 'end'
+, CONCAT(p.nombre)  as 'title' 
+, s.idSala
+, p.idPelicula
+,fecha 
+,horaInicio
+,subtitulada
+,numerada
+,idTarifa
+,nroSala
+,nroFuncion
+,nombre
+,formato
+,(SELECT count(*) from boleto b where b.idFuncion = f.idFuncion and devuelto = 'NO') as vendido
+,(SELECT count(*) from boleto b where b.idFuncion = f.idFuncion and devuelto = 'SI') as devuelto
+FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
+
+AND fecha>=date_add(NOW(), INTERVAL -1 DAY)");
+    $arr = array();
+    foreach ($query->result() as $row){
+        $arr[] = $row;
+       }
+    echo json_encode($arr);
+    exit;
+
+}
+public function programacion2($idsala){
+
+    //header('Content-Type: application/json');
+
+    $query=$this->db->query("SELECT (CASE
+WHEN s.idSala='1' THEN '#01579b'
+WHEN s.idSala='2' THEN '#006064'
+WHEN s.idSala='3' THEN '#1b5e20'
+WHEN s.idSala='4' THEN '#ff5722'
+WHEN s.idSala='5' THEN '#795548'
+WHEN s.idSala='6' THEN '#e65100'
+WHEN s.idSala='7' THEN '#827717'
+
+END)as 'color'
+,  idFuncion as id
+, CONCAT(fecha,' ',horaInicio) as 'start' 
+,CONCAT(fecha,' ',horaFin) as 'end'
+, CONCAT(p.nombre)  as 'title' 
+, s.idSala
+, p.idPelicula
+,fecha 
+,horaInicio
+,subtitulada
+,numerada
+,idTarifa 
+,nroSala
+,nroFuncion
+,nombre
+,formato
+,(SELECT count(*) from boleto b where b.idFuncion = f.idFuncion and devuelto = 'NO') as vendido
+,(SELECT count(*) from boleto b where b.idFuncion = f.idFuncion and devuelto = 'SI') as devuelto
+FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
+WHERE
+s.idSala='$idsala'");
+    $arr = array();
+    foreach ($query->result() as $row){
+        $arr[] = $row;
+    }
+    echo json_encode($arr);
+    exit;
+
 }
 }
