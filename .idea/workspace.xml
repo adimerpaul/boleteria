@@ -32,40 +32,44 @@
     <session id="-210653661">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.40" value="1" />
+          <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.74" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1173" />
-          <entry key="php" value="5154" />
+          <entry key="js" value="1178" />
+          <entry key="php" value="5963" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="44" />
-          <entry key="JavaScript" value="1173" />
-          <entry key="PHP" value="5075" />
+          <entry key="HTML" value="94" />
+          <entry key="JavaScript" value="1178" />
+          <entry key="PHP" value="5834" />
           <entry key="SQL" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="htaccess" value="1" />
-          <entry key="js" value="5" />
-          <entry key="php" value="23" />
+          <entry key="html" value="1" />
+          <entry key="js" value="6" />
+          <entry key="php" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="5" />
-          <entry key="PHP" value="23" />
+          <entry key="HTML" value="1" />
+          <entry key="JavaScript" value="6" />
+          <entry key="PHP" value="30" />
           <entry key="htaccess" value="1" />
         </counts>
       </usages-collector>
@@ -81,60 +85,48 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="407" column="45" selection-start-line="407" selection-start-column="45" selection-end-line="407" selection-end-column="45" />
+            <state relative-caret-position="187">
+              <caret line="664" column="45" selection-start-line="664" selection-start-column="45" selection-end-line="664" selection-end-column="45" />
+              <folding>
+                <element signature="e#177#203#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/usuarios_model.php">
+        <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="78" column="35" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="35" />
+            <state relative-caret-position="92">
+              <caret line="527" column="26" lean-forward="true" selection-start-line="527" selection-start-column="26" selection-end-line="527" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/empresaver.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/empresareg.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="57" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/templates/footer.php">
+        <entry file="file://$PROJECT_DIR$/../imprimir/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/EmpresaCtrl.php">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7714/ImpresionTermica/ticket.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="935">
+              <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+              <folding>
+                <element signature="e#144#170#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.14919/ImpresionTermica/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -159,6 +151,14 @@
       <find>registrarVenta</find>
       <find>vtipo</find>
       <find>SetFont</find>
+      <find>center</find>
+      <find>$total</find>
+      <find>ta</find>
+      <find>QR_ECLEVEL_L_</find>
+      <find>$qr</find>
+      <find>size</find>
+      <find>FON</find>
+      <find>nombreU</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,7 +186,11 @@
         <option value="$PROJECT_DIR$/application/controllers/Ventasvendedor.php" />
         <option value="$PROJECT_DIR$/assets/js/ventasvendedor.js" />
         <option value="$PROJECT_DIR$/application/views/ventasvendedor.php" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Rar$DIa15748.23064/demo.php" />
+        <option value="$PROJECT_DIR$/../imprimir/example/demo.php" />
         <option value="$PROJECT_DIR$/assets/js/venta.js" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Rar$DIa16128.38456/demo.php" />
+        <option value="$PROJECT_DIR$/../imprimir/index.php" />
         <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
       </list>
     </option>
@@ -301,18 +305,20 @@
       <workItem from="1553988136720" duration="7517000" />
       <workItem from="1554297230712" duration="10951000" />
       <workItem from="1555593531897" duration="1427000" />
-      <workItem from="1555938209041" duration="10953000" />
+      <workItem from="1555938209041" duration="11652000" />
+      <workItem from="1556112170607" duration="183000" />
+      <workItem from="1556114009003" duration="9244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81739000" />
+    <option name="totallyTimeSpent" value="91865000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2375189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24508321" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -523,6 +529,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Welcome.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="68" lean-forward="true" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/InicioCtrl.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/empresaver.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -554,34 +570,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Welcome.php">
+    <entry file="file://$PROJECT_DIR$/application/models/usuarios_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="68" lean-forward="true" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+        <state relative-caret-position="528">
+          <caret line="78" column="35" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/InicioCtrl.php">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa15748.23064/demo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="149" column="1" selection-start-line="149" selection-start-column="1" selection-end-line="149" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa16128.6638/ticket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1071" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7434/ImpresionTermica/ticket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.14919/ImpresionTermica/index.html">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../imprimir/example/demo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa16128.38456/demo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="76" lean-forward="true" selection-start-line="21" selection-end-line="76" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="538" column="53" lean-forward="true" selection-start-line="538" selection-start-column="53" selection-end-line="538" selection-end-column="53" />
+        <state relative-caret-position="92">
+          <caret line="527" column="26" lean-forward="true" selection-start-line="527" selection-start-column="26" selection-end-line="527" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/usuarios_model.php">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7714/ImpresionTermica/ticket.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="78" column="35" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="35" />
+        <state relative-caret-position="935">
+          <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+          <folding>
+            <element signature="e#144#170#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../imprimir/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="407" column="45" selection-start-line="407" selection-start-column="45" selection-end-line="407" selection-end-column="45" />
+        <state relative-caret-position="187">
+          <caret line="664" column="45" selection-start-line="664" selection-start-column="45" selection-end-line="664" selection-end-column="45" />
+          <folding>
+            <element signature="e#177#203#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
