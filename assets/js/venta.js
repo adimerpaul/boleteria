@@ -540,7 +540,7 @@ $('#registrarVenta').click(function(){
                                 if($('#vtipo').val()=='RECIBO')
                                     location.href=location.href+'/imprimirR/'+response;
                                 else
-                                    location.href=location.href+'/imprimirF/'+response;
+                                    location.href=location.href+'/printF/'+response;
                             }
                         })
                 }
