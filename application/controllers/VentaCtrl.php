@@ -288,7 +288,10 @@ class VentaCtrl extends CI_Controller {
         else redirect('');
 
     }
+<<<<<<<<< Temporary merge branch 1
+=========
 
+>>>>>>>>> Temporary merge branch 2
     public function imprimirF($idventa){
         $fecha=date('d/m/Y');
         $total=0;
@@ -376,8 +379,12 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
         $matrixPointSize = 4;
         QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
+<<<<<<<<< Temporary merge branch 1
 
 
+
+=========
+>>>>>>>>> Temporary merge branch 2
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, 'mm', array(80, 250), true, 'UTF-8', false);
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
@@ -654,7 +661,11 @@ Cód.:' . $row->numboc . ' <br>
 Trans:' . $idventa . '<br>
 Usuario:' . $row->nombreUser . '<br>
 ';
+=========
+/*pdf->writeHTML($html, false, false, false, false, ''); //Salida PDF
+$pdf->Output('reporte.pdf', 'I'); */
 
+>>>>>>>>> Temporary merge branch 2
     }
 
     /* Pulse */
