@@ -27,6 +27,8 @@ class Ventasvendedor extends CI_Controller
         } else redirect('');
     }
 
+
+
     public function resumenventas()
     {
         if ($this->session->userdata('login') == 1) {
@@ -51,7 +53,7 @@ class Ventasvendedor extends CI_Controller
         (select count(*) from boleto b2 where b.idFuncion = b2.idFuncion and devuelto='SI') as devuelto,
         (select sum(costo) from boleto b2 where b.idFuncion = b2.idFuncion and devuelto='NO') as total 
         FROM boleto b inner join usuario u on b.idUsuario = u.idUsuario  where u.idUsuario='$idU'
-        and fecha >= '$fecini' and fecha <= '$fecfin'
+        and date(fecha) >= '$fecini' and date(fecha) <= '$fecfin'
         GROUP BY idFuncion ");
         $row=$query->row();
         $myObj=($query->result_array());

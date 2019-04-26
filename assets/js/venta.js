@@ -544,7 +544,7 @@ $('#registrarVenta').click(function(){
                             $("#clienteModal").modal('hide');//ocultamos el modal
                                 // location.reload();
                                 if(tipo=='RECIBO')
-                                    location.href=location.href+'/imprimirR/'+response;
+                                    location.href=location.href+'/printR/'+response;
                                 else
                                     location.href=location.href+'/printF/'+response;
                             }
