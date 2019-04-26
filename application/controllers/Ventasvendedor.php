@@ -68,22 +68,44 @@ class Ventasvendedor extends CI_Controller
         );
         $row=$query->row();
         $myObj=($query->result_array());
-        echo json_encode($myObj);     
-        
+        echo json_encode($myObj);          
     }
 
     public function totallistaperiodo(){
         $fecini=$_POST['fechaini'];
         $fecfin=$_POST['fechafin'];
-        $peliculas=$_POST['cadena'];
+        $peliculas="(".$_POST['cadena'].")";
         $query=$this->db->query("SELECT 
-         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in '$peliculas' and devuelto='NO') as venta,
-         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in '$peliculas'  and devuelto='NO') as totalventa,
-         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in '$peliculas'  and devuelto='SI') as devuelto,
-         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in '$peliculas'  and devuelto='SI') as totaldev 
+         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in ".$peliculas." and devuelto='NO') as venta,
+         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='NO') as totalventa,
+         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='SI') as devuelto,
+         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where f.fecha>= '$fecini' and f.fecha<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='SI') as totaldev 
          from dual");
                  $row=$query->row();
                  $myObj=($query->result_array());
                  echo json_encode($myObj);  
     }
+
+    public function porpelicula(){
+        $fecini=$_POST['fechaini'];
+        $fecfin=$_POST['fechafin'];
+        $peliculas=$_POST['cadena'];
+        $peliculas=explode(",", $_POST['cadena']);;
+        $n=count($peliculas);
+        echo $n;
+        $consulta="";
+        for($i=0;$i<$n;$i++){
+            $consulta.=" SELECT idPelicula, concat(nombre,' ',if(formato=1,'3D','2D')) as titulo, (select count(*) from boleto b where idFuncion in (select f.idFuncion from funcion f where f.fecha>= '$fecini' and f.fecha<='$fecfin' and f.idPelicula = ".$peliculas[$i].") and devuelto='NO') as total from pelicula where idPelicula = ".$peliculas[$i];
+            if($i+1 < $n)  $consulta.=" UNION ";
+        }
+        $query=$this->db->query($consulta);
+        $row=$query->row();
+        $myObj=($query->result_array());
+        echo json_encode($myObj);  
+    }
+
+    public function portarifa(){
+        
+    }
+
 }

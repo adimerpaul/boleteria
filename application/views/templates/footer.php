@@ -11,7 +11,7 @@
   <script src="<?=base_url('assets/js');?>/bootstrap-toggle.min.js"></script>
 <script src="<?=base_url('assets/js');?>/moment.min.js"></script>
 <script src="<?=base_url('assets/js');?>/daterangepicker.js"></script>
-
+<script type="text/javascript" src="<?=base_url('assets/js');?>/Chart.min.js"></script>
   <?=$js?>
   <script src="<?=base_url('assets/js');?>/jquery.dataTables.min.js"></script>
   <script>

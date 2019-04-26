@@ -154,7 +154,9 @@
             <div class="card">
                 <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Resumen por Pelicula</div>
                 <div class="card-body">
-                    <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+                
+                        <canvas id="oilChart" width="600" height="400"></canvas>
+	               
                 </div>
             </div>
         </div>

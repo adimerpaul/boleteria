@@ -420,9 +420,12 @@ $('#buscarCliente').click(function(){
                 $('#apellido').prop('value',datos.apellidoCl);
                 $('#email').prop('value',datos.email);
                 $('#telef').prop('value',datos.telefono);
-                if (datos.cinit=='0'){
-                    $('#vtipo').prop('value','RECIBO');
-                }
+                if (datos.cinit=='0')
+                    $('#vtipo').bootstrapToggle('off');
+                else 
+                    $('#vtipo').bootstrapToggle('on');    
+                    //$('#vtipo').prop('value','RECIBO');
+                
                 //if($('#cinit').prop('value')=='0') $('#vtipo option[value=RECIBO]').attr('selected',true);
             }
 
@@ -517,7 +520,10 @@ $('#registrarVenta').click(function(){
 
 
                     codqr= '329448023|'+varnroFactura+'|'+varnroAutorizacion+'|'+varfechaqr+'|'+montoTotal+'|'+montoTotal+'|'+codControl+'|'+factCinit+'|0|0|0|0.00';
-                        tipo=$('#vtipo').prop('value');
+                    if($('#vtipo').is(':checked'))
+                        tipo='FACTURA';
+                    else
+                        tipo='RECIBO';
                         var parventa = {
                             'total':montoTotal,
                             'ccontrol':codControl ,
@@ -537,7 +543,7 @@ $('#registrarVenta').click(function(){
                                 console.log(response);
                             $("#clienteModal").modal('hide');//ocultamos el modal
                                 // location.reload();
-                                if($('#vtipo').val()=='RECIBO')
+                                if(tipo=='RECIBO')
                                     location.href=location.href+'/imprimirR/'+response;
                                 else
                                     location.href=location.href+'/printF/'+response;

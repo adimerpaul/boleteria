@@ -278,12 +278,8 @@
       <input type="hidden" id="idcliente" name="idcliente">  
     </div>
     <div class="form-group col-md-6">
-        <label for="">Nota de Venta:</label>   
-        
-        <select class="form-control" id="vtipo" name="vtipo">
-            <option value="FACTURA" selected>FACTURA</option>
-            <option value="RECIBO">RECIBO</option>
-        </select>
+        <label for=""></label>   <br>
+        <input class="form-control" id="vtipo" type="checkbox" data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success">
     </div>
   </div>
 

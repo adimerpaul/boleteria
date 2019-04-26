@@ -29,13 +29,6 @@ $(function() {
 $('#fecha span').bind("DOMSubtreeModified",function(){
     var ini=$('#fecha').data('daterangepicker').startDate;
     var fin=$('#fecha').data('daterangepicker').endDate;
-    var totalvendido=0;
-    var totaldevuelto=0;
-    var totalweb=0;
-    var totalventa=0;
-    var totaldev=0;
-    var porcventa=0;
-    var porcweb=0;
     var param={
         'fechaini':ini.format('YYYY-MM-DD'),
         'fechafin':fin.format('YYYY-MM-DD')
@@ -66,9 +59,10 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
             });
             lista+="</div>";
             
+            $('#listapeliculas').html(lista);
             $('#listapeliculas input[type=checkbox]').change();
 
-            //llenartabla();
+            llenartabla();
 
         }
     })
@@ -84,22 +78,20 @@ function llenartabla(){
     var totaldev=0;
     var porcventa=0;
     var porcweb=0;
-    var cadena2="(";
     var cadena="";
-
+    var cadena2=""; 
     $('#listapeliculas input[type=checkbox]').each(function (){
         if(this.checked)
         cadena2 += $(this).val()+',';
     });
     cadena = cadena2.substr(0,(cadena2.length - 1));
-    cadena += ")";
     var param={
         'fechaini':ini.format('YYYY-MM-DD'),
         'fechafin':fin.format('YYYY-MM-DD'),
         'cadena':cadena
     };
     console.log(cadena);
-    /*$.ajax({
+    $.ajax({
         data:  param,
         url:   'totallistaperiodo',
         type:  'post',
@@ -110,7 +102,8 @@ function llenartabla(){
         success:  function (response){
             //var datos=JSON.parse(response);
             datos=JSON.parse(response);
-            totalvendido=datos[0].vendido;
+            console.log(datos);
+            totalvendido=datos[0].venta;
             totaldevuelto=datos[0].devuelto;
             totalventa=datos[0].totalventa;
             totaldev=datos[0].totaldev;
@@ -120,12 +113,69 @@ function llenartabla(){
             $('#resventa span').html(totalvendido+"/"+porcventa+"%");
             $('#resweb span').html(totalweb+"/"+porcweb+"%");
             $('#resdev span').html(totaldevuelto+"/"+totaldev+" Bs");
-            $('#restotal span').html(totalvendido+"/"+totalventa+" Bs");
-            $('#listapeliculas').html(lista);
-            
+            $('#restotal span').html(totalvendido+"/"+totalventa+" Bs");        
         }
-    })*/
+    })
+    $.ajax({
+        data:  param,
+        url:   'porpelicula',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+            //$('#listaeliculas').html("procesando...");
+        },
+        success:  function (response){
+            console.log(response);
+            datos2=JSON.parse(response.substr(1,(response.length)));
+            console.log(datos2);
+            var data2='';
+            var label2='';
+            datos2.forEach(row => {
+                label2+=row.titulo+': '+row.total+',';
+                data2+=(parseFloat(row.total)* parseFloat(totalvendido) / 100)+',';
+            })
+            data = data2.substr(0,(data2.length - 1));
+            label = label2.substr(0,(label2.length - 1));
+            console.log(label);
+            porpelicula(label.split(","),data.split(','));
+        }
+    })
+    $.ajax({
 
 
+    })
 
+}
+
+function porpelicula(label1,data1) {
+    var oilCanvas = document.getElementById("oilChart");
+
+    Chart.defaults.global.defaultFontFamily = "Lato";
+    Chart.defaults.global.defaultFontSize = 15;
+
+    var oilData = {
+        labels: 
+            label1
+        ,
+        datasets: [
+            {
+                data: data1,
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+                "#84FF63",
+                "#8463FF",
+                "#6384FF"
+            ]
+
+            }]
+    };
+    
+    var pieChart = new Chart(oilCanvas, {
+      type: 'pie',
+      data: oilData
+    });
+
+    
+    //$("#chartContainer").CanvasJSChart(options);    
 }
