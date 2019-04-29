@@ -32,30 +32,30 @@
     <session id="-210653661">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.38" value="1" />
+          <entry key="project.open.time.38" value="2" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.74" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="1188" />
-          <entry key="php" value="6096" />
+          <entry key="php" value="7123" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="94" />
           <entry key="JavaScript" value="1188" />
-          <entry key="PHP" value="5967" />
-          <entry key="SQL" value="35" />
+          <entry key="PHP" value="6992" />
+          <entry key="SQL" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -63,30 +63,30 @@
           <entry key="htaccess" value="1" />
           <entry key="html" value="1" />
           <entry key="js" value="6" />
-          <entry key="php" value="30" />
+          <entry key="php" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="6" />
-          <entry key="PHP" value="30" />
+          <entry key="PHP" value="38" />
           <entry key="htaccess" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
         <counts>
-          <entry key="PHP Class.type" value="1" />
+          <entry key="PHP Class.type" value="2" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
+            <state relative-caret-position="11866">
               <caret line="892" column="2" selection-start-line="892" selection-start-column="2" selection-end-line="892" selection-end-column="2" />
               <folding>
                 <element signature="n#imprimirF#0;n#VentaCtrl#0;n#!!top" />
@@ -100,38 +100,39 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
+        <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="540" column="71" selection-start-line="540" selection-start-column="71" selection-end-line="540" selection-end-column="71" />
+            <state relative-caret-position="833">
+              <caret line="49" column="78" selection-start-line="49" selection-start-column="78" selection-end-line="49" selection-end-column="78" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../imprimir/index.php">
+        <entry file="file://$PROJECT_DIR$/application/views/templates/footer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="24" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="24" />
+            <state relative-caret-position="374">
+              <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7714/ImpresionTermica/ticket.php">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Iva.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
-              <folding>
-                <element signature="e#144#170#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="510">
+              <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.14919/ImpresionTermica/index.html">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/iva.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="100" column="66" selection-start-line="100" selection-start-column="66" selection-end-line="100" selection-end-column="66" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -167,6 +168,7 @@
       <find>nombreU</find>
       <find>print</find>
       <find>printR</find>
+      <find>IVA</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -189,8 +191,6 @@
         <option value="$PROJECT_DIR$/application/controllers/SalaCtrl.php" />
         <option value="$PROJECT_DIR$/assets/js/sala.js" />
         <option value="$PROJECT_DIR$/application/controllers/ProgramacionCtrl.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/footer.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/header.php" />
         <option value="$PROJECT_DIR$/application/controllers/Ventasvendedor.php" />
         <option value="$PROJECT_DIR$/assets/js/ventasvendedor.js" />
         <option value="$PROJECT_DIR$/application/views/ventasvendedor.php" />
@@ -200,6 +200,10 @@
         <option value="$PROJECT_DIR$/../imprimir/index.php" />
         <option value="$PROJECT_DIR$/assets/js/venta.js" />
         <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Iva.php" />
+        <option value="$PROJECT_DIR$/application/views/templates/header.php" />
+        <option value="$PROJECT_DIR$/application/views/templates/footer.php" />
+        <option value="$PROJECT_DIR$/application/views/iva.php" />
       </list>
     </option>
   </component>
@@ -210,7 +214,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="676" />
+    <option name="x" value="47" />
     <option name="width" value="690" />
     <option name="height" value="728" />
   </component>
@@ -220,42 +224,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
               <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
@@ -272,7 +247,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -316,18 +290,18 @@
       <workItem from="1555938209041" duration="11652000" />
       <workItem from="1556112170607" duration="183000" />
       <workItem from="1556114009003" duration="9244000" />
-      <workItem from="1556204323633" duration="1925000" />
+      <workItem from="1556204323633" duration="7581000" />
+      <workItem from="1556542882610" duration="1573000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93871000" />
+    <option name="totallyTimeSpent" value="101100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24886535" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2526475" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -424,13 +398,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="188" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/PeliculaCtrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -531,13 +498,6 @@
     <entry file="file://$PROJECT_DIR$/assets/js/ventasvendedor.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/ventasvendedor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Welcome.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -555,20 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="57" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/templates/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -624,9 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
-          <folding>
-            <element signature="e#144#170#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -635,14 +578,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="540" column="71" selection-start-line="540" selection-start-column="71" selection-end-line="540" selection-end-column="71" />
+        <state relative-caret-position="293">
+          <caret line="541" column="36" lean-forward="true" selection-start-line="541" selection-start-column="36" selection-end-line="541" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/ventasvendedor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="41" column="53" lean-forward="true" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/PeliculaCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="61" column="5" lean-forward="true" selection-end-line="76" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/DosificacionCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="81" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
+        <state relative-caret-position="11866">
           <caret line="892" column="2" selection-start-line="892" selection-start-column="2" selection-end-line="892" selection-end-column="2" />
           <folding>
             <element signature="n#imprimirF#0;n#VentaCtrl#0;n#!!top" />
@@ -651,6 +615,34 @@
             <element signature="n#programacion1#0;n#VentaCtrl#0;n#!!top" />
             <element signature="n#programacion2#0;n#VentaCtrl#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="78" selection-start-line="49" selection-start-column="78" selection-end-line="49" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/templates/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Iva.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/iva.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="100" column="66" selection-start-line="100" selection-start-column="66" selection-end-line="100" selection-end-column="66" />
         </state>
       </provider>
     </entry>

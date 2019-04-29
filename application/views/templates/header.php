@@ -42,6 +42,7 @@
     <link href='<?=base_url()?>assets/packages/timegrid/main.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/packages/list/main.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/css/daterangepicker.css' rel='stylesheet' />
+    <link href='<?=base_url()?>assets/css/buttons.dataTables.min.css' rel='stylesheet' />
     <link href='<?=base_url()?>assets/css/style.css' rel='stylesheet' />
 
     <script src='<?=base_url()?>assets/packages/core/main.js'></script>
@@ -253,7 +254,7 @@
          <div id="item-91" class="collapse">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Libro IVA Ventas</a>
+                    <a class="nav-link" href="<?=base_url()?>Iva/index"><i class="fas fa-list-ul"></i> Libro IVA Ventas</a>
                 </li>
             </ul>
         </div>
