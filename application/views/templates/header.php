@@ -72,7 +72,7 @@
     <div class="col-sm-1 col-md-2 " id="menucolor">
 <ul id="accordion1" class="nav nav-pills flex-column">
   <li class="nav-item">
-      <?php if($inicio):  ?>
+      <?php if($this->usuarios_model->veri($_SESSION['idUs'],'1')):  ?>
         <a class="nav-link" href="<?= base_url()?>InicioCtrl" id="inicio"><i class="fas fa-home"></i> Inicio</a>
         <?php endif ?>
   </li>

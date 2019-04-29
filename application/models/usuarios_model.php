@@ -18,7 +18,15 @@ class usuarios_model extends CI_Model {
 			return $resultado->result();
 		else return false;
     }
-    
+    public function veri($idusuario,$idseccion){
+        $query=$this->db->query("SELECT * FROM permiso 
+WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
+        if ($query->num_rows()==1){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function verificaHabilita($id,$sec)
     {
         $this->db->select('idPermiso');

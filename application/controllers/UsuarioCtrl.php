@@ -128,8 +128,8 @@ class UsuarioCtrl extends CI_Controller {
 	
 	public function store(Type $var = null)
 	{
-		$idU=$this->usuarios_model->store();
-			
+	    $idU=$this->usuarios_model->store();
+
 		$query=$this->db->query("SELECT * FROM seccion");
 		foreach($query->result() as $row){
 			if(isset($_POST['s'.$row->idSeccion])){

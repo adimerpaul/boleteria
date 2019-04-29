@@ -64,7 +64,7 @@ $('#textuser').keyup(verifiUser);
 $(document).ready(
     
 function(){
-    var cadenaSeccion="";
+    var regusuario="";
             $.ajax({
                     
                     url:   'recuperaSeccion',

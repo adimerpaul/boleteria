@@ -9,10 +9,10 @@
       <h3>INFORMACION DEL USUARIO</h3>
 <hr />
     
-  <form id="formregus" method="POST" action="<?php echo base_url();?>UsuarioCtrl/store" >
+  <form  method="POST" action="<?php echo base_url();?>UsuarioCtrl/store" >
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="nombre">Nombre:</label>   
+      <label for="nombre">Nombre:</label>
       <input type="text" class="form-control" id="nombre" name="nombre" required>  
     </div>
     <div class="form-group col-md-6">

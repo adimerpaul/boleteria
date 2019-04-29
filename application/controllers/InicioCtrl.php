@@ -16,7 +16,8 @@ class InicioCtrl extends CI_Controller {
             $dato=$this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header',$dato);
             $this->load->view('inicio');
-            $this->load->view('templates/footer');
+            $dato['js']="";
+            $this->load->view('templates/footer',$dato);
 
         }
         else redirect('');
