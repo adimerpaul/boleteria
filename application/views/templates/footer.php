@@ -13,6 +13,10 @@
 <script src="<?=base_url('assets/js');?>/daterangepicker.js"></script>
 <script type="text/javascript" src="<?=base_url('assets/js');?>/Chart.min.js"></script>
 <script type="text/javascript" src="<?=base_url('assets/js');?>/jquery.canvasjs.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
   <?=$js?>
   <script src="<?=base_url('assets/js');?>/jquery.dataTables.min.js"></script>
 <script src="<?=base_url('assets/js');?>/dataTables.buttons.min.js"></script>

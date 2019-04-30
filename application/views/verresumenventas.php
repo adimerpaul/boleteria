@@ -68,7 +68,7 @@
 </style>
 <div class="col-sm-11 col-md-10">
     <h3 class="page-title">
-        Resumen de Ventas <small> Analice las ventas desde aquí </small>
+        Resumen de Ventas <small> Entradas vendidas en el período seleccionado para cualquier fecha. </small>
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb ">
@@ -190,6 +190,7 @@
                     <th>Martes</th>
                     <th>Miercoles</th>
                     <th>Total</th>
+                    <th>Ingreso</th>
                 </tr>
             </thead>
             <tbody id="tabPelicula">
@@ -197,14 +198,23 @@
             </table>
             </div>
         </div>
-
+    
     </div>
 <br>
     <div class="row col-md-12">
-        <div class="card">
+        <div class="card  col-md-12">
             <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Per Capita Diario</div>
             <div class="card-body">
                 <div id="chartContainer" ></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row col-md-12">
+        <div class="card  col-md-12">
+            <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Detalle Diario</div>
+            <div class="card-body">
+                <div id="chartContainer2" ></div>
             </div>
         </div>
     </div>

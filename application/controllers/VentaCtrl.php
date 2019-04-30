@@ -40,7 +40,7 @@ class VentaCtrl extends CI_Controller {
         $idpelicula=$_POST['idpel'];
         $fecha=$_POST['fecha1'];
 
-        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, serie,precio FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala inner join tarifa t on t.idTarifa = f.idTarifa where fecha ='$fecha' and  p.idPelicula = ".$idpelicula;
+        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, serie,precio, capacidad FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala inner join tarifa t on t.idTarifa = f.idTarifa where fecha ='$fecha' and  p.idPelicula = ".$idpelicula;
         $query=$this->db->query($consulta);
         $row=$query->row();
         $myObj=($query->result_array());
@@ -73,6 +73,22 @@ class VentaCtrl extends CI_Controller {
         $query=$this->db->query("SELECT * FROM $tabla WHERE $where='$dato' ORDER BY fila,columna DESC ");
         $myObj=($query->result_array());
         echo json_encode($myObj);
+    }
+
+    public function boletoFuncion()
+    {
+        $idfuncion = $_POST['idfun'];
+        $consulta="SELECT 
+        (Select count(*) from boleto b1 where b1.idFuncion=$idfuncion and b1.devuelto='NO') as vendido,
+        (Select count(*) from temporal where idFuncion=$idfuncion) as temp,
+        (Select count(*) from boleto b1 where b1.idFuncion=$idfuncion and b1.devuelto='SI') as devuelto,
+        (select capacidad from sala s, funcion f where idFuncion=$idfuncion and s.idSala = f.idSala) as ctotal 
+        FROM dual";
+                $query=$this->db->query($consulta);
+                $row=$query->row();
+                $myObj=($query->result_array());
+                echo json_encode($myObj);
+
     }
 
     public function datosBoleto(){

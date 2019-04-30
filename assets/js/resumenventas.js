@@ -173,6 +173,8 @@ function llenartabla(){
         },
         success:  function (response){
             var semana="";
+            var arraysemana=[];
+            var arraySerie=[];
             console.log(response);
             datos3=JSON.parse(response);
             datos3.forEach(row => {
@@ -187,9 +189,17 @@ function llenartabla(){
                 semana+="<td>"+row.martes+"</td>";
                 semana+="<td>"+row.miercoles+"</td>";
                 semana+="<td>"+row.total+"</td>";
+                semana+="<td>"+row.ingreso+"</td>";
                 semana+="</tr>";
+                arraySerie.push({
+                    name: row.titulo,
+                    data: [parseInt(row.jueves),parseInt(row.viernes),parseInt(row.sabado),parseInt(row.domingo),parseInt(row.lunes),parseInt(row.martes),parseInt(row.miercoles)]
+                    
+                });  
+
             });
             $('#tabPelicula').html(semana);
+            grafica2(arraySerie);
         }
     })
     $.ajax({
@@ -204,50 +214,41 @@ function llenartabla(){
             var cadenaTarifa="";
             console.log(response);
             datos4=JSON.parse(response);
-            var labels= [];
+            var serie= [];
             var datGrafica=[];
-            var dd=[];
-            var i=1;
-            var pr="";
-            var pr2="";
-            var num=datos4.length;
-            console.log(datos4.length);
-            for(i=0;i<num;i++){
-                if(datos4[i].fec2 != pr){
-                    pr=datos4[i].fec2;
-                    labels.push(datos4[i].fec2);}
-                    console.log(pr2);
-                    console.log(dd);
-                    
-                    if(datos4[i].titulo != pr2)
-                    {   
-                        pr2=datos4[i].titulo;
-                        dd=[];
-                        dd.push(datos4[i].f1);}
-                    else{
-                        dd.push(datos4[i].f1);
-                        console.log(pr2+' '+ dd);
-
-                        if(datos4[i].titulo != datos4[i+1].titulo){
-                            dataF = {
-                                label: pr2+":",
-                                data: dd,
-                                lineTension: 0.3,
-                                // Set More Options
-                            }
-                    console.log(dataF);
-                    datGrafica.push(dataF);
-                    }
-                    console.log(dataF);
-                        
-                        
-                          ;}
-                 
+            var ejex=[];
+            var fecserie=fecini;
+            var num=Object.keys(datos4[0]).length;
+            console.log(Object.keys(datos4[0]).length);
+                for(var i=0;i<num-3;i++){
+                    var fini=moment(fecserie).format('MM-YYYY');
+                    ejex.push(fini+'');
+                    fecserie=moment(fecserie).add(1, 'month')
+                 };
+                 console.log(ejex);
+            datos4.forEach(row => {
+                datGrafica=[];
+                for(var i=0;i<num-3;i++){ 
+                    ca='m'+i;
+                    $.each( row, function( key, val ) {
+                        if (key == "m"+i){
+                            if (val == null) 
+                            datGrafica.push(0);
+                            else 
+                            datGrafica.push(parseInt(val));
+        
+                        }
+                    });
                 }
-                console.log(pr2+' '+ dd);
-                
-                console.log(datGrafica);
-            grafica(labels,datGrafica);
+                serie.push({
+                    name: row.titulo,
+                    data: datGrafica
+                    
+                });           
+                    
+            });
+        console.log(serie);         
+            grafica(serie,ejex);
         }
     })
 
@@ -325,30 +326,117 @@ function portarifa(label1,data1) {
     //$("#chartContainer").CanvasJSChart(options);    
 };
 
-function grafica(datolabel,datoserie){
+function grafica(datoserie,ini){
     $('#chartContainer').html('');    
     
-    var speedCanvas = document.getElementById("chartContainer");
-    var speedData = {
-        labels: datolabel,
-        datasets: datoserie
-      };
-       
-      var chartOptions = {
+    Highcharts.chart('chartContainer', {
+
+        title: {
+            text: 'Per Capita Diario'
+        },
+    
+        subtitle: {
+            text: ''
+        },
+    
+        yAxis: {
+            title: {
+                text: 'Tarifa'
+            }
+        },
         legend: {
-          display: true,
-          position: 'top',
-          labels: {
-            boxWidth: 80,
-            fontColor: 'black'
-          }
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+     
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+
+        xAxis: {
+            categories: ini
+        },
+        series: datoserie,
+    
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
         }
-      };
-      
-      var lineChart = new Chart(speedCanvas, {
-        type: 'line',
-        data: speedData,
-        options: chartOptions
-      });
-      
+    
+    });
+}
+
+function grafica2(datoserie){
+    $('#chartContainer2').html('');    
+    Highcharts.chart('chartContainer2', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Detalle Diario'
+        },
+    
+        subtitle: {
+            text: ''
+        },
+    
+        yAxis: {
+            title: {
+                text: 'Cantidad'
+            }
+        },
+
+        xAxis: {
+            categories: ['Jueves', 'Viernes', 'Sabado', 'Domingo', 'Lunes', 'Martes', 'Miercoles']
+        },
+
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+    
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+    
+        series: datoserie,
+    
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    
+    });
 }

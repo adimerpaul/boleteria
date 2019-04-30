@@ -65,8 +65,9 @@ class Ventasvendedor extends CI_Controller
         $fecini=$_POST['fechaini'];
         $fecfin=$_POST['fechafin'];
         $query=$this->db->query("SELECT * 
-        from funcion f inner join pelicula p on f.idPelicula = p.idPelicula
-        where date(fecha) >= '$fecini' and date(fecha) <= '$fecfin' group by p.idPelicula"
+        from funcion f, pelicula p,boleto b where f.idPelicula = p.idPelicula
+        and b.idFuncion = f.idFuncion
+        and date(b.fecha) >= '$fecini' and date(b.fecha) <= '$fecfin' group by p.idPelicula"
         );
         $row=$query->row();
         $myObj=($query->result_array());
@@ -78,10 +79,10 @@ class Ventasvendedor extends CI_Controller
         $fecfin=$_POST['fechafin'];
         $peliculas="(".$_POST['cadena'].")";
         $query=$this->db->query("SELECT 
-         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(f.fecha)>= '$fecini' and date(f.fecha)<='$fecfin' and idPelicula in ".$peliculas." and devuelto='NO') as venta,
-         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(f.fecha)>= '$fecini' and date(f.fecha)<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='NO') as totalventa,
-         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(f.fecha)>= '$fecini' and date(f.fecha)<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='SI') as devuelto,
-         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(f.fecha)>= '$fecini' and date(f.fecha)<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='SI') as totaldev 
+         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(b1.fecha)>= '$fecini' and date(b1.fecha)<='$fecfin' and idPelicula in ".$peliculas." and devuelto='NO') as venta,
+         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(b1.fecha)>= '$fecini' and date(b1.fecha)<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='NO') as totalventa,
+         (select count(*) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(b1.fecha)>= '$fecini' and date(b1.fecha)<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='SI') as devuelto,
+         (select sum(costo) from boleto b1 inner join funcion f on b1.idFuncion= f.idFuncion where date(b1.fecha)>= '$fecini' and date(b1.fecha)<='$fecfin' and idPelicula in ".$peliculas."  and devuelto='SI') as totaldev 
          from dual");
                  $row=$query->row();
                  $myObj=($query->result_array());
@@ -92,14 +93,18 @@ class Ventasvendedor extends CI_Controller
         $fecini=$_POST['fechaini'];
         $fecfin=$_POST['fechafin'];
         $peliculas=$_POST['cadena'];
-        $peliculas=explode(",", $_POST['cadena']);;
+        $peliculas="(".$_POST['cadena'].")";
         $n=count($peliculas);
         echo $n;
         $consulta="";
-        for($i=0;$i<$n;$i++){
-            $consulta.=" SELECT idPelicula, concat(nombre,' ',if(formato=1,'3D','2D')) as titulo, (select count(*) from boleto b where idFuncion in (select f.idFuncion from funcion f where date(f.fecha)>= '$fecini' and date(f.fecha)<='$fecfin' and f.idPelicula = ".$peliculas[$i].") and devuelto='NO') as total from pelicula where idPelicula = ".$peliculas[$i];
-            if($i+1 < $n)  $consulta.=" UNION ";
-        }
+        $consulta.="SELECT p.idPelicula, concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,(SELECT count(*) 
+             from boleto b,funcion f 
+             where b.idFuncion = f.idFuncion
+             and date(b.fecha)>= '$fecini' and date(b.fecha)<='$fecfin' 
+            and devuelto='NO' and p.idPelicula=f.idPelicula ) as total
+            from pelicula p            
+            where p.idPelicula in $peliculas";   
+      
         $query=$this->db->query($consulta);
         $row=$query->row();
         $myObj=($query->result_array());
@@ -112,13 +117,12 @@ class Ventasvendedor extends CI_Controller
         $peliculas=$_POST['cadena'];
         $peliculas="(".$_POST['cadena'].")";
 
-        $consulta="
-        select serie,descripcion,precio,
+        $consulta="SELECT serie,descripcion,precio,
         (select count(*) 
         from boleto b, funcion f2 
-        where devuelto = 'NO' and b.idFuncion=f2.idFuncion and f2.idTarifa = t1.idTarifa and f2.idPelicula in ".$peliculas." and date(f2.fecha)>='$fecini' and date(f2.fecha)<='$fecfin'
+        where devuelto = 'NO' and b.idFuncion=f2.idFuncion and f2.idTarifa = t1.idTarifa and f2.idPelicula in ".$peliculas." and date(b.fecha)>='$fecini' and date(b.fecha)<='$fecfin'
         ) as total 
-        from tarifa t1 where idTarifa in ( select t.idTarifa from funcion f,tarifa t where f.idPelicula in ".$peliculas." and t.idTarifa=f.idTarifa and date(f.fecha)>='$fecini' and date(f.fecha)<='$fecfin')";
+        from tarifa t1 where idTarifa in ( select t.idTarifa from funcion f,tarifa t where f.idPelicula in ".$peliculas." and t.idTarifa=f.idTarifa )";
         $query=$this->db->query($consulta);
         $row=$query->row();
         $myObj=($query->result_array());
@@ -191,12 +195,20 @@ class Ventasvendedor extends CI_Controller
             AND WEEKDAY(date(b1.fecha))+1=2
             AND p1.idPelicula=p.idPelicula
             ) as miercoles,
-            count(*) as total
+            (SELECT sum(precio)
+             FROM boleto b1  
+             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
+             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
+             inner join tarifa t on t.idTarifa = f1.idTarifa
+             WHERE date(b1.fecha)>=date('$fecini') AND date(b1.fecha)<=date('$fecfin')
+             AND p1.idPelicula=p.idPelicula
+             ) as ingreso,
+            count(*) as total            
             FROM boleto b  
             INNER JOIN funcion f ON b.idFuncion=f.idFuncion
             INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
             WHERE date(b.fecha)>=date('$fecini') AND date(b.fecha)<=date('$fecfin')
-            and p.idPelicula in ".$peliculas." group by p.idPelicula";
+            and p.idPelicula in ".$peliculas." group by p.idPelicula ";
             
             $query=$this->db->query($consulta);
             $row=$query->row();
@@ -209,23 +221,35 @@ class Ventasvendedor extends CI_Controller
         $fecini=$_POST['fechaini'];
         $fecha=$fecini;
         $fecfin=$_POST['fechafin'];
+        $fechainicial = new DateTime($fecini);
+        $fechafinal = new DateTime($fecfin);
+        $diferencia = $fechainicial->diff($fechafinal);
+        $meses = ( $diferencia->y * 12 ) + $diferencia->m + 1;
+
         $peliculas=$_POST['cadena'];
         $peliculas="(".$_POST['cadena'].")";
         $i=0;
+        
         $consulta="
-        select p.idPelicula,concat(p.nombre,' ',if(p.formato=1,'3D','2D')) as titulo,t.idTarifa, concat(YEAR(f.fecha),'-',month(f.fecha)) as fec2,(
+        select p.idPelicula,concat(p.nombre,' ',if(p.formato=1,'3D','2D')) as titulo,t.idTarifa ";
+        for($i=0;$i<$meses;$i++){
+        $consulta.=",(
             select max(precio) from tarifa t1 , funcion f1,pelicula p1
         where t1.idTarifa=f1.idTarifa
         and f1.idPelicula = p1.idPelicula
         and p1.idPelicula= p.idPelicula
-            and Month(f1.fecha)>=month('$fecini') and Month(f1.fecha)<=month('$fecfin')
-        group by p1.idPelicula) as f1
-        from tarifa t , funcion f,pelicula p
+            and Month(f1.fecha)=Month('$fecha')
+        group by p1.idPelicula) as m".$i;
+        $fec=date('Y-m-j', strtotime ('+1 month', strtotime($fecha)));
+        $fecha=$fec;
+        }
+        $consulta.=" from tarifa t , funcion f,pelicula p
         where t.idTarifa=f.idTarifa
         and f.idPelicula = p.idPelicula
         and p.idPelicula in $peliculas
             and date(f.fecha)>=('$fecini') and date(f.fecha)<=('$fecfin')
-            group by Month(f.fecha),p.idPelicula";
+            group by p.idPelicula";
+        
             $query=$this->db->query($consulta);
             $row=$query->row();
             $myObj=($query->result_array());

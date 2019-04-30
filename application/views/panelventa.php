@@ -40,7 +40,29 @@
             <input type="date" id="fecfuncion"  name="fecfuncion"  min="<?php echo date("Y-m-d");?>" required value="<?php echo date("Y-m-d");?>">
         </div>
         <div class="card-body">
-            <h4><i class="fas fa-film"></i> PELICULAS</h4>
+            <div class="row">
+            <div class="col-sm-4"><h4><i class="fas fa-film"></i> PELICULAS</h4></div>
+            <div class="col-sm-6">
+            <ul class="breadcrumb " id="ul-cabecera">
+                                        <li>
+                                            <i class="far fa-credit-card"></i>
+                                            Disponibles: <strong id="lblEntradasDisponibles"></strong>
+                                        </li>|	
+                                        <li>
+                                            <i class="fas fa-tags"></i>
+                                            Vendidas: <strong id="lblEntradasVendidas"></strong>
+                                        </li>|	
+                                        <li>
+                                            <i class="fas fa-thumbs-up"></i>
+                                            Devueltas: <strong id="lblEntradasDevueltas" style="red"></strong>
+                                        </li>|
+                                        <li>
+                                            <i class="fas fa-video"></i>
+                                            Capacidad: <strong id="lblCapacidadSala"></strong>
+                                        </li>		
+                                    </ul>
+                </div>
+            </div>
             <hr/>
             <div class="row">
             <div id="listapelicula">
@@ -173,7 +195,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar Sala</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Asientos Sala</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

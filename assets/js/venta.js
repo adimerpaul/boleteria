@@ -13,7 +13,33 @@ if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html()
     else 
     $('#btnAgregar').addClass("disabled");
 }
-);  
+);
+  
+function mostrardatos(varid){
+    console.log(varid);
+    var parametros = {
+                        "idfun" : varid
+                          };
+              $.ajax({                        
+                      data:  parametros,
+                      url:   'VentaCtrl/boletoFuncion',  
+                      type:  'post',
+                      beforeSend: function () {
+                              //$("#selecfun").html("Procesando, espere por favor... "+parametros['idpel']);
+                      },
+                      success:  function (response) {
+                         console.log(response);
+                        var datos=JSON.parse(response)[0];
+                        $('#lblEntradasDisponibles').html(parseInt(datos.ctotal)-parseInt(datos.vendido)-parseInt(datos.temp));
+                        $('#lblEntradasVendidas').html(parseInt(datos.vendido)+parseInt(datos.temp));
+                        $('#lblEntradasDevueltas').html(parseInt(datos.devuelto));
+                        $('#lblCapacidadSala').html(parseInt(datos.ctotal));
+                        
+                        
+                    }
+                }
+            )
+}
 
 $( function() { 
     
@@ -35,6 +61,7 @@ $('#elimVentaTemp').click(function(){
             $("#selecfun li:eq("+index+")").addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
+            mostrardatos($("#selecfun .ui-selected").prop('value'));
             if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
             bloqueobtn();
             else
@@ -52,6 +79,7 @@ $('#elimVentaTemp').click(function(){
             $("#selecost li:eq("+index+")").addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
+            mostrardatos($("#selecfun .ui-selected").prop('value'));
             if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
             bloqueobtn();
             else
@@ -104,6 +132,7 @@ $("#selectable").selectable(
                                          $("#selecost").html(cadenacosto);
                                          $('#selecfun li:first').addClass('ui-selected');
                                          $('#selecost li:first').addClass('ui-selected');
+                                         mostrardatos($("#selecfun .ui-selected").prop('value'));
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
                                          if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
@@ -309,6 +338,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                              var idfunreg=$('#selecfun .ui-selected').prop('value');
                              var horafun=$('#selecfun .ui-selected label').html()+":00";
                              var pelicula=$('#selectable .ui-selected input').prop('value');
+                             if(parseInt($('#totalentrada').html())==parseInt($('#numasignada').html())){
                              $('.lugar.asignado').each(function(){
                                  var idsien=$(this).data('idasiento');
                                  var col=$(this).data('numero');
@@ -346,7 +376,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                             $('#lblCantidadEntradas').html("0");
                             $('#lblPrecio').html('0Bs');
                             location.reload();
-                            calculo();
+                            calculo();}
 
                         });
                    
