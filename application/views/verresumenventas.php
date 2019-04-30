@@ -138,7 +138,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <a class="dashboard-stat green" href="#">
             <div class="visual">
-                <i class="fas fa-dollar-sign"></i>
+            <i class="fas fa-coins"></i>
             </div>
             <div class="details">
             <div class="number" id="restotal">
@@ -149,6 +149,7 @@
             </a>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -164,10 +165,47 @@
         <div class="card">
                 <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Resumen por Tarifa</div>
                 <div class="card-body">
+                    <canvas id="oilChart2" width="600" height="400"></canvas>
                     
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <div class="row col-md-12">
+        <div class="card">
+                <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Resumen por Pelicula</div>
+                <div class="card-body">
+                
+	    <table  class="table">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Pelicula</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sabado</th>
+                    <th>Domingo</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miercoles</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="tabPelicula">
+            </tbody>
+            </table>
+            </div>
+        </div>
 
-</div>    
+    </div>
+<br>
+    <div class="row col-md-12">
+        <div class="card">
+            <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Per Capita Diario</div>
+            <div class="card-body">
+                <div id="chartContainer" ></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -61,9 +61,9 @@ $('#textuser').keyup(verifiUser);
               });      
   }
 
-$(document).ready(
-    
+$(document).ready(    
 function(){
+    var cadenaSeccion="";
     var regusuario="";
             $.ajax({
                     
@@ -79,8 +79,6 @@ function(){
                         datos.forEach(row => {
                             if(row.seccion_padre_id==0){
                         console.log(row.nombreSec);
-
-
                         cadenaSeccion += '<div class="row-fluid">';
                         cadenaSeccion += '<div class="span6">';
                         cadenaSeccion += '<div class="control-group">';

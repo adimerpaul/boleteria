@@ -60,13 +60,13 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
             lista+="</div>";
             
             $('#listapeliculas').html(lista);
-            $('#listapeliculas input[type=checkbox]').change();
 
             llenartabla();
-
         }
     })
+    
 });
+
 
 function llenartabla(){
     var ini=$('#fecha').data('daterangepicker').startDate;
@@ -131,8 +131,8 @@ function llenartabla(){
             var data2='';
             var label2='';
             datos2.forEach(row => {
-                label2+=row.titulo+': '+row.total+',';
-                data2+=(parseFloat(row.total)* parseFloat(totalvendido) / 100)+',';
+                label2+=row.titulo+' - '+row.total+',';
+                data2+=parseInt(parseFloat(row.total) / parseFloat(totalvendido) * 100)+',';
             })
             data = data2.substr(0,(data2.length - 1));
             label = label2.substr(0,(label2.length - 1));
@@ -141,17 +141,125 @@ function llenartabla(){
         }
     })
     $.ajax({
-
+        data:  param,
+        url:   'portarifa',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+            //$('#listaeliculas').html("procesando...");
+        },
+        success:  function (response){
+            console.log(response);
+            datos3=JSON.parse(response);
+            var data3='';
+            var label3='';
+            datos3.forEach(row =>{
+                label3+=row.serie+'-'+row.descripcion+'('+row.precio+'Bs)-'+row.total+',';
+                data3+=parseInt(parseFloat(row.total) / parseFloat(totalvendido) * 100)+','; 
+            })
+            data0 = data3.substr(0,(data3.length - 1));
+            label0 = label3.substr(0,(label3.length - 1));
+            portarifa(label0.split(","),data0.split(","));
+        }
 
     })
+    $.ajax({
+        data:  param,
+        url:   'porsemana',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+            //$('#listaeliculas').html("procesando...");
+        },
+        success:  function (response){
+            var semana="";
+            console.log(response);
+            datos3=JSON.parse(response);
+            datos3.forEach(row => {
+                semana+="<tr>";
+                semana+="<td>"+row.idPelicula+"</td>";
+                semana+="<td>"+row.titulo+"</td>";
+                semana+="<td>"+row.jueves+"</td>";
+                semana+="<td>"+row.viernes+"</td>";
+                semana+="<td>"+row.sabado+"</td>";
+                semana+="<td>"+row.domingo+"</td>";
+                semana+="<td>"+row.lunes+"</td>";
+                semana+="<td>"+row.martes+"</td>";
+                semana+="<td>"+row.miercoles+"</td>";
+                semana+="<td>"+row.total+"</td>";
+                semana+="</tr>";
+            });
+            $('#tabPelicula').html(semana);
+        }
+    })
+    $.ajax({
+        data:  param,
+        url:   'diagrama',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+            //$('#listaeliculas').html("procesando...");
+        },
+        success:  function (response){
+            var cadenaTarifa="";
+            console.log(response);
+            datos4=JSON.parse(response);
+            var labels= [];
+            var datGrafica=[];
+            var dd=[];
+            var i=1;
+            var pr="";
+            var pr2="";
+            var num=datos4.length;
+            console.log(datos4.length);
+            for(i=0;i<num;i++){
+                if(datos4[i].fec2 != pr){
+                    pr=datos4[i].fec2;
+                    labels.push(datos4[i].fec2);}
+                    console.log(pr2);
+                    console.log(dd);
+                    
+                    if(datos4[i].titulo != pr2)
+                    {   
+                        pr2=datos4[i].titulo;
+                        dd=[];
+                        dd.push(datos4[i].f1);}
+                    else{
+                        dd.push(datos4[i].f1);
+                        console.log(pr2+' '+ dd);
+
+                        if(datos4[i].titulo != datos4[i+1].titulo){
+                            dataF = {
+                                label: pr2+":",
+                                data: dd,
+                                lineTension: 0.3,
+                                // Set More Options
+                            }
+                    console.log(dataF);
+                    datGrafica.push(dataF);
+                    }
+                    console.log(dataF);
+                        
+                        
+                          ;}
+                 
+                }
+                console.log(pr2+' '+ dd);
+                
+                console.log(datGrafica);
+            grafica(labels,datGrafica);
+        }
+    })
+
 
 }
 
 function porpelicula(label1,data1) {
-    var oilCanvas = document.getElementById("oilChart");
-
-    Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 15;
+    $('#oilChart').html('');
+    var oilCanvas='';    
+    var oilData="";
+    var pieChar="";
+    oilCanvas = document.getElementById("oilChart");
 
     var oilData = {
         labels: 
@@ -165,6 +273,8 @@ function porpelicula(label1,data1) {
                 "#63FF84",
                 "#84FF63",
                 "#8463FF",
+                "red",
+                "yellow",
                 "#6384FF"
             ]
 
@@ -175,7 +285,70 @@ function porpelicula(label1,data1) {
       type: 'pie',
       data: oilData
     });
-
+};
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 14;   
+function portarifa(label1,data1) {
+    var oilCanvas='';    
+    var oilData="";
+    var pieChar="";
     
+    $('#oilChart2').html('');    
+        var oilCanvas = document.getElementById("oilChart2");
+    
+       
+    
+        var oilData = {
+            labels: 
+                label1
+            ,
+            datasets: [
+                {
+                    data: data1,
+                backgroundColor: [
+                    "#FF6384",
+                    "#63FF84",
+                    "#84FF63",
+                    "#8463FF",
+                    "red",
+                    "yellow",
+                    "#6384FF"
+                ]
+    
+                }]
+        };
+        
+        var pieChart = new Chart(oilCanvas, {
+          type: 'pie',
+          data: oilData
+        });
     //$("#chartContainer").CanvasJSChart(options);    
+};
+
+function grafica(datolabel,datoserie){
+    $('#chartContainer').html('');    
+    
+    var speedCanvas = document.getElementById("chartContainer");
+    var speedData = {
+        labels: datolabel,
+        datasets: datoserie
+      };
+       
+      var chartOptions = {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: {
+            boxWidth: 80,
+            fontColor: 'black'
+          }
+        }
+      };
+      
+      var lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData,
+        options: chartOptions
+      });
+      
 }

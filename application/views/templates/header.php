@@ -196,32 +196,50 @@
     </div>
   </li>
   <li class="nav-item">
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'8')):  ?>
+
     <a class="nav-link" data-toggle="collapse" href="#item-8" data-parent="#accordion1"><i class="far fa-credit-card"></i> Ventas</a>
     <div id="item-8" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>VentaCtrl"><i class="fas fa-plus"></i> Panel Ventas</a>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'45')):  ?>
+                <a class="nav-link" href="<?=base_url()?>VentaCtrl"><i class="fas fa-plus"></i> Panel Ventas</a>
+            <?php endif ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Panel Ventas Web</a>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'51')):  ?>
+                <a class="nav-link" href="#"><i class="fas fa-plus"></i> Panel Ventas Web</a>
+            <?php endif ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>VentaCtrl/listaVenta"><i class="fas fa-list-ul"></i> Listado Ventas</a>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'61')):  ?>
+                <a class="nav-link" href="<?=base_url()?>VentaCtrl/listaVenta"><i class="fas fa-list-ul"></i> Listado Ventas</a>
+            <?php endif ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas Web</a>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'57')):  ?>
+                <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas Web</a>
+            <?php endif ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>VentaCtrl/paneldevol"><i class="fas fa-minus"></i> Panel Devoluciones</a>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'46')):  ?>
+                <a class="nav-link" href="<?=base_url()?>VentaCtrl/paneldevol"><i class="fas fa-minus"></i> Panel Devoluciones</a>
+            <?php endif ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>BoletoCtrl"><i class="far fa-credit-card"></i> Ver Entradas Vendidas</a>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'55')):  ?>
+                <a class="nav-link" href="<?=base_url()?>BoletoCtrl"><i class="far fa-credit-card"></i> Ver Entradas Vendidas</a>
+            <?php endif ?>
         </li>
       </ul>
     </div>
+    <?php endif ?>
   </li>
   
   <li class="nav-item">
+    
+  <?php if($this->usuarios_model->veri($_SESSION['idUs'],'9')):  ?>
+   
     <a class="nav-link" data-toggle="collapse" href="#item-9" data-parent="#accordion1"><i class="far fa-chart-bar"></i> Estadisticas</a>
     <div id="item-9" class="collapse">
       <ul class="nav flex-column ml-3">
@@ -273,6 +291,8 @@
         </li>
     </ul>
     </div>
+    <?php endif ?>
+    
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-10" data-parent="#accordion1"><i class="fas fa-inbox"></i> Caja</a>

@@ -99,7 +99,9 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
                             <i class="fas fa-stop"></i> Cancelar
                         </button>
+                        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'47')):  ?>
                         <button type="button" class="btn btn-danger" id="devFuncion"> <i class="fas fa-check"></i> Devolver Funcion</button>
+                        <?php endif ?>
                     </div>
             </div>
         </div>

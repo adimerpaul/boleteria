@@ -31,8 +31,9 @@
             <td><?php echo $row['total']; ?></td>
             <td><?php echo $row['tipoVenta']; ?></td>
             <td>                
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'62')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idventa="<?php echo $row['idVenta']?>">Ver Detalle</a>
-                   
+                <?php endif ?>
             </td>
         </tr>
     <?php endforeach; ?>
