@@ -28,8 +28,10 @@
     </div>
 
     <div class="form-group col-md-6">
+        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'24')):  ?>
       <label for="imagen">IMAGEN : </label>
       <input type="file" class="form-control" id="imagen" name="imagen" >
+        <?php endif ?>
     </div>
   </div>
   <div class="form-row">
@@ -111,9 +113,10 @@
      
      </div>
      <div class="form-group col-md-6">
+         <?php if($this->usuarios_model->veri($_SESSION['idUs'],'27')):  ?>
       <label for="cartelera">Cartelera: </label><br>
       <input class="form-control" id="cartelera" name="cartelera" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
-
+        <?php endif?>
     </div>
   </div>
   <input type="submit" class="btn btn-success" value="Registrar">

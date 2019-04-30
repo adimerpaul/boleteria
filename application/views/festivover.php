@@ -22,10 +22,13 @@
             <td><?php echo $row['idFestivo']; ?></td>
             <td><?php echo $row['fecha']; ?></td>
             <td><?php echo $row['descripcion']; ?></td>
-            <td>                
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'101')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idfestivo="<?php echo $row['idFestivo']?>"> Modificar</a>
-                    <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>FestivoCtrl/delete/<?=$row['idFestivo']?>"> Eliminar</a>
-                   
+                <?php endif?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'104')):  ?>
+                <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>FestivoCtrl/delete/<?=$row['idFestivo']?>"> Eliminar</a>
+                <?php endif?>
             </td>
         </tr>
     <?php endforeach; ?>

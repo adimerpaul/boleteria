@@ -155,7 +155,7 @@ class UsuarioCtrl extends CI_Controller {
 				echo $row->idSeccion;				}					
 		}
 
-		$this->usuariover();
+		header("Location: ".base_url()."UsuarioCtrl/usuariover");
 	}
 
 	public function updatepass(){

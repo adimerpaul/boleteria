@@ -2,10 +2,11 @@
     <div class="mt-1">
         <i class="fas fa-clock"></i> <span>Programacion</span>
     </div>
-
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'41')):?>
     <button style="font-size: 12px;" type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#exampleModal">
         Agregar funcion <i class="fas fa-plus"></i>
     </button>
+    <?php endif?>
     <?php
         $color = array("#01579b", "#006064", "#1b5e20", "#ff5722","#795548","e65100","#827717");
         $query=$this->db->query("SELECT * FROM sala");
@@ -262,8 +263,12 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
                             <i class="fas fa-stop"></i> Cancelar
                         </button>
+                        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'43')):?>
                         <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Modificar</button>
+                        <?php endif?>
+                        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'44')):?>
                         <a href="ProgramacionCtrl/delete/" id="eliminar2" class="btn btn-danger text-white" > <i class="fas fa-trash"></i> Eliminar</a>
+                        <?php endif?>
                     </div>
                 </form>
             </div>

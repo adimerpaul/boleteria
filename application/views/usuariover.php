@@ -21,11 +21,16 @@
             <td><?php echo $row['nombreUser']; ?></td>
             <td><?php echo $row['user']; ?></td>
 
-            <td>                
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'79')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idusmod="<?php echo $row['idUsuario']?>"> Modificar</a>
+                <?php endif?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'81')):  ?>
                     <a class="btn btn-outline-primary  btn-sm" data-toggle="modal" data-target="#Modalpass" data-idUsuario="<?php echo $row['idUsuario']?>"> Mod Password</a>
+                <?php endif?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'80')):  ?>
                     <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>UsuarioCtrl/delete/<?=$row['idUsuario']?>"> Eliminar</a>
-                   
+                <?php endif?>
             </td>
         </tr>
     <?php endforeach; ?>

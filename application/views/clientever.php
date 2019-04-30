@@ -26,10 +26,13 @@
             <td><?php echo $row['fechaNac']; ?></td>
             <td><?php echo $row['email']; ?></td>
             <td><?php echo $row['telefono']; ?></td>
-            <td>                
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'96')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idcliente="<?php echo $row['idCliente']?>"> Modificar</a>
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'97')):  ?>
                     <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>ClienteCtrl/delete/<?=$row['idCliente']?>"> Eliminar</a>
-                   
+                <?php endif?>
             </td>
         </tr>
     <?php endforeach; ?>

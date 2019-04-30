@@ -76,33 +76,37 @@
         <a class="nav-link" href="<?= base_url()?>InicioCtrl" id="inicio"><i class="fas fa-home"></i> Inicio</a>
         <?php endif ?>
   </li>
-  <li class="nav-item">
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'2')):  ?>
+    <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-2" data-parent="#accordion1" id="empresa"><i class="fas fa-briefcase"></i> Empresa</a>
     <div id="item-2" class="collapse">
       <ul class="nav flex-column ml-3">
+
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'18')):  ?>
         <li class="nav-item">
-        <?php if($nuevaemp):  ?>
           <a class="nav-link" href="<?= base_url()?>EmpresaCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
-          <?php endif ?>
+
         
         </li>
+          <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'19')):  ?>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url()?>EmpresaCtrl/empresaver"><i class="fas fa-list-ul"></i> Ver Empresa</a>
         </li>
-        
+          <?php endif ?>
         <li class="nav-item">
-        <?php if($datosdosif):  ?> 
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'17')):  ?>
          <a class="nav-link" data-toggle="collapse" href="#item-21" data-parent="#accordion1"><i class="fas fa-bars"></i> Datos Dosificacion</a>
          <?php endif ?>
          <div id="item-21" class="collapse">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                <?php if($datosdosif):  ?>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'105')):  ?>
                     <a class="nav-link" href="<?= base_url()?>DosificacionCtrl"><i class="fas fa-plus"></i> Nuevo Dato Dosificacion</a>
                     <?php endif ?>
                 </li>
                 <li class="nav-item">
-                <?php if($datosdosif):  ?>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'106')):  ?>
                     <a class="nav-link" href="<?= base_url()?>DosificacionCtrl/dosificacionver"><i class="fas fa-list-ul"></i> Ver Datos Dosificacion</a>
                     <?php endif ?>
                 </li>
@@ -114,87 +118,134 @@
       </ul>
     </div>
   </li>
-  <li class="nav-item">
+    <?php endif  ?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'3')):  ?>
+    <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-3" data-parent="#accordion1"><i class="fas fa-film"></i> Peliculas</a>
     <div id="item-3" class="collapse">
       <ul class="nav flex-column ml-3">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'22')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url()?>PeliculaCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
         </li>
+
+          <?php endif  ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'23')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url()?>PeliculaCtrl/peliculaver"><i class="fas fa-list-ul"></i> Ver Peliculas</a>
         </li>
+
+          <?php endif  ?>
       </ul>
     </div>
   </li>
+    <?php endif  ?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'4')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-4" data-parent="#accordion1"><i class="fas fa-truck"></i> Distribuidores</a>
     <div id="item-4" class="collapse">
       <ul class="nav flex-column ml-3">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'28')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url()?>DistribuidorCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
         </li>
+          <?php endif?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'29')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url()?>DistribuidorCtrl/distribuidorver"><i class="fas fa-list-ul"></i> Ver Distribuidores</a>
         </li>
+          <?php endif?>
       </ul>
     </div>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="collapse" href="#item-5" data-parent="#accordion1"><i class="fas fa-person-booth"></i> Salas</a>
-    <div id="item-5" class="collapse">
-      <ul class="nav flex-column ml-3">
-        <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>SalaCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>SalaCtrl/salaver"><i class="fas fa-list-ul"></i> Ver Salas</a>
-        </li>
-      </ul>
-    </div>
-  </li>
+    <?php endif?>
+    <?php
+    if($this->usuarios_model->veri($_SESSION['idUs'],'5')){
+        echo "  <li class='nav-item'>
+                <a class='nav-link' data-toggle='collapse' href='#item-5' data-parent='#accordion1'><i class='fas fa-person-booth'></i> Salas</a>
+                <div id='item-5' class='collapse'>
+                  <ul class='nav flex-column ml-3'>";
+                    if ($this->usuarios_model->veri($_SESSION['idUs'],'32')){
+                        echo    "<li class='nav-item'>
+                                    <a class='nav-link' href='".base_url()."SalaCtrl'><i class='fas fa-plus'></i> Registrar Nueva</a>
+                                </li>";
+                        }
+                     if($this->usuarios_model->veri($_SESSION['idUs'],'33')){
+                      echo "<li class='nav-item'>
+                                <a class='nav-link' href='".base_url()."SalaCtrl/salaver'><i class='fas fa-list-ul'></i> Ver Salas</a>
+                            </li>";
+                     }
+        echo          "</ul>
+                </div>
+              </li>";
+    }
+    ?>
+
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'6')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-6" data-parent="#accordion1"><i class="fas fa-dollar-sign"></i> Tarifas</a>
     <div id="item-6" class="collapse">
       <ul class="nav flex-column ml-3">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'36')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>TarifaCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
         </li>
+         <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'37')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>TarifaCtrl/tarifaver"><i class="fas fa-list-ul"></i> Ver Tarifas</a>
         </li>
+          <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'40')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>TarifaCtrl/tarifaverinact"><i class="fas fa-list-ul"></i> Ver Tarifas Inactivas</a>
         </li>
+          <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'16')):  ?>
         <li class="nav-item">
          <a class="nav-link" data-toggle="collapse" href="#item-61" data-parent="#accordion1"><i class="far fa-calendar-alt"></i> Dias Festivos</a>
          <div id="item-61" class="collapse">
             <ul class="nav flex-column ml-3">
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'100')):  ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url()?>FestivoCtrl"><i class="fas fa-plus"></i> Nuevo Dia Festivo</a>
                 </li>
+
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'102')):  ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url()?>FestivoCtrl/festivover"><i class="fas fa-list-ul"></i> Ver Dias Festivos</a>
                 </li>
+
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'103')):  ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url()?>FestivoCtrl/festivoverinact"><i class="fas fa-list-ul"></i> Ver Dias Festivos Inactivos</a>
                 </li>
+
+                <?php endif ?>
             </ul>
         </div>
         </li>
+          <?php endif ?>
     </ul>
     </div>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="collapse" href="#item-7" data-parent="#accordion1"><i class="far fa-clock"></i> Programacion</a>
-    <div id="item-7" class="collapse">
-      <ul class="nav flex-column ml-3">
-        <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>ProgramacionCtrl"><i class="fas fa-calendar-alt"></i> Ver Programacion</a>
-        </li>
-      </ul>
-    </div>
-  </li>
+    <?php endif ?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'7')):?>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#item-7" data-parent="#accordion1"><i class="far fa-clock"></i> Programacion</a>
+        <div id="item-7" class="collapse">
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'42')):?>
+          <ul class="nav flex-column ml-3">
+            <li class="nav-item">
+                <a class="nav-link" href="<?=base_url()?>ProgramacionCtrl"><i class="fas fa-calendar-alt"></i> Ver Programacion</a>
+            </li>
+          </ul>
+            <?php endif ?>
+        </div>
+      </li>
+    <?php endif?>
   <li class="nav-item">
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'8')):  ?>
 
@@ -294,48 +345,71 @@
     <?php endif ?>
     
   </li>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'11')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-10" data-parent="#accordion1"><i class="fas fa-inbox"></i> Caja</a>
     <div id="item-10" class="collapse">
       <ul class="nav flex-column ml-3">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'82')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Nuevo Movimiento</a>
         </li>
+
+          <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'83')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Caja</a>
         </li>
+
+          <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'82')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen del Dia</a>
         </li>
+
+          <?php endif ?>
       </ul>
     </div>
-  </li> 
+  </li>
+    <?php endif ?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'10')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-011" data-parent="#accordion1"><i class="fas fa-users"></i> Usuarios</a>
     <div id="item-011" class="collapse">
       <ul class="nav flex-column ml-3">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'77')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>UsuarioCtrl/usuarioreg"><i class="fas fa-plus"></i> Registrar Nuevo</a>
         </li>
+          <?php endif?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'78')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>UsuarioCtrl/usuariover"><i class="fas fa-list-ul"></i> Ver Usuarios</a>
         </li>
+          <?php endif?>
       </ul>
     </div>
-  </li> 
+  </li>
+    <?php endif?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'15')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-012" data-parent="#accordion1"><i class="fas fa-male"></i> Clientes</a>
     <div id="item-012" class="collapse">
       <ul class="nav flex-column ml-3">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'95')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>ClienteCtrl"><i class="fas fa-plus"></i> Registrar Nuevo</a>
         </li>
+          <?php endif?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'98')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>ClienteCtrl/clientever"><i class="fas fa-list-ul"></i> Ver Clientes</a>
         </li>
+          <?php endif?>
       </ul>
     </div>
-  </li>  
+  </li>
+<?php endif?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-013" data-parent="#accordion1"><i class="fas fa-bullhorn"></i> Promos / Cupones</a>
     <div id="item-013" class="collapse">

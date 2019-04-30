@@ -33,10 +33,13 @@
             <td><?php echo $distrib['email']; ?></td>
             <td><?php echo $distrib['responsable']; ?></td>
 
-            <td>                
-                    <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-iddistrib="<?php echo $distrib['idDistrib']?>"> Modificar</a>
-                    <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>DistribuidorCtrl/delete/<?=$distrib['idDistrib']?>"> Eliminar</a>
-                   
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'30')):  ?>
+                <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-iddistrib="<?php echo $distrib['idDistrib']?>"> Modificar</a>
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'31')):  ?>
+                <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>DistribuidorCtrl/delete/<?=$distrib['idDistrib']?>"> Eliminar</a>
+                <?php endif ?>
             </td>
         </tr>
     <?php endforeach; ?>

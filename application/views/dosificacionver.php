@@ -34,10 +34,11 @@
             <td><?php if ($dosif['activo'] == 0) echo 'Inactivo';
             else echo 'Activo';
             ?></td>
-            <td>                
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'107')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idosif="<?php echo $dosif['idDosif']?>"> Modificar</a>
                     <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>DosificacionCtrl/delete/<?=$dosif['idDosif']?>"> Eliminar</a>
-                   
+                <?php endif  ?>
             </td>
         </tr>
     <?php endforeach; ?>

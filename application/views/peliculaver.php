@@ -35,10 +35,14 @@
             <td><?php if ($pelicula['formato']==1) echo '3D'; else echo '2D'; ?></td>
             <td><?php if ($pelicula['cartelera']==1) echo 'SI'; else echo 'NO'; ?></td>
             
-            <td>                
-                    <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idpelicula="<?php echo $pelicula['idPelicula']?>"> Modificar</a>
-                    <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>PeliculaCtrl/delete/<?=$pelicula['idPelicula']?>"> Eliminar</a>
-                   
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'25')):  ?>
+                <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idpelicula="<?php echo $pelicula['idPelicula']?>"> Modificar</a>
+                <?php endif; ?>
+
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'26')):  ?>
+                <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>PeliculaCtrl/delete/<?=$pelicula['idPelicula']?>"> Eliminar</a>
+                <?php endif; ?>
             </td>
         </tr>
     <?php endforeach; ?>

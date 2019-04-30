@@ -34,10 +34,13 @@
             <td><?php echo $empresa['ci_nit']; ?></td>
             <td><?php echo $empresa['ingresoBruto']; ?></td>
             <td><?php echo $empresa['agenciaAfip']; ?></td>
-            <td>                
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'20')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idempresa="<?php echo $empresa['idEmpresa']?>"> Modificar</a>
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'21')):  ?>
                     <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>EmpresaCtrl/delete/<?=$empresa['idEmpresa']?>"> Eliminar</a>
-                   
+                <?php endif ?>
             </td>
         </tr>
     <?php endforeach; ?>

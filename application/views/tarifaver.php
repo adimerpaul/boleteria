@@ -48,10 +48,13 @@
             <td><?php if ($row['ventaWeb']==1) echo 'SI'; else echo 'NO'; ?></td>
             <td><?php if ($row['mostrarBol']==1) echo 'SI'; else echo 'NO'; ?></td>
             
-            <td>                
+            <td>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'38')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idtarifa="<?php echo $row['idTarifa']?>"> Modificar</a>
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'39')):  ?>
                     <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>TarifaCtrl/delete/<?=$row['idTarifa']?>"> Eliminar</a>
-                   
+                <?php endif ?>
             </td>
         </tr>
     <?php endforeach; ?>
