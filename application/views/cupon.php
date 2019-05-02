@@ -18,17 +18,14 @@
             <button type="button" class="btn btn-success btn-sm mb-3" style="padding: 2px;" data-toggle="modal" data-target="#exampleModal">
                  <i class="fa fa-ticket-alt"></i> Registrar nuevo cupon
             </button>
-            <table id="example" class="display" style="width:100%">
+            <table id="cupones" class="display" style="width:100%">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Fechas</th>
-                    <th>Funcion</th>
-                    <th>Pelicula</th>
+                    <th>Fecha inicio</th>
+                    <th>Fecha final</th>
                     <th>Motivo</th>
-                    <th>Cantidad</th>
                     <th>Estado</th>
-                    <th>Cliente</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -38,20 +35,35 @@
                     foreach ($query->result() as $row){
                         echo "<tr>
                                 <td>$row->idCupon</td>
-                                <td>De ".substr($row->fechaInicio,0,10)." al ". substr($row->fechaFin,0,10)."</td>
-                                <td></td>
-                                <td></td>
+                                <td>".substr($row->fechaInicio,0,10)."</td>
+                                <td>". substr($row->fechaFin,0,10)."</td>
                                 <td>$row->motivo</td>
-                                <td>$row->cantidad</td>
                                 <td>$row->estado</td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <a class='btn btn-danger btn-sm eli' style='padding:2px ;' href='".base_url()."CuponCtrl/delete/$row->idCupon'> <i class='fa fa-stop'></i> Eliminar</a>
+                                    <a class='btn btn-info btn-sm ' style='padding:2px ;' href='".base_url()."CuponCtrl/print'> <i class='fa fa-print'></i> Imprimir</a>
+                                </td>
                             </tr>";
                     }
                 ?>
-
                 </tbody>
             </table>
+            <script !src="">
+                window.onload=function (e) {
+                    $('#cupones').DataTable( {
+                        "order": [[ 0, "desc" ]]
+                    } );
+                }
+                var eli=document.getElementsByClassName('eli');
+                for (var i=0;i<eli.length;i++){
+                    eli[i].addEventListener('click',function (e) {
+                        if (!confirm("Seguro de eliminar?")){
+                            e.preventDefault();
+                        }
+                    });
+
+                }
+            </script>
         </div>
 
     </div>
@@ -70,44 +82,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" action="<?=base_url()?>CuponCtrl/store">
                     <div class="form-group row">
                         <label for="motivo" class="col-sm-2 col-form-label">Motivo</label>
                         <div class="col-sm-10">
-                            <input type="text" required class="form-control" id="motivo" placeholder="Motivo">
+                            <input type="text" name="motivo" required class="form-control" id="motivo" placeholder="Motivo">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="fechafin" class="col-sm-2 col-form-label">Fecha Fin</label>
                         <div class="col-sm-10">
-                            <input type="date" required value="<?=date('Y-m-d')?>" class="form-control" id="fechafin" placeholder="fechafin">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="funcion" class="col-sm-2 col-form-label">Funcion</label>
-                        <div class="col-sm-10">
-                            <select name="funcion" id="funcion" class="form-control"></select>
-                            <?php
-
-                            ?>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="funcion" class="col-sm-2 col-form-label">Pelicula</label>
-                        <div class="col-sm-10">
-                            <select name="funcion" id="funcion" class="form-control"></select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
-                        <div class="col-sm-10">
-                            <select name="cliente" id="cliente" class="form-control"></select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
-                        <div class="col-sm-10">
-                            <input type="number" required value="1" class="form-control" id="cantidad" placeholder="cantidad">
+                            <input type="date" name="fechafin" required value="<?=date('Y-m-d')?>" class="form-control" id="fechafin" placeholder="fechafin">
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -29,4 +29,16 @@ class CuponCtrl extends CI_Controller{
             $this->load->view('templates/footer', $dato);
         } else redirect('');
     }
+    public  function store(){
+        $fechafin=$_POST['fechafin'];
+        $motivo=$_POST['motivo'];
+
+        $this->db->query("INSERT INTO cupon(fechafin,motivo,idusuario) VALUES('$fechafin','$motivo','".$_SESSION['idUs']."')");
+        header("Location: ".base_url()."CuponCtrl");
+    }
+    public  function delete($idcupon){
+
+        $this->db->query("DELETE FROM cupon WHERE idcupon='$idcupon'");
+        header("Location: ".base_url()."CuponCtrl");
+    }
 }
