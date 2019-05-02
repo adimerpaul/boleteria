@@ -298,10 +298,10 @@
             <a class="nav-link" href="<?=base_url()?>Ventasvendedor"><i class="fas fa-plus"></i> Ventas por Vendedor</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen Ventas (Gross Office)</a>
+            <a class="nav-link" href="<?=base_url()?>Ventasvendedor"><i class="fas fa-plus"></i> Resumen Ventas (Gross Office)</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen Ventas (Box Office)</a>
+            <a class="nav-link" href="<?=base_url()?>Ventasvendedor"><i class="fas fa-plus"></i> Resumen Ventas (Box Office)</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> INCAA F700 Diario</a>
