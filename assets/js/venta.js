@@ -593,9 +593,17 @@ $('#registrarVenta').click(function(){
     }   
     /*codigo de control:  numero de autorizacion; numerode orden; cinit; fecha venta; monto ; keydosificacion/*/
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
-    
+});
 
-
+$('#checkcupon').click(function(){
+    if ($('#checkcupon').is(':checked'))
+    {
+        $('#cupon').prop('hidden',false);
+    }
+    else {
+        $('#cupon').prop('hidden',true);
+        
+    }
 });
 
 function calculo(){

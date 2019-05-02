@@ -179,7 +179,7 @@ class VentaCtrl extends CI_Controller {
         $idu=$this->session->userdata('idUs');
         $idCl=$_POST['idCliente'];
         $idd=$_POST['iddosif'];
-
+        $idcupon=$_POST['cupon'];
 
         if($tipo=='FACTURA'){
 

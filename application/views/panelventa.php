@@ -299,9 +299,14 @@
       <input type="text" class="form-control" id="cinit" name="cinit" readonly required>  
       <input type="hidden" id="idcliente" name="idcliente">  
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-2">
         <label for=""></label>   <br>
         <input class="form-control" id="vtipo" type="checkbox" data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="cinit">Nro Cupon:</label>   
+      <input type="checkbox" id="checkcupon">
+      <input type="number" class="form-control" id="cupon" name="cupon" hidden>  
     </div>
   </div>
 
