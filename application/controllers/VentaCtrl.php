@@ -157,6 +157,20 @@ class VentaCtrl extends CI_Controller {
         //eturn "aaa";
     }
 
+    public function verdatoventa(){
+        
+        $idventa=$_POST['idventa'];
+
+        $query=$this->db->query("SELECT * FROM venta v, cliente c, usuario u
+        WHERE idVenta=$idventa and v.idCliente=c.idCliente and u.idUsuario=v.idUsuario
+        ");
+        $row=$query->row();
+        $myObj=($query->result_array()[0]);
+    
+        echo json_encode($myObj); 
+
+    }
+
     public function cControl(){
 
         $nautorizacion=$_POST['numeroa'];
@@ -298,12 +312,13 @@ class VentaCtrl extends CI_Controller {
             $venta['venta'] = $this->ventas_model->listaventa();
             $this->load->view('templates/header', $dato);
                 $this->load->view('listadoventa',$venta);
-                $dato['js']="<script></script>";
-                $this->load->view('templates/footer',$dato);
+                $dato2['js']="<script src='".base_url()."assets/js/listaventa.js'></script>";
+                $this->load->view('templates/footer',$dato2);
         }
         else redirect('');
 
     }
+    
 public function imprimirF($idventa){
         $fecha=date('d/m/Y');
         $total=0;
@@ -1156,6 +1171,20 @@ s.idSala='$idsala'");
     }
     echo json_encode($arr);
     exit;
+
+}
+
+public function validaCupon(){
+          
+    $idcupon=$_POST['idcupon'];
+
+    $query=$this->db->query("SELECT * FROM boleto b, cupon c
+    WHERE c.idCupon=$idcupon and b.idCupon=c.idCupon
+    ");
+    $row=$query->row();
+    $myObj=($query->result_array());
+
+    echo json_encode($myObj); 
 
 }
 }

@@ -304,9 +304,10 @@
         <input class="form-control" id="vtipo" type="checkbox" data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success">
     </div>
     <div class="form-group col-md-4">
-      <label for="cinit">Nro Cupon:</label>   
-      <input type="checkbox" id="checkcupon">
-      <input type="number" class="form-control" id="cupon" name="cupon" hidden>  
+      <label for="cupon">Nro Cupon:</label>   
+      <input type="checkbox" id="checkcupon" >
+      <input type="number" class="form-control" id="cupon" name="cupon"> 
+      <span id="errorcupon" style="color: red;" >rr</span>
     </div>
   </div>
 

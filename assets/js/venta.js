@@ -12,6 +12,7 @@ if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html()
     $('#btnAgregar').removeClass("disabled");
     else 
     $('#btnAgregar').addClass("disabled");
+$('#cupon').hide();
 }
 );
   
@@ -251,11 +252,12 @@ function listado(){
   
 var capacidad=0;
 var asientos;
+
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
-    var idsala = $("#selecfun .ui-selected input").prop('value') // Extract info from data-* attributes
-    var cantidad = parseInt( $('#lblCantidadEntradas').html())
-    var cantaux = 0
+    var idsala = $("#selecfun .ui-selected input").prop('value'); // Extract info from data-* attributes
+    var cantidad = parseInt( $('#lblCantidadEntradas').html());
+    var cantaux = 0;
     $('#habilitados').html("");
     console.log($("#selecfun .ui-selected input").prop('value'));
     var parametros = {
@@ -423,6 +425,8 @@ function cambio(fila,columna) {
 }
 
 $('#buscarCliente').click(function(){
+    buscarCl();});
+function buscarCl(){
     var cinit = $('#cinit1').prop('value');
     var parametros = {
         "cinit" : cinit
@@ -454,16 +458,52 @@ $('#buscarCliente').click(function(){
                     $('#vtipo').bootstrapToggle('off');
                 else 
                     $('#vtipo').bootstrapToggle('on');    
-                    //$('#vtipo').prop('value','RECIBO');
-                
-                //if($('#cinit').prop('value')=='0') $('#vtipo option[value=RECIBO]').attr('selected',true);
             }
-
-
         }
     })
-});
+};
 
+$('#checkcupon').on('click',function(){
+    if ($("#checkcupon").is(":checked"))
+{
+    $('#cupon').show();
+    $('#vtipo').bootstrapToggle('off');
+    $('#vtipo').bootstrapToggle('disable');
+    $('#cinit1').prop('value',0);
+    $('#cinit1').prop('readonly',true);
+    buscarCl();
+    $("#cupon").prop('required',true);
+}
+else {
+    $('#cupon').hide();
+    $('#cupon').prop('value','');          
+    $('#vtipo').bootstrapToggle('enable');
+    $('#cinit1').prop('readonly',false);
+    $("#cupon").prop('required',false);
+}
+});
+function validacp(){
+    var par={"idcupon": $('#cupon').prop('value')};
+    $.ajax({
+        data:  par,
+        url:   'VentaCtrl/validaCupon',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            //var datos=JSON.parse(response);
+            console.log(response);
+            var datocupon =JSON.parse(response);
+            if(datocupon.empty)
+            $('#errorcupon').html('Esta Registrado');
+            else 
+            $('#errorcupon').html('');
+            
+        }})};
+$('#cupon').keypress(function(){
+    validacp();
+});
 
 $('#registrarVenta').click(function(){
     var idcl=0;
@@ -480,7 +520,11 @@ $('#registrarVenta').click(function(){
     var nitEmpresa;
     var codqr;
     var tipo;
-    
+    var validocupon=false;
+    if($("#checkcupon").prop('required') && $("#checkcupon").prop('value')==""){
+
+    }
+
     if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='')
     {   
     if($('#idcliente').prop('value')==''){
@@ -509,6 +553,7 @@ $('#registrarVenta').click(function(){
     idcl=$('#idcliente').prop('value');
     factCinit=$('#cinit').prop('value');
     var montoTotal=parseFloat($('#totalPre').html());
+
     $.ajax({
         url: 'DosificacionCtrl/ultimaDosificacion', 
         type: 'post',
@@ -595,17 +640,6 @@ $('#registrarVenta').click(function(){
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
 });
 
-$('#checkcupon').click(function(){
-    if ($('#checkcupon').is(':checked'))
-    {
-        $('#cupon').prop('hidden',false);
-    }
-    else {
-        $('#cupon').prop('hidden',true);
-        
-    }
-});
-
 function calculo(){
     var total=0.0;
     $('.costo').each(function(){    
@@ -632,3 +666,4 @@ $('#pago').keypress(function(event){
     else
         $('#resultado').prop('value',0);
 });
+

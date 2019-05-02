@@ -9,7 +9,7 @@
                   };
                   $.ajax({
                           data:  parametros,
-                          url:   'verdatoventa ',
+                          url:   'verdatoventa',
                           type:  'post',
                           beforeSend: function () {
                                   //$("#resultado").html("Procesando, espere por favor...");
