@@ -432,7 +432,7 @@
          <div id="item-0132" class="collapse">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-plus"></i> Nuevo Cupon</a>
+                    <a class="nav-link" href="<?=base_url()?>CuponCtrl"><i class="fas fa-plus"></i> Nuevo Cupon</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Cupones</a>
