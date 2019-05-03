@@ -68,7 +68,7 @@
 </style>
 <div class="col-sm-11 col-md-10">
     <h3 class="page-title">
-        Resumen de Ventas <small> Entradas vendidas en el período seleccionado para cualquier fecha. </small>
+        Resumen de Ventas <small> Entradas vendidas en cualquier fecha para el período seleccionado. </small>
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb ">
@@ -177,7 +177,7 @@
                 <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Resumen por Pelicula</div>
                 <div class="card-body">
                 
-	    <table  class="table">
+	    <table class="table">
             <thead>
                 <tr>
                     <th>Codigo</th>

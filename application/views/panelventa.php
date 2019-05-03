@@ -307,7 +307,7 @@
       <label for="cupon">Nro Cupon:</label>   
       <input type="checkbox" id="checkcupon" >
       <input type="number" class="form-control" id="cupon" name="cupon"> 
-      <span id="errorcupon" style="color: red;" >rr</span>
+      <span id="errorcupon" style="color: red;" ></span>
     </div>
   </div>
 

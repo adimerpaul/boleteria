@@ -72,6 +72,7 @@
                                                             //$("#resultado").html("Procesando, espere por favor...");
                                                     },
                                                     success:  function (response) { 
+                                        console.log(response);
                                     }
                                 })}
                                 $("#exampleModal").modal('hide');//ocultamos el modal

@@ -1,3 +1,6 @@
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
 
 var start = moment().subtract(29, 'days');
 var end = moment();

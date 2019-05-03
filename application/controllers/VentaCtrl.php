@@ -194,7 +194,12 @@ class VentaCtrl extends CI_Controller {
         $idCl=$_POST['idCliente'];
         $idd=$_POST['iddosif'];
         $idcupon=$_POST['cupon'];
-
+        if($idcupon!='')
+        { $total=0;
+          $cupon=$idcupon;}
+        else {
+            $cupon=null;
+         }
         if($tipo=='FACTURA'){
 
             $this->dosificaciones_model->updatenfactura($idd);
@@ -248,9 +253,9 @@ class VentaCtrl extends CI_Controller {
         $idVenta=$this->db->insert_id();
 
 
-       // echo $idVenta;
-
         $query=$this->db->query("SELECT * FROM `temporal` WHERE `idUser`='$idu'");
+        // echo $idVenta;
+
         foreach($query->result() as $row){
             $numsala = $row->numeroSala;
             $codigosala = $row->codSala;
@@ -261,6 +266,9 @@ class VentaCtrl extends CI_Controller {
             $query2=$this->db->query("SELECT count(*) + 1 as num FROM boleto WHERE idFuncion='$row->idFuncion'");
             $numboleto=$query2->row()->num;
             $numboc="$numsala$codigosala$fechafuncion$nfuncion$serietarifa-$numboleto";
+            if($idcupon=='')
+            $cupon=null;
+            else $cupon=$idcupon;
             $this->db->query("INSERT INTO `boleto` (
              `numboc`,
               `numero`,
@@ -277,7 +285,8 @@ class VentaCtrl extends CI_Controller {
               `columna`, 
               `costo`, 
               `titulo`, 
-              `idVenta`) VALUES (
+              `idVenta`,
+              `idCupon`) VALUES (
                   '$numboc', 
                   '$numboleto',
                   '$row->idFuncion', 
@@ -293,7 +302,8 @@ class VentaCtrl extends CI_Controller {
                   '$row->columna', 
                   '$row->costo', 
                   '$row->titulo', 
-                  '$idVenta');");
+                  '$idVenta',
+                  '$cupon');");
         };
         //header("Location inde.php");
 
@@ -1174,13 +1184,21 @@ s.idSala='$idsala'");
 
 }
 
+public function validaCuponreg(){
+          
+    $idcupon=$_POST['idcupon'];
+    $query=$this->db->query("SELECT * FROM boleto b, cupon c WHERE b.idCupon=c.idCupon and c.idCupon='$idcupon'");
+    $row=$query->row();
+    $myObj=($query->result_array());
+
+    echo json_encode($myObj); 
+
+}
+
 public function validaCupon(){
           
     $idcupon=$_POST['idcupon'];
-
-    $query=$this->db->query("SELECT * FROM boleto b, cupon c
-    WHERE c.idCupon=$idcupon and b.idCupon=c.idCupon
-    ");
+    $query=$this->db->query("SELECT * FROM  cupon c WHERE  c.idCupon='$idcupon' and date(fechaFin) > CURDATE()");
     $row=$query->row();
     $myObj=($query->result_array());
 

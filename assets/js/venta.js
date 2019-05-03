@@ -480,13 +480,14 @@ else {
     $('#vtipo').bootstrapToggle('enable');
     $('#cinit1').prop('readonly',false);
     $("#cupon").prop('required',false);
+    $('#errorcupon').html('');
 }
 });
 function validacp(){
     var par={"idcupon": $('#cupon').prop('value')};
     $.ajax({
         data:  par,
-        url:   'VentaCtrl/validaCupon',
+        url:   'VentaCtrl/validaCuponreg',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
@@ -495,13 +496,34 @@ function validacp(){
             //var datos=JSON.parse(response);
             console.log(response);
             var datocupon =JSON.parse(response);
-            if(datocupon.empty)
+            console.log(datocupon.length);
+            if(datocupon.length > 0)
             $('#errorcupon').html('Esta Registrado');
-            else 
+            else {
             $('#errorcupon').html('');
+            $.ajax({
+                data:  par,
+                url:   'VentaCtrl/validaCupon',
+                type:  'post',
+                beforeSend: function () {
+                    //$("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response){
+                    //var datos=JSON.parse(response);
+                    console.log(response);
+                    var datocupon =JSON.parse(response);
+                    console.log(datocupon.length);
+                    if(datocupon.length > 0)
+                    $('#errorcupon').html('');
+                    else 
+                    $('#errorcupon').html('No existe cupon o caduco');
+                    
+                }})}
             
         }})};
-$('#cupon').keypress(function(){
+
+ 
+$('#cupon').keyup(function(){
     validacp();
 });
 
@@ -521,11 +543,16 @@ $('#registrarVenta').click(function(){
     var codqr;
     var tipo;
     var validocupon=false;
-    if($("#checkcupon").prop('required') && $("#checkcupon").prop('value')==""){
-
+    if ($("#checkcupon").is(":checked")){
+        if($("#errorcupon").html() == '' && $("#checkcupon").prop('value')!="")
+        validocupon=true;
+        else 
+        validocupon=false;
     }
+    else 
+    validocupon=true;
 
-    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='')
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon)
     {   
     if($('#idcliente').prop('value')==''){
         var parametros = {
@@ -580,6 +607,7 @@ $('#registrarVenta').click(function(){
                 "fecha":varfechaqr,
                 "total":montoTotal,
                 "llave":varllaveDosif
+
             };
             $.ajax({
                 data:  parametro,                
@@ -605,7 +633,8 @@ $('#registrarVenta').click(function(){
                             'codigoqr': codqr,
                             'tipo':tipo ,
                             'idCliente': idcl,
-                            'iddosif':varidDosif
+                            'iddosif':varidDosif,
+                            'cupon': $('#cupon').prop('value')
                         };
                         $.ajax({
                             data:  parventa,

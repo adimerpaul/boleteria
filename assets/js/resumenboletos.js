@@ -37,7 +37,7 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
     console.log(param);
     $.ajax({
         data:  param,
-        url:   'listaperiodo',
+        url:   'listaperiodo2',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
@@ -93,7 +93,7 @@ function llenartabla(){
     console.log(cadena);
     $.ajax({
         data:  param,
-        url:   'totallistaperiodo',
+        url:   'totallistaperiodo2',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
@@ -118,7 +118,7 @@ function llenartabla(){
     })
     $.ajax({
         data:  param,
-        url:   'porpelicula',
+        url:   'porpelicula2',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
@@ -128,7 +128,6 @@ function llenartabla(){
             console.log(response);
             datos2=JSON.parse(response);
             console.log(datos2);
-
             var data=[];
             datos2.forEach(row => {
                 data.push({
@@ -142,7 +141,7 @@ function llenartabla(){
     })
     $.ajax({
         data:  param,
-        url:   'portarifa',
+        url:   'portarifa2',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
@@ -162,7 +161,7 @@ function llenartabla(){
     })
     $.ajax({
         data:  param,
-        url:   'porsemana',
+        url:   'porsemana2',
         type:  'post',
         beforeSend: function () {
             //$("#resultado").html("Procesando, espere por favor...");
