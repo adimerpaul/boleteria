@@ -1071,7 +1071,15 @@ public function devolucion(){
     $this->boletos_model->devolBoleto($idventa);
     $this->db->query("INSERT INTO devolucion (idVenta,idUsuario) values ('$idventa','$user')");
     echo $this->db->insert_id();
+}
 
+public function devolucionfuncion($id){
+    
+    $user = $this->session->userdata('idUs');
+    //$this->ventas_model->devolVenta($idventa);
+    //$this->boletos_model->devolBoleto($idventa);
+    //$this->db->query("INSERT INTO devolucion (idVenta,idUsuario) values ('$idventa','$user')");
+    echo $this->db->insert_id();
 }
 
 public function listaBoletos(){

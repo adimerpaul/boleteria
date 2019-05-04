@@ -295,30 +295,37 @@
     <div id="item-9" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'75')):  ?>
             <a class="nav-link" href="<?=base_url()?>Ventasvendedor"><i class="fas fa-plus"></i> Ventas por Vendedor</a>
+            <?php endif ?>
         </li>
         <li class="nav-item">
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'76')):  ?>
             <a class="nav-link" href="<?=base_url()?>Ventasvendedor/resumenboleto"><i class="fas fa-plus"></i> Resumen Ventas (Gross Office)</a>
+            <?php endif ?>
         </li>
         <li class="nav-item">
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'76')):  ?>
             <a class="nav-link" href="<?=base_url()?>Ventasvendedor/resumenventa"><i class="fas fa-plus"></i> Resumen Ventas (Box Office)</a>
+            <?php endif ?>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" hidden>
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> INCAA F700 Diario</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" hidden>
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> INCAA F700 Mes</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" hidden>
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen F708</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" hidden>
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> INCAA F700 PDF</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" hidden>
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> SADAIC</a>
         </li>
         <li class="nav-item">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'90')):  ?>
          <a class="nav-link" data-toggle="collapse" href="#item-91" data-parent="#accordion1"><i class="fas fa-bars"></i> Libro IVA</a>
          <div id="item-91" class="collapse">
             <ul class="nav flex-column ml-3">
@@ -327,11 +334,12 @@
                 </li>
             </ul>
         </div>
+        <?php endif ?>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Funcion</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" hidden>
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Ultracine</a>
         </li>
         <li class="nav-item">
@@ -414,7 +422,7 @@
     <a class="nav-link" data-toggle="collapse" href="#item-013" data-parent="#accordion1"><i class="fas fa-bullhorn"></i> Promos / Cupones</a>
     <div id="item-013" class="collapse">
       <ul class="nav flex-column ml-3">
-      <li class="nav-item">
+      <li class="nav-item" hidden>
          <a class="nav-link" data-toggle="collapse" href="#item-0131" data-parent="#accordion1"><i class="far fa-image"></i> Banners</a>
          <div id="item-0131" class="collapse">
             <ul class="nav flex-column ml-3">
@@ -428,23 +436,25 @@
         </div>
         </li>
         <li class="nav-item">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'94')):  ?>
          <a class="nav-link" data-toggle="collapse" href="#item-0132" data-parent="#accordion1"><i class="fas fa-barcode"></i> Cupones</a>
          <div id="item-0132" class="collapse">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url()?>CuponCtrl"><i class="fas fa-plus"></i> Nuevo Cupon</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" hidden>
                     <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Cupones</a>
                 </li>
             </ul>
         </div>
+          <?php endif?>
         </li>
  
       </ul>
     </div>
   </li>  
-  <li class="nav-item">
+  <li class="nav-item" hidden>
          <a class="nav-link" data-toggle="collapse" href="#item-0133" data-parent="#accordion1"><i class="fab fa-android"></i> Notificaciones</a>
          <div id="item-0133" class="collapse">
             <ul class="nav flex-column ml-3">

@@ -15,21 +15,18 @@
         </div>
         <div class="card-body">
             <!-- Button trigger modal -->
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'91')):  ?>
             <button type="button" class="btn btn-success btn-sm mb-3" style="padding: 2px;" data-toggle="modal" data-target="#exampleModal">
                  <i class="fa fa-ticket-alt"></i> Registrar nuevo cupon
             </button>
+          <?php endif?>
             <table id="example" class="display" style="width:100%">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Fechas</th>
-                    <th>Funcion</th>
-                    <th>Pelicula</th>
                     <th>Motivo</th>
-                    <th>Cantidad</th>
                     <th>Estado</th>
-                    <th>Cliente</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,13 +36,8 @@
                         echo "<tr>
                                 <td>$row->idCupon</td>
                                 <td>De ".substr($row->fechaInicio,0,10)." al ". substr($row->fechaFin,0,10)."</td>
-                                <td></td>
-                                <td></td>
                                 <td>$row->motivo</td>
-                                <td>$row->cantidad</td>
                                 <td>$row->estado</td>
-                                <td></td>
-                                <td></td>
                             </tr>";
                     }
                 ?>
