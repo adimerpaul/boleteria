@@ -131,7 +131,7 @@
                             <select name="idTarifa" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
-                                $query=$this->db->query("SELECT * FROM tarifa");
+                                $query=$this->db->query("SELECT * FROM tarifa WHERE activo=1");
                                 foreach ($query->result() as $row){
                                     echo "<option value='".$row->idTarifa."'> $row->serie $row->precio Bs.</option>";
                                 }
@@ -251,7 +251,7 @@
                             <select name="idTarifa" id="idtarifa2" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
-                                $query=$this->db->query("SELECT * FROM tarifa");
+                                $query=$this->db->query("SELECT * FROM tarifa WHERE activo=1");
                                 foreach ($query->result() as $row){
                                     echo "<option value='".$row->idTarifa."'> $row->serie $row->precio Bs.</option>";
                                 }

@@ -48,14 +48,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="1188" />
-          <entry key="php" value="9114" />
+          <entry key="php" value="9144" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="94" />
           <entry key="JavaScript" value="1188" />
-          <entry key="PHP" value="8982" />
+          <entry key="PHP" value="9012" />
           <entry key="SQL" value="38" />
         </counts>
       </usages-collector>
@@ -64,14 +64,14 @@
           <entry key="htaccess" value="1" />
           <entry key="html" value="1" />
           <entry key="js" value="7" />
-          <entry key="php" value="61" />
+          <entry key="php" value="62" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="7" />
-          <entry key="PHP" value="61" />
+          <entry key="PHP" value="62" />
           <entry key="htaccess" value="1" />
         </counts>
       </usages-collector>
@@ -85,60 +85,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/CuponCtrl.php">
+        <entry file="file://$PROJECT_DIR$/application/views/cupon.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+            <state relative-caret-position="273">
+              <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
+        <entry file="file://$PROJECT_DIR$/application/controllers/CuponCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="434" column="70" selection-start-line="434" selection-start-column="70" selection-end-line="434" selection-end-column="70" />
+            <state relative-caret-position="460">
+              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/cupon.php">
+        <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="111" column="44" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
-              <folding>
-                <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#2890#2897#1#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/ventasvendedor.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="96" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/cupon_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Ventasvendedor.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="5" selection-start-line="6" selection-start-column="3" selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="221">
+              <caret line="133" column="92" selection-start-line="133" selection-start-column="92" selection-end-line="133" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -223,7 +191,6 @@
         <option value="$PROJECT_DIR$/application/models/usuarios_model.php" />
         <option value="$PROJECT_DIR$/application/views/salaver.php" />
         <option value="$PROJECT_DIR$/application/controllers/UsuarioCtrl.php" />
-        <option value="$PROJECT_DIR$/application/views/programacionver.php" />
         <option value="$PROJECT_DIR$/application/views/empresaver.php" />
         <option value="$PROJECT_DIR$/application/views/peliculaver.php" />
         <option value="$PROJECT_DIR$/application/views/peliculareg.php" />
@@ -237,6 +204,7 @@
         <option value="$PROJECT_DIR$/application/views/templates/header.php" />
         <option value="$PROJECT_DIR$/application/controllers/CuponCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/cupon.php" />
+        <option value="$PROJECT_DIR$/application/views/programacionver.php" />
       </list>
     </option>
   </component>
@@ -360,7 +328,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113372000" />
+    <option name="totallyTimeSpent" value="113438000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -504,13 +472,7 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa15748.23064/demo.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa16128.6638/ticket.php" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7434/ImpresionTermica/ticket.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7434/ImpresionTermica/ticket.php" />
     <entry file="file://$PROJECT_DIR$/../imprimir/example/demo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -526,16 +488,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7714/ImpresionTermica/ticket.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.14919/ImpresionTermica/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.7714/ImpresionTermica/ticket.php" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa16128.14919/ImpresionTermica/index.html" />
     <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -634,13 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="52" column="178" selection-start-line="52" selection-start-column="178" selection-end-line="52" selection-end-column="178" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="268" column="82" selection-start-line="268" selection-start-column="82" selection-end-line="268" selection-end-column="82" />
         </state>
       </provider>
     </entry>
@@ -744,20 +691,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/CuponCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+        <state relative-caret-position="460">
+          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/cupon.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="111" column="44" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#2890#2897#1#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="273">
+          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="133" column="92" selection-start-line="133" selection-start-column="92" selection-end-line="133" selection-end-column="92" />
         </state>
       </provider>
     </entry>
