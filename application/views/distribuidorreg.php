@@ -8,7 +8,7 @@
   <div class="card-body">
       <h3>INFORMACION DEL DISTRIBUIDOR</h3>
 <hr />
-  <form method="POST" action="<?php echo base_url();?>SalaCtrl/store" >
+  <form method="POST" action="<?php echo base_url();?>DistribuidorCtrl/store" >
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>   
