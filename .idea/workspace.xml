@@ -48,15 +48,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="1343" />
-          <entry key="php" value="9542" />
+          <entry key="php" value="9689" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="94" />
           <entry key="JavaScript" value="1343" />
-          <entry key="PHP" value="9410" />
-          <entry key="SQL" value="38" />
+          <entry key="PHP" value="9553" />
+          <entry key="SQL" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -84,13 +84,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="56" column="57" lean-forward="true" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
+            <state relative-caret-position="276">
+              <caret line="1043" column="8" selection-start-line="1043" selection-start-column="8" selection-end-line="1043" selection-end-column="8" />
               <folding>
                 <element signature="n#imprimirF#0;n#VentaCtrl#0;n#!!top" />
+                <element signature="n#printF#0;n#VentaCtrl#0;n#!!top" />
+                <element signature="n#imprimirR#0;n#VentaCtrl#0;n#!!top" />
                 <element signature="n#imprimirB#0;n#VentaCtrl#0;n#!!top" />
                 <element signature="n#paneldevol#0;n#VentaCtrl#0;n#!!top" />
                 <element signature="n#programacion1#0;n#VentaCtrl#0;n#!!top" />
@@ -103,7 +105,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="-1411">
               <caret line="133" column="92" selection-start-line="133" selection-start-column="92" selection-end-line="133" selection-end-column="92" />
             </state>
           </provider>
@@ -136,7 +138,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/cupon.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
@@ -169,7 +171,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>center</find>
       <find>$total</find>
       <find>ta</find>
       <find>QR_ECLEVEL_L_</find>
@@ -199,6 +200,7 @@
       <find>lugar</find>
       <find>Asientos Sala</find>
       <find>relleno</find>
+      <find>regve</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -248,11 +250,11 @@
         <option value="$PROJECT_DIR$/application/models/cupon_model.php" />
         <option value="$PROJECT_DIR$/application/views/templates/header.php" />
         <option value="$PROJECT_DIR$/application/views/programacionver.php" />
-        <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/panelventa.php" />
         <option value="$PROJECT_DIR$/assets/js/venta.js" />
         <option value="$PROJECT_DIR$/application/controllers/CuponCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/cupon.php" />
+        <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
       </list>
     </option>
   </component>
@@ -376,7 +378,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118357000" />
+    <option name="totallyTimeSpent" value="120238000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -702,27 +704,6 @@
     <entry file="file://$PROJECT_DIR$/assets/js/ventasvendedor.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="56" column="57" lean-forward="true" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
-          <folding>
-            <element signature="n#imprimirF#0;n#VentaCtrl#0;n#!!top" />
-            <element signature="n#imprimirB#0;n#VentaCtrl#0;n#!!top" />
-            <element signature="n#paneldevol#0;n#VentaCtrl#0;n#!!top" />
-            <element signature="n#programacion1#0;n#VentaCtrl#0;n#!!top" />
-            <element signature="n#programacion2#0;n#VentaCtrl#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="133" column="92" selection-start-line="133" selection-start-column="92" selection-end-line="133" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -744,13 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/CuponCtrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/cupon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -758,6 +732,36 @@
           <folding>
             <element signature="n#style#0;n#a#0;n#td#5;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#1;n#td#5;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/CuponCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1411">
+          <caret line="133" column="92" selection-start-line="133" selection-start-column="92" selection-end-line="133" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="1043" column="8" selection-start-line="1043" selection-start-column="8" selection-end-line="1043" selection-end-column="8" />
+          <folding>
+            <element signature="n#imprimirF#0;n#VentaCtrl#0;n#!!top" />
+            <element signature="n#printF#0;n#VentaCtrl#0;n#!!top" />
+            <element signature="n#imprimirR#0;n#VentaCtrl#0;n#!!top" />
+            <element signature="n#imprimirB#0;n#VentaCtrl#0;n#!!top" />
+            <element signature="n#paneldevol#0;n#VentaCtrl#0;n#!!top" />
+            <element signature="n#programacion1#0;n#VentaCtrl#0;n#!!top" />
+            <element signature="n#programacion2#0;n#VentaCtrl#0;n#!!top" />
           </folding>
         </state>
       </provider>

@@ -210,7 +210,8 @@ class VentaCtrl extends CI_Controller {
         $idcupon=$_POST['cupon'];
         if($idcupon!='')
         { $total=0;
-          $cupon=$idcupon;}
+          $cupon=$idcupon;
+        }
         else {
             $cupon=null;
          }
@@ -228,7 +229,8 @@ class VentaCtrl extends CI_Controller {
                 tipoVenta,
                 idUsuario,
                 idCliente,
-                idDosif) VALUES (
+                idDosif,
+                idCupon) VALUES (
                     '$total',
                     '$codControl',
                     '$codqr',
@@ -236,7 +238,8 @@ class VentaCtrl extends CI_Controller {
                     '$tipo',
                     '$idu',
                     '$idCl',
-                    '$idd')";
+                    '$idd',
+                    '$cupon')";
         $this->db->query($query);
        // $query.= ",'".$codControl."','".$codqr."',(SELECT nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1)";
 
@@ -253,7 +256,8 @@ class VentaCtrl extends CI_Controller {
                 tipoVenta,
                 idUsuario,
                 idCliente,
-                idDosif) VALUES (
+                idDosif,
+                idCupon) VALUES (
                     '$total',
                     '',
                     '',
@@ -261,7 +265,8 @@ class VentaCtrl extends CI_Controller {
                     '$tipo',
                     '$idu',
                     '$idCl',
-                    '$idd')";
+                    '$idd',
+                    '$cupon')";
         $this->db->query($query);
         }
         $idVenta=$this->db->insert_id();
@@ -836,7 +841,7 @@ Hora: $hora
     $pdf->Output();
 
 }
-    public function printR($idventa){
+public function printR($idventa){
 
         $fecha=date('d/m/Y');
         $total=0;
@@ -904,22 +909,30 @@ Hora: $hora
 
         $printer -> text($html."\n");
 
-        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad 
+        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad,(select v2.idCupon FROM venta v2 WHERE v2.idVenta='$idventa') as idCupon
 FROM boleto b 
 INNER JOIN funcion f ON f.idFuncion=b.idFuncion 
 INNER JOIN tarifa t ON t.idTarifa=f.idTarifa 
 INNER JOIN pelicula p ON p.idPelicula=f.idPelicula 
 WHERE idVenta='$idventa'
 GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
+
         $printer->setJustification(Printer::JUSTIFY_LEFT);
         $printer->text("CANT    DESCRIPCION      P.U    IMP.\n");
         $printer->text("-----------------------------------"."\n");
         foreach ($query->result() as $row){
+            $idcupon=$row->idCupon;
             $nombrepelicula=$row->nombre;
             $formato=$row->formato;
             $precio=$row->precio;
             $cantidad=$row->cantidad;
-            $subtotal=$cantidad*$precio;
+            echo $idcupon;
+            if ($idcupon!=null){
+                $precio=0;
+                $subtotal=$cantidad*$precio;
+            }else{
+                $subtotal=$cantidad*$precio;
+            }
             if ($formato==1){
                 $for="3D";
             }else{
@@ -1220,10 +1233,9 @@ public function validaCuponreg(){
 public function validaCupon(){
           
     $idcupon=$_POST['idcupon'];
-    $query=$this->db->query("SELECT * FROM  cupon c WHERE  c.idCupon='$idcupon' and date(fechaFin) > CURDATE()");
+    $query=$this->db->query("SELECT * FROM  cupon c WHERE  c.idCupon='$idcupon' and date(fechaFin) >= CURDATE()");
     $row=$query->row();
     $myObj=($query->result_array());
-
     echo json_encode($myObj); 
 
 }
