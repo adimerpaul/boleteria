@@ -25,8 +25,21 @@ class CuponCtrl extends CI_Controller{
             $dato = $this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header', $dato);
             $this->load->view('cupon');
-            $dato['js'] = "<script src='".base_url()."assets/js/ventasvendedor.js'></script>";
+            $dato['js'] = "";
             $this->load->view('templates/footer', $dato);
         } else redirect('');
+    }
+    public  function store(){
+        $fechafin=$_POST['fechafin'];
+        $motivo=$_POST['motivo'];
+
+        $this->db->query("INSERT INTO cupon(fechafin,motivo,idusuario) VALUES('$fechafin','$motivo','".$_SESSION['idUs']."')");
+       //exit;
+        header("Location: ".base_url()."CuponCtrl");
+    }
+    public  function delete($idcupon){
+
+        $this->db->query("DELETE FROM cupon WHERE idcupon='$idcupon'");
+        header("Location: ".base_url()."CuponCtrl");
     }
 }

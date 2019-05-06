@@ -46,6 +46,20 @@ class VentaCtrl extends CI_Controller {
         $myObj=($query->result_array());
         echo json_encode($myObj);
     }
+    public function relleno(){
+	    $query=$this->db->query("SELECT * FROM temporal WHERE idUser='".$_SESSION['idUs']."'");
+        $t="";
+	    foreach ($query->result() as $row){
+	        $t=$t."<tr>
+                            <th scope='row'>1</th>
+                            <td>$row->fechaFuncion $row->horaFuncion</td>
+                            <td>$row->titulo</td>
+                            <td class='costo'>$row->costo</td>
+                            <td><a class='btn btn-outline-danger btn-sm' href='".base_url()."VentaCtrl/deleteTemporal/$row->idTemporal'><i class='far fa-trash-alt'></i></a></td>                                                        
+                        </tr>";
+        }
+        echo $t;
+    }
 
     public function listafuncion(){
         $fecha=$_POST['fecha1'];

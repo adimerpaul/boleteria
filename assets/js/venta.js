@@ -341,6 +341,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                              var horafun=$('#selecfun .ui-selected label').html()+":00";
                              var pelicula=$('#selectable .ui-selected input').prop('value');
                              if(parseInt($('#totalentrada').html())==parseInt($('#numasignada').html())){
+
                              $('.lugar.asignado').each(function(){
                                  var idsien=$(this).data('idasiento');
                                  var col=$(this).data('numero');
@@ -371,14 +372,21 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
                                                     }
                                                 })
-                                console.log(idsien+' '+idfunreg+' '+numerofuncion+' '+tarSerie+' '+nunSala+' '+codSala+' '+fecfun+' '+costo+' '+col+' '+fil+' '+pelicula+' '+horafun);
+                                //console.log(idsien+' '+idfunreg+' '+numerofuncion+' '+tarSerie+' '+nunSala+' '+codSala+' '+fecfun+' '+costo+' '+col+' '+fil+' '+pelicula+' '+horafun);
                             }                                
                            )
+
+
                             $("#exampleModal").modal('hide');//ocultamos el modal
                             $('#lblCantidadEntradas').html("0");
                             $('#lblPrecio').html('0Bs');
-                            location.reload();
-                            calculo();}
+                            //location.reload();
+                                 wait(750);
+                                 relleno();
+                                 calculo();
+                                 $('#body').html('');
+
+                             }
 
                         });
                    
@@ -391,6 +399,34 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 })
 
+function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+        end = new Date().getTime();
+    }
+}
+
+function relleno(){
+    $.ajax({
+        url: 'VentaCtrl/relleno',
+        type: 'post',
+        beforeSend: function () {
+            $('#tabPreVenta').html('cargando....');
+        },
+        success: function (response) {
+            $('#tabPreVenta').html(response);
+            //console.log(response);
+            var total=0.0;
+            $('.costo').each(function(){
+                //console.log(($(this).html())),
+                total = total + parseFloat($(this).html())
+            });
+            $('#totalPre').html(total);
+            $('#prepago').prop('value',total);
+        }
+    });
+}
 function cambio(fila,columna) {
     //console.log(asientos);
     var t="";
@@ -672,7 +708,7 @@ $('#registrarVenta').click(function(){
 function calculo(){
     var total=0.0;
     $('.costo').each(function(){    
-        console.log(($(this).html())),
+        //console.log(($(this).html())),
         total = total + parseFloat($(this).html())
     
 });
