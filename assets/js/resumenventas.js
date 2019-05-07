@@ -80,6 +80,7 @@ function llenartabla(){
     var porcweb=0;
     var cadena="";
     var cadena2=""; 
+    
     $('#listapeliculas input[type=checkbox]').each(function (){
         if(this.checked)
         cadena2 += $(this).val()+',';
@@ -209,6 +210,7 @@ function llenartabla(){
         },
         success:  function (response){
             var cadenaTarifa="";
+            console.log(param);
             console.log(response);
             datos4=JSON.parse(response);
             var serie= [];
@@ -223,10 +225,10 @@ function llenartabla(){
                     fecserie=moment(fecserie).add(1, 'month')
                  };
                  console.log(ejex);
+                 console.log(datos4);
             datos4.forEach(row => {
                 datGrafica=[];
-                for(var i=0;i<num-3;i++){ 
-                    ca='m'+i;
+                for(var i=0;i<=num-3;i++){ 
                     $.each( row, function( key, val ) {
                         if (key == "m"+i){
                             if (val == null) 
