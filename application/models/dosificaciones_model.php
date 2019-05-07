@@ -17,11 +17,11 @@ class dosificaciones_model extends CI_Model {
             'nroTramite'=> $this->input->post('tramite'),
             'nroAutorizacion'=> $this->input->post('autorizacion'),
             'nroFactIni'=> $this->input->post('inicial'),
-            'nroFactura'=> parseInt($this->input->post('inicial')) - 1,
+            'nroFactura'=> intval($this->input->post('inicial')) - 1,
             'llaveDosif'=> $this->input->post('llave'),
             'fechaDesde'=> $this->input->post('fechad'),
             'fechaHasta'=> $this->input->post('fechah'),
-            'activo'=> 1,
+            'activo'=> 0,
             'leyenda'=> $this->input->post('leyenda'),
             'tipo'=>'BOLETERIA'
 
@@ -32,7 +32,8 @@ class dosificaciones_model extends CI_Model {
     public function desactivar()
     {
         $this->db->set('activo',0);
-        $this->db->where('fechaHasta <',date('Y-m-d H:i:s'));
+        $this->db->where('fechaHasta <',date('Y-m-d'));
+        $this->db->where('tipo','BOLETERIA');
         return $this->db->update('dosificacion');
 
     }

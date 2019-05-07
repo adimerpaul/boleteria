@@ -19,7 +19,6 @@
                     <th>Fecha Reg</th>
                     <th>Butaca</th>
                     <th>Usuario</th>
-                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,10 +37,7 @@
             echo chr($row['fila']+64).'-'.$row['fila'].'-'.$row['columna']; 
             else echo '-';?></td>
             <td><?php echo $row['nombreUser']; ?></td>
-            <td>  
-                          
-                    <a class="btn btn-outline-danger  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idBoleto="<?php echo $row['idBoleto']; ?>"> Reimprimir</a>
-            </td>
+
         </tr>
     <?php endforeach; ?>
             </tbody>

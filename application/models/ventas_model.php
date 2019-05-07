@@ -2,9 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ventas_model extends CI_Model {
-        public function listaventa(){
+        public function listaventa($fi,$ff){
             $this->db->join('usuario','usuario.idUsuario=venta.idUsuario');
             $this->db->join('cliente','cliente.idCliente=venta.idCliente');
+            $this->db->where('date(fechaVenta)>=',$fi);
+            $this->db->where('date(fechaVenta)<=',$ff);
             $venta = $this->db->get('venta');;
             return $venta->result_array();
         }            

@@ -15,10 +15,10 @@ class Reporte extends CI_Controller {
     {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
-            if (isset($_POST['fecha1'])) 
+            if (isset($_POST['fecha1']) ) 
             $data['fecha1']=$_POST['fecha1'];
             else
-            $data['fecha1']='2019-05-09';
+            $data['fecha1']=date('Y-m-d');
             $dato=$this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header', $dato);
             $this->load->view('reportefuncion',$data);
@@ -28,15 +28,18 @@ class Reporte extends CI_Controller {
         else redirect('');
     }
 
-    public function reporteFuncion(){
+    public function repsemana(){
         if($this->session->userdata('login')==1){
 
             $user = $this->session->userdata('idUs');
-            $data['fecha1']='2019-05-09';
+            if (isset($_POST['fecha1']) || isset($_POST['fecha2'])) 
+            $data['fecha1']=$_POST['fecha1'];
+            else
+            $data['fecha1']=date('Y-m-d');
             $dato=$this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header', $dato);
-            $this->load->view('reportefuncion',$data);
-            $dato['js']="<script src='".base_url()."assets/js/reportefuncion.js'></script>";
+            $this->load->view('reportesemana',$data);
+            $dato['js']="<script src='".base_url()."assets/js/reportesemana.js'></script>";
             $this->load->view('templates/footer',$dato);
         }
         else redirect('');

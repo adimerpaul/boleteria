@@ -1,5 +1,12 @@
-
-    $('#exampleModal').on('show.bs.modal', function (event) {
+$('#fecini').change(function(){
+    var fecha=moment($('#fecini').val()).format('Y-MM-DD');
+    console.log(fecha);
+    $('#fecfin').val(fecha);
+    $('#fecfin').attr('min',fecha);
+});
+   
+   
+   $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var idventa = button.data('idventa') // Extract info from data-* attributes
         var check="on";
@@ -36,9 +43,14 @@
                                                 },
                                                 success:  function (response) { 
                                     var cadena=""; 
+                                    var asiento;
                                     var datos2=JSON.parse(response);
                                     console.log(datos2);
                                     datos2.forEach(row => {
+                                        if(row.devuelto=='SI')
+                                            asiento = '-'
+                                        else 
+                                        asiento=String.fromCharCode(parseInt(row.fila) + 64)+'-'+row.fila+"-"+row.columna+'';
                                         cadena+="<tr>";
                                         cadena=cadena+"<td>"+row.fecha+"</td>";
                                         cadena=cadena+"<td>"+row.numboc+"</td>";
@@ -46,7 +58,7 @@
                                         cadena=cadena+"<td>"+row.fechaFuncion+"</td>";
                                         cadena=cadena+"<td>"+row.horaFuncion+"</td>";
                                         cadena=cadena+"<td>"+row.serieTarifa+"/"+row.costo+"</td>";
-                                        cadena=cadena+"<td>"+String.fromCharCode(parseInt(row.fila) + 64)+'-'+row.fila+"-"+row.columna+"</td>";
+                                        cadena=cadena+"<td>"+asiento+"</td>";
                                         cadena+="</tr>";
                                     
                                     $('#tabbody').html(cadena);

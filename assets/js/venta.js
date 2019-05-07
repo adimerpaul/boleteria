@@ -2,9 +2,11 @@ $('#fecfuncion').change(listado);
 $('#fecfuncion').change(function(){
     if($(this).prop('value') < new Date())
     bloqueobtn();
-});
+}); 
 $(document).ready(listado());  
+$(document).ready(valDosificacion());  
 $(document).ready(calculo());
+$(document).ready(VerificaDosificacion());
 $(document).ready(
     function(){
         console.log($('#tabPreVenta tr').length);
@@ -232,7 +234,9 @@ function listado(){
         $('#btnEntradaMas').addClass("disabled");
         $('#btnCancelar').addClass("disabled");
         if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html())>0)
-            $('#btnAceptar').removeClass("disabled");
+            {$('#btnAceptar').removeClass("disabled");
+            VerificaDosificacion();
+            }
         else
             $('#btnAceptar').addClass("disabled");
         $('#btnAgregar').addClass("disabled");
@@ -247,6 +251,7 @@ function listado(){
         $('#btnEntradaMas').removeClass("disabled");
         $('#btnCancelar').removeClass("disabled");
         $('#btnAceptar').removeClass("disabled");
+        VerificaDosificacion();
     }
  
   
@@ -588,6 +593,7 @@ $('#registrarVenta').click(function(){
     else 
     validocupon=true;
 
+
     if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon)
     {   
     if($('#idcliente').prop('value')==''){
@@ -732,3 +738,47 @@ $('#pago').keypress(function(event){
         $('#resultado').prop('value',0);
 });
 
+function valDosificacion(){
+    parm={'fdosif':moment().add(5, 'days').format('Y-MM-DD')}
+    $.ajax({
+        data: parm,
+        url: 'VentaCtrl/verifDosifcacion', 
+        type: 'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            console.log(response);
+            if (response == false){
+                alert('Dosificacion Falta menos de 5 Dias');}
+        }
+    })
+};
+function VerificaDosificacion(){
+    parm={'fdosif':moment().format('Y-MM-DD')}
+    $.ajax({
+        data: parm,
+        url: 'VentaCtrl/verifDosifcacion', 
+        type: 'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            console.log(response);
+            if (response == false)
+            $('#btnAceptar').addClass("disabled");
+            $.ajax({
+                url:'VentaCtrl/UpDosificacion',
+                type: 'post',
+                beforeSend: function () {
+                    //$("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response){
+                    if (response == false)
+                    alert('No se Cuenta con Dosificacion');
+                }
+            })
+
+        }
+    })
+}

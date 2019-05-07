@@ -41,7 +41,6 @@
                 for(var i=0;i<eli.length;i++){
                     eli[i].addEventListener('click',function(e){
                         //alert('asd');
-                        console.log($distribuidor);
                         if(!confirm('seguro de eliminar')){
                             e.preventDefault();
                         }  

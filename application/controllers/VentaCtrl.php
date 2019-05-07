@@ -15,6 +15,7 @@ class VentaCtrl extends CI_Controller {
 		parent::__construct();
         $this->load->model('usuarios_model');
         $this->load->model('temporal_model');
+        $this->load->model('boletos_model');
 
         $this->load->model('ventas_model'); // This loads the library
         $this->load->model('dosificaciones_model');
@@ -208,13 +209,12 @@ class VentaCtrl extends CI_Controller {
         $idCl=$_POST['idCliente'];
         $idd=$_POST['iddosif'];
         $idcupon=$_POST['cupon'];
+        $cupon=null;
         if($idcupon!='')
         { $total=0;
           $cupon=$idcupon;
         }
-        else {
-            $cupon=null;
-         }
+   
         if($tipo=='FACTURA'){
 
             $this->dosificaciones_model->updatenfactura($idd);
@@ -285,9 +285,6 @@ class VentaCtrl extends CI_Controller {
             $query2=$this->db->query("SELECT count(*) + 1 as num FROM boleto WHERE idFuncion='$row->idFuncion'");
             $numboleto=$query2->row()->num;
             $numboc="$numsala$codigosala$fechafuncion$nfuncion$serietarifa-$numboleto";
-            if($idcupon=='')
-            $cupon=null;
-            else $cupon=$idcupon;
             $this->db->query("INSERT INTO `boleto` (
              `numboc`,
               `numero`,
@@ -322,7 +319,7 @@ class VentaCtrl extends CI_Controller {
                   '$row->costo', 
                   '$row->titulo', 
                   '$idVenta',
-                  '$cupon');");
+                  $cupon);");
         };
         //header("Location inde.php");
 
@@ -336,9 +333,15 @@ class VentaCtrl extends CI_Controller {
         if($this->session->userdata('login')==1){
 
             $user = $this->session->userdata('idUs');
-
             $dato=$this->usuarios_model->validaIngreso($user);
-            $venta['venta'] = $this->ventas_model->listaventa();
+            if( empty($_POST['fecini']) || empty($_POST['fecfin'])) 
+                {
+                    $venta['fecinicio'] = date('Y-m-d');
+                    $venta['fecfinal']= date('Y-m-d'); }
+           
+            else {
+            $venta['fecinicio'] = $_POST['fecini'];
+            $venta['fecfinal']=$_POST['fecfin'];}
             $this->load->view('templates/header', $dato);
                 $this->load->view('listadoventa',$venta);
                 $dato2['js']="<script src='".base_url()."assets/js/listaventa.js'></script>";
@@ -1106,7 +1109,6 @@ public function devolucionfuncion($id){
     //$this->ventas_model->devolVenta($idventa);
     //$this->boletos_model->devolBoleto($idventa);
     //$this->db->query("INSERT INTO devolucion (idVenta,idUsuario) values ('$idventa','$user')");
-    echo $this->db->insert_id();
 }
 
 public function listaBoletos(){
@@ -1239,4 +1241,30 @@ public function validaCupon(){
     echo json_encode($myObj); 
 
 }
+
+public function UpDosificacion(){
+    $verifica=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta < curdate()");
+    $row=$verifica->row();
+    if ($verifica->num_rows() == 0){
+        $verifica2=$this->db->query("SELECT * FROM dosificacion where tipo='BOLETERIA' and activo=0 and fechaDesde >= curdate()");
+        if($verifica2->num_rows()>0){
+        $this->db->query("UPDATE dosificacion set activo=0 where fechaHasta < curdate() and tipo='BOLETERIA'");
+        $this->db->query("UPDATE dosificacion set activo=1 where fechaDesde <= curdate() and tipo='BOLETERIA'"); 
+        echo true; }
+        else 
+        echo false;
+        echo true;
+    }
+    else echo false;
+    
+}
+
+public function verifDosifcacion(){
+    $fecha=$_POST['fdosif'];
+    $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta > '$fecha'");
+    $row=$query->row();
+    if ($query->num_rows() > 0) echo true;
+    else echo false;
+}
+
 }

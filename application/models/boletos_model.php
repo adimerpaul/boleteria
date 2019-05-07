@@ -5,6 +5,7 @@ class boletos_model extends CI_Model {
 
     public function listaBoletos()
     {
+        
         $this->db->join('usuario','usuario.idUsuario=boleto.idUsuario');
         $boleto = $this->db->get('boleto');
         return $boleto->result_array();
@@ -14,6 +15,7 @@ class boletos_model extends CI_Model {
         $this->db->set('idAsiento',NULL);
         $this->db->set('devuelto','SI');
         $this->db->where('idVenta',$id);
-        return $this->db->update('boleto');
+        $this->db->update('boleto');
+        return true;
     }
 }
