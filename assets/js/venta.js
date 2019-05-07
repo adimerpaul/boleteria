@@ -447,7 +447,7 @@ function cambio(fila,columna) {
                 if(asientos[cont].asignado == 1)
                 c=c+"<td data-numero='"+j+"' data-fila='"+asientos[cont].fila+"' data-estado='3' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar vendido'></td>";
                 else
-                c=c+"<td data-numero='"+j+"' data-fila='"+asientos[cont].fila+"' data-estado='1' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar libre'></td>";
+                c=c+"<td align='center' style='color: white;' data-numero='"+j+"' data-fila='"+asientos[cont].fila+"' data-estado='1' data-idasiento='"+asientos[cont].idAsiento+"' class='lugar libre'>"+L[asientos[cont].fila -1 ]+"-"+j+"</td>";
             }else{
                 c=c+"<td data-numero='"+j+"' data-fila='"+asientos[cont].fila+"' data-estado='0' class='lugar ocupado'></td>";
             }

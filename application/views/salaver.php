@@ -52,7 +52,9 @@
                                 <button class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idsala="<?php echo $row['idSala']?>"> Modificar</button>
                                 <button class="btn btn-outline-info  btn-sm" data-toggle="modal" data-target="#manual" data-idsala="<?php echo $row['idSala']?>"> Cambiar</button>
                             <?php endif?>
+                            <?php if ($this->usuarios_model->veri($_SESSION['idUs'],'35')):?>
                             <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>SalaCtrl/delete/<?=$row['idSala']?>"> Eliminar</a>
+                            <?php endif?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

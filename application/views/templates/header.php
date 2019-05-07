@@ -119,6 +119,25 @@
     </div>
   </li>
     <?php endif  ?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'4')):  ?>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#item-4" data-parent="#accordion1"><i class="fas fa-truck"></i> Distribuidores</a>
+            <div id="item-4" class="collapse">
+                <ul class="nav flex-column ml-3">
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'28')):  ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url()?>DistribuidorCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
+                        </li>
+                    <?php endif?>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'29')):  ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url()?>DistribuidorCtrl/distribuidorver"><i class="fas fa-list-ul"></i> Ver Distribuidores</a>
+                        </li>
+                    <?php endif?>
+                </ul>
+            </div>
+        </li>
+    <?php endif?>
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'3')):  ?>
     <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-3" data-parent="#accordion1"><i class="fas fa-film"></i> Peliculas</a>
@@ -140,25 +159,7 @@
     </div>
   </li>
     <?php endif  ?>
-    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'4')):  ?>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="collapse" href="#item-4" data-parent="#accordion1"><i class="fas fa-truck"></i> Distribuidores</a>
-    <div id="item-4" class="collapse">
-      <ul class="nav flex-column ml-3">
-          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'28')):  ?>
-        <li class="nav-item">
-            <a class="nav-link" href="<?= base_url()?>DistribuidorCtrl"><i class="fas fa-plus"></i> Registrar Nueva</a>
-        </li>
-          <?php endif?>
-          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'29')):  ?>
-        <li class="nav-item">
-            <a class="nav-link" href="<?= base_url()?>DistribuidorCtrl/distribuidorver"><i class="fas fa-list-ul"></i> Ver Distribuidores</a>
-        </li>
-          <?php endif?>
-      </ul>
-    </div>
-  </li>
-    <?php endif?>
+
     <?php
     if($this->usuarios_model->veri($_SESSION['idUs'],'5')){
         echo "  <li class='nav-item'>
@@ -270,11 +271,6 @@
         <li class="nav-item">
             <?php if($this->usuarios_model->veri($_SESSION['idUs'],'57')):  ?>
                 <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas Web</a>
-            <?php endif ?>
-        </li>
-        <li class="nav-item">
-            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'46')):  ?>
-                <a class="nav-link" href="<?=base_url()?>VentaCtrl/paneldevol"><i class="fas fa-minus"></i> Panel Devoluciones</a>
             <?php endif ?>
         </li>
         <li class="nav-item">

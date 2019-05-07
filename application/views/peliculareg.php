@@ -10,7 +10,7 @@
 <hr />
  
   <form method="POST" action="<?php echo base_url();?>PeliculaCtrl/store" >
-  <div class="form-row">
+  <div class="form-row" hidden>
     <div class="form-group col-md-6">
       <label for="codinca">Codigo INCAA:</label>   
       <input type="text" class="form-control" id="codinca" name="codinca" readonly>  
@@ -36,7 +36,7 @@
   </div>
   <div class="form-row">
   <div class="form-group col-md-6">
-      <label for="duracion">Duracion:</label>   
+      <label for="duracion">Duracion(minutos):</label>
       <input type="number" class="form-control" id="duracion" name="duracion">  
     </div>
     <div class="form-group col-md-6">
@@ -103,7 +103,6 @@
     <div class="form-group col-md-6">
       <label for="formato">Formato: </label><br>
       <input class="form-control" id="formato" name="formato" type="checkbox" data-toggle="toggle" data-on="3D" data-off="2D" data-onstyle="success" data-offstyle="primary" checked>
-
     </div>
   </div>
   <div class="form-row">

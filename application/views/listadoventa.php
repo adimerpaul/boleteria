@@ -16,6 +16,7 @@
                     <th>Usuario</th>
                     <th>Total</th>
                     <th>Tipo</th>
+                    <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
             <td><?php echo $row['nombreUser']; ?></td>
             <td><?php echo $row['total']; ?></td>
             <td><?php echo $row['tipoVenta']; ?></td>
+            <td><?php echo $row['estado']; ?></td>
             <td>                
                 <?php if($this->usuarios_model->veri($_SESSION['idUs'],'62')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idventa="<?php echo $row['idVenta']?>">Ver Detalle</a>

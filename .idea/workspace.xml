@@ -47,15 +47,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1343" />
-          <entry key="php" value="9689" />
+          <entry key="js" value="1387" />
+          <entry key="php" value="9734" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="94" />
-          <entry key="JavaScript" value="1343" />
-          <entry key="PHP" value="9553" />
+          <entry key="JavaScript" value="1387" />
+          <entry key="PHP" value="9598" />
           <entry key="SQL" value="42" />
         </counts>
       </usages-collector>
@@ -63,15 +63,15 @@
         <counts>
           <entry key="htaccess" value="1" />
           <entry key="html" value="1" />
-          <entry key="js" value="10" />
-          <entry key="php" value="67" />
+          <entry key="js" value="11" />
+          <entry key="php" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="10" />
-          <entry key="PHP" value="67" />
+          <entry key="JavaScript" value="11" />
+          <entry key="PHP" value="72" />
           <entry key="htaccess" value="1" />
         </counts>
       </usages-collector>
@@ -84,11 +84,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="1043" column="8" selection-start-line="1043" selection-start-column="8" selection-end-line="1043" selection-end-column="8" />
+            <state relative-caret-position="140">
+              <caret line="1044" column="49" selection-start-line="1044" selection-start-column="40" selection-end-line="1044" selection-end-column="49" />
               <folding>
                 <element signature="n#imprimirF#0;n#VentaCtrl#0;n#!!top" />
                 <element signature="n#printF#0;n#VentaCtrl#0;n#!!top" />
@@ -102,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1411">
-              <caret line="133" column="92" selection-start-line="133" selection-start-column="92" selection-end-line="133" selection-end-column="92" />
+            <state relative-caret-position="72">
+              <caret line="269" column="13" lean-forward="true" selection-start-line="269" selection-start-column="13" selection-end-line="274" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -114,17 +114,56 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="386" column="51" selection-start-line="386" selection-start-column="51" selection-end-line="386" selection-end-column="51" />
+            <state relative-caret-position="313">
+              <caret line="449" column="59" selection-start-line="449" selection-start-column="59" selection-end-line="449" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/dosificacion.js">
+        <entry file="file://$PROJECT_DIR$/application/views/listadoventa.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+            <state relative-caret-position="-1237">
+              <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/salaver.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="54" column="87" selection-start-line="54" selection-start-column="87" selection-end-line="54" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/peliculaver.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="54" column="53" lean-forward="true" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
+              <folding>
+                <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/peliculareg.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-323">
+              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/programacionver.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1411">
+              <caret line="133" column="92" selection-start-line="133" selection-start-column="92" selection-end-line="133" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -151,15 +190,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/panelventa.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="235" column="43" selection-start-line="235" selection-start-column="43" selection-end-line="235" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -171,16 +201,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$total</find>
-      <find>ta</find>
-      <find>QR_ECLEVEL_L_</find>
-      <find>$qr</find>
       <find>size</find>
       <find>FON</find>
       <find>Dosifica</find>
       <find>nombreU</find>
       <find>print</find>
-      <find>printR</find>
       <find>IVA</find>
       <find>cadenaSeccion</find>
       <find>regusuario</find>
@@ -201,6 +226,11 @@
       <find>Asientos Sala</find>
       <find>relleno</find>
       <find>regve</find>
+      <find>distr</find>
+      <find>for</find>
+      <find>cambio</find>
+      <find>printR</find>
+      <find>Panel de</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -236,11 +266,8 @@
         <option value="$PROJECT_DIR$/application/controllers/InicioCtrl.php" />
         <option value="$PROJECT_DIR$/application/config/autoload.php" />
         <option value="$PROJECT_DIR$/application/models/usuarios_model.php" />
-        <option value="$PROJECT_DIR$/application/views/salaver.php" />
         <option value="$PROJECT_DIR$/application/controllers/UsuarioCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/empresaver.php" />
-        <option value="$PROJECT_DIR$/application/views/peliculaver.php" />
-        <option value="$PROJECT_DIR$/application/views/peliculareg.php" />
         <option value="$PROJECT_DIR$/application/views/distribuidorver.php" />
         <option value="$PROJECT_DIR$/application/views/tarifaver.php" />
         <option value="$PROJECT_DIR$/application/views/festivover.php" />
@@ -248,13 +275,17 @@
         <option value="$PROJECT_DIR$/application/views/clientever.php" />
         <option value="$PROJECT_DIR$/application/views/dosificacionver.php" />
         <option value="$PROJECT_DIR$/application/models/cupon_model.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/header.php" />
         <option value="$PROJECT_DIR$/application/views/programacionver.php" />
         <option value="$PROJECT_DIR$/application/views/panelventa.php" />
-        <option value="$PROJECT_DIR$/assets/js/venta.js" />
         <option value="$PROJECT_DIR$/application/controllers/CuponCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/cupon.php" />
         <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
+        <option value="$PROJECT_DIR$/application/views/salaver.php" />
+        <option value="$PROJECT_DIR$/application/views/peliculareg.php" />
+        <option value="$PROJECT_DIR$/application/views/peliculaver.php" />
+        <option value="$PROJECT_DIR$/assets/js/venta.js" />
+        <option value="$PROJECT_DIR$/application/views/listadoventa.php" />
+        <option value="$PROJECT_DIR$/application/views/templates/header.php" />
       </list>
     </option>
   </component>
@@ -378,7 +409,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120238000" />
+    <option name="totallyTimeSpent" value="122135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -433,13 +464,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/js/salareg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/ProgramacionCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -589,31 +613,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/salaver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="52" column="178" selection-start-line="52" selection-start-column="178" selection-end-line="52" selection-end-column="178" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/empresaver.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="40" column="74" selection-start-line="40" selection-start-column="74" selection-end-line="40" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/peliculaver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="42" column="16" lean-forward="true" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/peliculareg.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="115" column="67" selection-start-line="115" selection-start-column="67" selection-end-line="115" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -687,13 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="434" column="70" selection-start-line="434" selection-start-column="70" selection-end-line="434" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/funcion_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -703,13 +699,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/ventasvendedor.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="386" column="51" selection-start-line="386" selection-start-column="51" selection-end-line="386" selection-end-column="51" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/dosificacion.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -750,10 +739,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/salaver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="54" column="87" selection-start-line="54" selection-start-column="87" selection-end-line="54" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/peliculareg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/peliculaver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="53" lean-forward="true" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="449" column="59" selection-start-line="449" selection-start-column="59" selection-end-line="449" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/listadoventa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1237">
+          <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="1043" column="8" selection-start-line="1043" selection-start-column="8" selection-end-line="1043" selection-end-column="8" />
+        <state relative-caret-position="140">
+          <caret line="1044" column="49" selection-start-line="1044" selection-start-column="40" selection-end-line="1044" selection-end-column="49" />
           <folding>
             <element signature="n#imprimirF#0;n#VentaCtrl#0;n#!!top" />
             <element signature="n#printF#0;n#VentaCtrl#0;n#!!top" />
@@ -763,6 +790,13 @@
             <element signature="n#programacion1#0;n#VentaCtrl#0;n#!!top" />
             <element signature="n#programacion2#0;n#VentaCtrl#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="269" column="13" lean-forward="true" selection-start-line="269" selection-start-column="13" selection-end-line="274" selection-end-column="13" />
         </state>
       </provider>
     </entry>
