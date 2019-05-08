@@ -66,9 +66,9 @@
             <div class="modal-body">
                 <form method="post" action="<?=base_url()?>ProgramacionCtrl/store">
                     <div class="form-group row">
-                        <label  class="col-sm-1 col-form-label">Sala</label>
+                        <label  for="idsala" class="col-sm-1 col-form-label">Sala</label>
                         <div class="col-sm-5">
-                            <select name="idsala" required class="form-control">
+                            <select name="idsala" id="idsala" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
                                 $query=$this->db->query("SELECT * FROM SALA");
@@ -141,7 +141,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
+                        <button type="submit" class="btn btn-success" id="aceptar" disabled> <i class="fas fa-check"></i> Registrar</button>
                     </div>
                 </form>
             </div>
