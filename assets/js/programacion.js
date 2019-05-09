@@ -127,4 +127,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     calendar.render();
+    $('#hora').keyup(function (e) {
+        var hora=$('#hora').val();
+        //console.log(hora);
+
+        $.ajax({
+           url:'',
+           type:'POST',
+           data:'idsala=',
+           success:function (e) {
+               console.log(e);
+           }
+        });
+    });
+    $('#exampleModal').on('show.bs.modal', function (e) {
+        //$('#aceptar').removeAttr('disabled');
+        $('#aceptar').attr('disabled');
+    })
 });

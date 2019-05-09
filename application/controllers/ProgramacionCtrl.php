@@ -39,13 +39,13 @@ class ProgramacionCtrl extends CI_Controller {
         //header('Content-Type: application/json');
 
         $query=$this->db->query("SELECT (CASE
-    WHEN s.idSala='1' THEN '#01579b'
-    WHEN s.idSala='2' THEN '#006064'
-    WHEN s.idSala='3' THEN '#1b5e20'
-    WHEN s.idSala='4' THEN '#ff5722'
-    WHEN s.idSala='5' THEN '#795548'
-    WHEN s.idSala='6' THEN '#e65100'
-    WHEN s.idSala='7' THEN '#827717'
+    WHEN s.nroSala='1' THEN '#01579b'
+    WHEN s.nroSala='2' THEN '#006064'
+    WHEN s.nroSala='3' THEN '#1b5e20'
+    WHEN s.nroSala='4' THEN '#ff5722'
+    WHEN s.nroSala='5' THEN '#795548'
+    WHEN s.nroSala='6' THEN '#e65100'
+    WHEN s.nroSala='7' THEN '#827717'
     
 END)as 'color'
 ,  idFuncion as id
@@ -109,6 +109,12 @@ s.idSala='$idsala'");
     {
         $this->funcion_model->update();
         header("Location: ".base_url()."ProgramacionCtrl");
+    }
+    public function verificar()
+    {
+        $idsala=$_POST['idsala'];
+        $query=$this->db->query("SELECT * FROM funcion WHERE idSala='$idsala' ORDER BY idfuncion DESC ");
+        return json_encode($query->result_array());
     }
 
     public function delete($idfuncion)
