@@ -12,7 +12,6 @@ class ventas_model extends CI_Model {
         }            
 
         public function devolVenta($id){
-            $this->db->set('idDosif',null);
             $this->db->set('total',0);            
             $this->db->set('estado','ANULADO');
             $this->db->where('idVenta',$id);

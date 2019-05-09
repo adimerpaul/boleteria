@@ -209,11 +209,12 @@ class VentaCtrl extends CI_Controller {
         $idCl=$_POST['idCliente'];
         $idd=$_POST['iddosif'];
         $idcupon=$_POST['cupon'];
-        $cupon='';
-        if(is_numeric($idCupon))
+        $cupon=null;
+        if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
         { $total=0;
           $cupon=$idcupon;
         }
+        else $cupon=null;
    
         if($tipo=='FACTURA'){
 
@@ -1243,7 +1244,7 @@ public function validaCupon(){
 }
 
 public function UpDosificacion(){
-    $verifica=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta > curdate()");
+    $verifica=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta < curdate()");
     $row=$verifica->row();
     if ($verifica->num_rows() == 1){
         $verifica2=$this->db->query("SELECT * FROM dosificacion where tipo='BOLETERIA' and activo=0 and fechaDesde <= curdate() and fechaHasta >= curdate()");

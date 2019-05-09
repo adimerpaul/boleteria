@@ -727,10 +727,10 @@ function insertVenta(){
 } 
 
 
-$('#pago').keypress(function(event){
+$('#pago').keyup(function(event){
     $p = $('#pago').prop('value');
     $pp= $('#prepago').prop('value');
-    if(event.key === "Enter" && $p>$pp){
+    if($p>$pp){
         $res=$p - $pp;
         $('#resultado').prop('value',($p - $pp));
     }
@@ -765,7 +765,7 @@ function VerificaDosificacion(){
         },
         success:  function (response){
             console.log(response);
-            if (response == false)
+            if (response == false){
             $('#btnAceptar').addClass("disabled");
             $.ajax({
                 url:'VentaCtrl/UpDosificacion',
@@ -778,6 +778,8 @@ function VerificaDosificacion(){
                     alert('No se Cuenta con Dosificacion');
                 }
             })
+
+        }
 
         }
     })
