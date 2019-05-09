@@ -1,6 +1,12 @@
 var fechainicio;
 var fechafin;
+$(document).ready(calsemana());  
+
 $('#fecha').change(function(){
+    calsemana();
+})
+
+function calsemana() {
     var dias=0;
     var fec=$('#fecha').val();
     var m = moment($('#fecha').val()).day();
@@ -44,5 +50,4 @@ $('#fecha').change(function(){
       console.log(fechainicio+' '+fechafin);
 
       $('#fecha1').val(fechainicio);
-      $('#fecha2').val(fechafin);
-})
+      $('#fecha2').val(fechafin);}

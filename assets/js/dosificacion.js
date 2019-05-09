@@ -23,7 +23,13 @@
                               $('#llave').prop('value',datos.llaveDosif);
                               $('#fechad').prop('value',datos.fechaDesde);
                               $('#fechah').prop('value',datos.fechaHasta);
-                              $('#leyenda').prop('value',datos.leyenda); 
+                              $('#leyenda').prop('value',datos.leyenda);
+                              if(datos.activo!=0)
+                                $('#activo').bootstrapToggle('on');
+                              else 
+                                $('#activo').bootstrapToggle('off');
+                            
+                                 
                           }
                   });
           

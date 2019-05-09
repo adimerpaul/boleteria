@@ -13,6 +13,7 @@ class dosificaciones_model extends CI_Model {
     public function store()
     {
         
+
         $dosificacion= [
             'nroTramite'=> $this->input->post('tramite'),
             'nroAutorizacion'=> $this->input->post('autorizacion'),
@@ -41,6 +42,10 @@ class dosificaciones_model extends CI_Model {
     public function update()
     {
         $id=$this->input->post('idosif');
+        if(($this->input->post('activo'))=="on")
+        $estado=1;
+        else
+        $estado=0;
         $dosificacion= [
             'nroTramite'=> $this->input->post('tramite'),
             'nroAutorizacion'=> $this->input->post('autorizacion'),
@@ -48,7 +53,8 @@ class dosificaciones_model extends CI_Model {
             'llaveDosif'=> $this->input->post('llave'),
             'fechaDesde'=> $this->input->post('fechad'),
             'fechaHasta'=> $this->input->post('fechah'),
-            'leyenda'=> $this->input->post('leyenda')
+            'leyenda'=> $this->input->post('leyenda'),
+            'activo'=> $estado
 
         ];
         $this->db->where('idDosif',$id);

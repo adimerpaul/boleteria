@@ -28,7 +28,6 @@ class DosificacionCtrl extends CI_Controller {
     public function store()
     {
         $this->dosificaciones_model->store();
-        $this->dosificaciones_model->desactivar();
         $this->index();
     }
 
@@ -49,7 +48,6 @@ class DosificacionCtrl extends CI_Controller {
     public function update()
     {
         $this->dosificaciones_model->update();
-        $this->dosificaciones_model->desactivar();
         $this->dosificacionver();  
     }
 

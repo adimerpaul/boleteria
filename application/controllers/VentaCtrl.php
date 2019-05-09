@@ -209,8 +209,8 @@ class VentaCtrl extends CI_Controller {
         $idCl=$_POST['idCliente'];
         $idd=$_POST['iddosif'];
         $idcupon=$_POST['cupon'];
-        $cupon=null;
-        if($idcupon!='')
+        $cupon='';
+        if(is_numeric($idCupon))
         { $total=0;
           $cupon=$idcupon;
         }
@@ -319,7 +319,7 @@ class VentaCtrl extends CI_Controller {
                   '$row->costo', 
                   '$row->titulo', 
                   '$idVenta',
-                  $cupon);");
+                  '$cupon');");
         };
         //header("Location inde.php");
 
@@ -1243,13 +1243,13 @@ public function validaCupon(){
 }
 
 public function UpDosificacion(){
-    $verifica=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta < curdate()");
+    $verifica=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta > curdate()");
     $row=$verifica->row();
-    if ($verifica->num_rows() == 0){
-        $verifica2=$this->db->query("SELECT * FROM dosificacion where tipo='BOLETERIA' and activo=0 and fechaDesde >= curdate()");
-        if($verifica2->num_rows()>0){
+    if ($verifica->num_rows() == 1){
+        $verifica2=$this->db->query("SELECT * FROM dosificacion where tipo='BOLETERIA' and activo=0 and fechaDesde <= curdate() and fechaHasta >= curdate()");
+        if($verifica2->num_rows()==1){
         $this->db->query("UPDATE dosificacion set activo=0 where fechaHasta < curdate() and tipo='BOLETERIA'");
-        $this->db->query("UPDATE dosificacion set activo=1 where fechaDesde <= curdate() and tipo='BOLETERIA'"); 
+        $this->db->query("UPDATE dosificacion set activo=1 where fechaDesde <= curdate() and fechaHasta >= curdate() and tipo='BOLETERIA'"); 
         echo true; }
         else 
         echo false;
@@ -1263,7 +1263,7 @@ public function verifDosifcacion(){
     $fecha=$_POST['fdosif'];
     $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta > '$fecha'");
     $row=$query->row();
-    if ($query->num_rows() > 0) echo true;
+    if ($query->num_rows() == 1) echo true;
     else echo false;
 }
 
