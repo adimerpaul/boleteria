@@ -130,18 +130,40 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#hora').keyup(function (e) {
         var hora=$('#hora').val();
         //console.log(hora);
+        if ($('#idsala').val()=='' || $('#idpelicula').val()==''){
+            alert('selecionar sala o pelicula');
+        }else {
+            var minutos = $('#idpelicula').children(":selected").attr("minutos");
+            var horafin=moment($('#hora').val(),"hh:mm:ss").add(minutos,'minutes').format('hh:mm:ss');
+            //console.log (horafin);
 
-        $.ajax({
-           url:'',
-           type:'POST',
-           data:'idsala=',
-           success:function (e) {
-               console.log(e);
-           }
-        });
+
+            var datos={
+                'idsala':$('#idsala').val(),
+                'fecha':$('#fecha1').val(),
+                'horainicio':$('#hora').val(),
+                'horafin':horafin
+            }
+            $.ajax({
+                url:'ProgramacionCtrl/verificar',
+                type:'POST',
+                data:datos,
+                success:function (e) {
+                    $('#estado').html(e);
+                    //console.log(e);
+                    if (e=='Sala libre'){
+                        $('#aceptar').show();
+                    } else {
+                        $('#aceptar').hide();
+                    }
+                }
+            });
+
+        }
     });
     $('#exampleModal').on('show.bs.modal', function (e) {
         //$('#aceptar').removeAttr('disabled');
-        $('#aceptar').attr('disabled');
+        //$('#aceptar').attr('disabled');
+        $('#aceptar').hide();
     })
 });

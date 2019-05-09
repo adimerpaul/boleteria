@@ -78,9 +78,10 @@
                                 ?>
                             </select>
                         </div>
-                        <label  class="col-sm-1 col-form-label">Pelicula</label>
+                        <label for="idpelicula"  class="col-sm-1 col-form-label">Pelicula</label>
+
                         <div class="col-sm-5">
-                            <select name="idpelicula" required class="form-control">
+                            <select name="idpelicula" id="idpelicula" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
                                 $query=$this->db->query("SELECT * FROM pelicula");
@@ -90,7 +91,7 @@
                                     }else{
                                         $formato="2D";
                                     }
-                                    echo "<option value='".$row->idPelicula."'>".$row->nombre." $formato</option>";
+                                    echo "<option value='".$row->idPelicula."' minutos='$row->duracion'>".$row->nombre." $formato</option>";
                                 }
                                 ?>
                             </select>
@@ -111,7 +112,8 @@
                         </div>
                         <label for="hora" class="col-sm-1 col-form-label">Hora</label>
                         <div class="col-sm-5">
-                            <input type="time" name="hora" id="hora" style="width: 100%" required>
+                            <input type="time" name="hora" value="<?=date('h:00:00')?>" id="hora" style="width: 100%" required>
+                            <span id="estado" style="color: #bc0d0e"></span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -141,7 +143,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success" id="aceptar" disabled> <i class="fas fa-check"></i> Registrar</button>
+                        <button type="submit" class="btn btn-success" id="aceptar"> <i class="fas fa-check"></i> Registrar</button>
                     </div>
                 </form>
             </div>

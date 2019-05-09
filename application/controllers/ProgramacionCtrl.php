@@ -113,8 +113,23 @@ s.idSala='$idsala'");
     public function verificar()
     {
         $idsala=$_POST['idsala'];
-        $query=$this->db->query("SELECT * FROM funcion WHERE idSala='$idsala' ORDER BY idfuncion DESC ");
-        return json_encode($query->result_array());
+        //$query=$this->db->query("SELECT * FROM funcion WHERE idSala='$idsala' ORDER BY idfuncion DESC ");
+        //return json_encode($query->result_array());
+        $fecha=$_POST['fecha'];
+        $horainicio=$_POST['horainicio'];
+        $horafin=$_POST['horafin'];
+        $query=$this->db->query("
+        SELECT * FROM funcion 
+WHERE fecha=date('$fecha') 
+AND idSala='$idsala'
+AND ((time('$horainicio')>=horaInicio AND time('$horainicio')<=ADDTIME(horaFin, '00:05:00'))
+OR (time('$horafin')>=ADDTIME(horaInicio, '-00:05:00') AND time('$horafin')<=horaFin))
+");
+        if ($query->num_rows()>=1){
+            echo "Sala ocupado";
+        }else{
+            echo "Sala libre";
+        }
     }
 
     public function delete($idfuncion)
