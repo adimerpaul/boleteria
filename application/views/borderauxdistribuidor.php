@@ -158,12 +158,4 @@
     </div>
 </div>
 
-<script>
-$("table").tableExport({
-	formats: ["xlsx","txt", "csv"], //Tipo de archivos a exportar ("xlsx","txt", "csv", "xls")
-	position: 'button',  // Posicion que se muestran los botones puedes ser: (top, bottom)
-	bootstrap: false,//Usar lo estilos de css de bootstrap para los botones (true, false)
-	fileName: "borderauxdistribuidor",    //Nombre del archivo 
-});
-</script>
 

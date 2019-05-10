@@ -24,7 +24,7 @@ $(function() {
 
     cb(start, end);
 
-});
+}); 
 
 $('#fecha span').bind("DOMSubtreeModified",function(){
     var ini=$('#fecha').data('daterangepicker').startDate;
@@ -40,7 +40,7 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
         url:   'listaperiodo',
         type:  'post',
         beforeSend: function () {
-            //$("#resultado").html("Procesando, espere por favor...");
+            //$("#resultadop.html("Procesando, espere por favor...");
             $('#listapeliculas').html("procesando...");
         },
         success:  function (response){
@@ -80,7 +80,7 @@ function llenartabla(){
     var porcweb=0;
     var cadena="";
     var cadena2=""; 
-    
+
     $('#listapeliculas input[type=checkbox]').each(function (){
         if(this.checked)
         cadena2 += $(this).val()+',';

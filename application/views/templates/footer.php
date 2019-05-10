@@ -27,11 +27,7 @@
 <script src="<?=base_url('assets/js');?>/buttons.html5.min.js"></script>
 <script src="<?=base_url('assets/js');?>/buttons.print.min.js"></script>
 
-<script src="<?=base_url('assets/js');?>/jquery-1.12.4.min.js"></script>
-<script src="<?=base_url('assets/js');?>/FileSaver.min.js"></script>
-<script src="<?=base_url('assets/js');?>/Blob.min.js"></script>
-<script src="<?=base_url('assets/js');?>/xls.core.min.js"></script>
-<script src="<?=base_url('assets/js');?>/tableexport.js"></script>
+
   <script>
   $(document).ready(function() {
     $('#example').DataTable(
