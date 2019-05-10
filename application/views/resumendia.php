@@ -15,11 +15,11 @@
         </div>
         <div class="card-body">
             <!-- Button trigger modal -->
-          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'91')):  ?>
-            <button type="button" class="btn btn-success btn-sm mb-3" style="padding: 2px;" data-toggle="modal" data-target="#exampleModal">
-                 <i class="fa fa-ticket-alt"></i> Registrar nuevo cupon
-            </button>
-          <?php endif?>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'91')):  ?>
+                <button type="button" class="btn btn-success btn-sm mb-3" style="padding: 2px;" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-ticket-alt"></i> Registrar nuevo cupon
+                </button>
+            <?php endif?>
             <table id="cupones" class="display" style="width:100%">
                 <thead>
                 <tr>
@@ -33,7 +33,7 @@
                 </thead>
                 <tbody>
                 <?php
-                    $query=$this->db->query("SELECT * FROM cupon");
+                $query=$this->db->query("SELECT * FROM cupon");
                 foreach ($query->result() as $row){
                     echo "<tr> 
                                 <td>$row->idCupon</td> 
@@ -99,26 +99,26 @@
 </div>
 <div class="modal fade" id="detalle">
     <div class="modal-dialog modal-lg">
-    <div class="modal-content ">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Detalle</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-12">
-                    <div id="contenedor">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="contenedor">
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-danger"> <i class="fa fa-times"></i> Cerrar</button>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-danger"> <i class="fa fa-times"></i> Cerrar</button>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 <script !src="">
@@ -127,29 +127,29 @@
             "order": [[ 0, "desc" ]]
         } );
 
-    var eli=document.getElementsByClassName('eli');
-    for (var i=0;i<eli.length;i++){
-        eli[i].addEventListener('click',function (e) {
-            if (!confirm("Seguro de eliminar?")){
-                e.preventDefault();
-            }
-        });
-
-    }
-    $('#detalle').on('show.bs.modal',function (e) {
-            var button = $(e.relatedTarget);
-            var idcupon = button.data('idcupon');
-            $.ajax({
-                type:'POST',
-                data:'idcupon='+idcupon,
-                url:'CuponCtrl/verificar',
-                success:function (e) {
-                    console.log(e);
-                    $('#contenedor').html(e);
+        var eli=document.getElementsByClassName('eli');
+        for (var i=0;i<eli.length;i++){
+            eli[i].addEventListener('click',function (e) {
+                if (!confirm("Seguro de eliminar?")){
+                    e.preventDefault();
                 }
             });
+
         }
-    )
+        $('#detalle').on('show.bs.modal',function (e) {
+                var button = $(e.relatedTarget);
+                var idcupon = button.data('idcupon');
+                $.ajax({
+                    type:'POST',
+                    data:'idcupon='+idcupon,
+                    url:'CuponCtrl/verificar',
+                    success:function (e) {
+                        console.log(e);
+                        $('#contenedor').html(e);
+                    }
+                });
+            }
+        )
 
     }
 </script>
