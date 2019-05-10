@@ -209,12 +209,12 @@ class VentaCtrl extends CI_Controller {
         $idCl=$_POST['idCliente'];
         $idd=$_POST['iddosif'];
         $idcupon=$_POST['cupon'];
-        $cupon=null;
+        $cupon='null';
         if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
         { $total=0;
           $cupon=$idcupon;
         }
-        else $cupon=null;
+        else $cupon='null';
    
         if($tipo=='FACTURA'){
 
@@ -240,7 +240,7 @@ class VentaCtrl extends CI_Controller {
                     '$idu',
                     '$idCl',
                     '$idd',
-                    '$cupon')";
+                    $cupon)";
         $this->db->query($query);
        // $query.= ",'".$codControl."','".$codqr."',(SELECT nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1)";
 
@@ -267,7 +267,7 @@ class VentaCtrl extends CI_Controller {
                     '$idu',
                     '$idCl',
                     '$idd',
-                    '$cupon')";
+                    $cupon)";
         $this->db->query($query);
         }
         $idVenta=$this->db->insert_id();
@@ -320,7 +320,7 @@ class VentaCtrl extends CI_Controller {
                   '$row->costo', 
                   '$row->titulo', 
                   '$idVenta',
-                  '$cupon');");
+                  $cupon);");
         };
         //header("Location inde.php");
 

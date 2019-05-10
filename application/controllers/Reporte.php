@@ -59,7 +59,8 @@ class Reporte extends CI_Controller {
             else
                 {
                 $data['fecha1']=date('Y-m-d');
-                $data['fecha2']=date('Y-m-d');
+               
+                $data['fecha2']=date("Y-m-d",strtotime(date("Y-m-d")."+ 7 days"));
                 $data['pelicula']=null;
             }
             $dato=$this->usuarios_model->validaIngreso($user);

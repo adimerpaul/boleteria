@@ -1,11 +1,12 @@
+$(document).ready(calsemana());  
+$(document).ready($('select').each(function(){
+    $(this).find('option:first').prop('selected', 'selected');
+}));  
 var fechainicio;
 var fechafin;
-$(document).ready(calsemana());  
-
 $('#fecha').change(function(){
     calsemana();
 })
-
 function calsemana() {
     var dias=0;
     var fec=$('#fecha').val();
