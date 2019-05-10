@@ -340,7 +340,7 @@
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Ultracine</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Recaudacion</a>
+            <a class="nav-link" href="<?=base_url()?>InformeSemanal"><i class="fas fa-file"></i> Informe semanal</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Distribuidor</a>
