@@ -64,7 +64,6 @@ $('#elimVentaTemp').click(function(){
             $("#selecfun li:eq("+index+")").addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
-            mostrardatos($("#selecfun .ui-selected").prop('value'));
             if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
             bloqueobtn();
             else
@@ -77,9 +76,7 @@ $('#elimVentaTemp').click(function(){
             var id=0;
         $( ".ui-selected", this ).each(function() {
             $('#selecost .ui-selected').removeClass('ui-selected');
-            var index=$('#selecfun .ui-selected').index();
-            console.log(index);
-            $("#selecost li:eq("+index+")").addClass('ui-selected');
+            $('#selecost li:first').addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
             mostrardatos($("#selecfun .ui-selected").prop('value'));
@@ -103,7 +100,6 @@ $("#selectable").selectable(
           id=$(this).attr('value')+'';
         
               var cadenahorario="";
-              var cadenacosto="";
               var parametros = {
                                 "idpel" : id,
                                 "fecha1" : $('#fecfuncion').prop('value')
@@ -117,7 +113,6 @@ $("#selectable").selectable(
                               },
                               success:  function (response) {
                                 $("#selecfun").html("");
-                                $("#selecost").html("");
                                  console.log(response);
                                 var datos=JSON.parse(response);
                                     datos.forEach(row => {
@@ -125,17 +120,57 @@ $("#selectable").selectable(
                                         cadenahorario=cadenahorario+'<input type=hidden value='+ row.idSala+'>';
                                         cadenahorario=cadenahorario+'<label hidden>'+ row.horaIn+'</label>';
                                         cadenahorario=cadenahorario+'</li>';
-                                        cadenacosto=cadenacosto+'<li class="ui-widget-content" value="'+row.precio+'">'+row.serie+' => ' +row.precio+' Bs';
-                                        cadenacosto=cadenacosto+'<input type=hidden value='+ row.serie+'>';
-                                        cadenacosto=cadenacosto+'</il>';
+ 
                                      }),
 
 
                                          $("#selecfun").html(cadenahorario);          
-                                         $("#selecost").html(cadenacosto);
                                          $('#selecfun li:first').addClass('ui-selected');
-                                         $('#selecost li:first').addClass('ui-selected');
                                          mostrardatos($("#selecfun .ui-selected").prop('value'));
+                                         $("#lblPrecio").html("0Bs");
+                                         $("#lblCantidadEntradas").html("0");
+                                         if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
+                                         bloqueobtn();
+                                         else
+                                         desbloqueobtn();
+                              },
+                          })
+
+               
+        });
+    }
+  });
+  
+
+    $( "#selecfun").selectable(    {
+        stop: function(){
+            console.log($("#selecfun .ui-selected").prop('value'));
+            $( ".ui-selected", this ).each(function() {
+              var cadenacosto="";
+              var param = {
+                                "idfun":  $("#selecfun .ui-selected").prop('value')
+                                  };
+                      $.ajax({                        
+                              data:  param,
+                              url:   'VentaCtrl/horario2',  
+                              type:  'post',
+                              beforeSend: function () {
+                                      $("#selecost").html("Procesando, espere por favor... ");
+                              },
+                              success:  function (response) {
+                                $("#selecost").html("");
+                                 console.log(response);
+                                 console.log(param);
+                                var datos=JSON.parse(response);
+                                    datos.forEach(row => {
+                                        cadenacosto=cadenacosto+'<li class="ui-widget-content" value="'+row.precio+'">'+row.serie+' => ' +row.precio+' Bs';
+                                        cadenacosto=cadenacosto+'<input type=hidden value='+ row.serie+'>';
+                                        cadenacosto=cadenacosto+'<label hidden name="tarifa">'+row.idTarifa+'</label';
+                                        cadenacosto=cadenacosto+'</li>';
+                                     }),
+               
+                                         $("#selecost").html(cadenacosto);
+                                         $('#selecost li:first').addClass('ui-selected');
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
                                          if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
@@ -144,15 +179,18 @@ $("#selectable").selectable(
                                          desbloqueobtn();      
                               },
                           })
-               
-        });
-    }
-  });
+            
+            
+        })}
+ 
+    });
+
   $( "#selecfun" ).selectable({
       start : function(){}
   });
 }
 );
+
 $( "#selecfun" ).selectable();
 
 $('#lblCantidadEntradas').bind("DOMSubtreeModified",function(){
@@ -339,6 +377,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                          $('#bolacepta').click(function(){
                              var total="";
                              var tarSerie=$('#selecost .ui-selected input').prop('value');
+                             var idtar=$('#selecost .ui-selected label').html();
                              var costo=$('#selecost .ui-selected').prop('value');
                              var codSala=$('#selecfun .ui-selected input').prop('value');
                              var fecfun=$('#fecfuncion').prop('value');
@@ -363,6 +402,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                                                    "columna":col,
                                                    "fila":fil,
                                                    "idfuncion":idfunreg,
+                                                   "idtarifa":idtar,
                                                    "titulo":pelicula
                                                    
                                             };

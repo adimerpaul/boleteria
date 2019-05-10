@@ -41,12 +41,23 @@ class VentaCtrl extends CI_Controller {
         $idpelicula=$_POST['idpel'];
         $fecha=$_POST['fecha1'];
 
-        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, serie,precio, capacidad FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala inner join tarifa t on t.idTarifa = f.idTarifa where fecha ='$fecha' and  p.idPelicula = ".$idpelicula;
+        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, capacidad FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala where fecha ='$fecha' and  p.idPelicula = ".$idpelicula;
         $query=$this->db->query($consulta);
         $row=$query->row();
         $myObj=($query->result_array());
         echo json_encode($myObj);
     }
+
+    public function horario2(){
+        $idfuncion=$_POST['idfun'];
+
+        $consulta="SELECT t.idTarifa,serie,precio FROM funcion f  inner join funciontarifa ft on f.idFuncion = ft.idFuncion inner join tarifa t on t.idTarifa = ft.idTarifa where f.idFuncion =".$idfuncion;
+        $query=$this->db->query($consulta);
+        $row=$query->row();
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
+
     public function relleno(){
 	    $query=$this->db->query("SELECT * FROM temporal WHERE idUser='".$_SESSION['idUs']."'");
         $t="";
@@ -125,6 +136,7 @@ class VentaCtrl extends CI_Controller {
     public function insertTemporal(){
         $idAsiento=$_POST['idasiento'];
         $idfuncion=$_POST['idfuncion'];
+        $idtarifa=$_POST['idtarifa'];
         $numeroFuncion=$_POST['numerofuncion'];
         $numeroSala=$_POST['numerosala'];
         $serieTarifa=$_POST['serietarifa'];
@@ -136,8 +148,8 @@ class VentaCtrl extends CI_Controller {
         $fila=$_POST["fila"];
         $titulo=$_POST["titulo"];
         $horaFuncion=$_POST["horafun"];
-        $insertar=" INSERT INTO temporal (idAsiento, idFuncion, numeroFuncion, numeroSala, serieTarifa, codSala, fechaFuncion, idUser, fila, columna, costo, titulo, horaFuncion) VALUES ";
-        $insertar=$insertar." (".$idAsiento.",".$idfuncion.",".$numeroFuncion.",".$numeroSala.",'".$serieTarifa."',".$codSala.",'".$fechaFuncion."',".$idUser.",".$fila.",".$columna.",".$precio.",'".$titulo."','".$horaFuncion."')";
+        $insertar=" INSERT INTO temporal (idAsiento, idFuncion, numeroFuncion, numeroSala, serieTarifa, codSala, fechaFuncion, idUser, fila, columna, costo, titulo, horaFuncion, idTarifa) VALUES ";
+        $insertar=$insertar." (".$idAsiento.",".$idfuncion.",".$numeroFuncion.",".$numeroSala.",'".$serieTarifa."',".$codSala.",'".$fechaFuncion."',".$idUser.",".$fila.",".$columna.",".$precio.",'".$titulo."','".$horaFuncion."','".$idtarifa."')";
         $this->db->query($insertar);
     }
 
@@ -303,7 +315,9 @@ class VentaCtrl extends CI_Controller {
               `costo`, 
               `titulo`, 
               `idVenta`,
-              `idCupon`) VALUES (
+              `idCupon`,
+              `tipoCompra`,
+              `idTarifa`) VALUES (
                   '$numboc', 
                   '$numboleto',
                   '$row->idFuncion', 
@@ -320,7 +334,9 @@ class VentaCtrl extends CI_Controller {
                   '$row->costo', 
                   '$row->titulo', 
                   '$idVenta',
-                  $cupon);");
+                  $cupon,
+                  '$tipo',
+                  '$row->idTarifa');");
         };
         //header("Location inde.php");
 
@@ -609,8 +625,8 @@ NIT/CI: $ci ";
 
     $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad 
 FROM boleto b 
-INNER JOIN funcion f ON f.idFuncion=b.idFuncion 
-INNER JOIN tarifa t ON t.idTarifa=f.idTarifa 
+INNER JOIN funcion f ON f.idFuncion=b.idFuncion
+INNER JOIN tarifa t ON t.idTarifa=b.idTarifa 
 INNER JOIN pelicula p ON p.idPelicula=f.idPelicula 
 WHERE idVenta='$idventa'
 GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
@@ -679,7 +695,7 @@ INNER JOIn boleto b ON b.idVenta=v.idVenta
 INNER JOIn funcion f ON f.idFuncion=b.idFuncion
 INNER JOIn pelicula p ON p.idPelicula=f.idPelicula
 INNER JOIn sala s ON s.idSala=f.idSala
-INNER JOIn tarifa t ON t.idTarifa=f.idTarifa
+INNER JOIn tarifa t ON t.idTarifa=b.idTarifa
 INNER JOIn asiento a ON a.idAsiento=b.idAsiento
 WHERE v.idVenta='$idventa'");
     foreach ($query->result() as $row) {
@@ -916,7 +932,7 @@ Hora: $hora
         $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad,(select v2.idCupon FROM venta v2 WHERE v2.idVenta='$idventa') as idCupon
 FROM boleto b 
 INNER JOIN funcion f ON f.idFuncion=b.idFuncion 
-INNER JOIN tarifa t ON t.idTarifa=f.idTarifa 
+INNER JOIN tarifa t ON t.idTarifa=b.idTarifa 
 INNER JOIN pelicula p ON p.idPelicula=f.idPelicula 
 WHERE idVenta='$idventa'
 GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
@@ -993,7 +1009,7 @@ INNER JOIn boleto b ON b.idVenta=v.idVenta
 INNER JOIn funcion f ON f.idFuncion=b.idFuncion
 INNER JOIn pelicula p ON p.idPelicula=f.idPelicula
 INNER JOIn sala s ON s.idSala=f.idSala
-INNER JOIn tarifa t ON t.idTarifa=f.idTarifa
+INNER JOIn tarifa t ON t.idTarifa=b.idTarifa
 INNER JOIn asiento a ON a.idAsiento=b.idAsiento
 WHERE v.idVenta='$idventa'");
         foreach ($query->result() as $row) {
