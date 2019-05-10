@@ -356,22 +356,22 @@
     <div id="item-10" class="collapse">
       <ul class="nav flex-column ml-3">
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'82')):  ?>
-        <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Nuevo Movimiento</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Nuevo Movimiento</a>-->
+<!--        </li>-->
 
           <?php endif ?>
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'83')):  ?>
-        <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Caja</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Caja</a>-->
+<!--        </li>-->
 
           <?php endif ?>
+
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'82')):  ?>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen del Dia</a>
+            <a class="nav-link" href="<?=base_url()?>ResumenDia"><i class="fas fa-plus"></i> Resumen del Dia</a>
         </li>
-
           <?php endif ?>
       </ul>
     </div>
@@ -381,7 +381,7 @@
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-011" data-parent="#accordion1"><i class="fas fa-users"></i> Usuarios</a>
     <div id="item-011" class="collapse">
-      <ul class="nav flex-column ml-3">
+      <ul class="nav flex-column ml-3">g
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'77')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>UsuarioCtrl/usuarioreg"><i class="fas fa-plus"></i> Registrar Nuevo</a>
