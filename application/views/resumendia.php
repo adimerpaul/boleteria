@@ -1,57 +1,44 @@
 <div class="col-sm-11 col-md-10">
     <h3 class="page-title">
-        Registrar Nuevo Cupon <small> Agrega un nuevo Cupon</small>
+        Resumen de ventas del dia <small> Resumen de ventas dia</small>
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb ">
             <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> Home</a></li>
-            <li class="breadcrumb-item"><a href="#"> <i class="fas fa-file"></i> Cupones </a></li>
-            <li class="breadcrumb-item active" aria-current="page"> <i class="fa fa-ticket-alt" ></i> Registrar nuevo cupon</li>
+            <li class="breadcrumb-item"><a href="#"> <i class="fas fa-sign"></i> Resumen </a></li>
+            <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-chart-area"></i> Resumen del dia</li>
         </ol>
     </nav>
     <div class="card ">
         <div class="card-header text-white bg-info" >
-            <i class="fas fa-money-check"></i> Datos Ventas Por Periodo
+            <i class="fas fa-money-check"></i> Ventas del dia
         </div>
         <div class="card-body">
-            <!-- Button trigger modal -->
-            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'91')):  ?>
-                <button type="button" class="btn btn-success btn-sm mb-3" style="padding: 2px;" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-ticket-alt"></i> Registrar nuevo cupon
-                </button>
-            <?php endif?>
-            <table id="cupones" class="display" style="width:100%">
-                <thead>
+            <table  class="table-bordered" style="width:100%">
+                <thead class="table-success">
                 <tr>
-                    <th>ID</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Final</th>
-                    <th>Motivo</th>
-                    <th>Estado</th>
-                    <th></th>
+                    <th>Numero</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Total</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                $query=$this->db->query("SELECT * FROM cupon");
+                $query=$this->db->query("SELECT * FROM venta v INNER JOIN cliente c ON v.idcliente=c.idcliente
+                WHERE date(fechaVenta)=date('".date('Y-m-d')."')");
                 foreach ($query->result() as $row){
                     echo "<tr> 
-                                <td>$row->idCupon</td> 
-                                <td>".substr($row->fechaInicio,0,10)."</td> 
-                                <td>". substr($row->fechaFin,0,10)."</td> 
-                                <td>$row->motivo</td> 
-                                <td>$row->estado</td> 
-                                <td> 
-                                    <a class='btn btn-danger btn-sm eli' style='padding:2px ;' href='".base_url()."CuponCtrl/delete/$row->idCupon'> <i class='fa fa-stop'></i> Eliminar</a> 
-                                    <button class='btn btn-warning btn-sm text-white' data-idcupon='$row->idCupon' style='padding:2px ;' data-toggle='modal' data-target='#detalle'> <i class='fa fa-edit'></i> Detalle</button>
-                                    <a class='btn btn-info btn-sm ' style='padding:2px ;' href='".base_url()."CuponCtrl/imprimir/$row->idCupon'> <i class='fa fa-print'></i> Imprimir</a> 
-                                </td> 
+                                <td>$row->idVenta</td> 
+                                <td>$row->fechaVenta</td>  
+                                <td>$row->apellidoCl</td> 
+                                <td>$row->total</td>
                             </tr>";
                 }
                 ?>
-
                 </tbody>
             </table>
+            <a href="<?=base_url()?>ResumenDia/imprimir" class="btn btn-success btn-block"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
         </div>
 
     </div>
