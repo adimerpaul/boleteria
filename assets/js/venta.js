@@ -58,10 +58,6 @@ $('#elimVentaTemp').click(function(){
         stop: function(){
             var id=0;
         $( ".ui-selected", this ).each(function() {
-            $('#selecfun .ui-selected').removeClass('ui-selected');
-            var index=$('#selecost .ui-selected').index();
-            console.log(index);
-            $("#selecfun li:eq("+index+")").addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
             if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
@@ -75,7 +71,6 @@ $('#elimVentaTemp').click(function(){
         stop: function(){
             var id=0;
         $( ".ui-selected", this ).each(function() {
-            $('#selecost .ui-selected').removeClass('ui-selected');
             $('#selecost li:first').addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
