@@ -28,6 +28,8 @@ class funcion_model extends CI_Model{
             $numerada='off';
         }
         $idsala=$this->input->post('idsala');
+
+            $idTarifa=$this->input->post('idTarifa');
         for ($i=0;$i<$dias;$i++){
             $query=$this->db->query("SELECT count(*) as total FROM `funcion` WHERE `fecha`='$fecha' AND idSala='$idsala'");
             $row=$query->row();
@@ -35,7 +37,6 @@ class funcion_model extends CI_Model{
             $funcion= [
                 'fecha'=> $fecha,
                 'horaInicio'=> $this->input->post('hora'),
-                'idTarifa'=> $this->input->post('idTarifa'),
                 'horaFin'=> $horaFin,
                 'idUsuario'=> $_SESSION['idUs'],
                 'idSala'=> $idsala,
@@ -46,6 +47,9 @@ class funcion_model extends CI_Model{
             ];
             //echo $fecha."<br>";
             $this->db->insert("funcion",$funcion);
+            $idFuncion=$this->db->insert_id();
+            $this->db->query("INSERT INTO  funciontarifa (idFuncion, idTarifa) VALUES ('$idFuncion', '$idTarifa');");
+            
             $fecha = strtotime ( '+1 day' , strtotime ($fecha) );
             $fecha = date ( 'Y-m-d' , $fecha);
 
