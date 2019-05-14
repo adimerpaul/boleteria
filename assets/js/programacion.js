@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#subtitulada2').bootstrapToggle(subtitulada2);
             $('#numerada2').bootstrapToggle(numerada2);
             //console.log(idtarifa2);
-            $('#idtarifa2').val(idtarifa2);
+            //$('#idtarifa2').val(idtarifa2);
             //console.log(id2);
             $('#idfuncion2').val(id2);
             $('#eliminar2').prop('href',url+"ProgramacionCtrl/delete/"+id2);

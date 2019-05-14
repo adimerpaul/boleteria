@@ -58,7 +58,6 @@ END)as 'color'
 ,horaInicio
 ,subtitulada
 ,numerada
-,idTarifa 
 FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
 AND fecha>=date_add(NOW(), INTERVAL -1 DAY)");
         $arr = array();
@@ -137,6 +136,15 @@ OR (time('$horafin')>=ADDTIME(horaInicio, '-00:05:00') AND time('$horafin')<=hor
 
         $this->funcion_model->delete($idfuncion);
         header("Location: ".base_url()."ProgramacionCtrl");
+    }
+    public function cantidadtarifa(){
+        $idfuncion=$_POST['idfunction'];
+        $query=$this->db->query("SELECT * FROM funciontarifa f INNER JOIN tarifa t ON f.idTarifa=t.idTarifa WHERE idFuncion=$idfuncion");
+        $cantida=$query->num_rows();
+        foreach ($query->result() as $row){
+                echo "<h3>$row->serie $row->precio Bs.</h3>";
+        }
+
     }
 
 
