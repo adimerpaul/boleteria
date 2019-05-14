@@ -21,7 +21,7 @@ class dosificaciones_model extends CI_Model {
             'fechaHasta'=> $this->input->post('fechah'),
             'activo'=> 0,
             'leyenda'=> $this->input->post('leyenda'),
-            'tipo'=>'BOLETERIA'
+            'tipo'=>$this->input->post('tipo')
 
         ];
         return $this->db->insert("dosificacion",$dosificacion);
@@ -51,6 +51,7 @@ class dosificaciones_model extends CI_Model {
             'fechaDesde'=> $this->input->post('fechad'),
             'fechaHasta'=> $this->input->post('fechah'),
             'leyenda'=> $this->input->post('leyenda'),
+            'tipo'=>$this->input->post('tipo'),
             'activo'=> $estado
 
         ];

@@ -24,6 +24,7 @@
                               $('#fechad').prop('value',datos.fechaDesde);
                               $('#fechah').prop('value',datos.fechaHasta);
                               $('#leyenda').prop('value',datos.leyenda);
+                              $('#tipo').val(datos.tipo);
                               if(datos.activo!=0)
                                 $('#activo').bootstrapToggle('on');
                               else 

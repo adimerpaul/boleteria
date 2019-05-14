@@ -75,6 +75,13 @@ class DosificacionCtrl extends CI_Controller {
         echo json_encode($myObj);
     }
 
+    public function ultimaDosificacionCandy(){
+        
+        $query=$this->db->query("SELECT * FROM dosificacion WHERE activo=1 and tipo = 'CANDY' and fechaHasta>=(select CURDATE()) ORDER BY idDosif DESC");
+        $myObj=($query->result_array());
+        echo json_encode($myObj);
+    }
+
 
 
 }

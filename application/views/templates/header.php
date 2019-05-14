@@ -140,6 +140,23 @@
             </div>
         </li>
     <?php endif?>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#item-41" data-parent="#accordion1"><i class="fas fa-truck"></i> Proveedores</a>
+            <div id="item-41" class="collapse">
+                <ul class="nav flex-column ml-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><i class="fas fa-plus"></i> Registrar Nuevo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Proveedores Activos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Proveedores Inactivos</a>
+                        </li>
+                </ul>
+            </div>
+        </li>
+
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'3')):  ?>
     <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-3" data-parent="#accordion1"><i class="fas fa-film"></i> Peliculas</a>
@@ -183,6 +200,77 @@
               </li>";
     }
     ?>
+      <li class='nav-item'>
+                <a class='nav-link' data-toggle='collapse' href='#item-95' data-parent='#accordion1'><i class="fas fa-shopping-cart"></i> Puntos de Venta</a>
+                <div id='item-95' class='collapse'>
+                  <ul class='nav flex-column ml-3'>
+                        <li class='nav-item'>
+                            <a class='nav-link' data-toggle="collapse" href="#item-951" data-parent="#accordion1"><i class="fas fa-glass-martini"></i> Consumible</a>
+                            <div id="item-951" class="collapse">
+                                <ul class="nav flex-column ml-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Consumible</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Consumible Activo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Consumible Inactivo</a>
+                                    </li>
+                                </ul>    
+                            </div>
+                        </li>
+
+
+                    <li class='nav-item'>
+                        <a class='nav-link' data-toggle="collapse" href="#item-952" data-parent="#accordion1"><i class="fab fa-gripfire"></i> Insumos</a>
+                        <div id="item-952" class="collapse">
+                                <ul class="nav flex-column ml-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Insumo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Insumo Activo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Insumo Inactivo</a>
+                                    </li>
+                                </ul>    
+                            </div>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href=''><i class="fas fa-sitemap"></i> Rubros</a>
+                        <div id="item-953" class="collapse">
+                                <ul class="nav flex-column ml-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Insumo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Insumo Activo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Insumo Inactivo</a>
+                                    </li>
+                                </ul>    
+                            </div>
+
+                    </li>
+                            <li class='nav-item'>
+                                <a class='nav-link' href=''><i class="fas fa-barcode"></i> Productos</a>
+                            </li>
+                            <li class='nav-item'>
+                                <a class='nav-link' href=''><i class="fas fa-gift"></i> Combos</a>
+                            </li>
+                            <li class='nav-item'>
+                                <a class='nav-link' href=''><i class="fas fa-edit"></i> Preferencias</a>
+                            </li>
+                            <li class='nav-item'>
+                                <a class='nav-link' href=''><i class='fas fa-plus'></i> Imagenes Productos</a>
+                            </li>
+               </ul>
+                </div>
+              </li>
+    
 
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'6')):  ?>
   <li class="nav-item">
@@ -371,9 +459,12 @@
 
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'82')):  ?>
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>ResumenDia"><i class="fas fa-plus"></i> Resumen del Dia</a>
+            <a class="nav-link" href="<?=base_url()?>ResumenDia"><i class="fas fa-plus"></i> Resumen Boleteria</a>
         </li>
           <?php endif ?>
+          <li class="nav-item">
+            <a class="nav-link" href=""><i class="fas fa-plus"></i> Resumen Candy</a>
+        </li>
       </ul>
     </div>
   </li>

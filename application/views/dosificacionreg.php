@@ -45,7 +45,13 @@
       <label for="leyenda">Leyenda:</label>
       <textarea class="form-control" rows="5" cols="" id="leyenda" name="leyenda"></textarea>      
      </div>
-
+     <div class="form-group col-md-6">
+      <label for="tipo">Tipo:</label>
+      <select class="form-control" id="tipo" name="tipo">
+        <option value="BOLETERIA" selected>BOLETERIA</option>
+        <option value="CANDY">CANDY</option>
+      </select>
+     </div>
   </div>
   <input type="submit" class="btn btn-success" value="Registrar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>DosificacionCtrl/dosificacionver">Cancelar</a>

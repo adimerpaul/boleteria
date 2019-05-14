@@ -17,6 +17,7 @@
                     <th>Llave Dosificacion</th>
                     <th>Factura Inicial</th>
                     <th>Estado</th>
+                    <th>TIPO</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -34,6 +35,7 @@
             <td><?php if ($dosif['activo'] == 0) echo 'Inactivo';
             else echo 'Activo';
             ?></td>
+            <td><?php echo $dosif['tipo']; ?></td>            
             <td>
                 <?php if($this->usuarios_model->veri($_SESSION['idUs'],'107')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idosif="<?php echo $dosif['idDosif']?>"> Modificar</a>
@@ -107,10 +109,18 @@
       <label for="leyenda">Leyenda:</label>
       <textarea class="form-control" rows="5" cols="" id="leyenda" name="leyenda"></textarea>      
      </div>
-     <div class="form-group col-md-6">
+     <div class="form-group col-md-3">
       <label for="activo">Estado:</label><br>
       <input  id="activo" name="activo" type="checkbox" class="form-control"  data-toggle="toggle" data-on="ON" data-off="OFF" data-onstyle="success" data-offstyle="danger">
      </div>
+     <div class="form-group col-md-3">
+
+      <label for="tipo">Tipo:</label>
+      <select class="form-control" id="tipo" name="tipo">
+        <option value="BOLETERIA" selected>BOLETERIA</option>
+        <option value="CANDY">CANDY</option>
+      </select>
+      </div>
   </div>
   <input type="submit" class="btn btn-success" value="Registrar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>DosificacionCtrl/dosificacionver">Cancelar</a>
