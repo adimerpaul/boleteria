@@ -9,7 +9,12 @@
 	padding-right: 5px;
 }
 #menucolor{
-	background-color: lightblue;
-	color: black;
+	background-color: #5f5e5e;
+	color: white;
+	font-size: 14px;
 	
 }
+#menucolor a{
+	color: white;
+}
+

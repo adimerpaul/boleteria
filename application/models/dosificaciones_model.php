@@ -5,15 +5,12 @@ class dosificaciones_model extends CI_Model {
 
     public function listaDosificacion()
     {   
-        $this->db->where('tipo','BOLETERIA');
         $dosif = $this->db->get('dosificacion');
         return $dosif->result_array();
     }
 
     public function store()
     {
-        
-
         $dosificacion= [
             'nroTramite'=> $this->input->post('tramite'),
             'nroAutorizacion'=> $this->input->post('autorizacion'),

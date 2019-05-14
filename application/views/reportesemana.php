@@ -106,7 +106,7 @@
                 from funcion f1, boleto b1, tarifa t
                 WHERE b1.idFuncion = f1.idFuncion
                 and f1.idPelicula = p.idPelicula
-                 and f1.idTarifa = t.idTarifa
+                and b1.idTarifa = t.idTarifa
                 and b1.fecha>='$fecha1' and b1.fecha<='$fecha2'
                 and b1.devuelto='NO' and b1.idCupon is null) as ingreso
                 

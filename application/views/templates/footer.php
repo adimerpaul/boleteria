@@ -2,7 +2,7 @@
 </div>
 </body>
 <footer style="background-color: #161616;color:white;text-align: right; padding: 10px; font-size:10px;" >
-	Realizado por: Alejandro Lopez Gutierrez
+	Realizado por:  Chambi Ajata Adimer Paul <br>Lopez Gutierrez Alejandro Fernando
 </footer>
   <script src="<?=base_url('assets/js');?>/jquery.min.js"></script>
   <script src="<?=base_url('assets/js');?>/jquery-ui.js"></script>

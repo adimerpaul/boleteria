@@ -62,7 +62,7 @@
                     <th>Dia</th>
                     <th>Fecha</th>
                     <?php
-                    $query=$this->db->query("SELECT t.idTarifa,serie,precio from tarifa t, funcion f, boleto b where t.idTarifa = f.idTarifa and b.idFuncion=f.idFuncion and date(b.fecha) >='$fecha1' and date(b.fecha)<='$fecha2' and devuelto='NO' and idCupon is null group by serie order by t.idTarifa");
+                    $query=$this->db->query("SELECT t.idTarifa,serie,precio from tarifa t, funcion f, boleto b where t.idTarifa = b.idTarifa and b.idFuncion=f.idFuncion and date(b.fecha) >='$fecha1' and date(b.fecha)<='$fecha2' and devuelto='NO' and idCupon is null group by serie order by t.idTarifa");
                     foreach ($query->result() as $row) {
                         echo "<th>".$row->serie.'/'.$row->precio."</th>";
                     }
@@ -73,7 +73,7 @@
                 <tbody>
                 <?php $series=[];$sprecio=[];$i=0; $sum1=[]; $titulo='';
                                 if(empty($pelicula)) $pelicula=0; 
-                               $query=$this->db->query("SELECT t.idTarifa,serie,precio from tarifa t, funcion f, boleto b where t.idTarifa = f.idTarifa and b.idFuncion=f.idFuncion and date(b.fecha) >='$fecha1' and date(b.fecha)<='$fecha2' and devuelto='NO' and idCupon is null group by serie order by t.idTarifa");
+                               $query=$this->db->query("SELECT t.idTarifa,serie,precio from tarifa t, funcion f, boleto b where t.idTarifa = b.idTarifa and b.idFuncion=f.idFuncion and date(b.fecha) >='$fecha1' and date(b.fecha)<='$fecha2' and devuelto='NO' and idCupon is null group by serie order by t.idTarifa");
                                foreach ($query->result() as $row) {
                                    $series[$i]=$row->idTarifa;
                                    $sprecio[$i]=$row->precio;
@@ -87,7 +87,7 @@
                                for($j=0;$j<$i;$j++){
                                 $consulta.=",(select count(*) 
                                 from tarifa t, funcion f, boleto b 
-                                where t.idTarifa = f.idTarifa
+                                where t.idTarifa = b.idTarifa
                                 and b.idFuncion=f.idFuncion
                                 and f.idPelicula = $pelicula
                                 and date(b.fecha) ='$fecconsulta' 

@@ -11,7 +11,7 @@
     <form action="<?=base_url()?>Reporte/index" method="post">
         <div class="row">
         <div class="col-sm-5">
-            <input type="date" id="fecha1" name="fecha1" required>                 
+            <input type="date" id="fecha1" name="fecha1" required value="<?php echo $fecha1;?>">                 
         </div>
         <div class="col-sm-3">
             <button type="submit" id="consulta" class="btn btn-success btn-block"> <i class="fas fa-check"></i> Consultar</button>
@@ -38,14 +38,13 @@
                 </thead>
                 <tbody>
                 <?php
-                $query=$this->db->query("SELECT nombreDis,nroSala,concat(nombre,' ',(if(formato=1,'3D','2D'))) as titulo, fecha, horaInicio,precio,
+                $query=$this->db->query("SELECT nombreDis,nroSala,concat(nombre,' ',(if(formato=1,'3D','2D'))) as titulo, fecha, horaInicio,
 (SELECT count(*) from boleto b where b.idFuncion= f.idFuncion and devuelto ='NO' and idCupon is null) as espectador,
-(SELECT sum(costo) from boleto b where b.idFuncion= f.idFuncion and devuelto ='NO' and idCupon is null) as recaudado
-from distribuidor d , pelicula p, Sala s, funcion f,tarifa t
+(SELECT sum(precio) from boleto b, tarifa t where b.idFuncion= f.idFuncion and devuelto ='NO' and idCupon is null and b.idTarifa = t.idTarifa ) as recaudado
+from distribuidor d , pelicula p, Sala s, funcion f
 where d.idDistrib=p.idDistrib
 and f.idPelicula = p.idPelicula
 and f.idSala = s.idSala
-and f.idTarifa = t.idTarifa
 and fecha = '$fecha1'");
                 foreach ($query->result() as $row){
                     echo "<tr>
