@@ -239,34 +239,74 @@
                             </div>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href=''><i class="fas fa-sitemap"></i> Rubros</a>
+                        <a class='nav-link' data-toggle="collapse" href="#item-953" data-parent="#accordion1"><i class="fas fa-sitemap"></i> Rubros</a>
                         <div id="item-953" class="collapse">
                                 <ul class="nav flex-column ml-3">
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Insumo</a>
+                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Rubro</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Insumo Activo</a>
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Rubro Activo</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Insumo Inactivo</a>
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Rubro Inactivo</a>
                                     </li>
                                 </ul>    
                             </div>
 
                     </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' href=''><i class="fas fa-barcode"></i> Productos</a>
-                            </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' href=''><i class="fas fa-gift"></i> Combos</a>
-                            </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' href=''><i class="fas fa-edit"></i> Preferencias</a>
-                            </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' href=''><i class='fas fa-plus'></i> Imagenes Productos</a>
-                            </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' data-toggle="collapse" href="#item-954" data-parent="#accordion1"><i class="fas fa-barcode"></i> Productos</a>
+                        <div id="item-954" class="collapse">
+                                <ul class="nav flex-column ml-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Producto</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Producto Activo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Producto Inactivo</a>
+                                    </li>
+                                </ul>    
+                            </div>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' data-toggle="collapse" href="#item-955" data-parent="#accordion1"><i class="fas fa-gift"></i> Combos</a>
+                        <div id="item-955" class="collapse">
+                                <ul class="nav flex-column ml-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Combo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Combo Activo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Combo Inactivo</a>
+                                    </li>
+                                </ul>    
+                            </div>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' data-toggle="collapse" href="#item-956" data-parent="#accordion1"><i class="fas fa-edit"></i> Preferencias</a>
+                        <div id="item-956" class="collapse">
+                                <ul class="nav flex-column ml-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Preferencia</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Preferencia Activo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Preferencia Inactivo</a>
+                                    </li>
+                                </ul>    
+                            </div>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href=''><i class='fas fa-plus'></i> Imagenes Productos</a>
+                        
+                    </li>
                </ul>
                 </div>
               </li>
@@ -339,7 +379,6 @@
     <?php endif?>
   <li class="nav-item">
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'8')):  ?>
-
     <a class="nav-link" data-toggle="collapse" href="#item-8" data-parent="#accordion1"><i class="far fa-credit-card"></i> Ventas</a>
     <div id="item-8" class="collapse">
       <ul class="nav flex-column ml-3">
@@ -371,6 +410,22 @@
       </ul>
     </div>
     <?php endif ?>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-80" data-parent="#accordion1"><i class="fas fa-store"></i> Ventas Candy</a>
+    <div id="item-80" class="collapse">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+                <a class="nav-link" href=""><i class="fas fa-cash-register"></i> Panel Venta</a>
+        </li>
+  
+        <li class="nav-item">
+                <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Listado Ventas</a>
+        </li>
+    
+      </ul>
+    </div>
   </li>
   
   <li class="nav-item">
