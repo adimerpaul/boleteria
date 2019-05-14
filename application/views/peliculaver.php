@@ -40,7 +40,7 @@
                 <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idpelicula="<?php echo $pelicula['idPelicula']?>"> Modificar</a>
                 <?php endif; ?>
                 <?php if($this->usuarios_model->veri($_SESSION['idUs'],'26')):  ?>
-                <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>PeliculaCtrl/delet/<?=$pelicula['idPelicula']?>"> Eliminar</a>
+                <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>PeliculaCtrl/delete/<?=$pelicula['idPelicula']?>"> Eliminar</a>
                 <?php endif; ?>
             </td>
         </tr>

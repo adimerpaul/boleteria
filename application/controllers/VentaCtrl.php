@@ -1241,7 +1241,7 @@ s.idSala='$idsala'");
 public function validaCuponreg(){
           
     $idcupon=$_POST['idcupon'];
-    $query=$this->db->query("SELECT * FROM boleto b, cupon c WHERE b.idCupon=c.idCupon and c.idCupon='$idcupon'");
+    $query=$this->db->query("SELECT * FROM boleto b, subcupon c WHERE b.idCupon=c.idsubcupon and c.idsubcupon='$idcupon'");
     $row=$query->row();
     $myObj=($query->result_array());
 
@@ -1252,7 +1252,7 @@ public function validaCuponreg(){
 public function validaCupon(){
           
     $idcupon=$_POST['idcupon'];
-    $query=$this->db->query("SELECT * FROM  cupon c WHERE  c.idCupon='$idcupon' and date(fechaFin) >= CURDATE()");
+    $query=$this->db->query("SELECT * FROM  cupon c, subCupon s WHERE  c.idCupon=s.idcupon and s.idsubcupon='$idcupon' and date(fechaFin) >= CURDATE()");
     $row=$query->row();
     $myObj=($query->result_array());
     echo json_encode($myObj); 

@@ -18,8 +18,6 @@
                               console.log(response);
                               var datos=JSON.parse(response);
                               $('#idpelicula').prop('value',datos.idPelicula);
-                              $('#codinca').prop('value',datos.codigoIncaa);
-                              $('#codultra').prop('value',datos.codUltracine);
                               $('#razonsocial').prop('value',datos.razonSocial);
                               $('#nom').prop('value',datos.nombre);
                               $('#nomsuc').prop('value',datos.nombreSuc);

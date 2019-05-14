@@ -58,8 +58,6 @@ class peliculas_model extends CI_Model {
         else
         $formato=0;
         $pelicula= [
-            'codigoIncaa'=> $this->input->post('codinca'),
-            'codUltracine'=> $this->input->post('codultra'),
             'nombre'=> $this->input->post('nom'),
             'duracion'=> $this->input->post('duracion'),
             'paisOrigen'=> $this->input->post('origen'),

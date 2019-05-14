@@ -10,16 +10,7 @@
 <hr />
  
   <form method="POST" action="<?php echo base_url();?>PeliculaCtrl/store" >
-  <div class="form-row" hidden>
-    <div class="form-group col-md-6">
-      <label for="codinca">Codigo INCAA:</label>   
-      <input type="text" class="form-control" id="codinca" name="codinca" readonly>  
-    </div>
-    <div class="form-group col-md-6">
-      <label for="codultra">Codigo Ultracine:</label>   
-      <input type="text" class="form-control" id="codultra" name="codultra" readonly>  
-    </div>
-  </div>
+
 
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -119,7 +110,7 @@
     </div>
   </div>
   <input type="submit" class="btn btn-success" value="Registrar">
-  <Aventuras type="button" class="btn btn-warning" href="<?php echo base_url();?>PeliculaCtrl/peliculaver">Cancelar</Aventuras>
+  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>PeliculaCtrl/peliculaver">Cancelar</a>
 </form>
   </div>
 

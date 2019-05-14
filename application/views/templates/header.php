@@ -145,14 +145,12 @@
             <div id="item-41" class="collapse">
                 <ul class="nav flex-column ml-3">
                         <li class="nav-item">
-                            <a class="nav-link" href=""><i class="fas fa-plus"></i> Registrar Nuevo</a>
+                            <a class="nav-link" href="<?= base_url()?>ProveedorCtrl"><i class="fas fa-plus"></i> Registrar Nuevo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Proveedores Activos</a>
+                            <a class="nav-link" href="<?= base_url()?>ProveedorCtrl/proveedorver"><i class="fas fa-list-ul"></i> Lista Proveedores</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Proveedores Inactivos</a>
-                        </li>
+                        
                 </ul>
             </div>
         </li>
@@ -450,21 +448,7 @@
             <a class="nav-link" href="<?=base_url()?>Ventasvendedor/resumenventa"><i class="fas fa-plus"></i> Resumen Ventas (Box Office)</a>
             <?php endif ?>
         </li>
-        <li class="nav-item" hidden>
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> INCAA F700 Diario</a>
-        </li>
-        <li class="nav-item" hidden>
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> INCAA F700 Mes</a>
-        </li>
-        <li class="nav-item" hidden>
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen F708</a>
-        </li>
-        <li class="nav-item" hidden>
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> INCAA F700 PDF</a>
-        </li>
-        <li class="nav-item" hidden>
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> SADAIC</a>
-        </li>
+
         <li class="nav-item">
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'90')):  ?>
          <a class="nav-link" data-toggle="collapse" href="#item-91" data-parent="#accordion1"><i class="fas fa-bars"></i> Libro IVA</a>
@@ -473,6 +457,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url()?>Iva/index"><i class="fas fa-list-ul"></i> Libro IVA Ventas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Libro IVA Candy</a>
+                </li>
             </ul>
         </div>
         <?php endif ?>
@@ -480,14 +467,18 @@
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Funcion</a>
         </li>
-        <li class="nav-item" hidden>
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Ultracine</a>
-        </li>
+        
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>InformeSemanal"><i class="fas fa-file"></i> Informe semanal</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Distribuidor</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Productos Mas Vendidos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen Ventas Candy</a>
         </li>
     </ul>
     </div>
