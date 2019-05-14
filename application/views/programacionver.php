@@ -249,16 +249,7 @@
 
                     <div class="form-group row">
                         <label for="idtarifa2" class="col-sm-1 col-form-label">Tarifa</label>
-                        <div class="col-sm-5">
-                            <select name="idTarifa" id="idtarifa2" required class="form-control">
-                                <option value="">Seleccionar..</option>
-                                <?php
-                                $query=$this->db->query("SELECT * FROM tarifa WHERE activo=1");
-                                foreach ($query->result() as $row){
-                                    echo "<option value='".$row->idTarifa."'> $row->serie $row->precio Bs.</option>";
-                                }
-                                ?>
-                            </select>
+                        <div class="col-sm-5" id="contenedor">
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -49,6 +49,7 @@ class funcion_model extends CI_Model{
             $this->db->insert("funcion",$funcion);
             $idFuncion=$this->db->insert_id();
             $this->db->query("INSERT INTO  funciontarifa (idFuncion, idTarifa) VALUES ('$idFuncion', '$idTarifa');");
+
             
             $fecha = strtotime ( '+1 day' , strtotime ($fecha) );
             $fecha = date ( 'Y-m-d' , $fecha);
@@ -80,7 +81,6 @@ class funcion_model extends CI_Model{
 
         $funcion= [
             'horaInicio'=> $this->input->post('hora'),
-            'idTarifa'=> $this->input->post('idTarifa'),
             'horaFin'=> $horaFin,
             'idUsuario'=> $_SESSION['idUs'],
             'idSala'=> $this->input->post('idsala'),
@@ -95,5 +95,6 @@ class funcion_model extends CI_Model{
     function delete($idempresa){
         return $this->db->delete('funcion', array('idFuncion' => $idempresa));
     }
+
 
 }

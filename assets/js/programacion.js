@@ -102,6 +102,17 @@ document.addEventListener('DOMContentLoaded', function() {
             //console.log(id2);
             $('#idfuncion2').val(id2);
             $('#eliminar2').prop('href',url+"ProgramacionCtrl/delete/"+id2);
+            $.ajax({
+                data: 'idfuncion='+id2,
+                type: 'POST',
+                url: 'ProgramacionCtrl/verifi',
+                success:function (e) {
+                    $('#contenedor').html(e);
+                },
+                beforeSend:function (e) {
+                    $('#contenedor').html('cargando...');
+                }
+            });
             $('#calendarModal').modal();
             //console.log(url);
 

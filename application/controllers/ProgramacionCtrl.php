@@ -105,8 +105,17 @@ s.idSala='$idsala'");
 
     }
     public function update()
-    {
+    {   $idfuncion=$_POST['idfuncion'];
         $this->funcion_model->update();
+        $query=$this->db->query("DELETE FROM funciontarifa WHERE idFUncion=$idfuncion");
+        $query=$this->db->query("SELECT * FROM tarifa WHERE activo=1");
+        foreach ($query->result() as $row){
+            if (isset($_POST['t'.$row->idTarifa])){
+                //echo $_POST['t'.$row->idTarifa]."<br>";
+                $this->db->query("INSERT INTO funciontarifa SET idTarifa='$row->idTarifa',idFuncion='$idfuncion'");
+            }
+        }
+        //exit;
         header("Location: ".base_url()."ProgramacionCtrl");
     }
     public function verificar()
@@ -145,6 +154,24 @@ OR (time('$horafin')>=ADDTIME(horaInicio, '-00:05:00') AND time('$horafin')<=hor
                 echo "<h3>$row->serie $row->precio Bs.</h3>";
         }
 
+    }
+    function verifi(){
+        $idfuncion=$_POST['idfuncion'];
+        //$idfuncion=120;
+
+        $query=$this->db->query("SELECT * FROM funciontarifa WHERE idFuncion=$idfuncion");
+        $dato=[];
+        foreach ($query->result() as $row){
+            $dato[]=$row->idTarifa;
+        }
+        $query=$this->db->query("SELECT * FROM tarifa WHERE activo=1");
+        foreach ($query->result() as $row){
+            if (in_array($row->idTarifa,$dato)){
+                echo "<input type='checkbox' checked name='t$row->idTarifa'> $row->serie  $row->precio Bs.<br>";
+            }else{
+                echo "<input type='checkbox' name='t$row->idTarifa'> $row->serie  $row->precio Bs.<br>";
+            }
+        }
     }
 
 
