@@ -293,8 +293,8 @@ class VentaCtrl extends CI_Controller {
         
         foreach($query->result() as $row){
             if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
-                $costo2=$row->costo;
-              else $costo2=0;
+                $costo2=0;
+              else $costo2=$row->costo;
   
             $numsala = $row->numeroSala;
             $codigosala = $row->codSala;
