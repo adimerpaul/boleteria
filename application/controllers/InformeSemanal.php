@@ -12,9 +12,7 @@ class InformeSemanal extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('usuarios_model');
-
-
-    }
+            }
 
     public function index()
     {

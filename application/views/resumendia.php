@@ -14,6 +14,7 @@
             <i class="fas fa-money-check"></i> Ventas del dia
         </div>
         <div class="card-body">
+            <h3>Ventas por factura</h3>
             <table  class="table-bordered" style="width:100%">
                 <thead class="table-success">
                 <tr>
@@ -25,9 +26,11 @@
                 </thead>
                 <tbody>
                 <?php
+                $total=0;
                 $query=$this->db->query("SELECT * FROM venta v INNER JOIN cliente c ON v.idcliente=c.idcliente
                 WHERE date(fechaVenta)=date('".date('Y-m-d')."')");
                 foreach ($query->result() as $row){
+                    $total=$total+$row->total;
                     echo "<tr> 
                                 <td>$row->idVenta</td> 
                                 <td>$row->fechaVenta</td>  
@@ -36,6 +39,47 @@
                             </tr>";
                 }
                 ?>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Total</th>
+                    <th><?=$total?></th>
+                </tr>
+                </tbody>
+            </table>
+            <h3>Ventas por funcion</h3>
+            <table  class="table-bordered" style="width:100%">
+                <thead class="table-success">
+                <tr>
+                    <th>Numero</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $total=0;
+                $query=$this->db->query("SELECT * FROM pelicula p 
+INNER JOIN funcion f ON f.idPelicula=p.idPelicula
+INNER JOIN boleto b ON b.idFuncion=f.idFuncion
+                AND  date(b.fecha)=date('".date('Y-m-d')."')");
+                foreach ($query->result() as $row){
+                    $total=$total+$row->total;
+                    echo "<tr> 
+                                <td>$row->idVenta</td> 
+                                <td>$row->fechaVenta</td>  
+                                <td>$row->apellidoCl</td> 
+                                <td>$row->total</td>
+                            </tr>";
+                }
+                ?>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Total</th>
+                    <th><?=$total?></th>
+                </tr>
                 </tbody>
             </table>
             <a href="<?=base_url()?>ResumenDia/imprimir" class="btn btn-success btn-block"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>

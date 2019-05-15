@@ -16,19 +16,24 @@
             <table id="iva" class="display nowrap" style="width:100%">
                 <thead>
                 <tr>
-                    <th>Nº</th>
-                    <th>FECHA DE LA FACTURA</th>
-                    <th>Nº DE LA FACTURA</th>
-                    <th>Nº AUTORIZACION</th>
-                    <th>ESTADO</th>
-                    <th>NIT/CI CLIENTE</th>
-                    <th>NOMBRE O RAZÓN SOCIAL</th>
-                    <th>IMPORTE TOTAL DE VENTA</th>
-                    <th>IMPORTE ICE/IEHD/     TASAS</th>
+                    <th>Distribuidor</th>
+                    <th>Pelicula</th>
+                    <th>Semana</th>
+                    <th>Fechas</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sabado</th>
+                    <th>Domingo</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Martes</th>
+                    <th>Total admision</th>
+                    <th>Total recaudacion</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
+
                 /*$query=$this->db->query("SELECT * FROM venta v
 INNER JOIN dosificacion d ON v.idDosif=d.idDosif
 INNER JOIN cliente c ON c.idCliente=v.idCliente
