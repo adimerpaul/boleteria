@@ -17,23 +17,23 @@
                 <div id="login-column" class="col-md-4">
                     <div id="login-box" class="col-md-12">
                         <form method="POST" id="login-form" class="form" action="<?php echo base_url();?>UsuarioCtrl/verifica" >
-                            <h3 class="text-center text-info">Ingreso al Sistema</h3>
+                            <h3 class="text-center text-white">INGRESO AL SISTEMA</h3>
                             <div class="form-group">
-                                <label for="user" class="text-info">Usuario:</label><br>
+                                <label for="user" class="text-white">Usuario:</label><br>
                                 <div class="input-group-prepend">
                                     <i class="fas fa-user fa-2x" style="padding-right: 5px;"></i>
                                     <input type="text" name="user" id="user" class="form-control" placeholder="ingrese su usario" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="pass" class="text-info">Password:</label><br>
+                                <label for="pass" class="text-white">Password:</label><br>
                                 <div class="input-group-prepend">
                                     <i class="fas fa-unlock-alt fa-2x" style="padding-right: 5px;"  ></i>
                                     <input type="password" name="pass" id="pass" class="form-control" placeholder="ingrese su password" required >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Ingresar">
+                                <input type="submit" name="submit" class="btn btn-light btn-md" value="Ingresar">
                             </div>
                         </form>
                     </div>
