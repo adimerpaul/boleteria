@@ -1,8 +1,4 @@
-<li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Funcion</a>
-        </li><li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Funcion</a>
-        </li><?php
+<?php
 /**
  * Created by PhpStorm.
  * User: Adimer
