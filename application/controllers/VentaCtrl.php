@@ -222,9 +222,11 @@ class VentaCtrl extends CI_Controller {
         $idd=$_POST['iddosif'];
         $idcupon=$_POST['cupon'];
         $cupon='null';
+        $costo2=0;
         if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
         { $total=0;
           $cupon=$idcupon;
+
         }
         else $cupon='null';
    
@@ -287,8 +289,13 @@ class VentaCtrl extends CI_Controller {
 
         $query=$this->db->query("SELECT * FROM `temporal` WHERE `idUser`='$idu'");
         // echo $idVenta;
-
+   
+        
         foreach($query->result() as $row){
+            if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
+                $costo2=$row->costo;
+              else $costo2=0;
+  
             $numsala = $row->numeroSala;
             $codigosala = $row->codSala;
             $originalDate = $row->fechaFuncion;
@@ -331,7 +338,7 @@ class VentaCtrl extends CI_Controller {
                   '$row->horaFuncion', 
                   '$row->fila', 
                   '$row->columna', 
-                  '$row->costo', 
+                  '$costo2', 
                   '$row->titulo', 
                   '$idVenta',
                   $cupon,
