@@ -11,12 +11,12 @@
     <div class="card-body">     <br>  
     
         <div>
-        <span class="btn btn-success fileinput-button">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>Add files...</span>
-            <input id="fileupload" type="file" name="files[]" multiple>
-        </span>
+        <form action="<?php echo base_url();?>Imagen/cargarArchivo" method="post" enctype="multipart/form-data">
+            <input type="file" name="fichero">
+            <input type="submit" class="btn btn-success" value="Subir">            
+        </form>
         </div>
+        <br>
         <table id="example" class="table" style="width:100%">
             <thead>
             <tr>
