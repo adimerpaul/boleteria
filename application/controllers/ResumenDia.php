@@ -98,13 +98,21 @@ ORURO - BOLIVIA
         $printer -> text($html."\n");
         $html = "Usuario: ".$_SESSION['nombre']."\n";
         $printer -> text($html."\n");
-        $printer->text("NUMERRO    HORA      CLIENTE    TOTAL.\n");
+        $printer->text("Pelicula             CANTIDAD        TOTAL.\n");
         $printer->text("-----------------------------------"."\n");
         $total=0;
-        $query=$this->db->query("SELECT * FROM venta v INNER JOIN cliente c ON v.idcliente=c.idcliente
-                WHERE date(fechaVenta)=date('".date('Y-m-d')."')");
+        $query=$this->db->query("SELECT p.idPelicula,p.nombre,COUNT(*) 'cantidadb',SUM(b.costo) as total
+FROM pelicula p 
+INNER JOIN funcion f ON f.idPelicula=p.idPelicula
+INNER JOIN boleto b ON b.idFuncion=f.idFuncion
+INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
+INNER JOIN usuario u ON u.idUsuario=b.idUsuario
+WHERE b.idUsuario='".$_SESSION['idUs']."'
+AND  date(b.fecha)=date('".date('Y-m-d')."')
+GROUP BY p.idPelicula,p.nombre
+                ");
         foreach ($query->result() as $row){
-            $printer->text( "    $row->idVenta  ".substr($row->fechaVenta,10,10)."         $row->apellidoCl     $row->total   \n");
+            $printer->text( "$row->nombre           $row->cantidadb     $row->total   \n");
             $total=$total+$row->total;
         }
         $printer -> setJustification(Printer::JUSTIFY_RIGHT);
