@@ -15,6 +15,14 @@ if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html()
     else 
     $('#btnAgregar').addClass("disabled");
 $('#cupon').hide();
+if($('#selecost').html()=="" && $('#selecfun').html()=="")    
+{$('#btnAceptar').addClass("disabled");
+if ($('#totalPre').html()!="0")
+$('#btnAceptar').removeClass("disabled");
+}
+else
+$('#btnAceptar').removeClass("disabled");
+
 }
 );
   
@@ -108,6 +116,7 @@ $("#selectable").selectable(
                               },
                               success:  function (response) {
                                 $("#selecfun").html("");
+                                $("#selecost").html("");
                                  console.log(response);
                                 var datos=JSON.parse(response);
                                     datos.forEach(row => {
@@ -120,14 +129,11 @@ $("#selectable").selectable(
 
 
                                          $("#selecfun").html(cadenahorario);          
-                                         $('#selecfun li:first').addClass('ui-selected');
-                                         mostrardatos($("#selecfun .ui-selected").prop('value'));
+                                         //$('#selecfun li:first').addClass('ui-selected');
+                                         //mostrardatos($("#selecfun .ui-selected").prop('value'));
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
-                                         if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
                                          bloqueobtn();
-                                         else
-                                         desbloqueobtn();
                               },
                           })
 
@@ -244,7 +250,6 @@ function listado(){
                     },
                     success:  function (response) {
                         $("#selectable").html("");
-                        bloqueobtn();
                         console.log(response);
                         var dd="";
                         var datos=JSON.parse(response);
@@ -266,7 +271,7 @@ function listado(){
         $('#btnEntradaMenos').addClass("disabled");
         $('#btnEntradaMas').addClass("disabled");
         $('#btnCancelar').addClass("disabled");
-        if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html())>0)
+        if ($('#tabPreVenta tr').length > 0 && $('#totalPre').html()!="0" )
             {$('#btnAceptar').removeClass("disabled");
             VerificaDosificacion();
             }
@@ -283,6 +288,7 @@ function listado(){
         $('#btnEntradaMenos').removeClass("disabled");
         $('#btnEntradaMas').removeClass("disabled");
         $('#btnCancelar').removeClass("disabled");
+        if ($('#tabPreVenta tr').length > 0 && $('#totalPre').html()!="0" )        
         $('#btnAceptar').removeClass("disabled");
         VerificaDosificacion();
     }
@@ -409,14 +415,15 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                                                             //$("#resultado").html("Procesando, espere por favor...");
                                                     },
                                                     success:  function (response) {
-
+                                        $('#btnAceptar').removeClass("disabled");
+             
                                                     }
                                                 })
                                 //console.log(idsien+' '+idfunreg+' '+numerofuncion+' '+tarSerie+' '+nunSala+' '+codSala+' '+fecfun+' '+costo+' '+col+' '+fil+' '+pelicula+' '+horafun);
                             }                                
                            )
 
-
+                   
                             $("#exampleModal").modal('hide');//ocultamos el modal
                             $('#lblCantidadEntradas').html("0");
                             $('#lblPrecio').html('0Bs');
