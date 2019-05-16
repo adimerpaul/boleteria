@@ -434,7 +434,7 @@
     <div id="item-9" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'75')):  ?>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'70')):  ?>
             <a class="nav-link" href="<?=base_url()?>Ventasvendedor"><i class="fas fa-plus"></i> Ventas por Vendedor</a>
             <?php endif ?>
         </li>
@@ -465,20 +465,26 @@
         <?php endif ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Funcion</a>
-        </li>
-        
-        <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>InformeSemanal"><i class="fas fa-file"></i> Informe semanal</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Borderaux Distribuidor</a>
+            <a class="nav-link" href="<?=base_url()?>Reporte/porfuncion"><i class="fas fa-plus"></i> Borderaux Funcion</a>
+        </li>       
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?=base_url()?>Reporte/semanadistrib"><i class="fas fa-plus"></i> Borderaux Distribuidor</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=base_url()?>Reporte/bordistribuidor"><i class="fas fa-plus"></i> Borderaux tarifa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=base_url()?>Reporte/repsemana"><i class="fas fa-plus"></i> Borderaux semana</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-plus"></i> Productos Mas Vendidos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Resumen Ventas Candy</a>
+            <a class="nav-link" href=""><i class="fas fa-plus"></i> Resumen Ventas Candy</a>
         </li>
     </ul>
     </div>

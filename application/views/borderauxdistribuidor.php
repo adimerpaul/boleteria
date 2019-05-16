@@ -1,4 +1,4 @@
-
+<?php error_reporting(0); ?>
 <div class="col-sm-11 col-md-10">
     <h3 class="page-title">
         Resumen de Ventas por Semana <small> Genera las cantidad vendido</small>
