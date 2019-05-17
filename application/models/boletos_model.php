@@ -14,6 +14,7 @@ class boletos_model extends CI_Model {
     public function devolBoleto($id){
         $this->db->set('idAsiento',NULL);
         $this->db->set('devuelto','SI');
+        $this->db->set('costo',0);
         $this->db->where('idVenta',$id);
         $this->db->update('boleto');
         return true;
