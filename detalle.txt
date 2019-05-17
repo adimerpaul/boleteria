@@ -1,0 +1,12 @@
+ampliar bolto  asiento  corregir los espacios
+no imprimir recibo para la venta 
+informe de ventas por cliente total de ventas fectura y de recibo
+(factura retrasada)
+
+candey 
+factura y detalle para mostrador despachador tickect
+productos a la venta
+no imprimier recibo
+
+mostar usuario que anulado
+

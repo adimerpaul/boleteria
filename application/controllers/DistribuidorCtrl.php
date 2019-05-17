@@ -54,7 +54,13 @@ class DistribuidorCtrl extends CI_Controller {
         $this->distribuidores_model->update();
         header("Location: ".base_url()."DistribuidorCtrl/distribuidorver");
     }
+ 
     
+    public function update()
+    {
+        $this->distribuidores_model->update();
+        $this->index();
+    }
     public function datos(){
         $iddistrib=$_POST['iddistrib'];
         $query=$this->db->query("SELECT * FROM distribuidor WHERE idDistrib='$iddistrib'");

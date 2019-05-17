@@ -17,7 +17,7 @@
                 <div id="login-column" class="col-md-4">
                     <div id="login-box" class="col-md-12">
                         <form method="POST" id="login-form" class="form" action="<?php echo base_url();?>UsuarioCtrl/verifica" >
-                            <h3 class="text-center text-white">INGRESO AL SISTEMA</h3>
+                            <h3 class="text-center text-white">MULTICINES  ORURO</h3><br>
                             <div class="form-group">
                                 <label for="user" class="text-white">Usuario:</label><br>
                                 <div class="input-group-prepend">
