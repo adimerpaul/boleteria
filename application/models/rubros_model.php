@@ -37,9 +37,9 @@ class rubros_model extends CI_Model {
     {
         $id=$this->input->post('idrubro');
         if ($this->input->post('activo') == "on"  or null)
-        $activo=1;
+        $activo="SI";
         else
-        $activo=0;
+        $activo="NO";
         if ($this->input->post('rPadre')=='')
             $rpadre=null;
         else

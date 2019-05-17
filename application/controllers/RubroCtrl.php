@@ -15,13 +15,10 @@ class RubroCtrl extends CI_Controller {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
             $dato=$this->usuarios_model->validaIngreso($user);
-
+            $rubro['rubro']=$this->rubros_model->listaRubros();
             $this->load->view('templates/header', $dato);
-
-            $this->load->view('rubrover');
-
-            $dato2['js']="<script src='".base_url()."assets/js/producto.js'></script>";
-
+            $this->load->view('rubrover',$rubro);
+            $dato2['js']="<script src='".base_url()."assets/js/rubro.js'></script>";
             $this->load->view('templates/footer',$dato2);
         }
         else redirect('');
@@ -55,18 +52,9 @@ class RubroCtrl extends CI_Controller {
 
 
     public function update()
-    {   $idfuncion=$_POST['idfuncion'];
-        $this->funcion_model->update();
-        $query=$this->db->query("DELETE FROM funciontarifa WHERE idFUncion=$idfuncion");
-        $query=$this->db->query("SELECT * FROM tarifa WHERE activo=1");
-        foreach ($query->result() as $row){
-            if (isset($_POST['t'.$row->idTarifa])){
-                //echo $_POST['t'.$row->idTarifa]."<br>";
-                $this->db->query("INSERT INTO funciontarifa SET idTarifa='$row->idTarifa',idFuncion='$idfuncion'");
-            }
-        }
-        //exit;
-        header("Location: ".base_url()."ProgramacionCtrl");
+    {
+        $this->rubros_model->update();
+        header('Location: '.base_url().'RubroCtrl');
     }
 
 
@@ -76,13 +64,15 @@ class RubroCtrl extends CI_Controller {
         $this->funcion_model->delete($idfuncion);
         header("Location: ".base_url()."ProgramacionCtrl");
     }
-    public function cantidadtarifa(){
-        $idfuncion=$_POST['idfunction'];
-        $query=$this->db->query("SELECT * FROM funciontarifa f INNER JOIN tarifa t ON f.idTarifa=t.idTarifa WHERE idFuncion=$idfuncion");
-        $cantida=$query->num_rows();
-        foreach ($query->result() as $row){
-                echo "<h3>$row->serie $row->precio Bs.</h3>";
-        }
+    public function datos(){
+        $idrubro=$_POST['idrubro'];
+        $query=$this->db->query("SELECT * FROM rubro where idRubro=$idrubro");
+        $row=$query->row();
+        
+        $myObj=($query->result_array())[0];
+
+        echo json_encode($myObj);
+   
 
     }
 

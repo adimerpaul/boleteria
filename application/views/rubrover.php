@@ -39,8 +39,6 @@
                 var eli=document.getElementsByClassName('eli');
                 for(var i=0;i<eli.length;i++){
                     eli[i].addEventListener('click',function(e){
-                        //alert('asd');
-                        //console.log($distribuidor);
                         if(!confirm('seguro de eliminar')){
                             e.preventDefault();
                         }  
@@ -70,6 +68,7 @@
     <div class="form-group col-md-6">
       <label for="nombre">Nombre : </label>
       <input type="text" class="form-control" id="nombre" name="nombre" required>
+      <input type="hidden"  id="idrubro" name="idrubro" required>
     </div>
 
     <div class="form-group col-md-6">
