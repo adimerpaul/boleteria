@@ -84,7 +84,7 @@
                             <select name="idpelicula" id="idpelicula" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
-                                $query=$this->db->query("SELECT * FROM pelicula");
+                                $query=$this->db->query("SELECT * FROM pelicula ORDER BY idPelicula DESC ");
                                 foreach ($query->result() as $row){
                                     if ($row->formato=="1"){
                                         $formato="3D";
@@ -213,7 +213,7 @@
                                 <option value="">Seleccionar..</option>
                                 <?php
 
-                                $query=$this->db->query("SELECT * FROM pelicula");
+                                $query=$this->db->query("SELECT * FROM pelicula ORDER BY idPelicula DESC ");
                                 foreach ($query->result() as $row){
                                     if ($row->formato=="1"){
                                         $formato="3D";

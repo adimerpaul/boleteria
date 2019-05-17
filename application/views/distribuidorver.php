@@ -74,7 +74,8 @@
       <form method="POST" action="<?php echo base_url();?>DistribuidorCtrl/update" >
   <div class="form-row">
   <div class="form-group col-md-6">
-      <label for="nombre">Nombre:</label>   
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="iddistrib" name="idDistrib" hidden>
       <input type="text" class="form-control" id="nombre" name="nombre" required>  
     </div>
 

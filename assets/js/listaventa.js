@@ -62,6 +62,16 @@ $('#fecini').change(function(){
                                         cadena+="</tr>";
                                     
                                     $('#tabbody').html(cadena);
+                                    if (datos.estado=="ANULADO"){
+                                        $('#btnImpresion').hide();
+                                    } else{
+                                        $('#btnImpresion').show();
+                                    }
+                                    if (datos.tipo=="FACTURA"){
+                                        $('#btnImpresion').prop('href',url+'VentaCtrl/printF/'+datos.idVenta);
+                                    } else{
+                                        $('#btnImpresion').prop('href',url+'VentaCtrl/printR/'+datos.idVenta);
+                                    }
 
                                 })
                                 }

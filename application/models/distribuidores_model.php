@@ -31,7 +31,7 @@ class distribuidores_model extends CI_Model {
 
     public function update()
     {
-        $id=$this->input->post('iddistrib');
+        $id=$this->input->post('idDistrib');
         $distribuidor= [
             'nombreDis'=> $this->input->post('nombre'),
             'direccionDis'=> $this->input->post('direccion'),
@@ -42,8 +42,27 @@ class distribuidores_model extends CI_Model {
             'responsable'=> $this->input->post('responsable')
 
         ];
-        $this->db->where('idDistrib',$id);
-        return $this->db->update('distribuidor',$distribuidor);
+        //$this->db->where('idDistrib',$id);
+        //return $this->db->update('distribuidor',$distribuidor);
+        $nombreDis=$_POST['nombre'];
+        $direccionDis=$_POST['direccion'];
+        $localidadDis=$_POST['localidad'];
+        $nit=$_POST['nit'];
+        $telefonoDis=$_POST['telefono'];
+        $emailDis=$_POST['email'];
+        $responsable=$_POST['responsable'];
+
+        $this->db->query("UPDATE distribuidor SET 
+nombreDis='$nombreDis',
+direccionDis='$direccionDis',
+localidadDis='$localidadDis',
+nit='$nit',
+telefonoDis='$telefonoDis',
+email='$emailDis',
+responsable='$responsable'
+WHERE idDistrib='$id'
+");
+
     }
 
 

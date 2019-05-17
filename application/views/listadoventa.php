@@ -137,7 +137,7 @@
             </tbody>
         </table>
         <hr>
-        <input type="button" class="btn btn-success" value="Impresion" id="btnImpresion">
+          <a href='' class="btn btn-success text-white" id="btnImpresion">Impresion</a>
         <input type="button" class="btn btn-danger" value="Devolucion" id="btnDevolver">
         <a type="button" class="btn btn-warning" href="<?php echo base_url();?>VentaCtrl/listaventa">Cancelar</a>
       </div>
@@ -147,4 +147,6 @@
     </div>
   </div>
 </div>
-
+<script !src="">
+    url='<?=base_url()?>';
+</script>

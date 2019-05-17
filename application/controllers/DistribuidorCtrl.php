@@ -47,7 +47,12 @@ class DistribuidorCtrl extends CI_Controller {
     public function store()
     {
         $this->distribuidores_model->store();
-        $this->index();
+        header("Location: ".base_url()."DistribuidorCtrl");
+    }
+    public function update()
+    {
+        $this->distribuidores_model->update();
+        header("Location: ".base_url()."DistribuidorCtrl/distribuidorver");
     }
     
     public function datos(){

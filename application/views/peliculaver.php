@@ -77,18 +77,6 @@
       <form method="POST" action="<?php echo base_url();?>PeliculaCtrl/update" >
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="codinca">Codigo INCAA:</label> 
-      <input type="hidden" id="idpelicula" name="idpelicula">  
-      <input type="text" class="form-control" id="codinca" name="codinca" readonly>  
-    </div>
-    <div class="form-group col-md-6">
-      <label for="codultra">Codigo Ultracine:</label>   
-      <input type="text" class="form-control" id="codultra" name="codultra" readonly>  
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
       <label for="nom">Nombre : </label>
       <input type="text" class="form-control" id="nom" name="nom" required>
     </div>
