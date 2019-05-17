@@ -531,9 +531,9 @@ WHERE v.idVenta='$idventa'");
         $printer->text($row->titulo . "\n");
         $printer->text($row->nombreSala . "\n");
         $printer->setJustification(Printer::JUSTIFY_LEFT);
-        $printer -> selectPrintMode(Printer::MODE_FONT_B);
-        $printer->text("Fecha:".$row->fechaFuncion . "\n");
-        $printer->text("Hora: ".substr( $row->horaFuncion,0,5) . "  Bs. $row->precio\n");
+        $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
+        $printer->text("Fecha:".$row->fechaFuncion ."Hora: ".substr( $row->horaFuncion,0,5) . "  Bs. $row->precio\n");
+        
         $printer->text("Butaca:".$row->letra."-".$row->columna."\n");
         $printer->text("-----------------------------------" . "\n");
         $printer->text("Cod:".$row->numboc . "\n");
@@ -605,7 +605,7 @@ WHERE idVenta='$idventa'");
 //$printer -> text("Hello world\n");
 //$printer -> cut();
         // set some text to print
-
+/*
         $ca = "MULTI CINES PLAZA SRL.
 Av. Tacna y Jaen - Oruro -Bolvia
 SUCURSAL N: 0
@@ -625,11 +625,6 @@ NIT/CI: $ci ";
 Fecha: ".$fechaVenta."
 Nombre Cliente: $nombre $apellido
 NIT Cliente: $ci ";
-/*$tabla
-SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. <br>
-<b>Vendedor:</b> $vendero <br>
-Hora: $hora
-";*/
 
 
         $printer -> text($html."\n");
@@ -686,20 +681,6 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
 ";
 
         $printer -> text($html."\n");
-/*
-        $printer -> setJustification(Printer::JUSTIFY_CENTER);
-        $testStr = $qr;
-        $models = array(
-            //Printer::QR_MODEL_1 => "QR Model 1",
-            Printer::QR_MODEL_2 => "ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY"
-            //Printer::QR_MICRO => "Micro QR code\n(not supported on all printers)"
-        );
-        foreach ($models as $model => $name) {
-            $printer -> qrCode($testStr, Printer::QR_ECLEVEL_L, 4, $model);
-            $printer -> text("$name\n");
-            $printer -> feed();
-        }
-*/
         $printer->setJustification(Printer::JUSTIFY_LEFT);
   //      $printer->text($leyenda."\n");
         $printer->text("PUNTO: ".gethostname()." \n");
@@ -707,6 +688,7 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
         $printer->text("NUMERO: $idventa \n");
 
         $printer -> cut();
+*/
         /*IMPRESION DE BOLETOS*/
         $query=$this->db->query("SELECT * FROM venta v 
 INNER JOIn usuario u ON v.idUsuario=u.idUsuario
@@ -736,9 +718,9 @@ WHERE v.idVenta='$idventa'");
             $printer->text($row->titulo . "\n");
             $printer->text($row->nombreSala . "\n");
             $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $printer -> selectPrintMode(Printer::MODE_FONT_B);
-            $printer->text("Fecha:".$row->fechaFuncion . "\n");
-            $printer->text("Hora: ".substr( $row->horaFuncion,0,5) . "  Bs. $row->precio\n");
+            $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
+            $printer->text("Fecha:".$row->fechaFuncion ."Hora: ".substr( $row->horaFuncion,0,5) . "  Bs. $row->precio\n");
+            
             $printer->text("Butaca:".$row->letra."-".$row->columna."\n");
             $printer->text("-----------------------------------" . "\n");
             $printer->text("Cod:".$row->numboc . "\n");

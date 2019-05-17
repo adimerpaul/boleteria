@@ -35,32 +35,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/listadoventa.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3644">
-              <caret line="568" column="22" selection-start-line="568" selection-start-column="16" selection-end-line="568" selection-end-column="22" />
+            <state relative-caret-position="17">
+              <caret line="722" column="12" selection-start-line="722" selection-start-column="12" selection-end-line="722" selection-end-column="12" />
+              <caret line="535" column="8" selection-start-line="535" selection-start-column="8" selection-end-line="535" selection-end-column="8" />
               <folding>
                 <element signature="e#173#199#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/listaventa.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="72" column="92" selection-start-line="72" selection-start-column="92" selection-end-line="72" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -96,7 +79,6 @@
       <find>for</find>
       <find>Panel de</find>
       <find>cambio</find>
-      <find>printR</find>
       <find>pelicu</find>
       <find>caja</find>
       <find>prin</find>
@@ -106,6 +88,7 @@
       <find>listado</find>
       <find>listave</find>
       <find>print</find>
+      <find>printR</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -151,7 +134,6 @@
         <option value="$PROJECT_DIR$/assets/js/programacion.js" />
         <option value="$PROJECT_DIR$/application/models/funcion_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/ProgramacionCtrl.php" />
-        <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
         <option value="$PROJECT_DIR$/application/controllers/CuponCtrl.php" />
         <option value="$PROJECT_DIR$/application/controllers/InformeSemanal.php" />
         <option value="$PROJECT_DIR$/application/views/informesemanal.php" />
@@ -165,6 +147,7 @@
         <option value="$PROJECT_DIR$/application/views/programacionver.php" />
         <option value="$PROJECT_DIR$/application/views/listadoventa.php" />
         <option value="$PROJECT_DIR$/assets/js/listaventa.js" />
+        <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
       </list>
     </option>
   </component>
@@ -284,12 +267,12 @@
       <workItem from="1452865125942" duration="32000" />
       <workItem from="1557755990624" duration="1228000" />
       <workItem from="1557940175033" duration="351000" />
-      <workItem from="1558011829939" duration="3793000" />
+      <workItem from="1558011829939" duration="4954000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158231000" />
+    <option name="totallyTimeSpent" value="159392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -681,20 +664,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3644">
-          <caret line="568" column="22" selection-start-line="568" selection-start-column="16" selection-end-line="568" selection-end-column="22" />
-          <folding>
-            <element signature="e#173#199#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/listaventa.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
           <caret line="72" column="92" selection-start-line="72" selection-start-column="92" selection-end-line="72" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="722" column="12" selection-start-line="722" selection-start-column="12" selection-end-line="722" selection-end-column="12" />
+          <caret line="535" column="8" selection-start-line="535" selection-start-column="8" selection-end-line="535" selection-end-column="8" />
+          <folding>
+            <element signature="e#173#199#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
