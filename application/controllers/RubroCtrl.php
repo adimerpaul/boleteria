@@ -1,12 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ProductoCtrl extends CI_Controller {
+class RubroCtrl extends CI_Controller {
 
     function __construct()
     {
         parent::__construct();
         $this->load->model('usuarios_model');
+        $this->load->model('rubros_model');
     }
 
     public function index()
@@ -17,7 +18,7 @@ class ProductoCtrl extends CI_Controller {
 
             $this->load->view('templates/header', $dato);
 
-            $this->load->view('productover');
+            $this->load->view('rubrover');
 
             $dato2['js']="<script src='".base_url()."assets/js/producto.js'></script>";
 
@@ -26,7 +27,7 @@ class ProductoCtrl extends CI_Controller {
         else redirect('');
     }
 
-    public function productoreg()
+    public function rubroreg()
     {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
@@ -34,9 +35,9 @@ class ProductoCtrl extends CI_Controller {
 
             $this->load->view('templates/header', $dato);
 
-            $this->load->view('productoreg');
+            $this->load->view('rubroreg');
 
-            $dato2['js']="<script src='".base_url()."assets/js/producto.js'></script>";
+            $dato2['js']="<script src='".base_url()."assets/js/rubro.js'></script>";
 
 
             $this->load->view('templates/footer',$dato2);
@@ -47,9 +48,8 @@ class ProductoCtrl extends CI_Controller {
 
     public function store()
     {
-        $this->funcion_model->store();
-        //$this->index();
-        header('Location: '.base_url().'ProgramacionCtrl');
+        $this->rubros_model->store();
+        header('Location: '.base_url().'RubroCtrl');
     }
 
 
