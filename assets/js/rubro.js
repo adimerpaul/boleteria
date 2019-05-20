@@ -20,7 +20,7 @@ function actualizarEjemplo() {
     console.log(icono);
 
     if (icono !== "") {
-        icono = "<i><img src='" + burl + 'assets/imagenes/' + icono + "' alt='logo' style='height:90px; width:90px;'/></i>";
+        icono = "<i><img src='" + burl + 'assets/imagenes/' + icono + "' alt='LOGO' style='height:90px; width:90px;'/></i>";
     }
 
     console.log(icono);
