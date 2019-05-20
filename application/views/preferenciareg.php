@@ -1,15 +1,15 @@
 <div class="col-sm-11 col-md-10">
-    <h3>Registrar Nuevo Producto</h3>
+    <h3>Registrar Nueva Preferencia</h3>
 
 <div class="card ">
   <div class="card-header text-white bg-success" >
-    Informacion de Registro Prodcuto
+    Informacion de Registro Preferencia
   </div>
   <div class="card-body">
-      <h3>INFORMACION DEL PRODUCTO</h3>
+      <h3>INFORMACION DE LA PREFERENCIA</h3>
 <hr />
  
-  <form method="POST" action="<?php echo base_url();?>ProductoCtrl/store" >
+  <form method="POST" action="<?php echo base_url();?>PreferenciaCtrl/store" >
 
 
   <div class="form-row">
@@ -24,36 +24,13 @@
       
     </div>
   </div>
-  <div class="form-row">
-  <div class="form-group col-md-6">
-      <label for="pcosto">Precio Costo :</label>
-      <input type="number" class="form-control" id="pcosto" name="pcosto" step="2">  <br>
-      <label id="utilidad" name="utilidad" style='color:green'></label>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="pventa">Precio Venta: </label>
-      <input type="number" class="form-control" id="pventa" name="pventa" step="2">
-    </div>
-  </div>
+  
 
 
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="activo">Activo : </label><br>
       <input class="form-control" id="activo" name="activo" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="idrubro">Rubro : </label><br>
-      <select name="idrubro" id="idrubro" class="form-control">
-                            <option value="">Seleccionar...</option>
-                            <?php
-                            $query=$this->db->query("SELECT * FROM rubro");
-                            foreach ($query->result() as $row){
-                                echo "<option value='$row->idRubro'>$row->nombreRubro</option>";
-                            }
-
-                            ?>
-                        </select>
     </div>
   </div>
   <div class="form-row">

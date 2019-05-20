@@ -1,12 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ProductoCtrl extends CI_Controller {
+class PreferenciaCtrl extends CI_Controller {
 
     function __construct()
     {
         parent::__construct();
         $this->load->model('usuarios_model');
+        $this->load->model('preferencias_model');
     }
 
     public function index()
@@ -16,27 +17,23 @@ class ProductoCtrl extends CI_Controller {
             $dato=$this->usuarios_model->validaIngreso($user);
 
             $this->load->view('templates/header', $dato);
-
-            $this->load->view('productover');
-
-            $dato2['js']="<script src='".base_url()."assets/js/producto.js'></script>";
+            $this->load->view('preferenciaver');
+            $dato2['js']="<script src='".base_url()."assets/js/preferncia.js'></script>";
 
             $this->load->view('templates/footer',$dato2);
         }
         else redirect('');
     }
 
-    public function productoreg()
+    public function preferenciareg()
     {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
             $dato=$this->usuarios_model->validaIngreso($user);
 
             $this->load->view('templates/header', $dato);
-
-            $this->load->view('productoreg');
-
-            $dato2['js']="<script src='".base_url()."assets/js/producto.js'></script>";
+            $this->load->view('preferenciareg');
+            $dato2['js']="<script src=''></script>";
 
 
             $this->load->view('templates/footer',$dato2);
@@ -49,15 +46,14 @@ class ProductoCtrl extends CI_Controller {
     {
         $this->funcion_model->store();
         //$this->index();
-        header('Location: '.base_url().'ProgramacionCtrl');
+        header('Location: '.base_url().'PreferenciaCtrl');
     }
 
 
 
-    public function update()
-    {   $idfuncion=$_POST['idfuncion'];
-        //$this->db->query("INSERT INTO funciontarifa SET idTarifa='$row->idTarifa',idFuncion='$idfuncion'");
-        header("Location: ".base_url()."ProgramacionCtrl");
+    public function update(){
+        $this->preferencias_model->update();
+        header("Location: ".base_url()."PreferenciaCtrl");
     }
 
 /*
@@ -76,7 +72,7 @@ class ProductoCtrl extends CI_Controller {
         }
 
     }
+
+
 */
-
-
 }
