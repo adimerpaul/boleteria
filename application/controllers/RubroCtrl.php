@@ -58,11 +58,11 @@ class RubroCtrl extends CI_Controller {
     }
 
 
-    public function delete($idfuncion)
+    public function delete($idrubro)
     {
 
-        $this->funcion_model->delete($idfuncion);
-        header("Location: ".base_url()."ProgramacionCtrl");
+        $this->rubros_model->delete($idrubro);
+        header("Location: ".base_url()."RubroCtrl");
     }
     public function datos(){
         $idrubro=$_POST['idrubro'];

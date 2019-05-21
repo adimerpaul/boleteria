@@ -29,7 +29,8 @@
             <td><?php echo $row['nombreProd']; ?></td>
             <td><?php echo $row['descripcion']; ?></td>
             <td><?php echo $row['precioVenta']; ?></td>
-            <td><?php echo $row['activo']; ?></td>
+            <td><?php if ($row['activo'] =='on')
+            echo "SI"; else echo "NO";?></td>
             
             <td>
                 <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idproducto="<?php echo $row['idProducto']?>"> Modificar</a>
@@ -120,7 +121,7 @@
     <select id='pre-selected-options' multiple='multiple'  name="pref[]" class="form-control">
 
       <?php
-         $query=$this->db->query("SELECT * FROM preferencia");
+         $query=$this->db->query("SELECT * FROM preferencia where activa='on'");
                           foreach ($query->result() as $row){
                               echo "<option value='$row->idPreferencia'>$row->nombrePref</option>";
                           }
@@ -130,7 +131,7 @@
                     </div>
 
   <div class="form-group col-md-6">
-    <label for="pref">Cantidad : </label>
+    <label for="cantidad">Cantidad : </label>
     <input type="number" class="form-control" id="cantidad" name="cantidad" required><br>
                             
                     </div>
@@ -155,21 +156,21 @@
         </select>
    </div>
    <div class="form-group col-md-6">
-    <label for="color">Activo : </label><br>
+    <label for="color">Color : </label><br>
     <select name="coloricono" id="coloricono">
         <option value="green">Verde</option>
         <option value="yellow">Amarillo</option>
         <option value="blue">Azul</option>
         <option value="red">Rojo</option>
         <option value="purple">Purpura</option>
-        <option value="gray">Gris</option>
+        <option value="grey">Gris</option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="form-group col-md-6">
-    <label for="activo">Ejemplo : </label><br>
+    <label for="divEjemplo">Ejemplo : </label><br>
         <div id="divEjemplo" name="divEjemplo">
         </div>
   </div>
@@ -253,7 +254,7 @@
     <select id='uppref' multiple='multiple'  name="uppref[]" class="form-control">
 
       <?php
-         $query=$this->db->query("SELECT * FROM preferencia");
+         $query=$this->db->query("SELECT * FROM preferencia where activa='on'");
                           foreach ($query->result() as $row){
                               echo "<option value='$row->idPreferencia'>$row->nombrePref</option>";
                           }
@@ -287,21 +288,21 @@
         </select>
    </div>
    <div class="form-group col-md-6">
-    <label for="upcoloricono">Activo : </label><br>
+    <label for="upcoloricono">Color: </label><br>
     <select name="upcoloricono" id="upcoloricono">
         <option value="green">Verde</option>
         <option value="yellow">Amarillo</option>
         <option value="blue">Azul</option>
         <option value="red">Rojo</option>
         <option value="purple">Purpura</option>
-        <option value="gray">Gris</option>
+        <option value="grey">Gris</option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="form-group col-md-6">
-    <label for="activo">Ejemplo : </label><br>
+    <label for="updivEjemplo">Ejemplo : </label><br>
         <div id="updivEjemplo" name="updivEjemplo">
         </div>
   </div>

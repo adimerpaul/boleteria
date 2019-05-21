@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">    
         <a href="" class="btn btn-success" data-toggle="modal" data-target="#rubroModal">Registrar</a>
-         <br>   
+         <br>  <br> 
         <table id="example" class="display" style="width:100%">
             <thead>
                 <tr>
@@ -27,7 +27,8 @@
             <td><?php echo $row['nombreRubro']; ?></td>
             <td><?php echo $row['descripcion']; ?></td>
             <td><?php echo $row['rubroPadre']; ?></td>
-            <td><?php echo $row['activo']; ?></td>
+            <td><?php if($row['activo']=="on")
+            echo "SI"; else echo "NO"; ?></td>
             
             <td>
                 <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idrubro="<?php echo $row['idRubro']?>"> Modificar</a>
@@ -64,18 +65,16 @@
       <div class="modal-body">
       <form method="POST" action="<?php echo base_url();?>RubroCtrl/update" >
 
-
-
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="nombre">Nombre : </label>
-      <input type="text" class="form-control" id="nombre" name="nombre" required>
+      <label for="nombre2">Nombre : </label>
+      <input type="text" class="form-control" id="nombre2" name="nombre2" required>
       <input type="hidden"  id="idrubro" name="idrubro" required>
     </div>
 
     <div class="form-group col-md-6">
-      <label for="desc">Descripcion : </label>
-      <textarea class="form-control" rows="3" cols="" id="desc" name="desc"></textarea>      
+      <label for="desc2">Descripcion : </label>
+      <textarea class="form-control" rows="3" cols="" id="desc2" name="desc2"></textarea>      
       
     </div>
   </div>
@@ -83,8 +82,8 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="activo">Rubro Padre : </label><br>
-      <select name="rpadre" id="rpadre" class="form-control" >
+      <label for="rpadre2">Rubro Padre : </label><br>
+      <select name="rpadre2" id="rpadre2" class="form-control" >
           <option value=""></option>
           <?php 
                                   $query=$this->db->query("SELECT * FROM rubro");
@@ -96,15 +95,15 @@
       </select>
     </div>
     <div class="form-group col-md-6">
-      <label for="activo">Activo : </label><br>
-      <input class="form-control" id="activo" name="activo" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
+      <label for="activo2">Activo : </label><br>
+      <input class="form-control" id="activo2" name="activo2" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="Icono"> Icono :</label><br>
+      <label for="icono2"> Icono :</label><br>
       <input type="hidden" id="burl" value="<?php echo base_url();?>">
-      <select class="mdb-select md-form" id="icono" name="icono">       
+      <select class="mdb-select md-form" id="icono2" name="icono2">       
       <option value="" disabled selected>Choose your option</option>
             <?php
             $directorio = opendir("assets/imagenes");
@@ -121,28 +120,28 @@
           </select>
      </div>
      <div class="form-group col-md-6">
-      <label for="color">Activo : </label><br>
-      <select name="coloricono" id="coloricono">
+      <label for="coloricono2">Color : </label><br>
+      <select name="coloricono2" id="coloricono2">
           <option value="green">Verde</option>
           <option value="yellow">Amarillo</option>
           <option value="blue">Azul</option>
           <option value="red">Rojo</option>
           <option value="purple">Purpura</option>
-          <option value="gray">Gris</option>
+          <option value="grey">Gris</option>
       </select>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="activo">Ejemplo : </label><br>
-          <div id="divEjemplo" name="divEjemplo">
+      <label for="divEjemplo2">Ejemplo : </label><br>
+          <div id="divEjemplo2" name="divEjemplo2">
           </div>
     </div>
   </div>
   <br>
   <input type="submit" class="btn btn-success" value="Modificar">
-  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>PeliculaCtrl/peliculaver">Cancelar</a>
+  <a type="button" class="btn btn-warning" href="<?php echo base_url();?>RubroCtrl">Cancelar</a>
 </form>
 
       </div>
@@ -227,7 +226,7 @@
         <option value="blue">Azul</option>
         <option value="red">Rojo</option>
         <option value="purple">Purpura</option>
-        <option value="gray">Gris</option>
+        <option value="grey">Gris</option>
     </select>
   </div>
 </div>

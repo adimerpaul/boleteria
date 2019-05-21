@@ -14,9 +14,9 @@ class preferencias_model extends CI_Model {
     {
 
         if(($this->input->post('activo'))=="on")
-        $activo="SI";
+        $activo="on";
         else
-        $activo="NO";
+        $activo="off";
         $preferencia= [
             'nombrePref'=> $this->input->post('nombre'),
             'descripcion'=> $this->input->post('desc'),
@@ -30,9 +30,9 @@ class preferencias_model extends CI_Model {
         $id=$this->input->post('idpref');
 
         if(($this->input->post('activoup'))=="on")
-        $activo="SI";
+        $activo="on";
         else
-        $activo="NO";
+        $activo="off";
         
         $preferencia= [
             'nombrePref'=> $this->input->post('nombreup'),

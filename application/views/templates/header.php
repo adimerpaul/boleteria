@@ -242,14 +242,9 @@
                         <div id="item-953" class="collapse">
                                 <ul class="nav flex-column ml-3">
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Rubro</a>
+                                        <a class="nav-link" href="<?=base_url()?>RubroCtrl"><i class="fas fa-plus"></i> Rubro</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Rubro Activo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Rubro Inactivo</a>
-                                    </li>
+
                                 </ul>    
                             </div>
 
@@ -259,13 +254,7 @@
                         <div id="item-954" class="collapse">
                                 <ul class="nav flex-column ml-3">
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Producto</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Producto Activo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Producto Inactivo</a>
+                                        <a class="nav-link" href="<?=base_url()?>ProductoCtrl"><i class="fas fa-plus"></i> Producto</a>
                                     </li>
                                 </ul>    
                             </div>
@@ -285,13 +274,7 @@
                         <div id="item-956" class="collapse">
                                 <ul class="nav flex-column ml-3">
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Preferencia</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Preferencia Activo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Preferencia Inactivo</a>
+                                        <a class="nav-link" href="<?=base_url()?>PreferenciaCtrl"><i class="fas fa-plus"></i> Preferencia</a>
                                     </li>
                                 </ul>    
                             </div>

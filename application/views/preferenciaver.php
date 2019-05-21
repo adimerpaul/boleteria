@@ -27,7 +27,8 @@
             <td><?php echo $row['idPreferencia']; ?></td>
             <td><?php echo $row['nombrePref']; ?></td>
             <td><?php echo $row['descripcion']; ?></td>
-            <td><?php echo $row['activa']; ?></td>
+            <td><?php if($row['activa']=='on') 
+            echo "SI"; else echo "NO"; ?></td>
             
             <td>
                 <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idPreferencia="<?php echo $row['idPreferencia']?>"> Modificar</a>

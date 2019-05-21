@@ -18,11 +18,7 @@
                               $('#idpref').prop('value',datos.idPreferencia);
                               $('#nombreup').prop('value',datos.nombrePref);
                               $('#descup').prop('value',datos.descripcion);
-                             
-                             if (datos.activa == "SI")
-                             $('#activoup').bootstrapToggle('on');
-                             else
-                            $('#activoup').bootstrapToggle('off');
+                              $('#activoup').bootstrapToggle(datos.activa);
                              
                           } 
                   });

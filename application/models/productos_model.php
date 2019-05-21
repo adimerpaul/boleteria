@@ -13,9 +13,9 @@ class productos_model extends CI_Model {
     {
 
         if ($this->input->post('activo') == "on"  or null)
-        $activo="SI";
+        $activo="on";
         else
-        $activo="NO";
+        $activo="off";
         $producto= [
             'nombreProd'=> $this->input->post('nombre'),
             'descripcion'=> $this->input->post('desc'),
@@ -48,9 +48,9 @@ class productos_model extends CI_Model {
         $id=$this->input->post('idproducto');
 
         if ($this->input->post('upactivo') == "on"  or null)
-        $activo="SI";
+        $activo="on";
         else
-        $activo="NO";
+        $activo="off";
         $producto= [
             'nombreProd'=> $this->input->post('upnombre'),
             'descripcion'=> $this->input->post('updesc'),

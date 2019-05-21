@@ -14,9 +14,9 @@ class rubros_model extends CI_Model {
     {
 
         if ($this->input->post('activo') == "on"  or null)
-        $activo=1;
+        $activo="on";
         else
-        $activo=0;
+        $activo="off";
         if ($this->input->post('rPadre')=='')
             $rpadre=null;
         else
@@ -36,21 +36,21 @@ class rubros_model extends CI_Model {
     public function update()
     {
         $id=$this->input->post('idrubro');
-        if ($this->input->post('activo') == "on"  or null)
-        $activo="SI";
+        if ($this->input->post('activo2') == "on"  or null)
+        $activo="on";
         else
-        $activo="NO";
-        if ($this->input->post('rPadre')=='')
+        $activo="off";
+        if ($this->input->post('rPadre2')=='')
             $rpadre=null;
         else
-            $rpadre=$this->input->post('rPadre');
+            $rpadre=$this->input->post('rPadre2');
         $rubro= [
-            'nombreRubro'=> $this->input->post('nombre'),
-            'descripcion'=> $this->input->post('desc'),
+            'nombreRubro'=> $this->input->post('nombre2'),
+            'descripcion'=> $this->input->post('desc2'),
             'rubroPadre'=> $rpadre,
             'activo'=> $activo,
-            'imagen'=>$this->input->post('icono'),
-            'colorFondo'=>$this->input->post('coloricono')
+            'imagen'=>$this->input->post('icono2'),
+            'colorFondo'=>$this->input->post('coloricono2')
 
         ];
 

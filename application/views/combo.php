@@ -11,12 +11,14 @@
     </nav>
     <div class="card ">
         <div class="card-body">
+
             <!-- Button trigger modal -->
             <?php if($this->usuarios_model->veri($_SESSION['idUs'],'91')):  ?>
                 <button type="button" class="btn btn-success btn-sm mb-3" style="padding: 2px;" data-toggle="modal" data-target="#exampleModal">
                     <i class="fa fa-plus-circle"></i> Registrar nuevo Combo
                 </button>
             <?php endif?>
+            <input type="hidden" id="burl" name="burl" value="<?php echo base_url();?>">
             <table id="cupones" class="display" style="width:100%">
                 <thead>
                 <tr>
@@ -110,7 +112,7 @@ ORDER BY c.idCombo DESC ");
                                     $nombreArch = ucwords($archivo);
                                     if($nombreArch != '.' && $nombreArch !='..'){
                                         $i++;
-                                        echo "<option value='".base_url('assets/imagenes/').$nombreArch."' style='background-image:url(".base_url('assets/imagenes/').$nombreArch.")'>$nombreArch</option>";
+                                        echo "<option value='".$nombreArch."' style='background-image:url(".base_url('assets/imagenes/').$nombreArch.")'>$nombreArch</option>";
                                     }
                                 }
                                 ?>
@@ -125,7 +127,7 @@ ORDER BY c.idCombo DESC ");
                                 <option value="blue">Azul</option>
                                 <option value="red">Rojo</option>
                                 <option value="purple">Purpura</option>
-                                <option value="gray">Gris</option>
+                                <option value="grey">Gris</option>
                             </select>
                         </div>
 
@@ -233,7 +235,7 @@ ORDER BY c.idCombo DESC ");
                                     $nombreArch = ucwords($archivo);
                                     if($nombreArch != '.' && $nombreArch !='..'){
                                         $i++;
-                                        echo "<option value='".base_url('assets/imagenes/').$nombreArch."' style='background-image:url(".base_url('assets/imagenes/').$nombreArch.")'>$nombreArch</option>";
+                                        echo "<option value='".$nombreArch."' style='background-image:url(".base_url('assets/imagenes/').$nombreArch.")'>$nombreArch</option>";
                                     }
                                 }
                                 ?>
@@ -248,7 +250,7 @@ ORDER BY c.idCombo DESC ");
                                 <option value="blue">Azul</option>
                                 <option value="red">Rojo</option>
                                 <option value="purple">Purpura</option>
-                                <option value="gray">Gris</option>
+                                <option value="grey">Gris</option>
                             </select>
                         </div>
 
@@ -317,6 +319,7 @@ ORDER BY c.idCombo DESC ");
     </div>
 </div>
 <script !src="">
+    
     window.onload=function (e) {
 
 
@@ -359,9 +362,10 @@ ORDER BY c.idCombo DESC ");
             var nombre = $("#nombre").val();
             var color = $("#color").val();
             var icono = $("#icono").val();
+            var base=$('#burl').val()+'assets/imagenes/';
 
             if(icono !== ""){
-                icono = "<i><img src='"+icono+"' alt='logo' style='height:90px; width:90px;'/></i>";
+                icono = "<i><img src='"+base+icono+"' alt='logo' style='height:90px; width:90px;'/></i>";
             }
 
             if(color !== ""){
@@ -440,9 +444,10 @@ var conta;
                         var nombre = $("#nombre2").val();
                         var color = $("#color2").val();
                         var icono = $("#icono2").val();
+                        var base=$('#burl').val()+'assets/imagenes/';
 
                         if(icono !== ""){
-                            icono = "<i><img src='"+icono+"' alt='logo' style='height:90px; width:90px;'/></i>";
+                            icono = "<i><img src='"+base+icono+"' alt='logo' style='height:90px; width:90px;'/></i>";
                         }
 
                         if(color !== ""){
@@ -480,9 +485,10 @@ var conta;
             var nombre = $("#nombre2").val();
             var color = $("#color2").val();
             var icono = $("#icono2").val();
+            var base=$('#burl').val()+'assets/imagenes/';
 
             if(icono !== ""){
-                icono = "<i><img src='"+icono+"' alt='logo' style='height:90px; width:90px;'/></i>";
+                icono = "<i><img src='"+base+icono+"' alt='logo' style='height:90px; width:90px;'/></i>";
             }
 
             if(color !== ""){

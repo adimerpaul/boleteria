@@ -182,10 +182,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                           $('#upcantidad').prop('value',datos.cantidad);
                         $('#upicono').prop('value',datos.imagen);
                         $('#upcoloricono').prop('value',datos.colorFondo);
-                         if (datos.activo == "SI")
-                         $('#upactivo').bootstrapToggle('on');
-                         else
-                        $('#upactivo').bootstrapToggle('off');
+                         $('#upactivo').bootstrapToggle(datos.activo);
                         actualizarEjemplo2();
                         calutilidad2();
                         $.ajax({
