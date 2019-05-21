@@ -11,11 +11,11 @@
  
   <form method="POST" action="<?php echo base_url();?>ProductoCtrl/store" >
 
-
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre : </label>
       <input type="text" class="form-control" id="nombre" name="nombre" required>
+      <input type="hidden" id="burl" value="<?php echo base_url();?>">      
     </div>
 
     <div class="form-group col-md-6">
@@ -27,12 +27,14 @@
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="pcosto">Precio Costo :</label>
-      <input type="number" class="form-control" id="pcosto" name="pcosto" step="2">  <br>
+      <input type="number" class="form-control" id="pcosto" name="pcosto" step="0.01">  <br>
       <label id="utilidad" name="utilidad" style='color:green'></label>
+      <input type="hidden" id="utl" name="utl">
     </div>
     <div class="form-group col-md-6">
       <label for="pventa">Precio Venta: </label>
-      <input type="number" class="form-control" id="pventa" name="pventa" step="2">
+      <input type="number" class="form-control" id="pventa" name="pventa" step="0.01"><br>
+      <label id="iva" name="iva" style='color:green'></label>
     </div>
   </div>
 
@@ -58,6 +60,28 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
+      <label for="pref">Preferencias : </label><br>
+      <select id='pre-selected-options' multiple='multiple'  name="pref[]" class="form-control">
+
+        <?php
+           $query=$this->db->query("SELECT * FROM preferencia");
+                            foreach ($query->result() as $row){
+                                echo "<option value='$row->idPreferencia'>$row->nombrePref</option>";
+                            }
+
+                            ?>
+                        </select>
+                      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="pref">Cantidad : </label>
+      <input type="number" class="form-control" id="cantidad" name="cantidad" required><br>
+                              
+                      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
       <label for="Icono"> Icono :</label><br>
       <select class="mdb-select md-form" id="icono" name="icono">       
       <option value="" disabled selected>Choose your option</option>
@@ -69,8 +93,7 @@
           $nombreArch = ucwords($archivo);
           if($nombreArch != '.' && $nombreArch !='..'){
             $i++;
-            echo "<option value='".base_url('assets/imagenes/').$nombreArch."' style='background-image:url(".base_url('assets/imagenes/').$nombreArch.")'>$nombreArch</option>";
-           // echo "<img style='width:10px; height:10px;' src='".base_url('assets/imagenes/').$nombreArch."' alt=''>";
+            echo "<option value='".$nombreArch."' style='background-image:url(".base_url('assets/imagenes/').$nombreArch.")'>$nombreArch</option>";
           }
           } 
           ?>

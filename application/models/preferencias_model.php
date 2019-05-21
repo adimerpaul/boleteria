@@ -13,32 +13,31 @@ class preferencias_model extends CI_Model {
     public function store()
     {
 
-        if ($this->input->post('activo') == "on"  or null)
-        $activo=1;
+        if(($this->input->post('activo'))=="on")
+        $activo="SI";
         else
-        $activo=0;
-
+        $activo="NO";
         $preferencia= [
             'nombrePref'=> $this->input->post('nombre'),
             'descripcion'=> $this->input->post('desc'),
-            'activo'=> $activo
+            'activa'=> $activo
         ];
         return $this->db->insert("preferencia",$preferencia);
     } 
 
     public function update()
     {
-        $id=$this->input->post('idpreferencia');
+        $id=$this->input->post('idpref');
 
-        if(($this->input->post('activo'))=="on")
-        $activo=1;
+        if(($this->input->post('activoup'))=="on")
+        $activo="SI";
         else
-        $activo=0;
+        $activo="NO";
         
         $preferencia= [
-            'nombrePref'=> $this->input->post('nombre'),
-            'descripcion'=> $this->input->post('desc'),
-            'activo'=> $activo
+            'nombrePref'=> $this->input->post('nombreup'),
+            'descripcion'=> $this->input->post('descup'),
+            'activa'=> $activo
         ];
 
         $this->db->where('idPreferencia',$id);

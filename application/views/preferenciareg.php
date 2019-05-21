@@ -33,46 +33,8 @@
       <input class="form-control" id="activo" name="activo" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
     </div>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="Icono"> Icono :</label><br>
-      <select class="mdb-select md-form" id="icono" name="icono">       
-      <option value="" disabled selected>Choose your option</option>
-            <?php
-            $directorio = opendir("assets/imagenes");
-       $i=0;
-       while ($archivo = readdir($directorio))
-          {
-          $nombreArch = ucwords($archivo);
-          if($nombreArch != '.' && $nombreArch !='..'){
-            $i++;
-            echo "<option value='".base_url('assets/imagenes/').$nombreArch."' style='background-image:url(".base_url('assets/imagenes/').$nombreArch.")'>$nombreArch</option>";
-           // echo "<img style='width:10px; height:10px;' src='".base_url('assets/imagenes/').$nombreArch."' alt=''>";
-          }
-          } 
-          ?>
-          </select>
-     </div>
-     <div class="form-group col-md-6">
-      <label for="color">Activo : </label><br>
-      <select name="coloricono" id="coloricono">
-          <option value="green">Verde</option>
-          <option value="yellow">Amarillo</option>
-          <option value="blue">Azul</option>
-          <option value="red">Rojo</option>
-          <option value="purple">Purpura</option>
-          <option value="gray">Gris</option>
-      </select>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="activo">Ejemplo : </label><br>
-          <div id="divEjemplo" name="divEjemplo">
-          </div>
-    </div>
-  </div>
+  
   <br>
   <input type="submit" class="btn btn-success" value="Registrar">
 </form>

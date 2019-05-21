@@ -15,10 +15,10 @@ class PreferenciaCtrl extends CI_Controller {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
             $dato=$this->usuarios_model->validaIngreso($user);
-
+            $preferencia['preferencia']=$this->preferencias_model->listaPreferencia();
             $this->load->view('templates/header', $dato);
-            $this->load->view('preferenciaver');
-            $dato2['js']="<script src='".base_url()."assets/js/preferncia.js'></script>";
+            $this->load->view('preferenciaver',$preferencia);
+            $dato2['js']="<script src='".base_url()."assets/js/preferencia.js'></script>";
 
             $this->load->view('templates/footer',$dato2);
         }
@@ -44,7 +44,7 @@ class PreferenciaCtrl extends CI_Controller {
 
     public function store()
     {
-        $this->funcion_model->store();
+        $this->preferencias_model->store();
         //$this->index();
         header('Location: '.base_url().'PreferenciaCtrl');
     }
@@ -56,23 +56,22 @@ class PreferenciaCtrl extends CI_Controller {
         header("Location: ".base_url()."PreferenciaCtrl");
     }
 
-/*
-    public function delete($idfuncion)
+
+    public function delete($idpreferencia)
     {
 
-        $this->funcion_model->delete($idfuncion);
-        header("Location: ".base_url()."ProgramacionCtrl");
-    }
-    public function cantidadtarifa(){
-        $idfuncion=$_POST['idfunction'];
-        $query=$this->db->query("SELECT * FROM funciontarifa f INNER JOIN tarifa t ON f.idTarifa=t.idTarifa WHERE idFuncion=$idfuncion");
-        $cantida=$query->num_rows();
-        foreach ($query->result() as $row){
-                echo "<h3>$row->serie $row->precio Bs.</h3>";
-        }
-
+        $this->preferencias_model->delete($idpreferencia);
+        header("Location: ".base_url()."PreferenciaCtrl");
     }
 
+    
+    public function datos(){
+        $idpreferencia=$_POST['idpreferencia'];
+        $query=$this->db->query("SELECT * FROM preferencia WHERE idPreferencia='$idpreferencia'");
+        $row=$query->row();
+        
+        $myObj=($query->result_array())[0];
 
-*/
+        echo json_encode($myObj);
+    }
 }

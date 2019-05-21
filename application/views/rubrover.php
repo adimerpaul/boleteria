@@ -5,7 +5,9 @@
     <div class="card-header text-white bg-warning" >
         Rubros
     </div>
-    <div class="card-body">     <br>   
+    <div class="card-body">    
+        <a href="" class="btn btn-success" data-toggle="modal" data-target="#rubroModal">Registrar</a>
+         <br>   
         <table id="example" class="display" style="width:100%">
             <thead>
                 <tr>
@@ -139,7 +141,7 @@
     </div>
   </div>
   <br>
-  <input type="submit" class="btn btn-success" value="Registrar">
+  <input type="submit" class="btn btn-success" value="Modificar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>PeliculaCtrl/peliculaver">Cancelar</a>
 </form>
 
@@ -151,3 +153,98 @@
   </div>
 </div>
 
+<div class="modal fade" id="rubroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrar Rubro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form method="POST" action="<?php echo base_url();?>RubroCtrl/store" >
+
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="nombre">Nombre : </label>
+    <input type="text" class="form-control" id="nombre" name="nombre" required>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="desc">Descripcion : </label>
+    <textarea class="form-control" rows="3" cols="" id="desc" name="desc"></textarea>      
+    
+  </div>
+</div>
+
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="activo">Rubro Padre : </label><br>
+    <select name="rpadre" id="rpadre" class="form-control" >
+        <option value=""></option>
+        <?php 
+                                $query=$this->db->query("SELECT * FROM rubro");
+                                foreach ($query->result() as $row){
+                                    echo "<option value='$row->idRubro'>$row->nombreRubro</option>";
+                                }
+    
+    ?>
+    </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="activo">Activo : </label><br>
+    <input class="form-control" id="activo" name="activo" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="icono"> Icono :</label><br>
+    <input type="hidden" id="burl" value="<?php echo base_url();?>">
+    <select class="mdb-select md-form" id="icono" name="icono" required>       
+    <option value="" disabled selected>Choose your option</option>
+          <?php
+          $directorio = opendir("assets/imagenes");
+     $i=0;
+     while ($archivo = readdir($directorio))
+        {
+        $nombreArch = ucwords($archivo);
+        if($nombreArch != '.' && $nombreArch !='..'){
+          $i++;
+          echo "<option value='".$nombreArch."'>$nombreArch</option>";
+        }
+        } 
+        ?>
+        </select>
+   </div>
+   <div class="form-group col-md-6">
+    <label for="color">Activo : </label><br>
+    <select name="coloricono" id="coloricono">
+        <option value="green">Verde</option>
+        <option value="yellow">Amarillo</option>
+        <option value="blue">Azul</option>
+        <option value="red">Rojo</option>
+        <option value="purple">Purpura</option>
+        <option value="gray">Gris</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="activo">Ejemplo : </label><br>
+        <div id="divEjemplo" name="divEjemplo">
+        </div>
+  </div>
+</div>
+<br>
+<input type="submit" class="btn btn-success" value="Registrar">
+</form>     </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

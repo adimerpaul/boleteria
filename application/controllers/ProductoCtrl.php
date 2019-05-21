@@ -7,6 +7,8 @@ class ProductoCtrl extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('usuarios_model');
+        $this->load->model('productos_model');
+
     }
 
     public function index()
@@ -14,10 +16,10 @@ class ProductoCtrl extends CI_Controller {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
             $dato=$this->usuarios_model->validaIngreso($user);
-
+            $producto['producto']=$this->productos_model->listaProducto();
             $this->load->view('templates/header', $dato);
 
-            $this->load->view('productover');
+            $this->load->view('productover',$producto);
 
             $dato2['js']="<script src='".base_url()."assets/js/producto.js'></script>";
 
@@ -35,9 +37,7 @@ class ProductoCtrl extends CI_Controller {
             $this->load->view('templates/header', $dato);
 
             $this->load->view('productoreg');
-
             $dato2['js']="<script src='".base_url()."assets/js/producto.js'></script>";
-
 
             $this->load->view('templates/footer',$dato2);
         }
@@ -47,36 +47,44 @@ class ProductoCtrl extends CI_Controller {
 
     public function store()
     {
-        $this->funcion_model->store();
-        //$this->index();
-        header('Location: '.base_url().'ProgramacionCtrl');
+        $this->productos_model->store();
+        header('Location: '.base_url().'ProductoCtrl');
     }
 
 
 
     public function update()
-    {   $idfuncion=$_POST['idfuncion'];
-        //$this->db->query("INSERT INTO funciontarifa SET idTarifa='$row->idTarifa',idFuncion='$idfuncion'");
-        header("Location: ".base_url()."ProgramacionCtrl");
+    {   
+        $this->productos_model->update();
+        header("Location: ".base_url()."ProductoCtrl");
     }
 
-/*
-    public function delete($idfuncion)
+
+    public function delete($idproducto)
     {
 
-        $this->funcion_model->delete($idfuncion);
-        header("Location: ".base_url()."ProgramacionCtrl");
+        $this->productos_model->delete($idproducto);
+        header("Location: ".base_url()."ProductoCtrl");
     }
-    public function cantidadtarifa(){
-        $idfuncion=$_POST['idfunction'];
-        $query=$this->db->query("SELECT * FROM funciontarifa f INNER JOIN tarifa t ON f.idTarifa=t.idTarifa WHERE idFuncion=$idfuncion");
-        $cantida=$query->num_rows();
-        foreach ($query->result() as $row){
-                echo "<h3>$row->serie $row->precio Bs.</h3>";
-        }
 
+    public function datos(){
+        $idproducto=$_POST['idproducto'];
+        $query=$this->db->query("SELECT * FROM producto WHERE idProducto='$idproducto'");
+        $row=$query->row();
+        
+        $myObj=($query->result_array())[0];
+
+        echo json_encode($myObj);
     }
-*/
 
+    public function datoPref(){
+        $idproducto=$_POST['idproducto'];
+        $query=$this->db->query("SELECT * FROM productopreferencia WHERE idProducto='$idproducto'");
+        $row=$query->row();
+        
+        $myObj=($query->result_array());
+
+        echo json_encode($myObj);
+    }
 
 }
