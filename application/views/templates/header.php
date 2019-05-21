@@ -275,13 +275,7 @@
                         <div id="item-955" class="collapse">
                                 <ul class="nav flex-column ml-3">
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-plus"></i> Nuevo Combo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Combo Activo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Combo Inactivo</a>
+                                        <a class="nav-link" href="<?=base_url()?>ComboCtrl"><i class="fas fa-plus"></i> Combo</a>
                                     </li>
                                 </ul>    
                             </div>
