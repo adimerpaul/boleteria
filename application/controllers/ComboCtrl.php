@@ -25,16 +25,19 @@ class ComboCtrl extends CI_Controller{
 
             $dato = $this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header', $dato);
-            $this->load->view('cupon');
+            $this->load->view('combo');
             $dato['js'] = "";
             $this->load->view('templates/footer', $dato);
         } else redirect('');
     }
     public  function store(){
-        $fechafin=$_POST['fechafin'];
-        $motivo=$_POST['motivo'];
+        $nombre=$_POST['nombre'];
+        $descripcion=$_POST['descripcion'];
+        $precioCosto=$_POST['precioCosto'];
+        $precioVenta=$_POST['precioVenta'];
+        $utilidad=$precioVenta-$precioCosto-$precioVenta*0.13;
 
-        $this->db->query("INSERT INTO cupon(fechafin,motivo,idusuario) VALUES('$fechafin','$motivo','".$_SESSION['idUs']."')");
+        $this->db->query("INSERT INTO combo(nombreCombo,motivo,idusuario) VALUES('$fechafin','$motivo','".$_SESSION['idUs']."')");
         $idcupon=$this->db->insert_id();
         $cantidad=$_POST['cantidad'];
         for ($i=0;$i<$cantidad;$i++){
