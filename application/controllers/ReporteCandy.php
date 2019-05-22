@@ -40,4 +40,87 @@ class ReporteCandy extends CI_Controller {
          $myObj=($query->result_array());
          echo json_encode($myObj);  
     }
+
+    public function masProducto(){
+        $fecini=$_POST['fechaini'];
+        $fecfin=$_POST['fechafin'];
+        $query=$this->db->query("SELECT p.idProducto, nombreProd,sum(d.cantidad) as total, (pUnitario * d.cantidad) as totalventa
+                from producto p,detalle d
+                WHERE p.idProducto = d.idProducto and esCombo='NO' and date(fecha)>='$fecini' and date(fecha)<='$fecfin'
+                group by p.idProducto order by total");
+                         $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    }
+
+    public function masCombo(){
+        $fecini=$_POST['fechaini'];
+        $fecfin=$_POST['fechafin'];
+        $query=$this->db->query("SELECT c.idCombo, nombreCombo,sum(d.cantidad) as total, (pUnitario * d.cantidad) as totalventa
+                                    from combo c,detalle d
+                                    WHERE c.idCombo = d.idCombo and esCombo='SI' and date(fecha)>='$fecini' and date(fecha)<='$fecfin'
+                                    group by c.idCombo
+                                    order by total");
+                         $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    }
+
+    public function resumenCandy(){
+        if($this->session->userdata('login')==1){
+
+            $user = $this->session->userdata('idUs');
+
+            $dato=$this->usuarios_model->validaIngreso($user);
+            $this->load->view('templates/header', $dato);
+            $this->load->view('resumenVentaCandy');
+            $dato['js']="<script src='".base_url()."assets/js/resumenCandy.js'></script>";
+            $this->load->view('templates/footer',$dato);
+        }
+        else redirect('');
+    }
+
+    public function listaVenta(){
+        $fecha1=$_POST['fechaini'];
+        $fecha2=$_POST['fechafin'];
+        $query=$this->db->query("SELECT date(fechaVenta) as fecha,user,u.idUsuario,count(*) as total,sum(total) as totalventa 
+                from ventacandy v,usuario u WHERE date(fechaVenta)>='$fecha1' and date(fechaVenta)<='$fecha2' and v.idUsuario=u.idUsuario
+                GROUP by date(fechaVenta),u.idUsuario");  
+                                       $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    }
+
+    public function cantVenta(){
+        $fecha1=$_POST['fechaini'];
+        $fecha2=$_POST['fechafin'];
+        $query=$this->db->query("SELECT 
+        (select sum(cantidad) from detalle where date(fecha)>='".$fecha1."' and date(fecha)<='".$fecha2."' and esCombo='NO')as tprod, 
+        (select sum(cantidad*pUnitario) from detalle where date(fecha)>='".$fecha1."' and date(fecha)<='".$fecha2."' and esCombo='NO')as ventaprod, 
+        (select sum(cantidad) from detalle where date(fecha)>='$fecha1' and date(fecha)<='$fecha2' and esCombo='SI') as tcomb,
+        (select sum(cantidad*pUnitario) from detalle where date(fecha)>='$fecha1' and date(fecha)<='$fecha2' and esCombo='SI') as ventacomb from dual");  
+                                       $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    }
+
+    public function listadoDia(){
+        //$datosdia['idusuario']=$_POST['id'];
+        //$datosdia['fecha1']=$_POST['fecha'];    
+        $datosdia['idusuario']=1;
+        $datosdia['fecha']='2019-05-22';
+
+        if($this->session->userdata('login')==1){
+
+            $user = $this->session->userdata('idUs');
+
+            $dato=$this->usuarios_model->validaIngreso($user);
+            $this->load->view('templates/header', $dato);
+            $this->load->view('resumenCandyDia',$datosdia);
+            $dato['js']="<script src='".base_url()."assets/js/resumenCandy.js'></script>";
+            $this->load->view('templates/footer',$dato);
+        }
+        else redirect('');
+
+    }
 }

@@ -57,11 +57,100 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
             totalcombo=datos[0].totalcomb;
             total=totalproducto + totalcombo;
             totalventa=datos[0].totalventa;
+            if (totalproducto == null) totalproducto=0;
+            if (totalcombo == null) totalcombo=0;
+            if (totalventa == null) totalventa=0.00;
             $('#resprod span').html(totalproducto);
             $('#rescombo span').html(totalcombo);
             $('#restotal span').html(total);
-            $('#resventa span').html(totalventa+" Bs");        
+            $('#resventa span').html(totalventa+" Bs");   
+            listProductos();     
         }
     })
     
 });
+$('#lProducto').click(function(){
+    listProductos();
+});
+
+$('#lCombo').click(function(){
+    listCombo();
+});
+
+function listProductos(){
+    var ini=$('#fecha').data('daterangepicker').startDate;
+    var fin=$('#fecha').data('daterangepicker').endDate;
+    var param={
+        'fechaini':ini.format('YYYY-MM-DD'),
+        'fechafin':fin.format('YYYY-MM-DD')
+    };
+    var lista="";
+    var cabeza="";
+    $.ajax({
+        data:  param,
+        url:   'ReporteCandy/masProducto',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+            //$('#listaeliculas').html("procesando...");
+        },
+        success:  function (response){
+            //var datos=JSON.parse(response);
+            datos=JSON.parse(response);
+            $('#tabContent').html("");
+            $('#tcabeza').html("");
+            cabeza="<tr><th>Codigo</th><th>Producto</th><th>Total</th><th>Total Venta (Bs)</th><</tr>";
+            $('#tcabeza').html(cabeza);
+            console.log(datos);
+            datos.forEach(row => {
+            lista+="<tr>";
+            lista+="<td>"+row.idProducto+"</td>";                
+            lista+="<td>"+row.nombreProd+"</td>";                
+            lista+="<td>"+row.total+"</td>";                
+            lista+="<td>"+row.totalventa+"</td>";                
+            lista+="</tr>";    
+            });
+            $('#tabContent').html(lista);
+        }
+    }
+    )  
+};
+
+function listCombo(){
+    var ini=$('#fecha').data('daterangepicker').startDate;
+    var fin=$('#fecha').data('daterangepicker').endDate;
+    var param={
+        'fechaini':ini.format('YYYY-MM-DD'),
+        'fechafin':fin.format('YYYY-MM-DD')
+    };
+    var lista="";
+    var cabeza="";
+    $.ajax({
+        data:  param,
+        url:   'ReporteCandy/masCombo',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+            //$('#listaeliculas').html("procesando...");
+        },
+        success:  function (response){
+            //var datos=JSON.parse(response);
+            datos=JSON.parse(response);
+            $('#tcabeza').html("");
+            $('#tabContent').html("");
+            cabeza="<tr><th>Codigo</th><th>Combo</th><th>Total</th><th>Total Venta (Bs)</th><</tr>";
+            $('#tcabeza').html(cabeza);
+            console.log(datos);
+            datos.forEach(row => {
+            lista+="<tr>";
+            lista+="<td>"+row.idCombo+"</td>";                
+            lista+="<td>"+row.nombreCombo+"</td>";                
+            lista+="<td>"+row.total+"</td>";                
+            lista+="<td>"+row.totalventa+"</td>";                
+            lista+="</tr>";    
+            });
+            $('#tabContent').html(lista);
+        }
+    }
+    )  
+};

@@ -94,7 +94,7 @@
             <h5>PRODUCTOS/COMBOS VENDIDOS PERIODO SELECCIONADO</h5>
         </div>
     </div>
-
+<br>
      <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <a class="dashboard-stat blue" href="#">
@@ -151,28 +151,35 @@
     </div>
 
 
-    <div class="row col-md-12">
+    <div class=" col-md-12">
         <div class="card">
-                <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Resumen por Pelicula</div>
+                <div class="card-header text-white bg-primary"><i class="fas fa-list"></i> Resumen de Ventas
+
+                <ul class="nav nav-tabs justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link btn btn btn-outline-dark" id="lProducto">Productos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn btn btn-outline-dark" id="lCombo">Combos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn btn btn-outline-dark" >Link</a>
+  </li>
+  </ul>
+</div>
+
                 <div class="card-body">
                 
-	    <table  class="table">
-            <thead>
+        <table id="example" class="display" style="width:100%">
+            <thead id="tcabeza">
                 <tr>
                     <th>Codigo</th>
-                    <th>Pelicula</th>
-                    <th>Jueves</th>
-                    <th>Viernes</th>
-                    <th>Sabado</th>
-                    <th>Domingo</th>
-                    <th>Lunes</th>
-                    <th>Martes</th>
-                    <th>Miercoles</th>
-                    <th>Total</th>
-                    <th>Ingreso</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Total Venta (Bs)</th>
                 </tr>
             </thead>
-            <tbody id="tabPelicula">
+            <tbody id="tabContent">
             </tbody>
             </table>
             </div>
