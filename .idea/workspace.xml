@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a5f354c-a45e-44f2-8e71-6d13a7fdb4d7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/application/controllers/ComboCtrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/ComboCtrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/combo.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/combo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imagenes/21.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imagenes/22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imagenes/COMBO BALDE ByB (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imagenes/aquiarius (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imagenes/clasica combo  (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imagenes/clasicaCOMBO (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/ventacandy.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ventacandy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/ventacandy.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/ventacandy.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,43 +22,86 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/ComboCtrl.php">
+        <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="108" column="54" selection-start-line="108" selection-start-column="54" selection-end-line="108" selection-end-column="54" />
+            <state relative-caret-position="357">
+              <caret line="50" column="66" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/combo.php">
+        <entry file="file://$PROJECT_DIR$/assets/js/ventacandy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="50" column="169" selection-start-line="50" selection-start-column="169" selection-end-line="50" selection-end-column="169" />
+            <state relative-caret-position="155">
+              <caret line="108" column="34" lean-forward="true" selection-start-line="108" selection-start-column="34" selection-end-line="108" selection-end-column="34" />
               <folding>
-                <element signature="n#style#0;n#button#0;n#td#5;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#td#5;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#11846#11894#0#HTML" />
-                <element signature="e#11993#12192#0#HTML" />
-                <element signature="n#style#0;n#img#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h5#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/ventacandy.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="21" column="57" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="57" />
+              <folding>
+                <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h5#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#7594#7601#1#HTML" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/panelventa.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-153" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/ventasvendedor.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="12" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="21" column="5" lean-forward="true" selection-end-line="935" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>activo</find>
+      <find>ventas ca</find>
+      <find>Total (BS.).</find>
+      <find>total</find>
+      <find>cantidad</find>
+      <find>this</find>
+      <find>combo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -72,6 +112,10 @@
       <list>
         <option value="$PROJECT_DIR$/application/controllers/ComboCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/combo.php" />
+        <option value="$PROJECT_DIR$/application/views/templates/header.php" />
+        <option value="$PROJECT_DIR$/application/views/ventacandy.php" />
+        <option value="$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php" />
+        <option value="$PROJECT_DIR$/assets/js/ventacandy.js" />
       </list>
     </option>
   </component>
@@ -112,6 +156,24 @@
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -151,52 +213,46 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1558397563779</updated>
-      <workItem from="1558397564976" duration="12182000" />
+      <workItem from="1558397564976" duration="12695000" />
+      <workItem from="1558479622031" duration="11953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12182000" />
+    <option name="totallyTimeSpent" value="24648000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/ComboCtrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="108" column="54" selection-start-line="108" selection-start-column="54" selection-end-line="108" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/combo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
+        <state relative-caret-position="850">
           <caret line="50" column="169" selection-start-line="50" selection-start-column="169" selection-end-line="50" selection-end-column="169" />
           <folding>
             <element signature="n#style#0;n#button#0;n#td#5;n#tr#0;n#!!top" expanded="true" />
@@ -211,6 +267,71 @@
             <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#i#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/ComboCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="108" column="54" selection-start-line="108" selection-start-column="54" selection-end-line="108" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="395" column="71" selection-start-line="395" selection-start-column="71" selection-end-line="395" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="5" lean-forward="true" selection-end-line="935" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/ventasvendedor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="12" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/panelventa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/ventacandy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="21" column="57" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#7594#7601#1#HTML" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="50" column="66" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/ventacandy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="108" column="34" lean-forward="true" selection-start-line="108" selection-start-column="34" selection-end-line="108" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#h5#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>

@@ -393,7 +393,7 @@
     <div id="item-80" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-cash-register"></i> Panel Venta</a>
+                <a class="nav-link" href="<?=base_url()?>VentaCandyCtrl"><i class="fas fa-cash-register"></i> Panel Venta</a>
         </li>
   
         <li class="nav-item">
