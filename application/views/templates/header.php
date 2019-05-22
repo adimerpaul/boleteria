@@ -436,7 +436,7 @@
                     <a class="nav-link" href="<?=base_url()?>Iva/index"><i class="fas fa-list-ul"></i> Libro IVA Ventas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Libro IVA Candy</a>
+                    <a class="nav-link" href="<?=base_url()?>Iva/ivaCandy"><i class="fas fa-list-ul"></i> Libro IVA Candy</a>
                 </li>
             </ul>
         </div>
@@ -459,7 +459,7 @@
             <a class="nav-link" href="<?=base_url()?>Reporte/repsemana"><i class="fas fa-plus"></i> Borderaux semana</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-plus"></i> Productos Mas Vendidos</a>
+            <a class="nav-link" href="<?=base_url()?>ReporteCandy"><i class="fas fa-plus"></i> Productos Mas Vendidos</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href=""><i class="fas fa-plus"></i> Resumen Ventas Candy</a>

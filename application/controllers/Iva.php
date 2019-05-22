@@ -34,6 +34,30 @@ class Iva extends CI_Controller {
         else redirect('');
     }
 
+    public function ivaCandy()
+    {
+        if($this->session->userdata('login')==1){
+
+            $user = $this->session->userdata('idUs');
+            $dato=$this->usuarios_model->validaIngreso($user);
+            if (isset($_POST['mes'])){
+                $data['mes']=$_POST['mes'];
+            }else{
+                $data['mes']=date('m');
+            }
+            if (isset($_POST['anio'])){
+                $data['anio']=$_POST['anio'];
+            }else{
+                $data['anio']=date('Y');
+            }
+            $this->load->view('templates/header', $dato);
+            $this->load->view('ivaCandy',$data);
+            $dato['js']="";
+            $this->load->view('templates/footer',$dato);
+        }
+        else redirect('');
+    } 
+    
     public function store()
     {
         $this->peliculas_model->store();

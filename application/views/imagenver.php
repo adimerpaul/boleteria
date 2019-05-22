@@ -34,11 +34,10 @@
           echo " border=0></td>";
           echo "<td><b>&nbsp;$nombreArch</b></td>";
           //echo "<td>".filesize(base_url('assets/imagenes/').$nombreArch)."</td>";
-          echo "<td> <a type='button' class='btn btn-danger' href='".base_url()."Imagen/eliminaImagen/$nombreArch'>Eliminar</a></td>";
+          echo "<td> <a type='button' class='btn btn-danger' href='".base_url()."Imagen/eliminaImagen/".$nombreArch."'>Eliminar</a></td>";
       
           echo "</tr>";}
           } 
-          closedir("assets/imagenes");
     ?>
 
   
