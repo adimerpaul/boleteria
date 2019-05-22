@@ -62,47 +62,42 @@ INNER JOIN preferencia pr ON p.idPreferencia=pr.idPreferencia
 WHERE p.idProducto='$id' AND pr.activa='on'");
         echo json_encode($query->result_array());
     }
-    public function horario(){
-        $idpelicula=$_POST['idpel'];
-        $fecha=$_POST['fecha1'];
+    public function guardartemporal(){
 
-        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, capacidad FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala where fecha ='$fecha' and  p.idPelicula = ".$idpelicula;
-        $query=$this->db->query($consulta);
-        $row=$query->row();
+        $idProducto=$_POST['idProducto'];
+        $pUnitario=$_POST['pUnitario'];
+        $tCantidad=$_POST['tCantidad'];
+        $nombreP=$_POST['nombreP'];
+        $idUsuario=$_SESSION['idUs'];
+        $this->db->query("INSERT INTO detalletemporal SET
+idProducto='$idProducto',
+pUnitario='$pUnitario',
+tCantidad='$tCantidad',
+nombreP='$nombreP',
+idUsuario='$idUsuario'
+");
+        echo 1;
+
+    }
+
+    public function datostemporal(){
+        $query=$this->db->query("SELECT * FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
         $myObj=($query->result_array());
         echo json_encode($myObj);
     }
-
-    public function horario2(){
-        $idfuncion=$_POST['idfun'];
-
-        $consulta="SELECT t.idTarifa,serie,precio FROM funcion f  inner join funciontarifa ft on f.idFuncion = ft.idFuncion inner join tarifa t on t.idTarifa = ft.idTarifa where f.idFuncion =".$idfuncion;
-        $query=$this->db->query($consulta);
-        $row=$query->row();
-        $myObj=($query->result_array());
-        echo json_encode($myObj);
+    public function eliminartemporal(){
+        $id=$_POST['id'];
+        $this->db->query("DELETE FROM detalletemporal WHERE idDtemporal='$id'");
+        echo 1;
+    }
+    function eliminartemporalall(){
+        $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
+        echo 1;
     }
 
-    public function relleno(){
-        $query=$this->db->query("SELECT * FROM temporal WHERE idUser='".$_SESSION['idUs']."'");
-        $t="";
-        foreach ($query->result() as $row){
-            $t=$t."<tr>
-                            <th scope='row'>1</th>
-                            <td>$row->fechaFuncion $row->horaFuncion</td>
-                            <td>$row->titulo</td>
-                            <td class='costo'>$row->costo</td>
-                            <td><a class='btn btn-outline-danger btn-sm' href='".base_url()."VentaCtrl/deleteTemporal/$row->idTemporal'><i class='far fa-trash-alt'></i></a></td>                                                        
-                        </tr>";
-        }
-        echo $t;
-    }
-
-    public function listafuncion(){
-        $fecha=$_POST['fecha1'];
-        $consulta="SELECT DISTINCT p.idPelicula,nombre,formato from pelicula p inner join funcion f on p.idPelicula = f.idPelicula where fecha ='$fecha' and activa='ACTIVADO'" ;
-        $query=$this->db->query($consulta);
-        $row=$query->row();
+    function buscarcliente(){
+        $ci=$_POST['ci'];
+        $query=$this->db->query("SELECT * FROM cliente WHERE cinit='$ci'");
         $myObj=($query->result_array());
         echo json_encode($myObj);
     }

@@ -15,7 +15,7 @@
         </ol>
     </nav>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-7">
             <div class="card  mb-3" >
                 <div class="card-header text-white bg-info"> <i class="fa fa-coffee"></i> RUBROS</div>
                 <div class="card-body">
@@ -49,16 +49,36 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-5">
             <div class="card  mb-3" >
                 <div class="card-header text-white bg-info d-flex justify-content-end">
-                    <button class="btn-danger btn-sm"> <i class="fa fa-trash"></i> Cancelar</button>
-                    <button class="btn-success btn-sm"> <i class="fa fa-plus-circle"></i> Cerrar venta</button>
-
+                    <button class="btn-danger m-0 p-0 btn-sm" id="cancelar"> <i class="fa fa-trash"></i> Cancelar</button>
+                    <button class="btn-success m-0 p-0 btn-sm" data-toggle="modal" data-target="#cliente"> <i class="fa fa-check"></i> Cerrar venta</button>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Info card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h6 class="card-title"><b>Fecha </b> <?=date("Y-m-d H:i:s")?> </h6>
+                    <table class="table">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Producto</th>
+                            <th>Prec.</th>
+                            <th>Subt.</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="temporal">
+                        </tbody>
+                        <tfoot class="table-dark">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>TOTAL</th>
+                                <th><b><h5 id="totaltemporal">0</h5></b></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
@@ -133,3 +153,64 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="cliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Datos Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formulariocliente">
+                    <div class="form-group row">
+                        <label for="cinit" class="col-sm-2 col-form-label">CI NIT Cliente</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="cinit" placeholder="CI NIT ">
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="tipo" type="checkbox" checked data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="apellidos" class="col-sm-3 col-form-label">Apellidos (razon social)</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"  required id="apellidos" placeholder="Razon ">
+                        </div>
+                        <label for="nombres" class="col-sm-1 col-form-label">Nombres</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="nombres" placeholder="nombres ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="montocliente">Monto cobrado</label>
+                            <input type="text" class="form-control" id="montocliente" >
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="montoapagar">Monto a cancelar</label>
+                            <input type="text" class="form-control" id="montoapagar" disabled>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="cambio">Cambio</label>
+                            <input type="text" class="form-control" id="cambio" >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-trash"></i> Cancelar</button>
+                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Agregar al pedido</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
