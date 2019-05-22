@@ -1,4 +1,5 @@
 $(function() {
+    var idproducto;
     $('.rubro').click(function (e) {
         var idcombo=($(this).attr('id'));
         $.ajax({
@@ -22,7 +23,7 @@ $(function() {
 
                 $('#productos').html(t);
                 $('.producto').click(function (e) {
-                    var idproducto=($(this).attr('id'));
+                    idproducto=($(this).attr('id'));
                     $('#seleccionados').html('');
                     $('#cantidad').val(1);
                     $('#seleccion-producto').modal('show');
@@ -89,16 +90,19 @@ $(function() {
         });
     }
     $('#formulario').submit(function (e) {
+
+
         var cantidad=$('#cantidad').val();
         var selec = document.getElementsByClassName("removepref").length;
         if (selec<cantidad){
             if (selec==1){
-                console.log('guardar');
+                //console.log('guardar');
+                guardartemporal();
             }else{
                 alert('Preferencias incompletas!');
             }
         }else {
-            console.log('guardar');
+            guardartemporal();
         }
         return false;
     });
@@ -165,4 +169,108 @@ $(function() {
             }
         });
     }
+    function guardartemporal() {
+
+        var datos={
+            'idProducto':idproducto,
+            'pUnitario':$('#precio').val(),
+            'tCantidad':$('#cantidad').val(),
+            'nombreP':$('#nombre').val()
+        }
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/guardartemporal',
+            data:datos,
+            success:function (e) {
+                //var datos=JSON.parse(e);
+                if (e==1){
+                    $('#seleccion-producto').modal('hide');
+                    datostemporal();
+                }
+
+            }
+        });
+    }
+    function datostemporal() {
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/datostemporal',
+            success:function (e) {
+                var datos=JSON.parse(e);
+                var totaltemporal=0;
+                //console.log(e);
+                $('#temporal').html('');
+                for (var i=0;i<datos.length;i++){
+                    totaltemporal=totaltemporal+parseInt(datos[i].tCantidad)*parseInt(datos[i].pUnitario);
+                    $('#temporal').append("<tr>" +
+                        "                            <td>"+datos[i].tCantidad+"</td>" +
+                        "                            <td>"+datos[i].nombreP+"</td>" +
+                        "                            <td>"+datos[i].pUnitario+"</td>" +
+                        "                            <td>"+ parseInt(datos[i].tCantidad)*parseInt(datos[i].pUnitario)+"</td>" +
+                        "                            <td> <small class='elitemporal p-1 btn-danger' id='"+datos[i].idDtemporal+"'><i class='fa fa-times'></i></small></td>" +
+                        "                        </tr>");
+                }
+                $('#totaltemporal').html(totaltemporal);
+                $('#montoapagar').val(totaltemporal);
+                $('.elitemporal').click(function (e) {
+                    var idtemporal=($(this).attr('id'));
+                    eliminartemporal(idtemporal);
+                });
+            }
+        });
+    }
+    datostemporal();
+    function eliminartemporal(idtemporal) {
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/eliminartemporal',
+            data:'id='+idtemporal,
+            success:function (e) {
+                if (e==1){
+                    datostemporal();
+                }
+
+            }
+        });
+    }
+    $('#cancelar').click(function (e) {
+
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/eliminartemporalall',
+            success:function (e) {
+                datostemporal();
+            }
+        });
+        e.preventDefault();
+    });
+    $('#cinit').keyup(function (e) {
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/buscarcliente',
+            data:'ci='+$('#cinit').val(),
+            success:function (e) {
+                var datos=JSON.parse(e);
+                if (datos.length==1){
+                    if ($('#cinit').val()=='0'){
+                        $('#tipo').bootstrapToggle('off');
+                    }else {
+
+                        $('#tipo').bootstrapToggle('on');
+                    }
+                    $('#nombres').val(datos[0].nombreCl);
+                    $('#apellidos').val(datos[0].apellidoCl);
+                }else {
+                    $('#tipo').bootstrapToggle('on');
+                    $('#nombres').val('');
+                    $('#apellidos').val('');
+                }
+            }
+        });
+        e.preventDefault();
+    })
+    $('#montocliente').keyup(function (e) {
+        $('#cambio').val(parseInt($('#montocliente').val())-parseInt($('#montoapagar').val()));
+        e.preventDefault();
+    });
 });
