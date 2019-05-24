@@ -424,10 +424,8 @@
   </li>
   <?php endif ?>
   
-  <li class="nav-item">
-    
   <?php if($this->usuarios_model->veri($_SESSION['idUs'],'9')):  ?>
-   
+  <li class="nav-item">      
     <a class="nav-link" data-toggle="collapse" href="#item-9" data-parent="#accordion1"><i class="far fa-chart-bar"></i> Estadisticas</a>
     <div id="item-9" class="collapse">
       <ul class="nav flex-column ml-3">
@@ -446,49 +444,65 @@
             <a class="nav-link" href="<?=base_url()?>Ventasvendedor/resumenventa"><i class="fas fa-plus"></i> Resumen Ventas (Box Office)</a>
             <?php endif ?>
         </li>
-
+        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'13')):  ?>
         <li class="nav-item">
-          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'90')):  ?>
          <a class="nav-link" data-toggle="collapse" href="#item-91" data-parent="#accordion1"><i class="fas fa-bars"></i> Libro IVA</a>
          <div id="item-91" class="collapse">
             <ul class="nav flex-column ml-3">
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'90')):  ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url()?>Iva/index"><i class="fas fa-list-ul"></i> Libro IVA Ventas</a>
                 </li>
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'108')):  ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url()?>Iva/ivaCandy"><i class="fas fa-list-ul"></i> Libro IVA Candy</a>
                 </li>
+                <?php endif ?>
             </ul>
         </div>
-        <?php endif ?>
         </li>
-        <li class="nav-item">
+        <?php endif ?>
+        <li class="nav-item" hidden>
             <a class="nav-link" href="<?=base_url()?>InformeSemanal"><i class="fas fa-file"></i> Informe semanal</a>
         </li>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'65')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>Reporte/porfuncion"><i class="fas fa-plus"></i> Borderaux Funcion</a>
         </li>       
+        <?php endif ?>
 
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'67')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>Reporte/semanadistrib"><i class="fas fa-plus"></i> Borderaux Distribuidor</a>
         </li>
+        <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'66')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>Reporte/bordistribuidor"><i class="fas fa-plus"></i> Borderaux tarifa</a>
         </li>
+        <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'71')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>Reporte/repsemana"><i class="fas fa-plus"></i> Borderaux semana</a>
         </li>
+        <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'139')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>ReporteCandy"><i class="fas fa-plus"></i> Productos Mas Vendidos</a>
         </li>
+        <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'140')):  ?>
         <li class="nav-item">
-            <a class="nav-link" href=""><i class="fas fa-plus"></i> Resumen Ventas Candy</a>
+            <a class="nav-link" href="<?=base_url()?>ReporteCandy/resumenCandy"><i class="fas fa-plus"></i> Resumen Ventas Candy</a>
         </li>
+        <?php endif ?>
     </ul>
     </div>
-    <?php endif ?>
     
   </li>
+  <?php endif ?>
+  
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'11')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-10" data-parent="#accordion1"><i class="fas fa-inbox"></i> Caja</a>

@@ -50,7 +50,6 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
             var total=0;
             var totalVenta=0;
             var lista="";
-            var BASE_URL = "<?php echo base_url();?>";
             $('#fecInicial').html(ini.format('YYYY-MM-DD'));
             $('#fecFinal').html(fin.format('YYYY-MM-DD'));
             datos.forEach(row => {

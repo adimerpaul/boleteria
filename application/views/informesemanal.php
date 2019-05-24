@@ -1,6 +1,6 @@
 <div class="col-sm-11 col-md-10">
     <h3 class="page-title">
-        Libro IVA <small> Analice el Libro de IVA desde aquí</small>
+        Libro IVA <small> Analice ventas semana desde aquí</small>
     </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb ">

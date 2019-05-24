@@ -52,7 +52,9 @@
                         echo "<td>$row->user</td>";                        
                         echo "<td>$row->total</td>";                        
                         echo "<td>$row->nroComprobante</td>";                        
+                        if($this->usuarios_model->veri($_SESSION['idUs'],'142')): 
                         echo "<td><a class='btn btn-outline-warning btn-sm detalle'  data-toggle='modal' data-target='#exampleModal' data-idventacandy='".$row->idVentaCandy."'>Ver Detalle</a></td>";                                                
+                        endif;
                         echo "</tr>";}
                     ?>
                 </tbody>
