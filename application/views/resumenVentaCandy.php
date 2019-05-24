@@ -38,10 +38,10 @@
             </div>
             <div class="row">
                  <div class='col-md-6'>
-                 <label ><b>Total Combos: </b></label> <label  id='totalProd'></label>
+                 <label ><b>Total Combos: </b></label> <label  id='totalComb'></label>
                  </div>
                  <div class='col-md-6'>
-                 <label><b>Total Productos: </b></label> <label id='totalComb'> </label>
+                 <label><b>Total Productos: </b></label> <label id='totalProd'> </label>
                  </div>
                 
             </div><br>

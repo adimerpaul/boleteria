@@ -85,7 +85,7 @@ class ReporteCandy extends CI_Controller {
         $fecha2=$_POST['fechafin'];
         $query=$this->db->query("SELECT date(fechaVenta) as fecha,user,u.idUsuario,count(*) as total,sum(total) as totalventa 
                 from ventacandy v,usuario u WHERE date(fechaVenta)>='$fecha1' and date(fechaVenta)<='$fecha2' and v.idUsuario=u.idUsuario
-                GROUP by date(fechaVenta),u.idUsuario");  
+                GROUP by date(fechaVenta)");  
                                        $row=$query->row();
                          $myObj=($query->result_array());
                          echo json_encode($myObj);  
@@ -96,19 +96,16 @@ class ReporteCandy extends CI_Controller {
         $fecha2=$_POST['fechafin'];
         $query=$this->db->query("SELECT 
         (select sum(cantidad) from detalle where date(fecha)>='".$fecha1."' and date(fecha)<='".$fecha2."' and esCombo='NO')as tprod, 
-        (select sum(cantidad*pUnitario) from detalle where date(fecha)>='".$fecha1."' and date(fecha)<='".$fecha2."' and esCombo='NO')as ventaprod, 
+        (select sum(d.cantidad*precioVenta) from detalle d inner join producto p on d.idProducto= p.idProducto where date(fecha)>='".$fecha1."' and date(fecha)<='".$fecha2."' and esCombo='NO')as ventaprod, 
         (select sum(cantidad) from detalle where date(fecha)>='$fecha1' and date(fecha)<='$fecha2' and esCombo='SI') as tcomb,
-        (select sum(cantidad*pUnitario) from detalle where date(fecha)>='$fecha1' and date(fecha)<='$fecha2' and esCombo='SI') as ventacomb from dual");  
+        (select sum(d.cantidad*precioVenta) from detalle d inner join combo c on d.idCombo=c.idCombo where date(fecha)>='$fecha1' and date(fecha)<='$fecha2' and esCombo='SI') as ventacomb from dual");  
                                        $row=$query->row();
                          $myObj=($query->result_array());
                          echo json_encode($myObj);  
     }
 
-    public function listadoDia(){
-        //$datosdia['idusuario']=$_POST['id'];
-        //$datosdia['fecha1']=$_POST['fecha'];    
-        $datosdia['idusuario']=1;
-        $datosdia['fecha']='2019-05-22';
+    public function listadoDia($fecha){
+        $datosdia['fecha']=$fecha;    
 
         if($this->session->userdata('login')==1){
 
@@ -117,10 +114,31 @@ class ReporteCandy extends CI_Controller {
             $dato=$this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header', $dato);
             $this->load->view('resumenCandyDia',$datosdia);
-            $dato['js']="<script src='".base_url()."assets/js/resumenCandy.js'></script>";
+            $dato['js']="<script src='".base_url()."assets/js/resumenCandyDia.js'></script>";
             $this->load->view('templates/footer',$dato);
         }
         else redirect('');
 
+    }
+
+    public function datosVenta(){
+        $idventa=$_POST['idventacandy'];
+        $query=$this->db->query("SELECT date(fechaVenta) as fecha,time(fechaVenta)as hora,user, concat(nombreCl,' ',apellidoCl) as nombre
+         from ventacandy v inner join usuario u on v.idUsuario=u.idUsuario 
+        inner join cliente c on c.idCliente=v.idCliente
+        where idVentaCandy='$idventa'");  
+        $row=$query->row();
+        $myObj=($query->result_array())[0];
+        echo json_encode($myObj);  
+        
+    }
+
+    public function detalleventa(){
+        $idventa=$_POST['idventacandy'];
+        $query=$this->db->query("SELECT nombreP,cantidad,pUnitario,(cantidad * pUnitario) as subtotal 
+                                 from detalle where idVentaCandy=$idventa");  
+                                       $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
     }
 }

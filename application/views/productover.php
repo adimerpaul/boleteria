@@ -7,7 +7,9 @@
     </div>
     <div class="card-body"><br>   
         <div class="row">
+        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'115')):  ?>
             <a href="" class="btn btn-success" data-toggle="modal" data-target="#productoModal">Registrar</a>
+        <?php endif;?>
         </div>
         <br>
         <table id="example" class="display" style="width:100%">
@@ -33,8 +35,12 @@
             echo "SI"; else echo "NO";?></td>
             
             <td>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'117')):  ?>
                 <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idproducto="<?php echo $row['idProducto']?>"> Modificar</a>
+        <?php endif;?>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'118')):  ?>
                 <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>ProductoCtrl/delete/<?=$row['idProducto']?>"> Eliminar</a>
+        <?php endif;?>
             </td>
         </tr>
     <?php endforeach; ?>

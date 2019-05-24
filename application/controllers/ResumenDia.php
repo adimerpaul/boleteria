@@ -89,8 +89,8 @@ Av. Tacna y Jaen - Oruro -Bolvia
 ORURO - BOLIVIA
 -------------------------------
 ";
-        $printer -> setJustification(Printer::JUSTIFY_CENTER);
-        $printer->text($ca);
+        //$printer -> setJustification(Printer::JUSTIFY_CENTER);
+       // $printer->text($ca);
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text($ca);
         $printer -> setJustification(Printer::JUSTIFY_LEFT);

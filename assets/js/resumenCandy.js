@@ -61,7 +61,7 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
                     lista+= "<td>"+row.user+"</td>";  
                     lista+= "<td>"+row.total+"</td>";
                     lista+= "<td>"+row.totalventa+" Bs</td>";
-                    lista+= "<td><a class='btn btn-success btn-sm rventa' data-iduser="+row.idUsuario+" data-fecha="+row.fecha+" name='detalleDia'>Ver detalle Dia</a></td></tr>";
+                    lista+= "<td><a class='btn btn-success btn-sm' href='listadoDia/"+row.fecha+"'>Ver detalle Dia</a></td></tr>";
                 })
                 lista+="<tr><th></th><th>Total</th><th>"+total+"</th><th>"+totalVenta+" Bs</th><th></th></tr>";
                 $('#listav').html("");
@@ -95,11 +95,5 @@ function calculaCantidad(){
             $('#totalComb').html(datos.tcomb+' ('+datos.ventacomb +' Bs)');
         }
     })
-}
+};
 
-
-$(' a [name=detalleDia]').click(function(){
-    var idus = this.data('iduser');
-    var fec = this.data('fecha');
-    console.log(idus+' '+fec);
-})

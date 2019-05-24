@@ -10,12 +10,14 @@
     </div>
     <div class="card-body">     <br>  
     
+        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'137')):  ?>
         <div>
         <form action="<?php echo base_url();?>Imagen/cargarArchivo" method="post" enctype="multipart/form-data">
             <input type="file" name="fichero">
             <input type="submit" class="btn btn-success" value="Subir">            
         </form>
         </div>
+        <?php endif ?>
         <br>
         <table id="example" class="table" style="width:100%">
             <thead>
@@ -34,7 +36,7 @@
           echo " border=0></td>";
           echo "<td><b>&nbsp;$nombreArch</b></td>";
           //echo "<td>".filesize(base_url('assets/imagenes/').$nombreArch)."</td>";
-          echo "<td> <a type='button' class='btn btn-danger' href='".base_url()."Imagen/eliminaImagen/".$nombreArch."'>Eliminar</a></td>";
+          //echo "<td> <a type='button' class='btn btn-danger' href='".base_url()."Imagen/eliminaImagen/".$nombreArch."'>Eliminar</a></td>";
       
           echo "</tr>";}
           } 

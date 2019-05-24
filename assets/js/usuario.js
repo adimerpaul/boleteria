@@ -77,7 +77,7 @@ function(){
                         var datos=JSON.parse(response);
                         console.log(datos[0].nombreSec);
                         datos.forEach(row => {
-                            if(row.seccion_padre_id==0){
+                            if(row.seccion_padre_id==0 || row.seccion_padre_id == null){
                         console.log(row.nombreSec);
                         cadenaSeccion += '<div class="row-fluid">';
                         cadenaSeccion += '<div class="span6">';

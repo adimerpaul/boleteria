@@ -866,8 +866,6 @@ CREATE TABLE `log` (
 
 CREATE TABLE `pelicula` (
   `idPelicula` int(11) NOT NULL,
-  `codigoIncaa` varchar(200) NOT NULL,
-  `codUltracine` varchar(200) NOT NULL,
   `nombre` varchar(250) NOT NULL,
   `duracion` int(11) NOT NULL,
   `paisOrigen` varchar(250) NOT NULL,
@@ -887,12 +885,12 @@ CREATE TABLE `pelicula` (
 -- Volcado de datos para la tabla `pelicula`
 --
 
-INSERT INTO `pelicula` (`idPelicula`, `codigoIncaa`, `codUltracine`, `nombre`, `duracion`, `paisOrigen`, `genero`, `cartelera`, `formato`, `sipnosis`, `urlTrailer`, `imagen`, `fechaCr`, `fechaMod`, `idDistrib`, `clasificacion`) VALUES
-(22, '', '', 'DUMBO', 100, 'EEUU', 'Aventura', 1, 1, '', 0, NULL, '2019-05-06 09:21:49', '2019-05-06 09:21:49', 6, 'ATP'),
-(23, '', '', 'DUMBO', 100, 'EEUU', 'Aventura', 1, 0, '', 0, NULL, '2019-05-06 09:22:30', '2019-05-06 09:22:30', 6, 'ATP'),
-(24, '', '', 'CEMENTERIO MALDITO', 100, 'EEUU', 'Terror', 1, 0, '', 0, NULL, '2019-05-06 10:15:22', '2019-05-06 10:15:22', 6, '+13'),
-(25, '', '', 'DETECTIVE PIKACHU', 104, 'EEUU', 'Animada', 1, 1, '', 0, NULL, '2019-05-07 09:00:44', '2019-05-07 09:00:44', 7, 'ATP'),
-(27, '', '', 'DETECTIVE PIKACHU', 104, 'EEUU', 'Animada', 1, 0, '', 0, NULL, '2019-05-07 09:01:15', '2019-05-07 09:01:15', 7, 'ATP');
+INSERT INTO `pelicula` (`idPelicula`, `nombre`, `duracion`, `paisOrigen`, `genero`, `cartelera`, `formato`, `sipnosis`, `urlTrailer`, `imagen`, `fechaCr`, `fechaMod`, `idDistrib`, `clasificacion`) VALUES
+(22,  'DUMBO', 100, 'EEUU', 'Aventura', 1, 1, '', 0, NULL, '2019-05-06 09:21:49', '2019-05-06 09:21:49', 6, 'ATP'),
+(23,  'DUMBO', 100, 'EEUU', 'Aventura', 1, 0, '', 0, NULL, '2019-05-06 09:22:30', '2019-05-06 09:22:30', 6, 'ATP'),
+(24,  'CEMENTERIO MALDITO', 100, 'EEUU', 'Terror', 1, 0, '', 0, NULL, '2019-05-06 10:15:22', '2019-05-06 10:15:22', 6, '+13'),
+(25,  'DETECTIVE PIKACHU', 104, 'EEUU', 'Animada', 1, 1, '', 0, NULL, '2019-05-07 09:00:44', '2019-05-07 09:00:44', 7, 'ATP'),
+(27,  'DETECTIVE PIKACHU', 104, 'EEUU', 'Animada', 1, 0, '', 0, NULL, '2019-05-07 09:01:15', '2019-05-07 09:01:15', 7, 'ATP');
 
 -- --------------------------------------------------------
 
@@ -1068,9 +1066,13 @@ CREATE TABLE `proveedor` (
   `razonSocial` varchar(200) NOT NULL,
   `nitciProv` varchar(100) DEFAULT NULL,
   `email` varchar(200) NOT NULL,
+  `telefono` varchar(100) NOT NULL,								   
   `direccion` varchar(200) DEFAULT NULL,
   `activo` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `proveedor` (`idProveedor`, `razonSocial`, `nitProv`, `email`, `telefono`, `direccion`, `activo`) VALUES
+(1, 'Martin', '2', 'Bardanarg@hotmail.com', '5', 'a', '1');
 
 -- --------------------------------------------------------
 

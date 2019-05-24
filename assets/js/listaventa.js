@@ -67,7 +67,7 @@ $('#fecini').change(function(){
                                     } else{
                                         $('#btnImpresion').show();
                                     }
-                                    if (datos.tipo=="FACTURA"){
+                                    if (datos.tipoVenta=="FACTURA"){
                                         $('#btnImpresion').prop('href',url+'VentaCtrl/printF/'+datos.idVenta);
                                     } else{
                                         $('#btnImpresion').prop('href',url+'VentaCtrl/printR/'+datos.idVenta);

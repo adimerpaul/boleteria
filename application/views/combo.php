@@ -13,7 +13,7 @@
         <div class="card-body">
 
             <!-- Button trigger modal -->
-            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'91')):  ?>
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'132')):  ?>
                 <button type="button" class="btn btn-success btn-sm mb-3" style="padding: 2px;" data-toggle="modal" data-target="#exampleModal">
                     <i class="fa fa-plus-circle"></i> Registrar nuevo Combo
                 </button>
@@ -42,16 +42,20 @@ ORDER BY c.idCombo DESC ");
                     }else{
                         $t="<span class='alert-danger'>$row->activo</span>";
                     }
+                    if($this->usuarios_model->veri($_SESSION['idUs'],'134')):
+                        $mod="<button class='btn btn-warning btn-sm text-white' data-idcupon='$row->idCombo' style='padding:2px ;' data-toggle='modal' data-target='#update'> <i class='fa fa-pencil-alt'></i> Modificar</button>"; 
+                    endif;
+                    if($this->usuarios_model->veri($_SESSION['idUs'],'135')):
+                        $elim="<a class='btn btn-danger btn-sm eli' style='padding:2px ;' href='".base_url()."ComboCtrl/delete/$row->idCombo'> <i class='fa fa-trash'></i> Eliminar</a> "; 
+                    endif;
                     echo "<tr> 
                                 <td>$row->idCombo</td> 
                                 <td>$row->nombreCombo</td> 
                                 <td>$row->cantidad</td> 
                                 <td>$row->precioVenta</td> 
                                 <td>$t</td> 
-                                <td> 
-                                    <button class='btn btn-warning btn-sm text-white' data-idcupon='$row->idCombo' style='padding:2px ;' data-toggle='modal' data-target='#update'> <i class='fa fa-pencil-alt'></i> Modificar</button>
-                                    <a class='btn btn-danger btn-sm eli' style='padding:2px ;' href='".base_url()."ComboCtrl/delete/$row->idCombo'> <i class='fa fa-trash'></i> Eliminar</a> 
-                                 
+                                <td> $mod 
+                                $elim
                                 </td> 
                             </tr>";
                 }

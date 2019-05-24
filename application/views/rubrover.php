@@ -5,8 +5,11 @@
     <div class="card-header text-white bg-warning" >
         Rubros
     </div>
-    <div class="card-body">    
+    <div class="card-body">
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'120')):  ?>
+          
         <a href="" class="btn btn-success" data-toggle="modal" data-target="#rubroModal">Registrar</a>
+    <?php endif;?>
          <br>  <br> 
         <table id="example" class="display" style="width:100%">
             <thead>
@@ -31,8 +34,12 @@
             echo "SI"; else echo "NO"; ?></td>
             
             <td>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'122')):  ?>
                 <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idrubro="<?php echo $row['idRubro']?>"> Modificar</a>
+    <?php endif;?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'123')):  ?>
                 <a class="btn btn-outline-danger eli  btn-sm" href="<?=base_url()?>RubroCtrl/delete/<?=$row['idRubro']?>"> Eliminar</a>
+    <?php endif;?>
             </td>
         </tr>
     <?php endforeach; ?>

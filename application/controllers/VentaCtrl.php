@@ -394,7 +394,7 @@ WHERE idVenta='$idventa'");
     $nrocomprobante=$row->nroComprobante;
 
     $nroautorizacion=$row->nroAutorizacion;
-    $vendero=$row->nombreUser;
+    $vendero=$row->user;
     $codigocontrol=$row->codigoControl;
     $fechahasta=$row->fechaHasta;
     $leyenda=$row->leyenda;
@@ -538,7 +538,7 @@ WHERE v.idVenta='$idventa'");
         $printer->text("-----------------------------------" . "\n");
         $printer->text("Cod:".$row->numboc . "\n");
         $printer->text("Trans: ".$idventa."\n");
-        $printer->text("Usuario: ".$row->nombreUser."\n");
+        $printer->text("Usuario: ".$row->user."\n");
         $printer -> cut();
         $html = '
 <b>Fecha:</b> ' . $row->fechaFuncion . '<br>
@@ -547,7 +547,7 @@ WHERE v.idVenta='$idventa'");
 ------------------------------------
 Cód.:' . $row->numboc . ' <br>
 Trans:' . $idventa . '<br>
-Usuario:' . $row->nombreUser . '<br>
+Usuario:' . $row->user . '<br>
 ';
 
 /*pdf->writeHTML($html, false, false, false, false, ''); //Salida PDF
@@ -585,7 +585,7 @@ WHERE idVenta='$idventa'");
         $nrocomprobante=$row->nroComprobante;
 
         $nroautorizacion=$row->nroAutorizacion;
-        $vendero=$row->nombreUser;
+        $vendero=$row->user;
         $codigocontrol=$row->codigoControl;
         $fechahasta=$row->fechaHasta;
         $leyenda=$row->leyenda;
@@ -734,7 +734,7 @@ WHERE v.idVenta='$idventa'");
 ------------------------------------
 Cód.:' . $row->numboc . ' <br>
 Trans:' . $idventa . '<br>
-Usuario:' . $row->nombreUser . '<br>
+Usuario:' . $row->user . '<br>
 ';
 
             /*pdf->writeHTML($html, false, false, false, false, ''); //Salida PDF

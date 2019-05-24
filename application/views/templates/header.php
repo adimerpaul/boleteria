@@ -141,20 +141,21 @@
             </div>
         </li>
     <?php endif?>
+    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'109')):  ?>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#item-41" data-parent="#accordion1"><i class="fas fa-truck"></i> Proveedores</a>
             <div id="item-41" class="collapse">
                 <ul class="nav flex-column ml-3">
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'111')):  ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url()?>ProveedorCtrl"><i class="fas fa-plus"></i> Registrar Nuevo</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url()?>ProveedorCtrl/proveedorver"><i class="fas fa-list-ul"></i> Lista Proveedores</a>
-                        </li>
+                        <?php endif?>
                         
                 </ul>
             </div>
         </li>
+        <?php endif?>
 
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'3')):  ?>
     <li class="nav-item">
@@ -203,7 +204,7 @@
                 <a class='nav-link' data-toggle='collapse' href='#item-95' data-parent='#accordion1'><i class="fas fa-shopping-cart"></i> Puntos de Venta</a>
                 <div id='item-95' class='collapse'>
                   <ul class='nav flex-column ml-3'>
-                        <li class='nav-item'>
+                        <li class='nav-item' hidden>
                             <a class='nav-link' data-toggle="collapse" href="#item-951" data-parent="#accordion1"><i class="fas fa-glass-martini"></i> Consumible</a>
                             <div id="item-951" class="collapse">
                                 <ul class="nav flex-column ml-3">
@@ -221,7 +222,7 @@
                         </li>
 
 
-                    <li class='nav-item'>
+                    <li class='nav-item' hidden>
                         <a class='nav-link' data-toggle="collapse" href="#item-952" data-parent="#accordion1"><i class="fab fa-gripfire"></i> Insumos</a>
                         <div id="item-952" class="collapse">
                                 <ul class="nav flex-column ml-3">
@@ -237,52 +238,71 @@
                                 </ul>    
                             </div>
                     </li>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'119')):  ?>
                     <li class='nav-item'>
                         <a class='nav-link' data-toggle="collapse" href="#item-953" data-parent="#accordion1"><i class="fas fa-sitemap"></i> Rubros</a>
                         <div id="item-953" class="collapse">
                                 <ul class="nav flex-column ml-3">
+                                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'121')):  ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?=base_url()?>RubroCtrl"><i class="fas fa-plus"></i> Rubro</a>
                                     </li>
+                                <?php endif ?>
 
                                 </ul>    
                             </div>
 
                     </li>
+                <?php endif ?>
+                    
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'114')):  ?>
                     <li class='nav-item'>
                         <a class='nav-link' data-toggle="collapse" href="#item-954" data-parent="#accordion1"><i class="fas fa-barcode"></i> Productos</a>
                         <div id="item-954" class="collapse">
                                 <ul class="nav flex-column ml-3">
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'116')):  ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?=base_url()?>ProductoCtrl"><i class="fas fa-plus"></i> Producto</a>
                                     </li>
+                    <?php endif ?>
                                 </ul>    
                             </div>
                     </li>
+                <?php endif ?>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'130')):  ?>
                     <li class='nav-item'>
                         <a class='nav-link' data-toggle="collapse" href="#item-955" data-parent="#accordion1"><i class="fas fa-gift"></i> Combos</a>
                         <div id="item-955" class="collapse">
                                 <ul class="nav flex-column ml-3">
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'133')):  ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?=base_url()?>ComboCtrl"><i class="fas fa-plus"></i> Combo</a>
                                     </li>
+                    <?php endif ?>
                                 </ul>    
                             </div>
                     </li>
+                <?php endif ?>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'124')):  ?>
                     <li class='nav-item'>
                         <a class='nav-link' data-toggle="collapse" href="#item-956" data-parent="#accordion1"><i class="fas fa-edit"></i> Preferencias</a>
                         <div id="item-956" class="collapse">
                                 <ul class="nav flex-column ml-3">
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'127')):  ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?=base_url()?>PreferenciaCtrl"><i class="fas fa-plus"></i> Preferencia</a>
                                     </li>
+                <?php endif ?>
                                 </ul>    
                             </div>
                     </li>
+                <?php endif ?>
+                    <?php if($this->usuarios_model->veri($_SESSION['idUs'],'136')):  ?>
                     <li class='nav-item'>
                         <a class='nav-link' href=''><i class='fas fa-plus'></i> Imagenes Productos</a>
                         
                     </li>
+                <?php endif ?>
                </ul>
                 </div>
               </li>
@@ -363,20 +383,16 @@
                 <a class="nav-link" href="<?=base_url()?>VentaCtrl"><i class="fas fa-plus"></i> Panel Ventas</a>
             <?php endif ?>
         </li>
-        <li class="nav-item">
-            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'51')):  ?>
+        <li class="nav-item" hidden>
                 <a class="nav-link" href="#"><i class="fas fa-plus"></i> Panel Ventas Web</a>
-            <?php endif ?>
         </li>
         <li class="nav-item">
             <?php if($this->usuarios_model->veri($_SESSION['idUs'],'61')):  ?>
                 <a class="nav-link" href="<?=base_url()?>VentaCtrl/listaVenta"><i class="fas fa-list-ul"></i> Listado Ventas</a>
             <?php endif ?>
         </li>
-        <li class="nav-item">
-            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'57')):  ?>
+        <li class="nav-item" hidden>
                 <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas Web</a>
-            <?php endif ?>
         </li>
         <li class="nav-item">
             <?php if($this->usuarios_model->veri($_SESSION['idUs'],'55')):  ?>
@@ -388,21 +404,25 @@
     <?php endif ?>
   </li>
 
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'143')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-80" data-parent="#accordion1"><i class="fas fa-store"></i> Ventas Candy</a>
     <div id="item-80" class="collapse">
       <ul class="nav flex-column ml-3">
+            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'144')):  ?>
         <li class="nav-item">
                 <a class="nav-link" href="<?=base_url()?>VentaCandyCtrl"><i class="fas fa-cash-register"></i> Panel Venta</a>
         </li>
   
-        <li class="nav-item">
+        <?php endif ?>
+        <li class="nav-item" hidden>
                 <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Listado Ventas</a>
         </li>
     
       </ul>
     </div>
   </li>
+  <?php endif ?>
   
   <li class="nav-item">
     
@@ -492,9 +512,11 @@
             <a class="nav-link" href="<?=base_url()?>ResumenDia"><i class="fas fa-plus"></i> Resumen Boleteria</a>
         </li>
           <?php endif ?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'83')):  ?>
           <li class="nav-item">
             <a class="nav-link" href=""><i class="fas fa-plus"></i> Resumen Candy</a>
         </li>
+          <?php endif ?>
       </ul>
     </div>
   </li>
@@ -537,6 +559,7 @@
     </div>
   </li>
 <?php endif?>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'14')):  ?>
   <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#item-013" data-parent="#accordion1"><i class="fas fa-bullhorn"></i> Promos / Cupones</a>
     <div id="item-013" class="collapse">
@@ -573,6 +596,7 @@
       </ul>
     </div>
   </li>  
+  <?php endif?>
   <li class="nav-item" hidden>
          <a class="nav-link" data-toggle="collapse" href="#item-0133" data-parent="#accordion1"><i class="fab fa-android"></i> Notificaciones</a>
          <div id="item-0133" class="collapse">
@@ -586,15 +610,19 @@
             </ul>
         </div>
         </li>
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'12')):  ?>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#item-014" data-parent="#accordion1"><i class="fas fa-key"></i> Control de Ingreso</a>
             <div id="item-014" class="collapse">
                 <ul class="nav flex-column ml-3">
+          <?php if($this->usuarios_model->veri($_SESSION['idUs'],'89')):  ?>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Controles Ingreso</a>
                     </li>
+            <?php endif?>
                  </ul>
             </div>
         </li>  
+        <?php endif?>
 </ul>  
 </div> 
