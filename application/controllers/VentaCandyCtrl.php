@@ -211,11 +211,34 @@ WHERE  cinit='$ci'");
         idUsuario='".$_SESSION['idUs']."',
         nroComprobante='$invoiceNumber'
         ");
+        $idventa= $this->db->insert_id();
 
-        $this->db->query("DELETE FROM detalletemporal");
+        $query=$this->db->query("SELECT * FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
+        foreach ($query->result() as $row){
+            $idproducto=$row->idProducto;
+            $pUnitario=$row->pUnitario;
+            $tCantidad=$row->tCantidad;
+            $nombreP=$row->nombreP;
+            $idCombo=$row->idCombo;
+            $esCombo=$row->esCombo;
+            $this->db->query("INSERT INTO detalle SET 
+idVentaCandy='$idventa',
+idProducto='$idproducto',
+idCombo='$idCombo',
+esCombo='$esCombo',
+cantidad='$tCantidad',
+pUnitario='$pUnitario',
+idUsuario='".$_SESSION['idUs']."',
+nombreP='$nombreP'
+");
 
-        echo $this->db->insert_id();
-        exit;
+
+        }
+
+        $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
+
+            echo $idventa;
+            exit;
     }
 
     public function datosBoleto(){

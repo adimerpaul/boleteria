@@ -24,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="216" column="36" selection-start-line="216" selection-start-column="36" selection-end-line="216" selection-end-column="36" />
+            <state relative-caret-position="393">
+              <caret line="239" column="11" lean-forward="true" selection-start-line="239" selection-start-column="11" selection-end-line="240" selection-end-column="17" />
               <folding>
                 <element signature="e#173#199#0#PHP" expanded="true" />
               </folding>
@@ -36,21 +36,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/ventacandy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="379" column="39" selection-start-line="379" selection-start-column="39" selection-end-line="379" selection-end-column="39" />
+            <state relative-caret-position="348">
+              <caret line="379" column="26" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/FacturaCandy.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="24" column="26" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -81,7 +72,6 @@
       <find>cantidad</find>
       <find>this</find>
       <find>vuel</find>
-      <find>guardartemporal</find>
       <find>addpref</find>
       <find>combo</find>
       <find>guardartemporalcombo</find>
@@ -95,12 +85,13 @@
       <find>insert</find>
       <find>nroFact</find>
       <find>QR</find>
-      <find>submit</find>
       <find>total</find>
       <find>montoapagar</find>
       <find>insertarVenta</find>
       <find>$this-&gt;db-&gt;ins</find>
       <find>submi</find>
+      <find>submit</find>
+      <find>guardartemporal</find>
       <find>totalte</find>
     </findStrings>
   </component>
@@ -115,6 +106,7 @@
         <option value="$PROJECT_DIR$/application/views/templates/header.php" />
         <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/ventacandy.php" />
+        <option value="$PROJECT_DIR$/application/controllers/FacturaCandy.php" />
         <option value="$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php" />
         <option value="$PROJECT_DIR$/assets/js/ventacandy.js" />
       </list>
@@ -223,12 +215,12 @@
       <workItem from="1558397564976" duration="12695000" />
       <workItem from="1558479622031" duration="11953000" />
       <workItem from="1558529937088" duration="8949000" />
-      <workItem from="1558561122530" duration="16823000" />
+      <workItem from="1558561122530" duration="19335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50420000" />
+    <option name="totallyTimeSpent" value="52932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -362,18 +354,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/FacturaCandy.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="216" column="36" selection-start-line="216" selection-start-column="36" selection-end-line="216" selection-end-column="36" />
-          <folding>
-            <element signature="e#173#199#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="314">
+          <caret line="169" column="8" selection-start-line="169" selection-start-column="8" selection-end-line="169" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -384,10 +366,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="239" column="11" lean-forward="true" selection-start-line="239" selection-start-column="11" selection-end-line="240" selection-end-column="17" />
+          <folding>
+            <element signature="e#173#199#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/ventacandy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="379" column="39" selection-start-line="379" selection-start-column="39" selection-end-line="379" selection-end-column="39" />
+        <state relative-caret-position="348">
+          <caret line="379" column="26" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
