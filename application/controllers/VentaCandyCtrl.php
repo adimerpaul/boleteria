@@ -187,35 +187,64 @@ WHERE  cinit='$ci'");
         $nroFactIni=$row->nroFactIni;
         $llaveDosif=$row->llaveDosif;
         $nroFactura=$row->nroFactura;
+            if ($cinit!=0){
+                if ($nroFactura==0){
+                    $this->db->query("UPDATE dosificacion SET nroFactura='$nroFactIni' WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
+                }else{
+                    $this->db->query("UPDATE dosificacion SET nroFactura=nroFactura+1 WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
+                }
+                $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' AND activo='1'");
+                $row=$query->row();
+                $invoiceNumber=$row->nroFactura;
+                $codigo=$this->ventas_model->generate($authorizationNumber, $invoiceNumber, $cinit, date('Ymd'), $total, $llaveDosif);
 
-        if ($nroFactura==0){
-            $this->db->query("UPDATE dosificacion SET nroFactura='$nroFactIni' WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
-        }else{
-            $this->db->query("UPDATE dosificacion SET nroFactura=nroFactura+1 WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
+                $codqr= '329448023|'.$invoiceNumber.'|'.$authorizationNumber.'|'.date('Ymd').'|'.$total.'|'.$total.'|'.$codigo.'|'.$cinit.'|0|0|0|0.00';
+
+            }
+            else{
+            $codigo='';
+            $codqr='';
+            $invoiceNumber='';
+            }
+            $this->db->query("INSERT INTO ventacandy SET
+            total='$total',
+            tipoVenta='$tipoVenta',
+            codigoControl='$codigo',
+            codigoQR='$codqr',
+            idCliente='$idcliente',
+            idDosif='$iddosif',
+            idUsuario='".$_SESSION['idUs']."',
+            nroComprobante='$invoiceNumber'
+            ");
+
+        $idventa= $this->db->insert_id();
+
+        $query=$this->db->query("SELECT * FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
+        foreach ($query->result() as $row){
+            $idproducto=$row->idProducto;
+            $pUnitario=$row->pUnitario;
+            $tCantidad=$row->tCantidad;
+            $nombreP=$row->nombreP;
+            $idCombo=$row->idCombo;
+            $esCombo=$row->esCombo;
+            $this->db->query("INSERT INTO detalle SET 
+idVentaCandy='$idventa',
+idProducto='$idproducto',
+idCombo='$idCombo',
+esCombo='$esCombo',
+cantidad='$tCantidad',
+pUnitario='$pUnitario',
+idUsuario='".$_SESSION['idUs']."',
+nombreP='$nombreP'
+");
+
+
         }
 
-            $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' AND activo='1'");
-            $row=$query->row();
-            $invoiceNumber=$row->nroFactura;
-            $codigo=$this->ventas_model->generate($authorizationNumber, $invoiceNumber, $cinit, date('Ymd'), $total, $llaveDosif);
+        $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
 
-            $codqr= '329448023|'.$invoiceNumber.'|'.$authorizationNumber.'|'.date('Ymd').'|'.$total.'|'.$total.'|'.$codigo.'|'.$cinit.'|0|0|0|0.00';
-
-        $this->db->query("INSERT INTO ventacandy SET
-        total='$total',
-        tipoVenta='$tipoVenta',
-        codigoControl='$codigo',
-        codigoQR='$codqr',
-        idCliente='$idcliente',
-        idDosif='$iddosif',
-        idUsuario='".$_SESSION['idUs']."',
-        nroComprobante='$invoiceNumber'
-        ");
-
-        $this->db->query("DELETE FROM detalletemporal");
-
-        echo 1;
-        exit;
+            echo $idventa;
+            exit;
     }
 
     public function datosBoleto(){

@@ -409,10 +409,13 @@
     <a class="nav-link" data-toggle="collapse" href="#item-80" data-parent="#accordion1"><i class="fas fa-store"></i> Ventas Candy</a>
     <div id="item-80" class="collapse">
       <ul class="nav flex-column ml-3">
-            <?php if($this->usuarios_model->veri($_SESSION['idUs'],'144')):  ?>
+        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'144')):  ?>
         <li class="nav-item">
                 <a class="nav-link" href="<?=base_url()?>VentaCandyCtrl"><i class="fas fa-cash-register"></i> Panel Venta</a>
         </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=base_url()?>ListadoCandyCtrl"><i class="fas fa-money-bill"></i> Listado ventas</a>
+            </li>
   
         <?php endif ?>
         <li class="nav-item" hidden>

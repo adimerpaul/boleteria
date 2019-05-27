@@ -221,6 +221,7 @@ $(function() {
         });
     }
     function guardartemporal() {
+        //console.log(idproducto);
         var datos={
             'idProducto':idproducto,
             'pUnitario':$('#precio').val(),
@@ -377,9 +378,8 @@ $(function() {
                     data:datos,
                     success:function (e) {
                         //console.log(e);
-                        if (e=="1"){
-                            
-                        }
+                        window.location.href = 'FacturaCandy/printF/'+e;
+
                     }
                 });
             }
