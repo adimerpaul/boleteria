@@ -214,7 +214,7 @@ WHERE  cinit='$ci'");
 
         $this->db->query("DELETE FROM detalletemporal");
 
-        echo 1;
+        echo $this->db->insert_id();
         exit;
     }
 

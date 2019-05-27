@@ -377,9 +377,8 @@ $(function() {
                     data:datos,
                     success:function (e) {
                         //console.log(e);
-                        if (e=="1"){
-                            
-                        }
+                        location.reload('FacturaCandy/printF/'+e);
+
                     }
                 });
             }
