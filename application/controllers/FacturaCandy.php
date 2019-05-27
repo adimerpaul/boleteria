@@ -34,6 +34,7 @@ class FacturaCandy extends CI_Controller {
     WHERE idVentaCandy='$idventa'");
         $row=$query->row();
         $nombre=$row->nombreCl;
+        $tipoVenta=$row->tipoVenta;
     
         $apellido=$row->apellidoCl;
         $ci=$row->cinit;
@@ -46,7 +47,8 @@ class FacturaCandy extends CI_Controller {
         $leyenda=$row->leyenda;
         $fecha=$row->fechaVenta;
         $qr=$row->codigoQR;
-    
+
+        if ($tipoVenta=="FACTURA"){
     
         $nombre_impresora = "POS";
     
@@ -77,7 +79,8 @@ class FacturaCandy extends CI_Controller {
         $printer -> setJustification(Printer::JUSTIFY_LEFT);
         $html = "Fecha: ".$fecha."
     Señor(es): $nombre $apellido
-    NIT/CI: $ci ";
+    NIT/CI: $ci "
+        ;
         $printer -> text($html."\n");
     
         $query1=$this->db->query("SELECT p.idProducto, nombreProd ,sum(d.cantidad) as cant, precioVenta, (sum(d.cantidad) * precioVenta) as total
@@ -167,6 +170,7 @@ class FacturaCandy extends CI_Controller {
         /* Always close the printer! On some PrintConnectors, no actual
          * data is sent until the printer is closed. */
         $printer -> close();
+        }
         header("Location: ".base_url()."VentaCandyCtrl");
         //header();
     }
