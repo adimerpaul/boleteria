@@ -509,6 +509,10 @@ function cambio(fila,columna) {
 
 $('#buscarCliente').click(function(){
     buscarCl();});
+
+$('#cinit1').keyup(function(){
+    buscarCl();
+});
 function buscarCl(){
     var cinit = $('#cinit1').prop('value');
     var parametros = {

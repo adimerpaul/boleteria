@@ -15,18 +15,13 @@
                           success:  function (response) {
                               console.log(response);
                               var datos=JSON.parse(response);
-                              $('#idproveedor').prop('value',datos.idProveedor);
-                              $('#razonsocial').prop('value',datos.razonSocial);
-                              $('#nit').prop('value',datos.nitProv);
-                              $('#email').prop('value',datos.email);
-                              $('#telefono').prop('value',datos.telefono);
-                              $('#direccion').prop('value',datos.direccion);
-                             
-                             
-                             if (datos.activo == 1)
-                             $('#activo').bootstrapToggle('on');
-                             else
-                            $('#activo').bootstrapToggle('off');
+                              $('#idproveedor2').prop('value',datos.idProveedor);
+                              $('#razonsocial2').prop('value',datos.razonSocial);
+                              $('#nit2').prop('value',datos.nitProv);
+                              $('#email2').prop('value',datos.email);
+                              $('#telefono2').prop('value',datos.telefono);
+                              $('#direccion2').prop('value',datos.direccion);
+                              $('#activo2').bootstrapToggle(datos.activo);
                              
                           } 
                   });

@@ -117,4 +117,12 @@ WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
         return $this->db->update("usuario",$usuario);
         
     }
+
+    public function controlIngreso($id){
+        $dato=[
+            'idUsuario'=>$id,
+            'detalle'=>'ingreso al sistema'
+        ];
+        return $this->db->insert('controlingreso',$dato);
+    }
 }

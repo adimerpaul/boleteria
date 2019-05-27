@@ -34,7 +34,7 @@ class UsuarioCtrl extends CI_Controller {
     		'idUs'=>$respuesta[0]->idUsuario,
     		'login'=>1
 		  );
-		  
+		  $this->usuarios_model->controlIngreso($respuesta[0]->idUsuario);
 		  $this->session->set_userdata($datosusr);
 		  $user = $this->session->userdata('idUs');
 

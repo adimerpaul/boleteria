@@ -14,9 +14,9 @@ class proveedores_model extends CI_Model {
     {
 
         if ($this->input->post('activo') == "on"  or null)
-        $activo=1;
+        $activo="on";
         else
-        $activo=0;
+        $activo="off";
 
         $proveedor= [
             'razonSocial'=> $this->input->post('razonsocial'),
@@ -35,9 +35,9 @@ class proveedores_model extends CI_Model {
         $id=$this->input->post('idproveedor');
 
         if(($this->input->post('activo'))=="on")
-        $activo=1;
+        $activo="on";
         else
-        $activo=0;
+        $activo="on";
         
         $proveedor= [
             'razonSocial'=> $this->input->post('razonsocial'),
