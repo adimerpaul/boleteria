@@ -170,7 +170,7 @@
                     <div class="form-group row">
                         <label for="cinit" class="col-sm-2 col-form-label">CI NIT Cliente</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="cinit" placeholder="CI NIT ">
+                            <input type="text" class="form-control" id="cinit" placeholder="CI NIT " required>
                         </div>
                         <div class="col-sm-4">
                             <input class="form-control" id="tipo" type="checkbox" checked data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success">
@@ -189,7 +189,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="montocliente">Monto cobrado</label>
-                            <input type="text" class="form-control" id="montocliente" >
+                            <input type="text" class="form-control" id="montocliente" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="montoapagar">Monto a cancelar</label>
@@ -202,7 +202,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-trash"></i> Cancelar</button>
-                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Agregar al pedido</button>
+                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Terminar venta</button>
                     </div>
                 </form>
             </div>

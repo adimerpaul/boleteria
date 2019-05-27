@@ -94,7 +94,33 @@ idUsuario='$idUsuario'
         $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
         echo 1;
     }
-
+    function combopreferencia(){
+        $id=$_POST['id'];
+        $query=$this->db->query("SELECT c.idCombo,p.idProducto,pre.idPreferencia,c.cantidad,p.nombreProd,pre.nombrePref 
+FROM comboproducto c
+INNER JOIN producto p ON p.idProducto=c.idProducto
+INNER JOIN productopreferencia pr ON p.idProducto=pr.idProducto
+INNER JOIN preferencia pre ON pre.idPreferencia=pr.idPreferencia
+WHERE c.idCombo='$id'");
+        echo json_encode($query->result_array());
+    }
+    function guardartemporalcombo(){
+        $idCombo=$_POST['idCombo'];
+        $pUnitario=$_POST['pUnitario'];
+        $tCantidad=$_POST['tCantidad'];
+        $nombreP=$_POST['nombreP'];
+        $idUsuario=$_SESSION['idUs'];
+        $esCombo='SI';
+        $this->db->query("INSERT INTO detalletemporal SET
+idCombo='$idCombo',
+pUnitario='$pUnitario',
+tCantidad='$tCantidad',
+nombreP='$nombreP',
+idUsuario='$idUsuario',
+esCombo='$esCombo'
+");
+        echo 1;
+    }
     function buscarcliente(){
         $ci=$_POST['ci'];
         $query=$this->db->query("SELECT * FROM cliente WHERE cinit='$ci'");
@@ -120,20 +146,76 @@ idUsuario='$idUsuario'
         echo json_encode($myObj);
     }
 
-    public function boletoFuncion()
+    public function sctualizarCliente()
     {
-        $idfuncion = $_POST['idfun'];
-        $consulta="SELECT 
-        (Select count(*) from boleto b1 where b1.idFuncion=$idfuncion and b1.devuelto='NO') as vendido,
-        (Select count(*) from temporal where idFuncion=$idfuncion) as temp,
-        (Select count(*) from boleto b1 where b1.idFuncion=$idfuncion and b1.devuelto='SI') as devuelto,
-        (select capacidad from sala s, funcion f where idFuncion=$idfuncion and s.idSala = f.idSala) as ctotal 
-        FROM dual";
-        $query=$this->db->query($consulta);
+        $ci = $_POST['ci'];
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $query=$this->db->query("SELECT * FROM cliente WHERE cinit='$ci'");
+        if ($query->num_rows()>=1){
+            $this->db->query("UPDATE cliente SET 
+nombreCl='$nombres',
+apellidoCl='$apellidos'
+WHERE  cinit='$ci'");
+        }else{
+            $this->db->query("INSERT INTO cliente SET cinit='$ci',nombreCl='$nombres',apellidoCl='$apellidos'");
+        }
+        $query=$this->db->query("SELECT * FROM cliente WHERE cinit='$ci'");
         $row=$query->row();
-        $myObj=($query->result_array());
-        echo json_encode($myObj);
+        $idcliente=$row->idCliente;
+        echo $idcliente;
 
+    }
+    /**
+     * @param String $authorizationNumber Numero de autorizacion
+     * @param String $invoiceNumber Numero de factura
+     * @param String $nitci Número de Identificación Tributaria o Carnet de Identidad
+     * @param String $dateOfTransaction fecha de transaccion de la forma AAAAMMDD
+     * @param String $transactionAmount Monto de la transacción
+     * @param String $dosageKey Llave de dosificación
+     */
+        public function insertarVenta(){
+        $idcliente=$_POST['idcliente'];
+
+        $total=$_POST['total'];
+        $tipoVenta=$_POST['tipoVenta'];
+        $cinit=$_POST['cinit'];
+        $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' AND activo='1'");
+        $row=$query->row();
+        $authorizationNumber=$row->nroAutorizacion;
+        $iddosif=$row->idDosif;
+        $nroFactIni=$row->nroFactIni;
+        $llaveDosif=$row->llaveDosif;
+        $nroFactura=$row->nroFactura;
+
+        if ($nroFactura==0){
+            $this->db->query("UPDATE dosificacion SET nroFactura='$nroFactIni' WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
+        }else{
+            $this->db->query("UPDATE dosificacion SET nroFactura=nroFactura+1 WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
+        }
+
+            $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' AND activo='1'");
+            $row=$query->row();
+            $invoiceNumber=$row->nroFactura;
+            $codigo=$this->ventas_model->generate($authorizationNumber, $invoiceNumber, $cinit, date('Ymd'), $total, $llaveDosif);
+
+            $codqr= '329448023|'.$invoiceNumber.'|'.$authorizationNumber.'|'.date('Ymd').'|'.$total.'|'.$total.'|'.$codigo.'|'.$cinit.'|0|0|0|0.00';
+
+        $this->db->query("INSERT INTO ventacandy SET
+        total='$total',
+        tipoVenta='$tipoVenta',
+        codigoControl='$codigo',
+        codigoQR='$codqr',
+        idCliente='$idcliente',
+        idDosif='$iddosif',
+        idUsuario='".$_SESSION['idUs']."',
+        nroComprobante='$invoiceNumber'
+        ");
+
+        $this->db->query("DELETE FROM detalletemporal");
+
+        echo 1;
+        exit;
     }
 
     public function datosBoleto(){
@@ -928,13 +1010,13 @@ s.idSala='$idsala'");
     }
 
     public function UpDosificacion(){
-        $verifica=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta < curdate()");
+        $verifica=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' and activo=1 and fechaHasta < curdate()");
         $row=$verifica->row();
         if ($verifica->num_rows() == 1){
-            $verifica2=$this->db->query("SELECT * FROM dosificacion where tipo='BOLETERIA' and activo=0 and fechaDesde <= curdate() and fechaHasta >= curdate()");
+            $verifica2=$this->db->query("SELECT * FROM dosificacion where tipo='CANDY' and activo=0 and fechaDesde <= curdate() and fechaHasta >= curdate()");
             if($verifica2->num_rows()==1){
-                $this->db->query("UPDATE dosificacion set activo=0 where fechaHasta < curdate() and tipo='BOLETERIA'");
-                $this->db->query("UPDATE dosificacion set activo=1 where fechaDesde <= curdate() and fechaHasta >= curdate() and tipo='BOLETERIA'");
+                $this->db->query("UPDATE dosificacion set activo=0 where fechaHasta < curdate() and tipo='CANDY'");
+                $this->db->query("UPDATE dosificacion set activo=1 where fechaDesde <= curdate() and fechaHasta >= curdate() and tipo='CANDY'");
                 echo true; }
             else
                 echo false;
@@ -946,7 +1028,7 @@ s.idSala='$idsala'");
 
     public function verifDosifcacion(){
         $fecha=$_POST['fdosif'];
-        $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta > '$fecha'");
+        $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' and activo=1 and fechaHasta > '$fecha'");
         $row=$query->row();
         if ($query->num_rows() == 1) echo true;
         else echo false;

@@ -1,6 +1,34 @@
 $(function() {
+
     var idproducto;
+    var cantidadcombo;
+    var cantidadcomboreal;
+    var escombo=false;
+    var idcombo;
+    VerificaDosificacion();
+    function VerificaDosificacion(){
+        $.ajax({
+            data: 'fdosif='+moment().format('Y-MM-DD'),
+            url: 'VentaCandyCtrl/verifDosifcacion',
+            type: 'post',
+            success:  function (response){
+                //console.log(response);
+                if (response == false){
+                    $.ajax({
+                        url:'VentaCandyCtrl/UpDosificacion',
+                        success:  function (response){
+                            if (response == false)
+                                alert('No se Cuenta con Dosificacion');
+                        }
+                    })
+
+                }
+
+            }
+        })
+    }
     $('.rubro').click(function (e) {
+        VerificaDosificacion();
         var idcombo=($(this).attr('id'));
         $.ajax({
             type:'POST',
@@ -20,7 +48,6 @@ $(function() {
                             "</div>" +
                             "</div>";
                 }
-
                 $('#productos').html(t);
                 $('.producto').click(function (e) {
                     idproducto=($(this).attr('id'));
@@ -33,6 +60,7 @@ $(function() {
         });
     });
     function producto(idproducto){
+        escombo=false;
         $.ajax({
             type:'POST',
             url:'VentaCandyCtrl/productospreferencia',
@@ -67,20 +95,32 @@ $(function() {
     }
     $('#mini').click(function (e) {
         if (parseInt($('#cantidad').val())>1){
+            if (escombo){
+                cantidadcombo=parseInt(cantidadcombo)-parseInt(cantidadcomboreal);
+            }
+            $('#cantidadcombo').html(cantidadcombo);
             $('#cantidad').val(parseInt($('#cantidad').val())- parseInt(1));
             $('#total').val(parseInt($('#cantidad').val())*parseInt($('#precio').val()));
         }
         e.preventDefault();
     });
     $('#maxi').click(function (e) {
+
+        if (escombo){
+            cantidadcombo=parseInt(cantidadcombo)+parseInt(cantidadcomboreal);
+        }
+        $('#cantidadcombo').html(cantidadcombo);
         $('#cantidad').val(parseInt($('#cantidad').val())+parseInt(1));
         $('#total').val(parseInt($('#cantidad').val())*parseInt($('#precio').val()));
         e.preventDefault();
     });
     function addpref(idprefrencia,nombre) {
-        var cantidad=$('#cantidad').val();
+        if (escombo){
+            var cantidad=cantidadcombo;
+        } else {
+            var cantidad=$('#cantidad').val();
+        }
         var selec = document.getElementsByClassName("removepref").length;
-
         if(selec<cantidad) {
             $('#seleccionados').append("<button  class='removepref m-1 btn-success' name='p" + idprefrencia + "' id='p" + idprefrencia + "' >" + nombre + "</button>");
         }
@@ -90,23 +130,33 @@ $(function() {
         });
     }
     $('#formulario').submit(function (e) {
-
-
-        var cantidad=$('#cantidad').val();
+        if (escombo){
+            var cantidad=cantidadcombo;
+        } else {
+            var cantidad=$('#cantidad').val();
+        }
         var selec = document.getElementsByClassName("removepref").length;
         if (selec<cantidad){
             if (selec==1){
-                //console.log('guardar');
-                guardartemporal();
+                if (escombo){
+                    guardartemporalcomobo();
+                } else {
+                    guardartemporal();
+                }
             }else{
                 alert('Preferencias incompletas!');
             }
         }else {
-            guardartemporal();
+            if (escombo){
+                guardartemporalcomobo();
+            } else {
+                guardartemporal();
+            }
         }
         return false;
     });
     $('#combos').click(function (e) {
+        escombo=true;
         $.ajax({
             type:'POST',
             url:'VentaCandyCtrl/combos',
@@ -124,10 +174,9 @@ $(function() {
                         "</div>" +
                         "</div>";
                 }
-
                 $('#productos').html(t);
                 $('.combo').click(function (e) {
-                    var idcombo=($(this).attr('id'));
+                    idcombo=($(this).attr('id'));
                     $('#seleccionados').html('');
                     $('#cantidad').val(1);
                     $('#seleccion-producto').modal('show');
@@ -137,26 +186,28 @@ $(function() {
         });
     });
     function combo(idcombo){
-        // $.ajax({
-        //     type:'POST',
-        //     url:'VentaCandyCtrl/productospreferencia',
-        //     data:'id='+idproducto,
-        //     success:function (e) {
-        //         //console.log(e);
-        //         var datos=JSON.parse(e);
-        //         var t='';
-        //         for (var i=0;i<datos.length;i++){
-        //             t=t+"<button  class='addpref m-1 btn-success' id='"+datos[i].idPreferencia+"' nombre='"+datos[i].nombrePref+"'>"+datos[i].nombrePref+"</button>";
-        //         }
-        //         $('#preferencias').html(t);
-        //         $('.addpref').click(function (e) {
-        //             var idprefrencia=($(this).attr('id'));
-        //             var nombre=($(this).attr('nombre'));
-        //             addpref(idprefrencia,nombre);
-        //             e.preventDefault();
-        //         });
-        //     }
-        // });
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/combopreferencia',
+            data:'id='+idcombo,
+            success:function (e) {
+                //console.log(e);
+                var datos=JSON.parse(e);
+                cantidadcombo=datos[0].cantidad;
+                cantidadcomboreal=datos[0].cantidad;
+                var t='Cant: <span id="cantidadcombo">'+cantidadcombo+'</span> =';
+                for (var i=0;i<datos.length;i++){
+                    t=t+"<button  class='addpref m-1 btn-success' id='"+datos[i].idPreferencia+"' nombre='"+datos[i].nombrePref+"'>"+datos[i].nombrePref+"</button>";
+                }
+                $('#preferencias').html(t);
+                $('.addpref').click(function (e) {
+                    var idprefrencia=($(this).attr('id'));
+                    var nombre=($(this).attr('nombre'));
+                    addpref(idprefrencia,nombre);
+                    e.preventDefault();
+                });
+            }
+        });
         $.ajax({
             type:'POST',
             url:'VentaCandyCtrl/datoscombo',
@@ -170,7 +221,6 @@ $(function() {
         });
     }
     function guardartemporal() {
-
         var datos={
             'idProducto':idproducto,
             'pUnitario':$('#precio').val(),
@@ -180,6 +230,27 @@ $(function() {
         $.ajax({
             type:'POST',
             url:'VentaCandyCtrl/guardartemporal',
+            data:datos,
+            success:function (e) {
+                //var datos=JSON.parse(e);
+                if (e==1){
+                    $('#seleccion-producto').modal('hide');
+                    datostemporal();
+                }
+
+            }
+        });
+    }
+    function guardartemporalcomobo() {
+        var datos={
+            'idCombo':idcombo,
+            'pUnitario':$('#precio').val(),
+            'tCantidad':$('#cantidad').val(),
+            'nombreP':$('#nombre').val()
+        }
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/guardartemporalcombo',
             data:datos,
             success:function (e) {
                 //var datos=JSON.parse(e);
@@ -271,6 +342,48 @@ $(function() {
     })
     $('#montocliente').keyup(function (e) {
         $('#cambio').val(parseInt($('#montocliente').val())-parseInt($('#montoapagar').val()));
+        e.preventDefault();
+    });
+
+    $('#cliente').submit(function (e) {
+
+        var datos={
+            ci:$('#cinit').val(),
+            apellidos:$('#apellidos').val(),
+            nombres:$('#nombres').val()
+        }
+
+        $.ajax({
+            type:'POST',
+            url:'VentaCandyCtrl/sctualizarCliente',
+            data:datos,
+            success:function (e) {
+                if($('#tipo').prop('checked')){
+                    var tipoventa="FACTURA";
+                }else{
+                    var tipoventa="RECIBO";
+                }
+                var idcliente=e;
+                var datos={
+                    idcliente:idcliente,
+                    cinit:$('#cinit').val(),
+                    total:$('#totaltemporal').html(),
+                    tipoVenta:tipoventa
+                }
+                //console.log(datos);
+                $.ajax({
+                    type:'POST',
+                    url:'VentaCandyCtrl/insertarVenta',
+                    data:datos,
+                    success:function (e) {
+                        //console.log(e);
+                        if (e=="1"){
+                            
+                        }
+                    }
+                });
+            }
+        });
         e.preventDefault();
     });
 });
