@@ -30,6 +30,26 @@ class ResumenDia extends CI_Controller {
         }
         else redirect('');
     }
+
+    public function diacandy()
+    {
+        if($this->session->userdata('login')==1){
+
+            $user = $this->session->userdata('idUs');
+
+            $dato=$this->usuarios_model->validaIngreso($user);
+            $this->load->view('templates/header', $dato);
+            $this->load->view('resumendiacandy');
+            $dato['js']="<script src='".base_url()."assets/js/resumendiacandy.js'></script>";
+            $this->load->view('templates/footer',$dato);
+        }
+        else redirect('');
+    }
+
+    public function reportediaCandy(){
+
+    }
+
     public function imprimir(){
         /*
 
