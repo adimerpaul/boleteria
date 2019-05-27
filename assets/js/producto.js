@@ -77,16 +77,16 @@ function actualizarEjemplo2() {
     }
 }
 
-$('#pventa').change(function(){
+$('#pventa').keyup(function(){
     calutilidad();
 });
-$('#pcosto').change(function(){
+$('#pcosto').keyup(function(){
     calutilidad();
 });
-$('#uppventa').change(function(){
+$('#uppventa').keyup(function(){
     calutilidad2();
 });
-$('#uppcosto').change(function(){
+$('#uppcosto').keyup(function(){
     calutilidad2();
 });
 
@@ -99,13 +99,13 @@ function calutilidad(){
     if (venta>0 && costo >0)
      {ganancia=venta-costo-(venta*0.13);
         porc=Math.round(ganancia*100/costo);
-        $('#utilidad').html('Utilidad('+porc+'%): '+ganancia );
+        $('#utilidad').html('Utilidad('+porc+'%): '+(ganancia).toFixed(2) );
         if(ganancia >=0)
         $('#utilidad').css('color','green');
         else
         $('#utilidad').css('color','red');        
         $('#utilidad').show();
-        $('#utl').prop('value',ganancia);
+        $('#utl').prop('value',(ganancia).toFixed(2));
     }
     else{
         $('#utilidad').html('');
@@ -113,7 +113,7 @@ function calutilidad(){
 
     if(venta>0.00){
         iva=venta*0.13;
-        $('#iva').html('IVA(13%):'+iva);    
+        $('#iva').html('IVA(13%):'+(iva).toFixed(2));    
         $('#iva').show();
         
     }
@@ -132,13 +132,13 @@ function calutilidad2(){
     if (venta>0 && costo >0)
      {ganancia=venta-costo-(venta*0.13);
         porc=Math.round(ganancia*100/costo);
-        $('#uputilidad').html('Utilidad('+porc+'%): '+ganancia );
+        $('#uputilidad').html('Utilidad('+porc+'%): '+ (ganancia).toFixed(2) );
         if(ganancia >=0)
         $('#uputilidad').css('color','green');
         else
         $('#uputilidad').css('color','red');        
         $('#uputilidad').show();
-        $('#uputl').prop('value',ganancia);
+        $('#uputl').prop('value',(ganancia).toFixed(2));
     }
     else{
         $('#uputilidad').html('');
@@ -146,7 +146,7 @@ function calutilidad2(){
 
     if(venta>0.00){
         iva=venta*0.13;
-        $('#upiva').html('IVA(13%):'+iva);    
+        $('#upiva').html('IVA(13%):'+(iva).toFixed(2) );    
         $('#upiva').show();
         
     }

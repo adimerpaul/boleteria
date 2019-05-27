@@ -44,7 +44,7 @@ class ReporteCandy extends CI_Controller {
     public function masProducto(){
         $fecini=$_POST['fechaini'];
         $fecfin=$_POST['fechafin'];
-        $query=$this->db->query("SELECT p.idProducto, nombreProd,sum(d.cantidad) as total, (pUnitario * d.cantidad) as totalventa
+        $query=$this->db->query("SELECT p.idProducto, nombreProd,sum(d.cantidad) as total, (precioVenta * sum(d.cantidad)) as totalventa
                 from producto p,detalle d
                 WHERE p.idProducto = d.idProducto and esCombo='NO' and date(fecha)>='$fecini' and date(fecha)<='$fecfin'
                 group by p.idProducto order by total");
@@ -56,7 +56,7 @@ class ReporteCandy extends CI_Controller {
     public function masCombo(){
         $fecini=$_POST['fechaini'];
         $fecfin=$_POST['fechafin'];
-        $query=$this->db->query("SELECT c.idCombo, nombreCombo,sum(d.cantidad) as total, (pUnitario * d.cantidad) as totalventa
+        $query=$this->db->query("SELECT c.idCombo, nombreCombo,sum(d.cantidad) as total, (precioVenta * sum(d.cantidad)) as totalventa
                                     from combo c,detalle d
                                     WHERE c.idCombo = d.idCombo and esCombo='SI' and date(fecha)>='$fecini' and date(fecha)<='$fecfin'
                                     group by c.idCombo

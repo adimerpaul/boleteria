@@ -47,7 +47,29 @@ class ResumenDia extends CI_Controller {
     }
 
     public function reportediaCandy(){
+        $fecha1=$_POST['fecha'];
+        $query=$this->db->query("SELECT * FROM ventacandy v 
+        INNER JOIN cliente c ON v.idCliente=c.idCliente
+        INNER JOIN usuario u ON u.idUsuario=v.idUsuario
+            WHERE u.idUsuario='".$_SESSION['idUs']."'
+            AND date(fechaVenta)='$fecha1'");
+            $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    
+    }
 
+    public function detalleProducto(){
+        $fecha1=$_POST['fecha'];
+        $query=$this->db->query("SELECT * FROM ventacandy v 
+        INNER JOIN cliente c ON v.idCliente=c.idCliente
+        INNER JOIN usuario u ON u.idUsuario=v.idUsuario
+            WHERE u.idUsuario='".$_SESSION['idUs']."'
+            AND date(fechaVenta)='$fecha1'");
+            $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    
     }
 
     public function imprimir(){

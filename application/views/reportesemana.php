@@ -10,7 +10,7 @@
     </nav>
     <form action="<?=base_url()?>Reporte/repsemana" method="post">
         <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
         <label for="">Seleccione un a Fecha</label>
             <input type="date" id="fecha" name="fecha" required value="<?php echo date('Y-m-d');?>">    <br><br>            
             Inicio: <input type="date" id="fecha1" name="fecha1" required value="<?php echo $fecha1;?>" readonly >                  

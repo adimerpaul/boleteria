@@ -1,10 +1,10 @@
-$('#fechacandy').change(function(){});
+$('#fechacandy').change(function(){ calculaCaja();});
 
 function calculaCaja(){
-    var fecha=$('#fecha').val();
-    var param=[
-        'fecha'=fecha
-    ];
+    var fecha=$('#fechacandy').val();
+    var param={
+        'fecha':fecha
+    };
     var resFactura="";
     var resdetalle="";
     $.ajax({
@@ -19,7 +19,7 @@ function calculaCaja(){
             $('#rfactura').html('');
             console.log(response);
             datos2=JSON.parse(response);
-            console.log(datos2);
+            console.log(param);
             datos2.forEach(row => {
                 resFactura+="<tr>";
                 resFactura+="<td>"+row.idVentaCandy+"</td>";                
@@ -28,6 +28,8 @@ function calculaCaja(){
                 resFactura+="<td>"+row.total+"</td>";                
                 resFactura+="</tr>";
             });
+            $('#rfactura').html(resFactura);
+            
         }
     })
 };

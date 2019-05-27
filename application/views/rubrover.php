@@ -88,7 +88,7 @@
 
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6" hidden>
       <label for="rpadre2">Rubro Padre : </label><br>
       <select name="rpadre2" id="rpadre2" class="form-control" >
           <option value=""></option>
@@ -187,7 +187,7 @@
 
 
 <div class="form-row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6" hidden>
     <label for="activo">Rubro Padre : </label><br>
     <select name="rpadre" id="rpadre" class="form-control" >
         <option value=""></option>
