@@ -20,7 +20,42 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="102" column="64" lean-forward="true" selection-start-line="98" selection-start-column="33" selection-end-line="102" selection-end-column="64" />
+              <folding>
+                <element signature="e#173#199#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/ventacandy.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="207" lean-forward="true" selection-start-line="207" selection-end-line="207" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/ventacandy.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="379" column="41" lean-forward="true" selection-start-line="379" selection-start-column="41" selection-end-line="379" selection-end-column="41" />
+              <folding>
+                <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -31,14 +66,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>activo</find>
-      <find>ventas ca</find>
-      <find>Total (BS.).</find>
-      <find>cantidad</find>
-      <find>this</find>
       <find>vuel</find>
       <find>addpref</find>
-      <find>combo</find>
       <find>guardartemporalcombo</find>
       <find>guardartemporalcomobo</find>
       <find>ada</find>
@@ -59,6 +88,14 @@
       <find>guardartemporal</find>
       <find>totalte</find>
       <find>ventas C</find>
+      <find>combos</find>
+      <find>combopreferencia</find>
+      <find>cantidadcombo</find>
+      <find>combopre</find>
+      <find>combo</find>
+      <find>prin</find>
+      <find>printR</find>
+      <find>prefe</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -71,12 +108,12 @@
         <option value="$PROJECT_DIR$/application/views/combo.php" />
         <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/ventacandy.php" />
-        <option value="$PROJECT_DIR$/assets/js/ventacandy.js" />
-        <option value="$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php" />
         <option value="$PROJECT_DIR$/application/controllers/FacturaCandy.php" />
         <option value="$PROJECT_DIR$/application/views/templates/header.php" />
         <option value="$PROJECT_DIR$/application/controllers/ListadoCandyCtrl.php" />
         <option value="$PROJECT_DIR$/application/views/listadocandy.php" />
+        <option value="$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php" />
+        <option value="$PROJECT_DIR$/assets/js/ventacandy.js" />
       </list>
     </option>
   </component>
@@ -183,17 +220,18 @@
       <workItem from="1558397564976" duration="12695000" />
       <workItem from="1558479622031" duration="11953000" />
       <workItem from="1558529937088" duration="8949000" />
-      <workItem from="1558561122530" duration="22529000" />
+      <workItem from="1558561122530" duration="26322000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56126000" />
+    <option name="totallyTimeSpent" value="59919000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1860817" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -283,41 +321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/ventacandy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="379" column="26" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/ventacandy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="76" column="60" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="189" column="27" lean-forward="true" selection-start-line="189" selection-start-column="27" selection-end-line="189" selection-end-column="27" />
-          <folding>
-            <element signature="e#173#199#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/FacturaCandy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="83" column="34" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
@@ -373,6 +376,41 @@
             <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#i#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/ventacandy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="207" lean-forward="true" selection-start-line="207" selection-end-line="207" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/VentaCandyCtrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="102" column="64" lean-forward="true" selection-start-line="98" selection-start-column="33" selection-end-line="102" selection-end-column="64" />
+          <folding>
+            <element signature="e#173#199#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/FacturaCandy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-356">
+          <caret line="178" column="26" selection-start-line="178" selection-start-column="20" selection-end-line="178" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/ventacandy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="379" column="41" lean-forward="true" selection-start-line="379" selection-start-column="41" selection-end-line="379" selection-end-column="41" />
+          <folding>
+            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>

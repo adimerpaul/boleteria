@@ -378,8 +378,11 @@ $(function() {
                     data:datos,
                     success:function (e) {
                         //console.log(e);
-                        window.location.href = 'FacturaCandy/printF/'+e;
-
+                        if (tipoventa=="FACTURA")
+                            window.location.href = 'FacturaCandy/printF/'+e;
+                        else {
+                            window.location.href = 'FacturaCandy/printR/'+e;
+                        }
                     }
                 });
             }
