@@ -51,17 +51,11 @@ class FacturaCandy extends CI_Controller {
         if ($tipoVenta=="FACTURA"){
     
         $nombre_impresora = "POS";
+       
+    $connector = new WindowsPrintConnector($nombre_impresora);
+    $printer = new Printer($connector);
     
-    
-        $connector = new WindowsPrintConnector($nombre_impresora);
-        $printer = new Printer($connector);
-    
-        /* Initialize */
         $printer -> initialize();
-    
-        /* Text */
-        //set some text to print
-    
         $ca = "MULTI CINES PLAZA SRL.
     Av. Tacna y Jaen - Oruro -Bolvia
      Tel: 591-25281290
@@ -148,9 +142,7 @@ class FacturaCandy extends CI_Controller {
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $testStr = $qr;
         $models = array(
-            //Printer::QR_MODEL_1 => "QR Model 1",
             Printer::QR_MODEL_2 => "ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY"
-            //Printer::QR_MICRO => "Micro QR code\n(not supported on all printers)"
         );
         foreach ($models as $model => $name) {
             $printer -> qrCode($testStr, Printer::QR_ECLEVEL_L, 4, $model);
@@ -165,15 +157,9 @@ class FacturaCandy extends CI_Controller {
     
         $printer -> cut();    
           
-        /* Pulse */
-        //$printer -> pulse();
-    
-        /* Always close the printer! On some PrintConnectors, no actual
-         * data is sent until the printer is closed. */
         $printer -> close();
         }
         header("Location: ".base_url()."VentaCandyCtrl");
-        //header();
     }
     
     public function printR($idventa){
@@ -211,11 +197,7 @@ class FacturaCandy extends CI_Controller {
             /* Initialize */
             $printer -> initialize();
     
-            /* Text */
-    //$printer -> text("Hello world\n");
-    //$printer -> cut();
-            // set some text to print
-    /*
+   
             $ca = "MULTI CINES PLAZA SRL.
     Av. Tacna y Jaen - Oruro -Bolvia
     SUCURSAL N: 0
@@ -306,6 +288,5 @@ class FacturaCandy extends CI_Controller {
             $printer -> close();
             header("Location: ".base_url()."VentaCandyCtrl");
         }
-    
-    
+ 
 }
