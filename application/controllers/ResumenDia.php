@@ -61,11 +61,29 @@ class ResumenDia extends CI_Controller {
 
     public function detalleProducto(){
         $fecha1=$_POST['fecha'];
-        $query=$this->db->query("SELECT * FROM ventacandy v 
-        INNER JOIN cliente c ON v.idCliente=c.idCliente
-        INNER JOIN usuario u ON u.idUsuario=v.idUsuario
-            WHERE u.idUsuario='".$_SESSION['idUs']."'
-            AND date(fechaVenta)='$fecha1'");
+        $query=$this->db->query("SELECT p.idProducto,nombreProd,nombrePref,precioVenta,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
+        from detalle d, producto p, detallepreferencia dp, preferencia pr
+        where d.idProducto=p.idProducto
+        and dp.idDetalle=d.idDetalle
+        and pr.idPreferencia=dp.idPreferencia
+        and esCombo='NO'
+        and idUsuario='".$_SESSION['idUs']."'
+            and date(fecha)='$fecha1' group by p.idProducto,nombreProd,nombrePref ");
+            $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    
+    }
+
+    public function detalleCombo(){
+        $fecha1=$_POST['fecha'];
+        $query=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
+        from detalle d, combo c
+        where d.idCombo=c.idCombo
+        and esCombo='SI'
+        and date(fecha)='$fecha1'
+        and idUsuario='".$_SESSION['idUs']."'
+        group by idCombo,nombreCombo");
             $row=$query->row();
                          $myObj=($query->result_array());
                          echo json_encode($myObj);  
@@ -167,5 +185,77 @@ GROUP BY p.idPelicula,p.nombre
         $printer -> close();
         header("Location: ".base_url()."ResumenDia");
     }
+
+
+
+
+public function imprimirCandy(){
+    $fecha1=$_POST['fecha'];    
+    $nombre_impresora = "POS";
+
+
+    $connector = new WindowsPrintConnector($nombre_impresora);
+    $printer = new Printer($connector);
+
+    /* Initialize */
+    $printer -> initialize();
+
+    /* Text */
+//$printer -> text("Hello world\n");
+//$printer -> cut();
+    // set some text to print
+
+    $ca = "MULTI CINES PLAZA SRL.
+Av. Tacna y Jaen - Oruro -Bolvia
+Tel: 591-25281290
+ORURO - BOLIVIA
+-------------------------------
+";
+    //$printer -> setJustification(Printer::JUSTIFY_CENTER);
+   // $printer->text($ca);
+    $printer -> setJustification(Printer::JUSTIFY_CENTER);
+    $printer->text($ca);
+    $printer -> setJustification(Printer::JUSTIFY_LEFT);
+    $html = "Fecha: ".date('Y-m-d h:m:s');
+    $printer -> text($html."\n");
+    $html = "Usuario: ".$_SESSION['nombre']."\n";
+    $printer -> text($html."\n");
+    $printer->text("Descripcion      CANTIDAD     PUnit.   TOTAL.\n");
+    $printer->text("-----------------------------------"."\n");
+    $total=0;
+    $query=$this->db->query("SELECT p.idProducto,nombreProd,nombrePref,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
+    from detalle d, producto p, detallepreferencia dp, preferencia pr
+    where d.idProducto=p.idProducto
+    and dp.idDetalle=d.idDetalle
+    and pr.idPreferencia=dp.idPreferencia
+    and esCombo='NO'
+    and idUsuario='".$_SESSION['idUs']."'
+        and date(fecha)='$fecha1' group by p.idProducto,nombreProd,nombrePref 
+            ");
+    foreach ($query->result() as $row){
+        $printer->text( "$row->nombreProd($row->nombrePref)  $row->cant  $row->precioVenta  $row->total \n");
+        $total=$total+$row->total;
+    }
+    $query2=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
+    from detalle d, combo c
+    where d.idCombo=c.idCombo
+    and esCombo='SI'
+    and date(fecha)='$fecha1'
+    and idUsuario='".$_SESSION['idUs']."'
+    group by idCombo,nombreCombo");
+    foreach ($query2->result() as $row){
+        $printer->text( " $row->nombreCombo  $row->cant    $row->precioVenta    $row->total  \n");
+        $total=$total+$row->total;
+    }
+    $printer -> setJustification(Printer::JUSTIFY_RIGHT);
+    $ca = "\nTOTAL: $total\n";
+    $printer->text($ca);
+    $printer -> setJustification(Printer::JUSTIFY_CENTER);
+    $ca = "\n\n\nENTREGE CONFORME              RECIBI CONFORME\n";
+    $printer->text($ca);
+    $printer -> cut();
+    $printer -> close();
+    header("Location: ".base_url()."ResumenDia/diacandy");
+}
 
 }

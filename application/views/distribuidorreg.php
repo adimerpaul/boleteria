@@ -6,7 +6,7 @@
     Informacion de Registro Distribuidor
   </div>
   <div class="card-body">
-      <h3>INFORMACION DEL DISTRIBUIDOR</h3>
+  <h3> <i class="fas fa-file-video"></i> INFORMACION DEL DISTRIBUIDOR</h3>
 <hr />
   <form method="POST" action="<?php echo base_url();?>DistribuidorCtrl/store" >
   <div class="form-row">

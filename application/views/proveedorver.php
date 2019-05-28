@@ -65,7 +65,7 @@
   <div class="modal-dialog  modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Proveedor</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-shipping-fast"></i> Modificar Proveedor</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -107,7 +107,7 @@
       <input class="form-control" id="activo2" name="activo2" type="checkbox" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>
     </div>
   </div>
-  <input type="submit" class="btn btn-success" value="Registrar">
+  <input type="submit" class="btn btn-success" value="Modificar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>ProveedorCtrl/proveedorver">Cancelar</a>
 </form>
 

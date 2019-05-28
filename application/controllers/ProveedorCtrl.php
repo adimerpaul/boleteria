@@ -16,9 +16,10 @@ class ProveedorCtrl extends CI_Controller {
             
             $user = $this->session->userdata('idUs');
 
+            $proveedor['proveedor'] = $this->proveedores_model->listaProveedor();
             $dato=$this->usuarios_model->validaIngreso($user);
                 $this->load->view('templates/header', $dato);
-                $this->load->view('proveedorreg');
+                $this->load->view('proveedorver',$proveedor);
                 $dato['js']="<script></script>";    
                 $this->load->view('templates/footer',$dato);
         }

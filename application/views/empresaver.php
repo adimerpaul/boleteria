@@ -66,7 +66,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Empresa</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-building"></i> Modificar Empresa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -138,7 +138,7 @@
      </select>       
      </div>
   </div>
-  <input type="submit" class="btn btn-success" value="Registrar">
+  <input type="submit" class="btn btn-success" value="Modificar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>EmpresaCtrl/empresaver">Cancelar</a>
 </form>
       </div>

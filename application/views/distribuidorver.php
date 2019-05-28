@@ -65,7 +65,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Distribuidor</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-file-video"></i> Modificar Distribuidor</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -111,7 +111,7 @@
     </div>
   </div>
 
-  <input type="submit" class="btn btn-success" value="Registrar">
+  <input type="submit" class="btn btn-success" value="Modificar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>DistribuidorCtrl/distribuidorver">Cancelar</a>
 </form>
       </div>

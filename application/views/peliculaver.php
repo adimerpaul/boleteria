@@ -165,7 +165,7 @@
 
     </div>
   </div>
-  <input type="submit" class="btn btn-success" value="Registrar">
+  <input type="submit" class="btn btn-success" value="Modificar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>PeliculaCtrl/peliculaver">Cancelar</a>
 </form>
 
