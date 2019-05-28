@@ -23,34 +23,14 @@
                 <tr>
                     <th>Numero</th>
                     <th>Fecha</th>
+                    <th>Estado</th>
                     <th>Cliente</th>
                     <th>Total</th>
                 </tr>
                 </thead>
                 <tbody id="rfactura">
-                <?php
-                $total=0;
-                $query=$this->db->query("SELECT * FROM ventacandy v 
-INNER JOIN cliente c ON v.idcliente=c.idcliente
-INNER JOIN usuario u ON u.idUsuario=v.idUsuario
-WHERE u.idUsuario='".$_SESSION['idUs']."'
-AND date(fechaVenta)=date('".date('Y-m-d')."')");
-                foreach ($query->result() as $row){
-                    $total=$total+$row->total;
-                    echo "<tr> 
-                                <td>$row->idVentaCandy</td> 
-                                <td>$row->fechaVenta</td>  
-                                <td>$row->apellidoCl</td> 
-                                <td>$row->total</td>
-                            </tr>";
-                }
-                ?>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th>Total</th>
-                    <th><?=$total?></th>
-                </tr>
+       
+
                 </tbody>
             </table><br>
             <h3>Ventas por Producto y Combo</h3>
@@ -68,7 +48,15 @@ AND date(fechaVenta)=date('".date('Y-m-d')."')");
 
 
                 </tbody>
-            </table>
+            </table> <br>
+            <div class="row">
+                <b><label for="">Total Recibo: </label></b>
+                <label for="" id="totalrecibo"></label>
+            </div>
+            <div class="row">
+                <b><label for="">Total Factura: </label></b>
+                <label for="" id="totalfactura"></label>
+            </div>
             <br>
             <a class="btn btn-success btn-block" id="imprimirCandy"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
         </div>

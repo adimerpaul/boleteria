@@ -55,7 +55,7 @@ $('#fecha span').bind("DOMSubtreeModified",function(){
             console.log(datos);
             totalproducto=datos[0].totalprod;
             totalcombo=datos[0].totalcomb;
-            total=totalproducto + totalcombo;
+            total=parseInt(totalproducto) + parseInt(totalcombo);
             totalventa=datos[0].totalventa;
             if (totalproducto == null) totalproducto=0;
             if (totalcombo == null) totalcombo=0;

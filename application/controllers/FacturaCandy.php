@@ -56,7 +56,8 @@ class FacturaCandy extends CI_Controller {
     $printer = new Printer($connector);
     
         $printer -> initialize();
-        $ca = "MULTI CINES PLAZA SRL.
+        $ca = "MULTICINES PLAZA S.R.L.
+    SUCURSAL 2        
     Av. Tacna y Jaen - Oruro -Bolvia
      Tel: 591-25281290
     ORURO - BOLIVIA
@@ -65,7 +66,7 @@ class FacturaCandy extends CI_Controller {
     NIT: 329448023
     NRO FACTURA:$nrocomprobante
     NRO AUTORIZACION: $nroautorizacion
-    -------------------------------
+    ------------------------------------------------    
     ";
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text($ca);   
@@ -93,8 +94,8 @@ class FacturaCandy extends CI_Controller {
         GROUP BY c.idCombo,nombreCombo");
     
         $printer->setJustification(Printer::JUSTIFY_LEFT);
-        $printer->text(" CANT          P.U            IMP. \n");
-        $printer->text(" -------------------------------------"."\n");
+        $printer->text("DESC        CANT         P.U           IMP. \n");
+        $printer->text("------------------------------------------------"."\n");
         $total=0;
         foreach ($query1->result() as $row){
             $nombrep=$row->nombreProd;
@@ -103,8 +104,11 @@ class FacturaCandy extends CI_Controller {
             $subtotal=$row->total;
 
             $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $printer->text( "  $nombrep \n");
-            $printer->text( "  $cantidad         $precio         $subtotal   \n");
+            $left = str_pad("$nombrep ", 25) ;
+            $left1 = str_pad("$row->cant", 5) ;
+            $left2 = str_pad("$precio", 7, ' ', STR_PAD_LEFT) ;
+            $right = str_pad("$subtotal", 7, ' ', STR_PAD_LEFT);
+            $printer->text("$left$left1$left2$right\n");
             $total=$total+$subtotal;
     
         }
@@ -115,8 +119,11 @@ class FacturaCandy extends CI_Controller {
             $subtotal=$row->total;
 
             $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $printer->text( "  $nombrep \n");
-            $printer->text( "  $cantidad         $precio         $subtotal   \n");
+            $left = str_pad("$nombrep ", 25) ;
+            $left1 = str_pad("$row->cant", 5) ;
+            $left2 = str_pad("$precio", 7, ' ', STR_PAD_LEFT) ;
+            $right = str_pad("$subtotal", 7, ' ', STR_PAD_LEFT);
+            $printer->text("$left$left1$left2$right\n");
             $total=$total+$subtotal;    
         }
 
@@ -124,7 +131,8 @@ class FacturaCandy extends CI_Controller {
         $d = explode('.',$total);
         $entero=$d[0];
         $decimal=$d[1];
-        $printer->text("  -----------------------------------"."\n");
+        $printer->text("------------------------------------------------"."\n");
+        
         $printer->setJustification(Printer::JUSTIFY_RIGHT);
         $printer->text("SUBTOTAL: $total Bs.\n");
         $printer->text("DESC:   0.00 Bs.\n");
@@ -132,8 +140,8 @@ class FacturaCandy extends CI_Controller {
     
         $printer->setJustification(Printer::JUSTIFY_LEFT);
     
-        $html="  SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.
-    -----------------------------------------
+        $html="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.
+        ------------------------------------------------
     Cod. de Control: $codigocontrol 
     Fecha Lim. de Emision: ". substr($fechahasta,0,10);
     
@@ -198,7 +206,7 @@ class FacturaCandy extends CI_Controller {
             $printer -> initialize();
     
    
-            $ca = "MULTI CINES PLAZA SRL.
+            $ca = "MULTICINES PLAZA SRL.
     Av. Tacna y Jaen - Oruro -Bolvia
     SUCURSAL N: 0
     Tel: 591-25281290
@@ -271,7 +279,7 @@ class FacturaCandy extends CI_Controller {
     
             $printer->setJustification(Printer::JUSTIFY_LEFT);
     
-            $html="SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.
+            $html="SON:".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.
     ------------------------------------------
     ";
     

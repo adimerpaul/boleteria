@@ -75,6 +75,21 @@ class ResumenDia extends CI_Controller {
     
     }
 
+    public function total(){
+        $fecha1=$_POST['fecha'];
+        $query=$this->db->query("SELECT (select sum(total) from ventacandy 
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        and tipoVenta='FACTURA') AS tfactura,
+        (select sum(total) from ventacandy 
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        and tipoVenta='RECIBO') as trecibo
+        from dual ");
+            $row=$query->row();
+                         $myObj=($query->result_array())[0];
+                         echo json_encode($myObj);  
+    
+    }
+
     public function detalleCombo(){
         $fecha1=$_POST['fecha'];
         $query=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
@@ -143,7 +158,7 @@ ORURO - BOLIVIA
 //$printer -> cut();
         // set some text to print
 
-        $ca = "MULTI CINES PLAZA SRL.
+        $ca = "MULTICINES PLAZA SRL.
 Av. Tacna y Jaen - Oruro -Bolvia
  Tel: 591-25281290
 ORURO - BOLIVIA
@@ -154,7 +169,7 @@ ORURO - BOLIVIA
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text($ca);
         $printer -> setJustification(Printer::JUSTIFY_LEFT);
-        $html = "Fecha: ".date('Y-m-d h:m:s');
+        $html = "Fecha: ".date('Y-m-d H:m:s');
         $printer -> text($html."\n");
         $html = "Usuario: ".$_SESSION['nombre']."\n";
         $printer -> text($html."\n");
@@ -205,7 +220,7 @@ public function imprimirCandy(){
 //$printer -> cut();
     // set some text to print
 
-    $ca = "MULTI CINES PLAZA SRL.
+    $ca = "MULTICINES PLAZA SRL.
 Av. Tacna y Jaen - Oruro -Bolvia
 Tel: 591-25281290
 ORURO - BOLIVIA
@@ -216,13 +231,29 @@ ORURO - BOLIVIA
     $printer -> setJustification(Printer::JUSTIFY_CENTER);
     $printer->text($ca);
     $printer -> setJustification(Printer::JUSTIFY_LEFT);
-    $html = "Fecha: ".date('Y-m-d h:m:s');
+    $html = "Fecha: ".date('Y-m-d H:m:s');
     $printer -> text($html."\n");
     $html = "Usuario: ".$_SESSION['nombre']."\n";
     $printer -> text($html."\n");
-    $printer->text("Descripcion      CANTIDAD     PUnit.   TOTAL.\n");
-    $printer->text("-----------------------------------"."\n");
+    $printer->text("DESCRIPCION      CANTIDAD       P.U.    TOTAL.\n");
+    $printer->text("------------------------------------------------"."\n");
     $total=0;
+    $query2=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
+    from detalle d, combo c
+    where d.idCombo=c.idCombo
+    and esCombo='SI'
+    and date(fecha)='$fecha1'
+    and idUsuario='".$_SESSION['idUs']."'
+    group by idCombo,nombreCombo ORDER BY nombreCombo asc");
+    foreach ($query2->result() as $row){
+        //$printer->text( " $row->nombreCombo  $row->cant    $row->precioVenta    $row->total  \n");
+        $left = str_pad("$row->nombreCombo", 25) ;
+		$left1 = str_pad("$row->cant", 5) ;
+		$left2 = str_pad("$row->precioVenta", 7, ' ', STR_PAD_LEFT) ;
+        $right = str_pad("$row->total", 7, ' ', STR_PAD_LEFT);
+        $printer->text("$left$left1$left2$right\n");
+        $total=$total+$row->total;
+    }
     $query=$this->db->query("SELECT p.idProducto,nombreProd,nombrePref,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
     from detalle d, producto p, detallepreferencia dp, preferencia pr
     where d.idProducto=p.idProducto
@@ -231,31 +262,37 @@ ORURO - BOLIVIA
     and esCombo='NO'
     and idUsuario='".$_SESSION['idUs']."'
         and date(fecha)='$fecha1' group by p.idProducto,nombreProd,nombrePref 
-            ");
+        order by nombreProf ");
+            
     foreach ($query->result() as $row){
-        $printer->text( "$row->nombreProd($row->nombrePref)  $row->cant  $row->precioVenta  $row->total \n");
+        
+        //$printer->text( " $row->nombreProd($row->nombrePref)  $row->cant  $row->precioVenta  $row->total \n");
+        $left = str_pad("$row->nombreProd($row->nombrePref) ", 25) ;
+		$left1 = str_pad("$row->cant", 5) ;
+		$left2 = str_pad("$row->precioVenta", 7, ' ', STR_PAD_LEFT) ;
+        $right = str_pad("$row->total", 7, ' ', STR_PAD_LEFT);
+        $printer->text("$left$left1$left2$right\n");
         $total=$total+$row->total;
     }
-    $query2=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
-    from detalle d, combo c
-    where d.idCombo=c.idCombo
-    and esCombo='SI'
-    and date(fecha)='$fecha1'
-    and idUsuario='".$_SESSION['idUs']."'
-    group by idCombo,nombreCombo");
-    foreach ($query2->result() as $row){
-        $printer->text( " $row->nombreCombo  $row->cant    $row->precioVenta    $row->total  \n");
-        $total=$total+$row->total;
-    }
+
+    $total=number_format($total,2);
+    $d = explode('.',$total);
+    $entero=$d[0];
+    $decimal=$d[1];
+    $printer->text("------------------------------------------------"."\n");
     $printer -> setJustification(Printer::JUSTIFY_RIGHT);
     $ca = "\nTOTAL: $total\n";
     $printer->text($ca);
+    $printer->setJustification(Printer::JUSTIFY_LEFT);    
+    $html="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.";
+
+    $printer -> text($html."\n");
     $printer -> setJustification(Printer::JUSTIFY_CENTER);
     $ca = "\n\n\nENTREGE CONFORME              RECIBI CONFORME\n";
     $printer->text($ca);
     $printer -> cut();
     $printer -> close();
     header("Location: ".base_url()."ResumenDia/diacandy");
-}
+    }
 
 }

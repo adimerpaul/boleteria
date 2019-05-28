@@ -416,16 +416,17 @@ WHERE idVenta='$idventa'");
 //$printer -> cut();
     // set some text to print
 
-    $ca = "MULTI CINES PLAZA SRL.
+    $ca = "MULTICINES PLAZA S.R.L.
 Av. Tacna y Jaen - Oruro -Bolvia
  Tel: 591-25281290
 ORURO - BOLIVIA
+CAZA MATRIZ
 -------------------------------
 FACTURA
 NIT: 329448023
 NRO FACTURA:$nrocomprobante
 NRO AUTORIZACION: $nroautorizacion
--------------------------------
+-----------------------------------------------
 ";
     $printer -> setJustification(Printer::JUSTIFY_CENTER);
     $printer->text($ca);
@@ -445,8 +446,8 @@ INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
 WHERE idVenta='$idventa'
 GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
     $printer->setJustification(Printer::JUSTIFY_LEFT);
-    $printer->text("CANT    DESCRIPCION      P.U    IMP.\n");
-    $printer->text("-----------------------------------"."\n");
+    $printer->text("CANT       DESCRIPCION       P.U.     IMP.\n");
+    $printer->text("---------------------------------------------"."\n");
     foreach ($query->result() as $row){
         $nombrepelicula=$row->nombre;
         $formato=$row->formato;
