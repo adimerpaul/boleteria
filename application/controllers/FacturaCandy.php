@@ -51,18 +51,13 @@ class FacturaCandy extends CI_Controller {
         if ($tipoVenta=="FACTURA"){
     
         $nombre_impresora = "POS";
+       
+    $connector = new WindowsPrintConnector($nombre_impresora);
+    $printer = new Printer($connector);
     
-    
-        $connector = new WindowsPrintConnector($nombre_impresora);
-        $printer = new Printer($connector);
-    
-        /* Initialize */
         $printer -> initialize();
-    
-        /* Text */
-        //set some text to print
-    
-        $ca = "MULTI CINES PLAZA SRL.
+        $ca = "MULTICINES PLAZA S.R.L.
+    SUCURSAL 2        
     Av. Tacna y Jaen - Oruro -Bolvia
      Tel: 591-25281290
     ORURO - BOLIVIA
@@ -71,7 +66,7 @@ class FacturaCandy extends CI_Controller {
     NIT: 329448023
     NRO FACTURA:$nrocomprobante
     NRO AUTORIZACION: $nroautorizacion
-    -------------------------------
+    ------------------------------------------------    
     ";
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text($ca);   
@@ -99,8 +94,8 @@ class FacturaCandy extends CI_Controller {
         GROUP BY c.idCombo,nombreCombo");
     
         $printer->setJustification(Printer::JUSTIFY_LEFT);
-        $printer->text(" CANT          P.U            IMP. \n");
-        $printer->text(" -------------------------------------"."\n");
+        $printer->text("DESC        CANT         P.U           IMP. \n");
+        $printer->text("------------------------------------------------"."\n");
         $total=0;
         foreach ($query1->result() as $row){
             $nombrep=$row->nombreProd;
@@ -109,8 +104,11 @@ class FacturaCandy extends CI_Controller {
             $subtotal=$row->total;
 
             $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $printer->text( "  $nombrep \n");
-            $printer->text( "  $cantidad         $precio         $subtotal   \n");
+            $left = str_pad("$nombrep ", 25) ;
+            $left1 = str_pad("$row->cant", 5) ;
+            $left2 = str_pad("$precio", 7, ' ', STR_PAD_LEFT) ;
+            $right = str_pad("$subtotal", 7, ' ', STR_PAD_LEFT);
+            $printer->text("$left$left1$left2$right\n");
             $total=$total+$subtotal;
     
         }
@@ -121,8 +119,11 @@ class FacturaCandy extends CI_Controller {
             $subtotal=$row->total;
 
             $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $printer->text( "  $nombrep \n");
-            $printer->text( "  $cantidad         $precio         $subtotal   \n");
+            $left = str_pad("$nombrep ", 25) ;
+            $left1 = str_pad("$row->cant", 5) ;
+            $left2 = str_pad("$precio", 7, ' ', STR_PAD_LEFT) ;
+            $right = str_pad("$subtotal", 7, ' ', STR_PAD_LEFT);
+            $printer->text("$left$left1$left2$right\n");
             $total=$total+$subtotal;    
         }
 
@@ -130,7 +131,8 @@ class FacturaCandy extends CI_Controller {
         $d = explode('.',$total);
         $entero=$d[0];
         $decimal=$d[1];
-        $printer->text("  -----------------------------------"."\n");
+        $printer->text("------------------------------------------------"."\n");
+        
         $printer->setJustification(Printer::JUSTIFY_RIGHT);
         $printer->text("SUBTOTAL: $total Bs.\n");
         $printer->text("DESC:   0.00 Bs.\n");
@@ -138,8 +140,8 @@ class FacturaCandy extends CI_Controller {
     
         $printer->setJustification(Printer::JUSTIFY_LEFT);
     
-        $html="  SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.
-    -----------------------------------------
+        $html="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.
+        ------------------------------------------------
     Cod. de Control: $codigocontrol 
     Fecha Lim. de Emision: ". substr($fechahasta,0,10);
     
@@ -148,9 +150,7 @@ class FacturaCandy extends CI_Controller {
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $testStr = $qr;
         $models = array(
-            //Printer::QR_MODEL_1 => "QR Model 1",
             Printer::QR_MODEL_2 => "ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY"
-            //Printer::QR_MICRO => "Micro QR code\n(not supported on all printers)"
         );
         foreach ($models as $model => $name) {
             $printer -> qrCode($testStr, Printer::QR_ECLEVEL_L, 4, $model);
@@ -165,15 +165,9 @@ class FacturaCandy extends CI_Controller {
     
         $printer -> cut();    
           
-        /* Pulse */
-        //$printer -> pulse();
-    
-        /* Always close the printer! On some PrintConnectors, no actual
-         * data is sent until the printer is closed. */
         $printer -> close();
         }
         header("Location: ".base_url()."VentaCandyCtrl");
-        //header();
     }
     
     public function printR($idventa){
@@ -211,12 +205,8 @@ class FacturaCandy extends CI_Controller {
             /* Initialize */
             $printer -> initialize();
     
-            /* Text */
-    //$printer -> text("Hello world\n");
-    //$printer -> cut();
-            // set some text to print
-    /*
-            $ca = "MULTI CINES PLAZA SRL.
+   
+            $ca = "MULTICINES PLAZA SRL.
     Av. Tacna y Jaen - Oruro -Bolvia
     SUCURSAL N: 0
     Tel: 591-25281290
@@ -289,7 +279,7 @@ class FacturaCandy extends CI_Controller {
     
             $printer->setJustification(Printer::JUSTIFY_LEFT);
     
-            $html="SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.
+            $html="SON:".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.
     ------------------------------------------
     ";
     
@@ -306,6 +296,5 @@ class FacturaCandy extends CI_Controller {
             $printer -> close();
             header("Location: ".base_url()."VentaCandyCtrl");
         }
-    
-    
+ 
 }

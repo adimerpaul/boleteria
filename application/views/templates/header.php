@@ -531,7 +531,7 @@
           <?php endif ?>
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'83')):  ?>
           <li class="nav-item">
-            <a class="nav-link" href=""><i class="fas fa-plus"></i> Resumen Candy</a>
+            <a class="nav-link" href="<?=base_url()?>ResumenDia/diacandy"><i class="fas fa-plus"></i> Resumen Candy</a>
         </li>
           <?php endif ?>
       </ul>

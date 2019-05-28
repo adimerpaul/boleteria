@@ -83,9 +83,10 @@ ORDER BY v.fechaVenta");
                     else{
                         $nom="$row->apellidoCl $row->nombreCl";
                     }
+                    $fecha2=substr($row->fechaVenta,0,10);
                     echo "<tr>
                             <td>$c</td>
-                            <td>$row->fechaVenta</td>
+                            <td>$fecha2</td>
                             <td>$row->nroComprobante</td>
                             <td>$row->nroAutorizacion</td>
                             <td>$e</td>

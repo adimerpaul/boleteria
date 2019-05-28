@@ -1,11 +1,13 @@
 $(document).ready(function(){
     calculaCaja();
     calculaDetalle();
+    calculototal();
 });  
 
 $('#fechacandy').change(function(){ 
     calculaCaja();
     calculaDetalle();
+    calculototal();
 });
 
 function calculaCaja(){
@@ -16,6 +18,7 @@ function calculaCaja(){
     var resFactura="";
     var resdetalle="";
     var total=0;
+    var estadoVenta='';
     $.ajax({
         data:  param,
         url:   'reportediaCandy',
@@ -32,7 +35,16 @@ function calculaCaja(){
             datos2.forEach(row => {
                 resFactura+="<tr>";
                 resFactura+="<td>"+row.idVentaCandy+"</td>";                
-                resFactura+="<td>"+row.fechaVenta+"</td>";                
+                resFactura+="<td>"+row.fechaVenta+"</td>";  
+                if(row.estado=="ANULADO")              
+                    resFactura+="<td>A</td>";
+                else{
+                    if(row.tipoVenta=="FACTURA")
+                        resFactura+="<td>F</td>";
+                    else
+                        resFactura+="<td>R</td>";
+                    
+                }  
                 resFactura+="<td>"+row.nombreCl+" "+row.apellidoCl+"</td>";                
                 resFactura+="<td>"+row.total+"</td>";                
                 resFactura+="</tr>";
@@ -116,3 +128,26 @@ $('#imprimirCandy').click(function(){
     
     $.post(url,param);
 });
+
+function calculototal(){
+    var fecha=$('#fechacandy').val();
+    var param={
+        'fecha':fecha
+    };
+    $.ajax({
+        data:  param,
+        url:   'total',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            $('#totalrecibo').html('0');
+            $('#totalfactura').html('0');
+            console.log(response);
+            datos2=JSON.parse(response);
+            $('#totalrecibo').html(' '+datos2.trecibo+' Bs');
+            $('#totalfactura').html(' '+datos2.tfactura+' Bs');
+            
+        }})
+}
