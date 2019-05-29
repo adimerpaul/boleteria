@@ -61,14 +61,12 @@ class ResumenDia extends CI_Controller {
 
     public function detalleProducto(){
         $fecha1=$_POST['fecha'];
-        $query=$this->db->query("SELECT p.idProducto,nombreProd,nombrePref,precioVenta,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
-        from detalle d, producto p, detallepreferencia dp, preferencia pr
+        $query=$this->db->query("SELECT p.idProducto,nombreProd,precioVenta,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
+        from detalle d, producto p
         where d.idProducto=p.idProducto
-        and dp.idDetalle=d.idDetalle
-        and pr.idPreferencia=dp.idPreferencia
         and esCombo='NO'
         and idUsuario='".$_SESSION['idUs']."'
-            and date(fecha)='$fecha1' group by p.idProducto,nombreProd,nombrePref ");
+            and date(fecha)='$fecha1' group by p.idProducto,nombreProd ");
             $row=$query->row();
                          $myObj=($query->result_array());
                          echo json_encode($myObj);  
@@ -254,11 +252,9 @@ ORURO - BOLIVIA
         $printer->text("$left$left1$left2$right\n");
         $total=$total+$row->total;
     }
-    $query=$this->db->query("SELECT p.idProducto,nombreProd,nombrePref,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
-    from detalle d, producto p, detallepreferencia dp, preferencia pr
+    $query=$this->db->query("SELECT p.idProducto,nombreProd,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
+    from detalle d, producto p
     where d.idProducto=p.idProducto
-    and dp.idDetalle=d.idDetalle
-    and pr.idPreferencia=dp.idPreferencia
     and esCombo='NO'
     and idUsuario='".$_SESSION['idUs']."'
         and date(fecha)='$fecha1' group by p.idProducto,nombreProd,nombrePref 
@@ -267,7 +263,7 @@ ORURO - BOLIVIA
     foreach ($query->result() as $row){
         
         //$printer->text( " $row->nombreProd($row->nombrePref)  $row->cant  $row->precioVenta  $row->total \n");
-        $left = str_pad("$row->nombreProd($row->nombrePref) ", 25) ;
+        $left = str_pad("$row->nombreProd", 25) ;
 		$left1 = str_pad("$row->cant", 5) ;
 		$left2 = str_pad("$row->precioVenta", 7, ' ', STR_PAD_LEFT) ;
         $right = str_pad("$row->total", 7, ' ', STR_PAD_LEFT);

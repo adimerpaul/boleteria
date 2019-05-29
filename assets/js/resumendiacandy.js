@@ -80,7 +80,7 @@ function calculaDetalle(){
             datos2.forEach(row => {
                 resdetalle+="<tr>";
                 resdetalle+="<td>"+row.idProducto+"</td>";                
-                resdetalle+="<td>"+row.nombreProd+" "+row.nombrePref+"</td>";                
+                resdetalle+="<td>"+row.nombreProd+"</td>";                
                 resdetalle+="<td>"+row.cant+"</td>";                
                 resdetalle+="<td>"+row.precioVenta+"</td>";                
                 resdetalle+="<td>"+row.total+"</td>";                
