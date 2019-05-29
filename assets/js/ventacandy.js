@@ -61,26 +61,26 @@ $(function() {
     });
     function producto(idproducto){
         escombo=false;
-        $.ajax({
-            type:'POST',
-            url:'VentaCandyCtrl/productospreferencia',
-            data:'id='+idproducto,
-            success:function (e) {
-                //console.log(e);
-                var datos=JSON.parse(e);
-                var t='';
-                for (var i=0;i<datos.length;i++){
-                    t=t+"<button  class='addpref m-1 btn-success' id='"+datos[i].idPreferencia+"' nombre='"+datos[i].nombrePref+"'>"+datos[i].nombrePref+"</button>";
-                }
-                $('#preferencias').html(t);
-                $('.addpref').click(function (e) {
-                    var idprefrencia=($(this).attr('id'));
-                    var nombre=($(this).attr('nombre'));
-                    addpref(idprefrencia,nombre);
-                    e.preventDefault();
-                });
-            }
-        });
+        // $.ajax({
+        //     type:'POST',
+        //     url:'VentaCandyCtrl/productospreferencia',
+        //     data:'id='+idproducto,
+        //     success:function (e) {
+        //         //console.log(e);
+        //         var datos=JSON.parse(e);
+        //         var t='';
+        //         for (var i=0;i<datos.length;i++){
+        //             t=t+"<button  class='addpref m-1 btn-success' id='"+datos[i].idPreferencia+"' nombre='"+datos[i].nombrePref+"'>"+datos[i].nombrePref+"</button>";
+        //         }
+        //         $('#preferencias').html(t);
+        //         $('.addpref').click(function (e) {
+        //             var idprefrencia=($(this).attr('id'));
+        //             var nombre=($(this).attr('nombre'));
+        //             addpref(idprefrencia,nombre);
+        //             e.preventDefault();
+        //         });
+        //     }
+        // });
         $.ajax({
             type:'POST',
             url:'VentaCandyCtrl/datosproductos',
@@ -135,24 +135,24 @@ $(function() {
         } else {
             var cantidad=$('#cantidad').val();
         }
-        var selec = document.getElementsByClassName("removepref").length;
-        if (selec<cantidad){
-            if (selec==1){
-                if (escombo){
-                    guardartemporalcomobo();
-                } else {
-                    guardartemporal();
-                }
-            }else{
-                alert('Preferencias incompletas!');
-            }
-        }else {
-            if (escombo){
-                guardartemporalcomobo();
-            } else {
-                guardartemporal();
-            }
-        }
+        // var selec = document.getElementsByClassName("removepref").length;
+        // if (selec<cantidad){
+        //     if (selec==1){
+        if (escombo){
+            guardartemporalcomobo();
+        } else {
+            guardartemporal();
+         }
+        //     }else{
+        //         alert('Preferencias incompletas!');
+        //     }
+        // }else {
+        //     if (escombo){
+        //         guardartemporalcomobo();
+        //     } else {
+        //         guardartemporal();
+        //     }
+        // }
         return false;
     });
     $('#combos').click(function (e) {
@@ -186,28 +186,28 @@ $(function() {
         });
     });
     function combo(idcombo){
-        $.ajax({
-            type:'POST',
-            url:'VentaCandyCtrl/combopreferencia',
-            data:'id='+idcombo,
-            success:function (e) {
-                //console.log(e);
-                var datos=JSON.parse(e);
-                cantidadcombo=datos[0].cantidad;
-                cantidadcomboreal=datos[0].cantidad;
-                var t='Cant: <span id="cantidadcombo">'+cantidadcombo+'</span> =';
-                for (var i=0;i<datos.length;i++){
-                    t=t+"<button  class='addpref m-1 btn-success' id='"+datos[i].idPreferencia+"' nombre='"+datos[i].nombrePref+"'>"+datos[i].nombrePref+"</button>";
-                }
-                $('#preferencias').html(t);
-                $('.addpref').click(function (e) {
-                    var idprefrencia=($(this).attr('id'));
-                    var nombre=($(this).attr('nombre'));
-                    addpref(idprefrencia,nombre);
-                    e.preventDefault();
-                });
-            }
-        });
+        // $.ajax({
+        //     type:'POST',
+        //     url:'VentaCandyCtrl/combopreferencia',
+        //     data:'id='+idcombo,
+        //     success:function (e) {
+        //         //console.log(e);
+        //         var datos=JSON.parse(e);
+        //         cantidadcombo=datos[0].cantidad;
+        //         cantidadcomboreal=datos[0].cantidad;
+        //         var t='Cant: <span id="cantidadcombo">'+cantidadcombo+'</span> =';
+        //         for (var i=0;i<datos.length;i++){
+        //             t=t+"<button  class='addpref m-1 btn-success' id='"+datos[i].idPreferencia+"' nombre='"+datos[i].nombrePref+"'>"+datos[i].nombrePref+"</button>";
+        //         }
+        //         $('#preferencias').html(t);
+        //         $('.addpref').click(function (e) {
+        //             var idprefrencia=($(this).attr('id'));
+        //             var nombre=($(this).attr('nombre'));
+        //             addpref(idprefrencia,nombre);
+        //             e.preventDefault();
+        //         });
+        //     }
+        // });
         $.ajax({
             type:'POST',
             url:'VentaCandyCtrl/datoscombo',
