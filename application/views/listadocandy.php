@@ -145,8 +145,12 @@
             </tbody>
         </table>
         <hr>
-          <a href='' class="btn btn-success text-white" id="btnImpresion">Impresion</a>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'146')):  ?>
+                <a href='' class="btn btn-success text-white" id="btnImpresion">Impresion</a>
+                <?php endif ?>
+                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'145')):  ?>
         <input type="button" class="btn btn-danger" value="Devolucion" id="btnDevolver">
+                <?php endif ?>
         <a type="button" class="btn btn-warning" href="<?php echo base_url();?>ListadoCandyCtrl">Cancelar</a>
       </div>
       <div class="modal-footer">

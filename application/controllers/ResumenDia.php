@@ -25,7 +25,7 @@ class ResumenDia extends CI_Controller {
             $dato=$this->usuarios_model->validaIngreso($user);
             $this->load->view('templates/header', $dato);
             $this->load->view('resumendia');
-            $dato['js']="<script></script>";
+            $dato['js']="<script src='".base_url()."assets/js/resumendia.js'></script>";
             $this->load->view('templates/footer',$dato);
         }
         else redirect('');
@@ -59,13 +59,45 @@ class ResumenDia extends CI_Controller {
     
     }
 
+    public function reportedia(){
+        $fecha1=$_POST['fecha'];
+        $query=$this->db->query("SELECT * FROM venta v 
+        INNER JOIN cliente c ON v.idCliente=c.idCliente
+        INNER JOIN usuario u ON u.idUsuario=v.idUsuario
+            WHERE u.idUsuario='".$_SESSION['idUs']."'
+            AND date(fechaVenta)='$fecha1'");
+            $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    
+    }
+
+    public function detallePelicula(){
+        $fecha1=$_POST['fecha'];
+        $query=$this->db->query("SELECT p.idPelicula,p.nombre,COUNT(*) 'cantidadb',SUM(b.costo) as total
+        FROM pelicula p 
+        INNER JOIN funcion f ON f.idPelicula=p.idPelicula
+        INNER JOIN boleto b ON b.idFuncion=f.idFuncion
+        INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
+        INNER JOIN usuario u ON u.idUsuario=b.idUsuario
+        WHERE b.idUsuario='".$_SESSION['idUs']."'
+        AND  date(b.fecha)='$fecha1'
+        GROUP BY p.idPelicula,p.nombre");
+            $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    
+    }
+
     public function detalleProducto(){
         $fecha1=$_POST['fecha'];
         $query=$this->db->query("SELECT p.idProducto,nombreProd,precioVenta,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
-        from detalle d, producto p
+        from detalle d, producto p, ventacandy v
         where d.idProducto=p.idProducto
+        and v.idVentaCandy=d.idVentaCandy
+        and v.estado='ACTIVO'
         and esCombo='NO'
-        and idUsuario='".$_SESSION['idUs']."'
+        and d.idUsuario='".$_SESSION['idUs']."'
             and date(fecha)='$fecha1' group by p.idProducto,nombreProd ");
             $row=$query->row();
                          $myObj=($query->result_array());
@@ -88,14 +120,31 @@ class ResumenDia extends CI_Controller {
     
     }
 
+    public function totalBol(){
+        $fecha1=$_POST['fecha'];
+        $query=$this->db->query("SELECT (select sum(total) from venta 
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        and tipoVenta='FACTURA') AS tfactura,
+        (select sum(total) from venta 
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        and tipoVenta='RECIBO') as trecibo
+        from dual ");
+            $row=$query->row();
+                         $myObj=($query->result_array())[0];
+                         echo json_encode($myObj);  
+    
+    }
+
     public function detalleCombo(){
         $fecha1=$_POST['fecha'];
         $query=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
-        from detalle d, combo c
+        from detalle d, combo c, ventacandy v
         where d.idCombo=c.idCombo
+        and v.idVentaCandy=d.idVentaCandy 
+        and v.estado='ACTIVO'
         and esCombo='SI'
         and date(fecha)='$fecha1'
-        and idUsuario='".$_SESSION['idUs']."'
+        and d.idUsuario='".$_SESSION['idUs']."'
         group by idCombo,nombreCombo");
             $row=$query->row();
                          $myObj=($query->result_array());
@@ -104,44 +153,8 @@ class ResumenDia extends CI_Controller {
     }
 
     public function imprimir(){
-        /*
+        $fecha1=$_POST['fecha'];
 
-        $nombre_impresora = "POS";
-
-        $connector = new WindowsPrintConnector($nombre_impresora);
-        $printer = new Printer($connector);
-
-
-        $printer -> initialize();
-        $ca = "MULTI CINES PLAZA SRL.
-Av. Tacna y Jaen - Oruro -Bolvia
- Tel: 591-25281290
-ORURO - BOLIVIA
--------------------------------
-";
-        $printer -> setJustification(Printer::JUSTIFY_CENTER);
-        $printer->text($ca);
-        $printer -> setJustification(Printer::JUSTIFY_LEFT);
-        $html = "Fecha: ".date('Y-m-d h:m:s');
-        $printer -> text($html."\n");
-        $printer->text("NUMERRO    HORA      CLIENTE    TOTAL.\n");
-        $printer->text("-----------------------------------"."\n");
-        $total=0;
-        $query=$this->db->query("SELECT * FROM venta v INNER JOIN cliente c ON v.idcliente=c.idcliente
-                WHERE date(fechaVenta)=date('".date('Y-m-d')."')");
-        foreach ($query->result() as $row){
-            $printer->text( "    $row->idVenta  ".substr($row->fechaVenta,10,10)."         $row->apellidoCl     $row->total   \n");
-            $total=$total+$row->total;
-        }
-        $printer -> setJustification(Printer::JUSTIFY_RIGHT);
-        $ca="El total es: $total";
-        $printer->text($ca);
-        $printer -> setJustification(Printer::JUSTIFY_CENTER);
-        $ca="          ENTREGE CONFORME              RECIBI CONFORME";$printer -> cut();
-        $printer->text($ca);
-        $printer -> cut();
-        $printer -> close();
-        */
         $nombre_impresora = "POS";
 
 
@@ -181,7 +194,7 @@ INNER JOIN boleto b ON b.idFuncion=f.idFuncion
 INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
 INNER JOIN usuario u ON u.idUsuario=b.idUsuario
 WHERE b.idUsuario='".$_SESSION['idUs']."'
-AND  date(b.fecha)=date('".date('Y-m-d')."')
+AND  date(b.fecha)='$fecha1')
 GROUP BY p.idPelicula,p.nombre
                 ");
         foreach ($query->result() as $row){

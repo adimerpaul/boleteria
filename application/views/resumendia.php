@@ -12,6 +12,10 @@
     <div class="card ">
         <div class="card-header text-white bg-info" >
             <i class="fas fa-money-check"></i> Ventas del dia
+            <br>
+            <label for="">Fecha de Caja:</label>
+            <input type="date" name="fechacandy" id="fechadia" value="<?php echo date('Y-m-d');?>">
+            <br>
         </div>
         <div class="card-body">
             <h3>Ventas por factura</h3>
@@ -20,11 +24,12 @@
                 <tr>
                     <th>Numero</th>
                     <th>Fecha</th>
+                    <th>Estado</th>
                     <th>Cliente</th>
                     <th>Total</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabfactura">
                 <?php
                 $total=0;
                 $query=$this->db->query("SELECT * FROM venta v 
@@ -37,6 +42,7 @@ WHERE u.idUsuario='".$_SESSION['idUs']."'
                     echo "<tr> 
                                 <td>$row->idVenta</td> 
                                 <td>$row->fechaVenta</td>  
+                                <td>$row->apellidoCl</td> 
                                 <td>$row->apellidoCl</td> 
                                 <td>$row->total</td>
                             </tr>";
@@ -59,7 +65,7 @@ WHERE u.idUsuario='".$_SESSION['idUs']."'
                     <th>Total</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabPelicula">
                 <?php
                 $total=0;
                 $query=$this->db->query("SELECT p.idPelicula,p.nombre,COUNT(*) 'cantidadb',SUM(b.costo) as total
@@ -88,7 +94,17 @@ GROUP BY p.idPelicula,p.nombre
                 </tr>
                 </tbody>
             </table>
-            <a href="<?=base_url()?>ResumenDia/imprimir" class="btn btn-success btn-block"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
+            <br>
+            <div class="row">
+                <b><label for="">Total Recibo: </label></b>
+                <label for="" id="totalrecibo"></label>
+            </div>
+            <div class="row">
+                <b><label for="">Total Factura: </label></b>
+                <label for="" id="totalfactura"></label>
+            </div>
+            <br>
+            <a  class="btn btn-success btn-block"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
         </div>
 
     </div>

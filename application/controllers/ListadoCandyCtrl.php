@@ -13,6 +13,7 @@ class ListadoCandyCtrl extends CI_Controller{
         parent::__construct();
         $this->load->model('usuarios_model');
         $this->load->model('cupon_model');
+        $this->load->model('ventas_model');
 
 
     }
@@ -76,7 +77,20 @@ class ListadoCandyCtrl extends CI_Controller{
         $this->db->query("INSERT INTO devolucion (idVenta,idUsuario,monto,motivo,tipo) values ('$idventa','$user','$total','$motivo','CANDY')");
         echo $this->db->insert_id();
     }
-    
+
+    public function listaDevCandy(){
+        if($this->session->userdata('login')==1){
+
+            $user = $this->session->userdata('idUs');
+            $dato=$this->usuarios_model->validaIngreso($user);
+            $this->load->view('templates/header', $dato);
+                $this->load->view('listadevCandy');
+                $dato2['js']="<script></script>";
+                $this->load->view('templates/footer',$dato2);
+        }
+        else redirect('');
+
+    }
     
     public function imprimir($idcupon){
         $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

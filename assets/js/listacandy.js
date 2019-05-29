@@ -35,6 +35,7 @@ $('#fecini').change(function(){
                               $('#nombreUser').html(datos.user);
                               $('#codControl').html(datos.codigoControl);
                               $('#tipoventa').html(datos.tipoVenta);
+                              tip=datos.tipoVenta;
                               dev=datos.estado;
                               $.ajax({
                                 data:  parametros,
@@ -102,10 +103,11 @@ $('#fecini').change(function(){
                                                     success:  function (response) { 
                                         console.log(response);
                                     }
-                                })}
+                            })}
                                 $("#exampleModal").modal('hide');//ocultamos el modal
                                 window.location.href = '';
                             });
+                            
 
                           } 
                   });

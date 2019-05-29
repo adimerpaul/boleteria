@@ -96,3 +96,7 @@ revisar detalle de facuta
 libro iva quitar la hora
 
 casa matriz , sucursal
+
+
+
+iddev, respadev, vendedor idventa, motivo

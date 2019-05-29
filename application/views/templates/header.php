@@ -386,11 +386,14 @@
         <li class="nav-item" hidden>
                 <a class="nav-link" href="#"><i class="fas fa-plus"></i> Panel Ventas Web</a>
         </li>
-        <li class="nav-item">
             <?php if($this->usuarios_model->veri($_SESSION['idUs'],'61')):  ?>
-                <a class="nav-link" href="<?=base_url()?>VentaCtrl/listaVenta"><i class="fas fa-list-ul"></i> Listado Ventas</a>
-            <?php endif ?>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=base_url()?>VentaCtrl/listaVenta"><i class="fas fa-list-ul"></i> Listado Ventas</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=base_url()?>VentaCtrl/listaDev"><i class="fas fa-list-ul"></i> Listado Devoluciones</a>
+        </li>
+            <?php endif ?>
         <li class="nav-item" hidden>
                 <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Listado Ventas Web</a>
         </li>
@@ -413,14 +416,15 @@
         <li class="nav-item">
                 <a class="nav-link" href="<?=base_url()?>VentaCandyCtrl"><i class="fas fa-cash-register"></i> Panel Venta</a>
         </li>
+        <?php endif ?>
+        <?php if($this->usuarios_model->veri($_SESSION['idUs'],'147')):  ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?=base_url()?>ListadoCandyCtrl"><i class="fas fa-money-bill"></i> Listado ventas</a>
             </li>
-  
+            <li class="nav-item">
+                <a class="nav-link" href="<?=base_url()?>ListadoCandyCtrl/listaDevCandy"><i class="fas fa-money-bill"></i> Listado Devolucion</a>
+            </li>
         <?php endif ?>
-        <li class="nav-item" hidden>
-                <a class="nav-link" href=""><i class="fas fa-list-ul"></i> Listado Ventas</a>
-        </li>
     
       </ul>
     </div>
