@@ -19,110 +19,65 @@ class ListadoCandyCtrl extends CI_Controller{
 
     public function index()
     {
-        if ($this->session->userdata('login') == 1) {
+        if($this->session->userdata('login')==1){
 
             $user = $this->session->userdata('idUs');
-
-            $dato = $this->usuarios_model->validaIngreso($user);
+            $dato=$this->usuarios_model->validaIngreso($user);
+            if( empty($_POST['fecini']) || empty($_POST['fecfin'])) 
+                {
+                    $venta['fecinicio'] = date('Y-m-d');
+                    $venta['fecfinal']= date('Y-m-d'); }
+           
+            else {
+            $venta['fecinicio'] = $_POST['fecini'];
+            $venta['fecfinal']=$_POST['fecfin'];}
             $this->load->view('templates/header', $dato);
-            $this->load->view('listadocandy');
-            $dato['js'] = "";
-            $this->load->view('templates/footer', $dato);
-        } else redirect('');
-    }
-    public  function store(){
-        $nombre=$_POST['nombre'];
-        $descripcion=$_POST['descripcion'];
-        $precioCosto=$_POST['precioCosto'];
-        $precioVenta=$_POST['precioVenta'];
-        $imagen=$_POST['imagen'];
-        $color=$_POST['color'];
-        $utilidad=$precioVenta-$precioCosto-$precioVenta*0.13;
-
-        $this->db->query("INSERT INTO combo(
-nombreCombo,
-descripcion,
-precioCosto,
-utilidad,
-precioVenta,
-imagen,
-fondoColor) 
-VALUES(
-'$nombre',
-'$descripcion',
-'$precioCosto',
-'$utilidad',
-'$precioVenta',
-'$imagen',
-'$color'
-)");
-        $idcombo=$this->db->insert_id();
-
-        $query=$this->db->query("SELECT * FROM producto WHERE activo='on'");
-        foreach ($query->result() as $row){
-            if (isset($_POST['p'.$row->idProducto])) {
-                $cantidad=$_POST['c'.$row->idProducto];
-                $this->db->query("INSERT INTO comboproducto(idCombo,idproducto,cantidad) VALUES('$idcombo','$row->idProducto','$cantidad')");
-            }
+                $this->load->view('listadocandy',$venta);
+                $dato2['js']="<script src='".base_url()."assets/js/listacandy.js'></script>";
+                $this->load->view('templates/footer',$dato2);
         }
+        else redirect('');
 
-        header("Location: ".base_url()."ComboCtrl");
     }
-    public  function update(){
-        $nombre=$_POST['nombre'];
-        $descripcion=$_POST['descripcion'];
-        $precioCosto=$_POST['precioCosto'];
-        $precioVenta=$_POST['precioVenta'];
-        $imagen=$_POST['imagen'];
-        $color=$_POST['color'];
-        $idcombo=$_POST['idcombo'];
-        if (isset($_POST['activo'])){
-            $activo="on";
-        }else{
-            $activo="off";
-        }
-        $utilidad=$precioVenta-$precioCosto-$precioVenta*0.13;
-        $this->db->query("UPDATE combo SET
-nombreCombo='$nombre',
-descripcion='$descripcion',
-precioCosto='$precioCosto',
-utilidad='$utilidad',
-precioVenta='$precioVenta',
-imagen='$imagen',
-fondoColor='$color',
-activo='$activo'
-WHERE idCombo='$idcombo'
-");
-        $this->db->query("DELETE FROM comboproducto WHERE idCombo='$idcombo'");
-        $query=$this->db->query("SELECT * FROM producto WHERE activo='on'");
-        foreach ($query->result() as $row){
-            if (isset($_POST['p'.$row->idProducto])) {
-                $cantidad=$_POST['c'.$row->idProducto];
-                $this->db->query("INSERT INTO comboproducto(idCombo,idproducto,cantidad) VALUES('$idcombo','$row->idProducto','$cantidad')");
-            }
-        }
 
-        header("Location: ".base_url()."ComboCtrl");
-    }
-    public  function delete($idcupon){
+    public function verdatoventa(){
+        
+        $idventa=$_POST['idventacandy'];
 
-        $this->db->query("DELETE FROM combo WHERE idCombo='$idcupon'");
-        header("Location: ".base_url()."ComboCtrl");
+        $query=$this->db->query("SELECT * FROM ventacandy v, cliente c, usuario u
+        WHERE v.idVentaCandy=$idventa and v.idCliente=c.idCliente and u.idUsuario=v.idUsuario
+        ");
+        $row=$query->row();
+        $myObj=($query->result_array()[0]);
+    
+        echo json_encode($myObj); 
+
     }
-    public  function verificar(){
-        $idcombo=$_POST['idcupon'];
-        $query=$this->db->query("SELECT * FROM combo WHERE idCombo=$idcombo");
-        $res=$query->result_array()[0];
-        echo json_encode($res);
+
+    public function listaProductos(){
+        $idventa=$_POST['idventacandy'];
+        $query=$this->db->query("(SELECT nombreProd as nom,d.cantidad,precioVenta FROM detalle d, producto p
+        WHERE idVentaCandy=$idventa and d.idProducto=p.idProducto and esCombo='NO') Union 
+        (SELECT nombreCombo as nom,d.cantidad,precioVenta FROM detalle d, combo c
+        WHERE idVentaCandy=$idventa and d.idCombo=c.idCombo and esCombo='SI')"
+        );
+        $row=$query->row();
+        $myObj=($query->result_array());
+    
+        echo json_encode($myObj); 
     }
-    public  function datos(){
-        $idcombo=$_POST['idcupon'];
-        $query=$this->db->query("SELECT p.nombreProd,c.cantidad,p.idProducto FROM comboproducto c 
-INNER JOIN producto p ON c.idProducto=p.idProducto
-WHERE idCombo=$idcombo");
-        $res=$query->result_array();
-        echo json_encode($res);
+
+    public function devolucionCandy(){
+        $idventa=$_POST['idventacandy'];
+        $motivo=$_POST['motivo'];
+        $total=$_POST['total'];
+        $user = $this->session->userdata('idUs');
+        $this->ventas_model->devolVentaCandy($idventa);
+        $this->db->query("INSERT INTO devolucion (idVenta,idUsuario,monto,motivo,tipo) values ('$idventa','$user','$total','$motivo','CANDY')");
+        echo $this->db->insert_id();
     }
+    
+    
     public function imprimir($idcupon){
         $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $query=$this->db->query("SELECT * FROM cupon c INNER JOIN subcupon s ON c.idcupon=s.idcupon WHERE c.idcupon='$idcupon'");

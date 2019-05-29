@@ -375,6 +375,19 @@ class VentaCtrl extends CI_Controller {
 
     }
 
+    public function listaDev(){
+        if($this->session->userdata('login')==1){
+
+            $user = $this->session->userdata('idUs');
+            $dato=$this->usuarios_model->validaIngreso($user);
+            $this->load->view('templates/header', $dato);
+                $this->load->view('listadodevolucion');
+                $dato2['js']="<script></script>";
+                $this->load->view('templates/footer',$dato2);
+        }
+        else redirect('');
+
+    }
 
 public function printF($idventa){
 
@@ -763,12 +776,15 @@ public function qr(){
 
 public function devolucion(){
     $idventa=$_POST['idventa'];
+    $motivo=$_POST['motivo'];
+    $total=$_POST['total'];
     $user = $this->session->userdata('idUs');
     $this->ventas_model->devolVenta($idventa);
     $this->boletos_model->devolBoleto($idventa);
-    $this->db->query("INSERT INTO devolucion (idVenta,idUsuario) values ('$idventa','$user')");
+    $this->db->query("INSERT INTO devolucion (idVenta,idUsuario,monto,motivo,tipo) values ('$idventa','$user','$total','$motivo','BOLETERIA')");
     echo $this->db->insert_id();
 }
+
 
 public function devolucionfuncion($id){
     

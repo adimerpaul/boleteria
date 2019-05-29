@@ -18,6 +18,13 @@ class ventas_model extends CI_Model {
             return $this->db->update("venta");
         }
 
+        public function devolVentaCandy($id){
+            $this->db->set('total',0);            
+            $this->db->set('estado','ANULADO');
+            $this->db->where('idVentaCandy',$id);
+            return $this->db->update("ventacandy");
+        }
+
         /**
          * @param String $authorizationNumber Numero de autorizacion
          * @param String $invoiceNumber Numero de factura

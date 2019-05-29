@@ -72,12 +72,14 @@ class FacturaCandy extends CI_Controller {
         $printer->text($ca);   
     
         $printer -> setJustification(Printer::JUSTIFY_LEFT);
-        $html = "Fecha: ".$fecha."
-    Señor(es): $nombre $apellido
-    NIT/CI: $ci "
-        ;
+        $printer->text("Fecha: ".$fecha."\n");
+        $printer->text("Señor(es): $nombre $apellido\n");
+        $printer->text(" NIT/CI: $ci\n");
+    //$html = "Fecha: ".$fecha."
+    //Señor(es): $nombre $apellido
+    //NIT/CI: $ci";
         $printer -> setJustification(Printer::JUSTIFY_LEFT);
-        $printer -> text($html."\n");
+        //$printer -> text($html."\n");
     
         $query1=$this->db->query("SELECT p.idProducto, nombreProd ,sum(d.cantidad) as cant, precioVenta, (sum(d.cantidad) * precioVenta) as total
     FROM detalle d

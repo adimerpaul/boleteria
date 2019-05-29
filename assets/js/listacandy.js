@@ -8,16 +8,16 @@ $('#fecini').change(function(){
    
    $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var idventa = button.data('idventa') // Extract info from data-* attributes
+        var idventa = button.data('idventacandy') // Extract info from data-* attributes
         var check="on";
         var dev="";
         var totalv=0;
         var parametros = {
-                          "idventa" : idventa
+                          "idventacandy" : idventa
                   };
                   $.ajax({
                           data:  parametros,
-                          url:   'verdatoventa',
+                          url:   'ListadoCandyCtrl/verdatoventa',
                           type:  'post',
                           beforeSend: function () {
                                   //$("#resultado").html("Procesando, espere por favor...");
@@ -25,8 +25,8 @@ $('#fecini').change(function(){
                           success:  function (response) {
                               console.log(response);
                               var datos=JSON.parse(response);
-                              $('#idVenta').html(datos.idVenta);
-                              $('#idVen').prop('value',datos.idVenta);
+                              $('#idVentaCandy').html(datos.idVentaCandy);
+                              $('#idVenCandy').prop('value',datos.idVentaCandy);
                               $('#nroComp').html(datos.nroComprobante);
                               $('#totalVenta').html(datos.total);
                               totalv=datos.total;
@@ -38,7 +38,7 @@ $('#fecini').change(function(){
                               dev=datos.estado;
                               $.ajax({
                                 data:  parametros,
-                                url:   'listaBoletos',
+                                url:   'ListadoCandyCtrl/listaProductos',
                                 type:  'post',
                                                 beforeSend: function () {
                                                         //$("#resultado").html("Procesando, espere por favor...");
@@ -48,45 +48,45 @@ $('#fecini').change(function(){
                                     var asiento;
                                     var datos2=JSON.parse(response);
                                     console.log(datos2);
+                                    var i=0;
+                                    var subt=0;
+                                    var total=0;
                                     datos2.forEach(row => {
-                                        if(row.devuelto=='SI')
-                                            asiento = '-'
-                                        else 
-                                        asiento=String.fromCharCode(parseInt(row.fila) + 64)+'-'+row.fila+"-"+row.columna+'';
+                                        i++;
+                                        subt=parseFloat(row.cantidad)* parseFloat(row.precioVenta);
+                                        total=total+parseFloat(subt);
                                         cadena+="<tr>";
-                                        cadena=cadena+"<td>"+row.fecha+"</td>";
-                                        cadena=cadena+"<td>"+row.numboc+"</td>";
-                                        cadena=cadena+"<td>"+row.titulo+"</td>";
-                                        cadena=cadena+"<td>"+row.fechaFuncion+"</td>";
-                                        cadena=cadena+"<td>"+row.horaFuncion+"</td>";
-                                        cadena=cadena+"<td>"+row.serieTarifa+"/"+row.costo+"</td>";
-                                        cadena=cadena+"<td>"+asiento+"</td>";
+                                        cadena=cadena+"<td>"+i+"</td>";
+                                        cadena=cadena+"<td>"+row.nom+"</td>";
+                                        cadena=cadena+"<td>"+row.cantidad+"</td>";
+                                        cadena=cadena+"<td>"+row.precioVenta+"</td>";
+                                        cadena=cadena+"<td>"+subt+"</td>";
                                         cadena+="</tr>";
                                     
-                                    $('#tabbody').html(cadena);
                                     if (datos.estado=="ANULADO"){
                                         $('#btnImpresion').hide();
                                     } else{
                                         $('#btnImpresion').show();
                                     }
                                     if (datos.tipoVenta=="FACTURA"){
-                                        $('#btnImpresion').prop('href',url+'VentaCtrl/printF/'+datos.idVenta);
+                                        $('#btnImpresion').prop('href',url+'FacturaCandy/printF/'+datos.idVenta);
                                     } else{
-                                        $('#btnImpresion').prop('href',url+'VentaCtrl/printR/'+datos.idVenta);
+                                        $('#btnImpresion').prop('href',url+'FacturaCandy/printR/'+datos.idVenta);
                                     }
 
                                 })
-                                }
+                                cadena+="<tr><td></td><td></td><td></td><td><b>TOTAL:</b></td><td><b>"+total+"</b></td></tr>";
+                                $('#tabbody').html(cadena);
+                            }
 
                                 
                             })
                             $('#btnDevolver').click(function(){
-                                var id=$('#idVen').prop('value');
-                                
+                                var id=$('#idVenCandy').prop('value');
                                 var conf=prompt('Esta Seguro de Devolver Motivo?') ;
                                 if(conf!=null && dev=='ACTIVO') {console.log('ok')
                                 var param = {
-                                                    "idventa" : id,
+                                                    "idventacandy" : id,
                                                     "motivo" : conf,
                                                     "total" : totalv
                                             }; 
@@ -94,7 +94,7 @@ $('#fecini').change(function(){
                                 
                                 $.ajax({
                                     data:  param,
-                                    url:   'devolucion',
+                                    url:   'ListadoCandyCtrl/devolucionCandy',
                                     type:  'post',
                                                     beforeSend: function () {
                                                             //$("#resultado").html("Procesando, espere por favor...");
@@ -104,7 +104,7 @@ $('#fecini').change(function(){
                                     }
                                 })}
                                 $("#exampleModal").modal('hide');//ocultamos el modal
-                                window.location.href = 'listaVenta';
+                                window.location.href = '';
                             });
 
                           } 
