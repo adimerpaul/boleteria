@@ -48,10 +48,11 @@ class ResumenDia extends CI_Controller {
 
     public function reportediaCandy(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];
         $query=$this->db->query("SELECT * FROM ventacandy v 
         INNER JOIN cliente c ON v.idCliente=c.idCliente
         INNER JOIN usuario u ON u.idUsuario=v.idUsuario
-            WHERE u.idUsuario='".$_SESSION['idUs']."'
+            WHERE u.idUsuario='$id'
             AND date(fechaVenta)='$fecha1'");
             $row=$query->row();
                          $myObj=($query->result_array());
@@ -61,10 +62,11 @@ class ResumenDia extends CI_Controller {
 
     public function reportedia(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];        
         $query=$this->db->query("SELECT * FROM venta v 
         INNER JOIN cliente c ON v.idCliente=c.idCliente
         INNER JOIN usuario u ON u.idUsuario=v.idUsuario
-            WHERE u.idUsuario='".$_SESSION['idUs']."'
+            WHERE u.idUsuario='$id'
             AND date(fechaVenta)='$fecha1'");
             $row=$query->row();
                          $myObj=($query->result_array());
@@ -74,13 +76,14 @@ class ResumenDia extends CI_Controller {
 
     public function detallePelicula(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];        
         $query=$this->db->query("SELECT p.idPelicula,p.nombre,COUNT(*) 'cantidadb',SUM(b.costo) as total
         FROM pelicula p 
         INNER JOIN funcion f ON f.idPelicula=p.idPelicula
         INNER JOIN boleto b ON b.idFuncion=f.idFuncion
         INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
         INNER JOIN usuario u ON u.idUsuario=b.idUsuario
-        WHERE b.idUsuario='".$_SESSION['idUs']."'
+        WHERE b.idUsuario='$id'
         AND  date(b.fecha)='$fecha1'
         GROUP BY p.idPelicula,p.nombre");
             $row=$query->row();
@@ -91,13 +94,14 @@ class ResumenDia extends CI_Controller {
 
     public function detalleProducto(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];        
         $query=$this->db->query("SELECT p.idProducto,nombreProd,precioVenta,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
         from detalle d, producto p, ventacandy v
         where d.idProducto=p.idProducto
         and v.idVentaCandy=d.idVentaCandy
         and v.estado='ACTIVO'
         and esCombo='NO'
-        and d.idUsuario='".$_SESSION['idUs']."'
+        and d.idUsuario='$id'
             and date(fecha)='$fecha1' group by p.idProducto,nombreProd ");
             $row=$query->row();
                          $myObj=($query->result_array());
@@ -107,11 +111,13 @@ class ResumenDia extends CI_Controller {
 
     public function total(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];        
+        
         $query=$this->db->query("SELECT (select sum(total) from ventacandy 
-        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
         and tipoVenta='FACTURA') AS tfactura,
         (select sum(total) from ventacandy 
-        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
         and tipoVenta='RECIBO') as trecibo
         from dual ");
             $row=$query->row();
@@ -123,10 +129,10 @@ class ResumenDia extends CI_Controller {
     public function totalBol(){
         $fecha1=$_POST['fecha'];
         $query=$this->db->query("SELECT (select sum(total) from venta 
-        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
         and tipoVenta='FACTURA') AS tfactura,
         (select sum(total) from venta 
-        WHERE date(fechaVenta)='$fecha1' and idUsuario='".$_SESSION['idUs']."'
+        WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
         and tipoVenta='RECIBO') as trecibo
         from dual ");
             $row=$query->row();
@@ -137,6 +143,7 @@ class ResumenDia extends CI_Controller {
 
     public function detalleCombo(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];        
         $query=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
         from detalle d, combo c, ventacandy v
         where d.idCombo=c.idCombo
@@ -144,7 +151,7 @@ class ResumenDia extends CI_Controller {
         and v.estado='ACTIVO'
         and esCombo='SI'
         and date(fecha)='$fecha1'
-        and d.idUsuario='".$_SESSION['idUs']."'
+        and d.idUsuario='$id'
         group by idCombo,nombreCombo");
             $row=$query->row();
                          $myObj=($query->result_array());
@@ -152,8 +159,10 @@ class ResumenDia extends CI_Controller {
     
     }
 
-    public function imprimir(){
+    public function imprimirDia(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];
+        
 
         $nombre_impresora = "POS";
 
@@ -169,9 +178,9 @@ class ResumenDia extends CI_Controller {
 //$printer -> cut();
         // set some text to print
 
-        $ca = "MULTICINES PLAZA SRL.
-Av. Tacna y Jaen - Oruro -Bolvia
- Tel: 591-25281290
+        $ca = "MULTISALAS S.R.L.
+Av. Tacna y Jaen - Oruro -Bolivia
+Tel: 591-25281290
 ORURO - BOLIVIA
 -------------------------------
 ";
@@ -182,7 +191,9 @@ ORURO - BOLIVIA
         $printer -> setJustification(Printer::JUSTIFY_LEFT);
         $html = "Fecha: ".date('Y-m-d H:m:s');
         $printer -> text($html."\n");
-        $html = "Usuario: ".$_SESSION['nombre']."\n";
+        $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
+        $nomuser=$query01->result()[0]->nombreUser;
+        $html = "Usuario: ".$nomuser."\n";
         $printer -> text($html."\n");
         $printer->text("Pelicula             CANTIDAD        TOTAL.\n");
         $printer->text("-----------------------------------"."\n");
@@ -193,8 +204,8 @@ INNER JOIN funcion f ON f.idPelicula=p.idPelicula
 INNER JOIN boleto b ON b.idFuncion=f.idFuncion
 INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
 INNER JOIN usuario u ON u.idUsuario=b.idUsuario
-WHERE b.idUsuario='".$_SESSION['idUs']."'
-AND  date(b.fecha)='$fecha1')
+WHERE b.idUsuario='$id'
+AND  date(b.fecha)='$fecha1'
 GROUP BY p.idPelicula,p.nombre
                 ");
         foreach ($query->result() as $row){
@@ -216,7 +227,9 @@ GROUP BY p.idPelicula,p.nombre
 
 
 public function imprimirCandy(){
-    $fecha1=$_POST['fecha'];    
+    $fecha1=$_POST['fecha'];
+    $id=$_POST['id'];
+        
     $nombre_impresora = "POS";
 
 
@@ -231,8 +244,8 @@ public function imprimirCandy(){
 //$printer -> cut();
     // set some text to print
 
-    $ca = "MULTICINES PLAZA SRL.
-Av. Tacna y Jaen - Oruro -Bolvia
+    $ca = "MULTISALAS S.R.L.
+Av. Tacna y Jaen - Oruro -Bolivia
 Tel: 591-25281290
 ORURO - BOLIVIA
 -------------------------------
@@ -244,17 +257,21 @@ ORURO - BOLIVIA
     $printer -> setJustification(Printer::JUSTIFY_LEFT);
     $html = "Fecha: ".date('Y-m-d H:m:s');
     $printer -> text($html."\n");
-    $html = "Usuario: ".$_SESSION['nombre']."\n";
+    $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
+    $nomuser=$query01->result()[0]->nombreUser;
+    $html = "Usuario: ".$nomuser."\n";
     $printer -> text($html."\n");
     $printer->text("DESCRIPCION      CANTIDAD       P.U.    TOTAL.\n");
     $printer->text("------------------------------------------------"."\n");
     $total=0;
     $query2=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total
-    from detalle d, combo c
+    from detalle d, combo c, ventacandy v
     where d.idCombo=c.idCombo
+    and v.idVentaCandy=d.idVentaCandy
+    and v.estado ='ACTIVO'
     and esCombo='SI'
     and date(fecha)='$fecha1'
-    and idUsuario='".$_SESSION['idUs']."'
+    and d.idUsuario='$id'
     group by idCombo,nombreCombo ORDER BY nombreCombo asc");
     foreach ($query2->result() as $row){
         //$printer->text( " $row->nombreCombo  $row->cant    $row->precioVenta    $row->total  \n");
@@ -266,12 +283,14 @@ ORURO - BOLIVIA
         $total=$total+$row->total;
     }
     $query=$this->db->query("SELECT p.idProducto,nombreProd,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total  
-    from detalle d, producto p
+    from detalle d, producto p, ventacandy v
     where d.idProducto=p.idProducto
+    and v.idVentaCandy=d.idVentaCandy    
+    and v.estado ='ACTIVO'
     and esCombo='NO'
-    and idUsuario='".$_SESSION['idUs']."'
-        and date(fecha)='$fecha1' group by p.idProducto,nombreProd,nombrePref 
-        order by nombreProf ");
+    and d.idUsuario='$id'
+        and date(fecha)='$fecha1' group by p.idProducto,nombreProd
+        order by nombreProd ");
             
     foreach ($query->result() as $row){
         

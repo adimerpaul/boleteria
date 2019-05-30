@@ -429,8 +429,8 @@ WHERE idVenta='$idventa'");
 //$printer -> cut();
     // set some text to print
 
-    $ca = "MULTICINES PLAZA S.R.L.
-Av. Tacna y Jaen - Oruro -Bolvia
+    $ca = "MULTISALAS S.R.L.
+Av. Tacna y Jaen - Oruro -Bolivia
  Tel: 591-25281290
 ORURO - BOLIVIA
 CAZA MATRIZ
@@ -536,8 +536,7 @@ WHERE v.idVenta='$idventa'");
 
         $printer->setJustification(Printer::JUSTIFY_CENTER);
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
-        $printer->text("\n"."MULTICINES" . "\n");
-        $printer->text("PLAZA" . "\n");
+        $printer->text("\n"."MULTIPLAZA S.R.L." . "\n");
         $printer -> selectPrintMode(Printer::MODE_FONT_B);
         $printer->text("NIT:329448023" . "\n");
         $printer->text("-----------------------------------" . "\n");
@@ -723,8 +722,7 @@ WHERE v.idVenta='$idventa'");
 
             $printer->setJustification(Printer::JUSTIFY_CENTER);
             $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
-            $printer->text("\n"."MULTICINES" . "\n");
-            $printer->text("PLAZA" . "\n");
+            $printer->text("\n"."MULTISALAS S.R.L." . "\n");
             $printer -> selectPrintMode(Printer::MODE_FONT_B);
             $printer->text("NIT:329448023" . "\n");
             $printer->text("-----------------------------------" . "\n");

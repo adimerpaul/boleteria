@@ -17,6 +17,19 @@
             <label for="">Fecha de Caja:</label>
             <input type="date" name="fechacandy" id="fechacandy" value="<?php echo date('Y-m-d');?>">
             <br>
+            <br>
+            <label for="">Elija Vendedor: </label>
+            <select name="vendedor" id="vendedor" required>
+                <option value="">Elija</option>
+                
+                <?php
+                                    $query=$this->db->query("SELECT * FROM usuario");
+                                    foreach ($query->result() as $row){
+                                        echo "<option value='".$row->idUsuario."'> $row->nombreUser</option>";
+                                    
+                                             }?>
+            </select>
+            <br>
             <h3>Ventas por factura</h3>
             <table  class="table-bordered" style="width:100%">
                 <thead class="table-success">

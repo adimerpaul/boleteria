@@ -9,16 +9,23 @@ $('#fechadia').change(function(){
     calculaDetalle();
     calculototal();
 });
-
+$('#vendedor').change(function(){
+    calculaCaja();
+    calculaDetalle();
+    calculototal();
+})
 function calculaCaja(){
     var fecha=$('#fechadia').val();
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
     var resFactura="";
     var resdetalle="";
     var total=0;
     var estadoVenta='';
+    console.log(param);
     $.ajax({
         data:  param,
         url:   'ResumenDia/reportedia',
@@ -59,8 +66,10 @@ function calculaCaja(){
 
 function calculaDetalle(){
     var fecha=$('#fechadia').val();
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
     var resdetalle="";
     var total=0;
@@ -95,19 +104,30 @@ function calculaDetalle(){
 
 $('#imprimir').click(function(){
     var fecha=$('#fechadia').val();
-    
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
-    var url='imprimir';
+    $.ajax({
+        data:  param,
+        url:   'ResumenDia/imprimirDia',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+
+        }})
     
-    $.post(url,param);
 });
 
 function calculototal(){
     var fecha=$('#fechadia').val();
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
     $.ajax({
         data:  param,

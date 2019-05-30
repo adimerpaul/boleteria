@@ -7,6 +7,8 @@ require 'autoload.php';
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\CapabilityProfile;
 
 class FacturaCandy extends CI_Controller {
     
@@ -53,10 +55,13 @@ class FacturaCandy extends CI_Controller {
         $nombre_impresora = "POS";
        
     $connector = new WindowsPrintConnector($nombre_impresora);
+    //$connector = new FilePrintConnector("php://stdout");
+    //$profile = CapabilityProfile::load("default");
+    //$printer = new \Escpos\Printer($connector, $profile);
     $printer = new Printer($connector);
     
         $printer -> initialize();
-        $ca = "MULTICINES PLAZA S.R.L.
+        $ca = "MULTISALAS S.R.L.
     SUCURSAL 2        
     Av. Tacna y Jaen - Oruro -Bolvia
      Tel: 591-25281290
@@ -66,7 +71,7 @@ class FacturaCandy extends CI_Controller {
     NIT: 329448023
     NRO FACTURA:$nrocomprobante
     NRO AUTORIZACION: $nroautorizacion
-    ------------------------------------------------    
+------------------------------------------------    
     ";
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $printer->text($ca);   
@@ -96,7 +101,7 @@ class FacturaCandy extends CI_Controller {
         GROUP BY c.idCombo,nombreCombo");
     
         $printer->setJustification(Printer::JUSTIFY_LEFT);
-        $printer->text("DESC        CANT         P.U           IMP. \n");
+        $printer->text("DESC              CANT     P.U           IMP. \n");
         $printer->text("------------------------------------------------"."\n");
         $total=0;
         foreach ($query1->result() as $row){
@@ -106,7 +111,7 @@ class FacturaCandy extends CI_Controller {
             $subtotal=$row->total;
 
             $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $left = str_pad("$nombrep ", 25) ;
+            $left = str_pad("$nombrep", 25) ;
             $left1 = str_pad("$row->cant", 5) ;
             $left2 = str_pad("$precio", 7, ' ', STR_PAD_LEFT) ;
             $right = str_pad("$subtotal", 7, ' ', STR_PAD_LEFT);
@@ -121,7 +126,7 @@ class FacturaCandy extends CI_Controller {
             $subtotal=$row->total;
 
             $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $left = str_pad("$nombrep ", 25) ;
+            $left = str_pad("$nombrep", 25) ;
             $left1 = str_pad("$row->cant", 5) ;
             $left2 = str_pad("$precio", 7, ' ', STR_PAD_LEFT) ;
             $right = str_pad("$subtotal", 7, ' ', STR_PAD_LEFT);
@@ -143,7 +148,7 @@ class FacturaCandy extends CI_Controller {
         $printer->setJustification(Printer::JUSTIFY_LEFT);
     
         $html="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.
-        ------------------------------------------------
+------------------------------------------------
     Cod. de Control: $codigocontrol 
     Fecha Lim. de Emision: ". substr($fechahasta,0,10);
     
@@ -207,7 +212,7 @@ class FacturaCandy extends CI_Controller {
             /* Initialize */
             $printer -> initialize();
     
-            $ca = "MULTICINES PLAZA SRL.
+            $ca = "MULTISALAS S.R.L.
             Av. Tacna y Jaen - Oruro -Bolvia
             Tel: 591-25281290
             ORURO - BOLIVIA

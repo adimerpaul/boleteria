@@ -9,11 +9,17 @@ $('#fechacandy').change(function(){
     calculaDetalle();
     calculototal();
 });
-
+$('#vendedor').change(function(){
+    calculaCaja();
+    calculaDetalle();
+    calculototal();
+})
 function calculaCaja(){
     var fecha=$('#fechacandy').val();
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
     var resFactura="";
     var resdetalle="";
@@ -59,8 +65,10 @@ function calculaCaja(){
 
 function calculaDetalle(){
     var fecha=$('#fechacandy').val();
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
     var resdetalle="";
     var total=0;
@@ -120,9 +128,10 @@ function calculaDetalle(){
 
 $('#imprimirCandy').click(function(){
     var fecha=$('#fechacandy').val();
-    
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
     var url='imprimirCandy';
     
@@ -131,8 +140,10 @@ $('#imprimirCandy').click(function(){
 
 function calculototal(){
     var fecha=$('#fechacandy').val();
+    var id=$('#vendedor').val();
     var param={
-        'fecha':fecha
+        'fecha':fecha,
+        'id':id
     };
     $.ajax({
         data:  param,

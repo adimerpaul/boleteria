@@ -301,7 +301,7 @@
     </div>
     <div class="form-group col-md-2">
         <label for=""></label>   <br>
-        <input class="form-control" id="vtipo" type="checkbox" data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success">
+        <input class="form-control" id="vtipo" type="checkbox" data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success" checked>
     </div>
     <div class="form-group col-md-4">
       <label for="cupon">Nro Cupon:</label>   

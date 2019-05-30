@@ -61,9 +61,7 @@
             <td><?php echo $row->tipoVenta; ?></td>
             <td><?php echo $row->estado; ?></td>
             <td>                
-                <?php if($this->usuarios_model->veri($_SESSION['idUs'],'62')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idventacandy="<?php echo $row->idVentaCandy; ?>">Ver Detalle</a>
-                <?php endif ?>
             </td>
         </tr>
     <?php endforeach; ?>

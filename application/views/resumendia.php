@@ -16,6 +16,17 @@
             <label for="">Fecha de Caja:</label>
             <input type="date" name="fechacandy" id="fechadia" value="<?php echo date('Y-m-d');?>">
             <br>
+            <label for="">Elija Vendedor: </label>
+            <select name="vendedor" id="vendedor" required>
+                <option value="">Elija</option>
+                
+                <?php
+                                    $query=$this->db->query("SELECT * FROM usuario");
+                                    foreach ($query->result() as $row){
+                                        echo "<option value='".$row->idUsuario."'> $row->nombreUser</option>";
+                                    
+                                             }?>
+            </select>
         </div>
         <div class="card-body">
             <h3>Ventas por factura</h3>
@@ -104,7 +115,7 @@ GROUP BY p.idPelicula,p.nombre
                 <label for="" id="totalfactura"></label>
             </div>
             <br>
-            <a  class="btn btn-success btn-block"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
+            <a  class="btn btn-success btn-block" id="imprimir"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
         </div>
 
     </div>

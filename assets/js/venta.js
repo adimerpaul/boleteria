@@ -130,7 +130,7 @@ $("#selectable").selectable(
 
                                          $("#selecfun").html(cadenahorario);          
                                          //$('#selecfun li:first').addClass('ui-selected');
-                                         //mostrardatos($("#selecfun .ui-selected").prop('value'));
+                                         mostrardatos($("#selecfun .ui-selected").prop('value'));
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
                                          bloqueobtn();
