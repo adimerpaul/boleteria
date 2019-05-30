@@ -91,6 +91,8 @@
                            $('#tresd').prop('checked',true);
                            else
                            $('#tresd').prop('checked',false);
+                           $('#promo').bootstrapToggle(datos.promo);
+                           
                           } 
                   });
           

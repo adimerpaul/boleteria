@@ -81,6 +81,10 @@ class tarifas_model extends CI_Model {
         $diafestivo=1;
         else
         $diafestivo=0;
+        if ($this->input->post('promo')==true)
+        $promo='on';
+        else
+        $promo='off';
         $tarifa= [
             'serie'=> $this->input->post('serie'),
             'descripcion'=> $this->input->post('descrip'),
@@ -99,7 +103,8 @@ class tarifas_model extends CI_Model {
             'sabado'=> $sabado,
             'domingo'=> $domingo,
             'diafestivo'=> $diafestivo,
-            'activo'=>$activa
+            'activo'=>$activa,
+            'promo'=>$promo
             
         ];
         return $this->db->insert("tarifa",$tarifa);
@@ -167,6 +172,10 @@ class tarifas_model extends CI_Model {
         $diafestivo=1;
         else
         $diafestivo=0;
+        if ($this->input->post('promo')==true)
+        $promo='on';
+        else
+        $promo='off';
         $tarifa= [
             'serie'=> $this->input->post('serie'),
             'descripcion'=> $this->input->post('descrip'),
@@ -185,7 +194,8 @@ class tarifas_model extends CI_Model {
             'sabado'=> $sabado,
             'domingo'=> $domingo,
             'diafestivo'=> $diafestivo,
-            'activo'=>$activa
+            'activo'=>$activa,
+            'promo'=>$promo
             
         ];
         $this->db->where('idTarifa',$this->input->post('idtarifa'));

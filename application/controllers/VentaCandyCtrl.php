@@ -149,8 +149,8 @@ esCombo='$esCombo'
     public function sctualizarCliente()
     {
         $ci = $_POST['ci'];
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
+        $nombres = strtoupper($_POST['nombres']);
+        $apellidos = strtoupper($_POST['apellidos']);
         $query=$this->db->query("SELECT * FROM cliente WHERE cinit='$ci'");
         if ($query->num_rows()>=1){
             $this->db->query("UPDATE cliente SET 
