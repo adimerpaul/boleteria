@@ -347,46 +347,59 @@ $(function() {
     });
 
     $('#cliente').submit(function (e) {
-
-        var datos={
-            ci:$('#cinit').val(),
-            apellidos:$('#apellidos').val(),
-            nombres:$('#nombres').val()
+        if($('#cambio').val()<0){
+            alert('Controlar el monto');
+            e.preventDefault();
+        }
+        else{
+            var datos={
+                ci:$('#cinit').val(),
+                apellidos:$('#apellidos').val(),
+                nombres:$('#nombres').val()
+            }
+    
+            $.ajax({
+                type:'POST',
+                url:'VentaCandyCtrl/sctualizarCliente',
+                data:datos,
+                success:function (e) {
+                    if($('#tipo').prop('checked')){
+                        var tipoventa="FACTURA";
+                    }else{
+                        var tipoventa="RECIBO";
+                    }
+                    var idcliente=e;
+                    var datos={
+                        idcliente:idcliente,
+                        cinit:$('#cinit').val(),
+                        total:$('#totaltemporal').html(),
+                        tipoVenta:tipoventa
+                    }
+                    //console.log(datos);
+                    $.ajax({
+                        type:'POST',
+                        url:'VentaCandyCtrl/insertarVenta',
+                        data:datos,
+                        success:function (e) {
+                            //console.log(e);
+                            if (tipoventa=="FACTURA")
+                                window.location.href = 'FacturaCandy/printF/'+e;
+                            else {
+                                window.location.href = 'FacturaCandy/printR/'+e;
+                            }
+                        }
+                    });
+                }
+            });
+            e.preventDefault();
         }
 
-        $.ajax({
-            type:'POST',
-            url:'VentaCandyCtrl/sctualizarCliente',
-            data:datos,
-            success:function (e) {
-                if($('#tipo').prop('checked')){
-                    var tipoventa="FACTURA";
-                }else{
-                    var tipoventa="RECIBO";
-                }
-                var idcliente=e;
-                var datos={
-                    idcliente:idcliente,
-                    cinit:$('#cinit').val(),
-                    total:$('#totaltemporal').html(),
-                    tipoVenta:tipoventa
-                }
-                //console.log(datos);
-                $.ajax({
-                    type:'POST',
-                    url:'VentaCandyCtrl/insertarVenta',
-                    data:datos,
-                    success:function (e) {
-                        //console.log(e);
-                        if (tipoventa=="FACTURA")
-                            window.location.href = 'FacturaCandy/printF/'+e;
-                        else {
-                            window.location.href = 'FacturaCandy/printR/'+e;
-                        }
-                    }
-                });
-            }
-        });
-        e.preventDefault();
+  
     });
+});
+$('#cerrarventa').click(function(){
+    $('#cinit').val('');
+    $('#apellidos').val('');
+    $('#nombres').val('');
+    $('#montocliente').val('');
 });

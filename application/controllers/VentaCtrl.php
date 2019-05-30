@@ -168,8 +168,8 @@ class VentaCtrl extends CI_Controller {
 
     public function registrarVenta(){
         $cinit=$_POST['cinit'];
-        $nombre=$_POST['nombre'];
-        $apellido=$_POST['apellido'];
+        $nombre=strtoupper($_POST['nombre']);
+        $apellido=strtoupper($_POST['apellido']);
         $email=$_POST['email'];
         $telefono=$_POST['telefono'];
         $cliente= [
@@ -222,6 +222,7 @@ class VentaCtrl extends CI_Controller {
         $idd=$_POST['iddosif'];
         $idcupon=$_POST['cupon'];
         $cupon='null';
+        $cancelado=$_POST['cancelado'];
         $costo2=0;
         if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
         { $total=0;
@@ -245,7 +246,8 @@ class VentaCtrl extends CI_Controller {
                 idUsuario,
                 idCliente,
                 idDosif,
-                idCupon) VALUES (
+                idCupon,
+                cancelado) VALUES (
                     '$total',
                     '$codControl',
                     '$codqr',
@@ -254,7 +256,8 @@ class VentaCtrl extends CI_Controller {
                     '$idu',
                     '$idCl',
                     '$idd',
-                    $cupon)";
+                    $cupon,
+                    $cancelado)";
         $this->db->query($query);
        // $query.= ",'".$codControl."','".$codqr."',(SELECT nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1)";
 
@@ -272,7 +275,8 @@ class VentaCtrl extends CI_Controller {
                 idUsuario,
                 idCliente,
                 idDosif,
-                idCupon) VALUES (
+                idCupon,
+                cancelado) VALUES (
                     '$total',
                     '',
                     '',
@@ -281,7 +285,8 @@ class VentaCtrl extends CI_Controller {
                     '$idu',
                     '$idCl',
                     '$idd',
-                    $cupon)";
+                    $cupon,
+                    $cancelado)";
         $this->db->query($query);
         }
         $idVenta=$this->db->insert_id();
@@ -712,6 +717,7 @@ INNER JOIn sala s ON s.idSala=f.idSala
 INNER JOIn tarifa t ON t.idTarifa=b.idTarifa
 INNER JOIn asiento a ON a.idAsiento=b.idAsiento
 WHERE v.idVenta='$idventa'");
+$contador=0;
         foreach ($query->result() as $row) {
 
             if ($row->formato == 1) {
@@ -731,14 +737,43 @@ WHERE v.idVenta='$idventa'");
             $printer->text($row->nombreSala . "\n");
             $printer->setJustification(Printer::JUSTIFY_LEFT);
             $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
-            $printer->text("Fecha:".$row->fechaFuncion ."Hora: ".substr( $row->horaFuncion,0,5) . "  Bs. $row->precio\n");
+            $printer->text("Fecha:".$row->fechaFuncion . "  Bs. $row->precio\n");
             
-            $printer->text("Butaca:".$row->letra."-".$row->columna."\n");
+            $printer->text("Butaca:".$row->letra."-".$row->columna. " Hora: ".substr( $row->horaFuncion,0,5). "\n");
             $printer->text("-----------------------------------" . "\n");
+            $printer -> selectPrintMode(Printer::MODE_FONT_B);
             $printer->text("Cod:".$row->numboc . "\n");
             $printer->text("Trans: ".$idventa."\n");
             $printer->text("Usuario: ".$row->nombreUser."\n");
             $printer -> cut();
+            if($row->promo=='on')
+            {
+                $contador++;
+                if($contador==2)
+                {
+                    $contador=0;
+                    $printer->setJustification(Printer::JUSTIFY_CENTER);
+                    $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
+                    $printer->text("\n"."MULTISALAS S.R.L." . "\n");
+                    $printer -> selectPrintMode(Printer::MODE_FONT_B);
+                    $printer->text("NIT:329448023" . "\n");
+                    $printer->text("-----------------------------------" . "\n");
+                    $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
+                    $printer->text("COMBO DUO \n");
+                    $printer -> selectPrintMode(Printer::MODE_FONT_B);
+                    $printer->text("-----------------------------------" . "\n");
+                    $printer->text("Reclame su combo duo \n");
+                    $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
+                    $printer->text("1 PIPOCA + 2 REFRESCOS " . "\n");
+                    $printer -> selectPrintMode(Printer::MODE_FONT_B);
+                    $printer->text("-----------------------------------" . "\n");
+                    $printer->setJustification(Printer::JUSTIFY_LEFT);
+                    $printer->text("Cod:".$row->numboc . "\n");
+                    $printer->text("Trans: ".$idventa."\n");
+                    $printer->text("Usuario: ".$row->nombreUser."\n");
+                    $printer -> cut();
+                }
+            }
             $html = '
 <b>Fecha:</b> ' . $row->fechaFuncion . '<br>
 <b>Hora:</b> ' . $row->horaFuncion . '     <b>Bs.:</b> ' . $row->precio . '.- <br>

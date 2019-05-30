@@ -281,15 +281,15 @@
          <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="pago">Monto:</label>   
-                <input type="number" step="any" class="form-control" id="pago" name="pago" >  
+                <input type="number" step="any" class="form-control" id="pago" name="pago" min=0 step='0.01' requiered>  
             </div>
             <div class="form-group col-md-4">
                 <label for="prepago">Monto a Cancelar:</label>   
-                <input type="number" step="any" class="form-control" id="prepago" name="prepago" readonly>  
+                <input type="number" step="any" class="form-control" id="prepago" name="prepago" readonly step='0.01'>  
             </div>
             <div class="form-group col-md-4">
                 <label for="resultado">Vuelto:</label>   
-                <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly>  
+                <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly step='0.01'>  
             </div>
         </div>
          <hr>
@@ -304,7 +304,7 @@
         <input class="form-control" id="vtipo" type="checkbox" data-toggle="toggle" data-on="F" data-off="O"  data-onstyle="primary" data-offstyle="success" checked>
     </div>
     <div class="form-group col-md-4">
-      <label for="cupon">Nro Cupon:</label>   
+      <label for="cupon">Nro Cortesia:</label>   
       <input type="checkbox" id="checkcupon" >
       <input type="number" class="form-control" id="cupon" name="cupon"> 
       <span id="errorcupon" style="color: red;" ></span>
@@ -314,12 +314,12 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>   
-      <input type="text" class="form-control" id="nombre" name="nombre">  
+      <input type="text" class="form-control" id="nombre" name="nombre"  style="text-transform: uppercase;">  
       <input type="hidden" id="idcliente" name="idcliente">  
     </div>
     <div class="form-group col-md-6">
       <label for="apellido">Apellido:</label>   
-      <input type="text" class="form-control" id="apellido" name="apellido" Required>  
+      <input type="text" class="form-control" id="apellido" name="apellido" Required style="text-transform: uppercase;">  
     </div>
   </div>
 

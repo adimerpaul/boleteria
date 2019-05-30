@@ -96,15 +96,19 @@
     </div>
   </div><br>
   <div class="form-row">
-  <div class="col-md-1"></div>
     <div class="form-group row col-md-6">
-      <label for="activa" class="col-sm-2 col-form-label" >Activa:</label>
+      <label for="activa" class=" col-form-label" >Activa:</label>
       <div class="col-sm-10">
       <input type="checkbox" class="form-control " id="activa" name="activa" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>    
       </div>      
     </div>
-
-  </div>
+    <div class="form-group row col-md-6">
+      <label for="promo" class=" col-form-label" >Promo:</label>
+      <div class="col-sm-10">
+      <input type="checkbox" class="form-control " id="promo" name="promo" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger">    
+      </div>      
+    </div>
+  </div>  
 
   <input type="submit" class="btn btn-success" value="Registrar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>TarifaCtrl/tarifaver">Cancelar</a>

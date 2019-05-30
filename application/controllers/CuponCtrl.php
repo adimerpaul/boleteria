@@ -83,9 +83,9 @@ class CuponCtrl extends CI_Controller{
         $html= '<table>';
         foreach($query->result() as $row){
             $html=$html. '<tr>
-                    <td width="35"> Id='.$row->idsubcupon.'</td>
+                    <td width="50"> Id='.$row->idsubcupon.'</td>
                     <td width="120" >Fecha= '.substr($row->fecha,0,10).'</td>
-                </tr>';
+                </tr><tr><td></td><td></td></tr>';
         }
         $html=$html.'</table>';
         $pdf->writeHTML($html);

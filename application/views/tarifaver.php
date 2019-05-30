@@ -16,7 +16,7 @@
                     <th>Peliculas</th>
                     <th>Mostrar TV</th>
                     <th>Defecto</th>
-                    <th>Venta Web</th>
+                    <th>Promo</th>
                     <th>Venta Boleteria</th>
                     <th>Opciones</th>
                 </tr>
@@ -45,7 +45,7 @@
             echo $pel; ?></td>
             <td><?php if ($row['tv']==1) echo 'SI'; else echo 'NO'; ?></td>
             <td><?php if ($row['defecto']==1) echo 'SI'; else echo 'NO'; ?></td>
-            <td><?php if ($row['ventaWeb']==1) echo 'SI'; else echo 'NO'; ?></td>
+            <td><?php if ($row['promo']=='on') echo 'SI'; else echo 'NO'; ?></td>
             <td><?php if ($row['mostrarBol']==1) echo 'SI'; else echo 'NO'; ?></td>
             
             <td>
@@ -175,17 +175,20 @@
     </div>
   </div><br>
   <div class="form-row">
-  <div class="col-md-1"></div>
     <div class="form-group row col-md-6">
-      <label for="activa" class="col-sm-2 col-form-label" >Activa:</label>
+      <label for="activa" class=" col-form-label" >Activa:</label>
       <div class="col-sm-10">
       <input type="checkbox" class="form-control " id="activa" name="activa" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger" checked>    
       </div>      
     </div>
-
-  </div>
-
-  <input type="submit" class="btn btn-success" value="Registrar">
+    <div class="form-group row col-md-6">
+      <label for="promo" class=" col-form-label" >Promo:</label>
+      <div class="col-sm-10">
+      <input type="checkbox" class="form-control " id="promo" name="promo" data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="primary" data-offstyle="danger">    
+      </div>      
+    </div>
+  </div>  
+  <input type="submit" class="btn btn-success" value="Modificar">
   <a type="button" class="btn btn-warning" href="<?php echo base_url();?>TarifaCtrl/tarifaver">Cancelar</a>
 </form>
 

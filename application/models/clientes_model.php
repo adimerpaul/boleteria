@@ -13,12 +13,12 @@ class clientes_model extends CI_Model {
     {
         $cliente= [
             'cinit'=> $this->input->post('cinit'),
-            'nombreCl'=> $this->input->post('nombre'),
-            'apellidoCl'=> $this->input->post('apellido'),
+            'nombreCl'=> strtoupper($this->input->post('nombre')),
+            'apellidoCl'=> strtoupper($this->input->post('apellido')),
             'email'=> $this->input->post('email'),
             'fechaNac'=> $this->input->post('fechanac'),
             'telefono'=> $this->input->post('telef'),
-            'direccion'=> $this->input->post('direccion'),
+            'direccion'=> strtoupper($this->input->post('direccion')),
             'sexo'=> $this->input->post('sexo')
         ];
         return $this->db->insert("cliente",$cliente);
@@ -36,12 +36,12 @@ class clientes_model extends CI_Model {
         $id=$this->input->post('idcliente');
         $cliente= [
             'cinit'=> $this->input->post('cinit'),
-            'nombreCl'=> $this->input->post('nombre'),
-            'apellidoCl'=> $this->input->post('apellido'),
+            'nombreCl'=> strtoupper($this->input->post('nombre')),
+            'apellidoCl'=> strtoupper($this->input->post('apellido')),
             'email'=> $this->input->post('email'),
             'fechaNac'=> $this->input->post('fechanac'),
             'telefono'=> $this->input->post('telef'),
-            'direccion'=> $this->input->post('direccion'),
+            'direccion'=> strtoupper($this->input->post('direccion')),
             'sexo'=> $this->input->post('sexo')
         ];
         $this->db->where('idCliente',$id);

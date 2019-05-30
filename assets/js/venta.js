@@ -640,7 +640,7 @@ $('#registrarVenta').click(function(){
     validocupon=true;
 
 
-    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon)
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#resultado').val()>=0)
     {   
     if($('#idcliente').prop('value')==''){
         var parametros = {
@@ -668,7 +668,7 @@ $('#registrarVenta').click(function(){
     idcl=$('#idcliente').prop('value');
     factCinit=$('#cinit').prop('value');
     var montoTotal=parseFloat($('#totalPre').html());
-
+    var cancelado=$('#pago').val();
     $.ajax({
         url: 'DosificacionCtrl/ultimaDosificacion', 
         type: 'post',
@@ -722,6 +722,7 @@ $('#registrarVenta').click(function(){
                             'tipo':tipo ,
                             'idCliente': idcl,
                             'iddosif':varidDosif,
+                             "cancelado":cancelado,                            
                             'cupon': $('#cupon').prop('value')
                         };
                         $.ajax({
@@ -743,16 +744,14 @@ $('#registrarVenta').click(function(){
                         })
                 }
             })
-            
-
-
-
         }
 
     })
     
 
-    }   
+    }
+    else
+    alert('Verifique monto y los campos esten llenados');
     /*codigo de control:  numero de autorizacion; numerode orden; cinit; fecha venta; monto ; keydosificacion/*/
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
 });
@@ -774,14 +773,16 @@ function insertVenta(){
 
 
 $('#pago').keyup(function(event){
-    $p = $('#pago').prop('value');
-    $pp= $('#prepago').prop('value');
-    if($p>$pp){
-        $res=$p - $pp;
-        $('#resultado').prop('value',($p - $pp));
-    }
-    else
-        $('#resultado').prop('value',0);
+    $p = $('#pago').val();
+    $pp = $('#prepago').val();
+        $res=($p) - ($pp);
+        $('#resultado').prop('value',$res);
+        if( $('#resultado').val()<0)
+        $('#resultado').css('color','red');
+        else
+        $('#resultado').css('color','green');
+        
+        console.log($p);
 });
 
 function valDosificacion(){

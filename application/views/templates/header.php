@@ -582,7 +582,7 @@
 <?php endif?>
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'14')):  ?>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="collapse" href="#item-013" data-parent="#accordion1"><i class="fas fa-bullhorn"></i> Promos / Cupones</a>
+    <a class="nav-link" data-toggle="collapse" href="#item-013" data-parent="#accordion1"><i class="fas fa-bullhorn"></i> Promos / Cortesias</a>
     <div id="item-013" class="collapse">
       <ul class="nav flex-column ml-3">
       <li class="nav-item" hidden>

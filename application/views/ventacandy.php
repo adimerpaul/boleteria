@@ -53,7 +53,7 @@
             <div class="card  mb-3" >
                 <div class="card-header text-white bg-info d-flex justify-content-end">
                     <button class="btn-danger m-0 p-0 btn-sm" id="cancelar"> <i class="fa fa-trash"></i> Cancelar</button>
-                    <button class="btn-success m-0 p-0 btn-sm" data-toggle="modal" data-target="#cliente"> <i class="fa fa-check"></i> Cerrar venta</button>
+                    <button class="btn-success m-0 p-0 btn-sm" data-toggle="modal" data-target="#cliente" id="cerrarventa"> <i class="fa fa-check"></i> Cerrar venta</button>
                 </div>
                 <div class="card-body">
                     <h6 class="card-title"><b>Fecha </b> <?=date("Y-m-d H:i:s")?> </h6>
@@ -179,11 +179,11 @@
                     <div class="form-group row">
                         <label for="apellidos" class="col-sm-3 col-form-label">Apellidos (razon social)</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control"  required id="apellidos" placeholder="Razon ">
+                            <input type="text" class="form-control"  required id="apellidos" placeholder="Razon " style="text-transform: uppercase;">
                         </div>
                         <label for="nombres" class="col-sm-1 col-form-label">Nombres</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="nombres" placeholder="nombres ">
+                            <input type="text" class="form-control" id="nombres" placeholder="nombres " style="text-transform: uppercase;">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -206,8 +206,6 @@
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>
 </div>
