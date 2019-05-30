@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h3 id="nombre_id">IMPRIMIR</h3>
+<button onclick="openWin();">Abrir </button>
+<button onclick="closeWin();">Cerrar </button>
+<script >
+    // window.print();
+    //
+    // setTimeout ("window.location.href='index.html';", 1000);
+    //alert ('Después');
+
+    function imprimir(){
+        window.open('','_parent','');
+        window.close();
+    }
+
+    function openWin() {
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write("asdsadsadas");
+              myWindow.document.close();
+              myWindow.focus();
+              myWindow.print();
+              myWindow.close();
+              for (var i = 0; i <5; i++) {
+              openWin2(i) ;
+              }
+    }
+    function openWin2(i) {
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write("aaaa"+i);
+              myWindow.document.close();
+              myWindow.focus();
+              myWindow.print();
+              myWindow.close();
+    }
+function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+        end = new Date().getTime();
+    }
+}
+    function closeWin() {
+        myWindow.close();
+    }
+
+</script>
+</body>
+</html>
