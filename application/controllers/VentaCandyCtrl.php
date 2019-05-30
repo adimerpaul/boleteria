@@ -180,6 +180,7 @@ WHERE  cinit='$ci'");
         $total=$_POST['total'];
         $tipoVenta=$_POST['tipoVenta'];
         $cinit=$_POST['cinit'];
+        $cancelado=$_POST['cancelado'];
         $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' AND activo='1'");
         $row=$query->row();
         $authorizationNumber=$row->nroAutorizacion;
@@ -214,7 +215,8 @@ WHERE  cinit='$ci'");
             idCliente='$idcliente',
             idDosif='$iddosif',
             idUsuario='".$_SESSION['idUs']."',
-            nroComprobante='$invoiceNumber'
+            nroComprobante='$invoiceNumber',
+            cancelado=$cancelado
             ");
 
         $idventa= $this->db->insert_id();

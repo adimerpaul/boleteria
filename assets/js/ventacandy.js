@@ -373,6 +373,7 @@ $(function() {
                         idcliente:idcliente,
                         cinit:$('#cinit').val(),
                         total:$('#totaltemporal').html(),
+                        cancelado:parseFloat($('#montocliente').val()),
                         tipoVenta:tipoventa
                     }
                     //console.log(datos);
