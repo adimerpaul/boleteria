@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 date_default_timezone_set('America/La_Paz');
-$config['base_url'] = 'http://localhost/Boleteria/';
+$config['base_url'] = 'http:/Boleteria/';
 
 /*
 |--------------------------------------------------------------------------
