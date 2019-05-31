@@ -289,7 +289,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="resultado">Vuelto:</label>   
-                <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly step='0.01' value=0>  
+                <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly step='0.01'value=0>  
             </div>
         </div>
          <hr>

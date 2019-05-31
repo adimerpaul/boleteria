@@ -381,12 +381,30 @@ $(function() {
                         type:'POST',
                         url:'VentaCandyCtrl/insertarVenta',
                         data:datos,
-                        success:function (e) {
+                        success:function (response) {
                             //console.log(e);
-                            if (tipoventa=="FACTURA")
-                                window.location.href = 'FacturaCandy/printF/'+e;
+                            if (tipoventa=="FACTURA"){
+                            $.ajax({
+                                url: 'FacturaCandy/imprimirfactura/'+response,
+                                success: async function (e) {
+                                    myWindow = window.open("", "myWindow", "width=200,height=100");
+                                    var te= await e;
+                                    myWindow.document.write(te);
+                                    myWindow.document.close();
+                                    myWindow.focus();
+                                    setTimeout(function(){
+                                        myWindow.print();
+                                        myWindow.close();
+                                    },500); 
+                            impDetalle(response);
+                            //window.location.href='';
+
+                                }
+                            });
+                            //window.location.href='';
+                        }
                             else {
-                                window.location.href = 'FacturaCandy/printR/'+e;
+                                impDetalle(response);
                             }
                         }
                     });
@@ -398,6 +416,19 @@ $(function() {
   
     });
 });
+function impDetalle(id){
+    $.ajax({
+        url: 'FacturaCandy/imprimirinterno/'+id,
+        success: function (e) {
+            myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(e);
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+        }})
+};
+
 $('#cerrarventa').click(function(){
     $('#cinit').val('');
     $('#apellidos').val('');
