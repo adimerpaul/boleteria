@@ -640,7 +640,7 @@ $('#registrarVenta').click(function(){
     validocupon=true;
 
 
-    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#resultado').val()>=0)
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#resultado').prop('value')!=0)
     {   
     if($('#idcliente').prop('value')==''){
         var parametros = {

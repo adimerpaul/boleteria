@@ -800,6 +800,55 @@ Usuario:' . $row->user . '<br>
         //header();
     }
 
+public function impBoleto($idboleto){
+    $query=$this->db->query("SELECT * FROM boleto b 
+    INNER JOIn usuario u ON b.idUsuario=u.idUsuario
+    INNER JOIn funcion f ON f.idFuncion=b.idFuncion
+    INNER JOIn pelicula p ON p.idPelicula=f.idPelicula
+    INNER JOIn sala s ON s.idSala=f.idSala
+    INNER JOIn tarifa t ON t.idTarifa=b.idTarifa
+    INNER JOIn asiento a ON a.idAsiento=b.idAsiento
+    WHERE b.idBoleto='$idboleto'");
+            $row=$query->result()[0];
+    
+                if ($row->formato == 1) {
+                    $for = "3D";
+                } else {
+                    $for = "2D";
+                }
+                $cadBoleto="<div>";
+                $cadBoleto.="MULTISALAS S.R.L. <br>"  ;
+                $cadBoleto.="<h6>NIT:329448023</h6><br>";
+                $cadBoleto.="<hr>";
+                $cadBoleto.="<div>$row->titulo<br> $row->nombreSala </div>";
+                $cadBoleto.=" <div>Fecha:&nbsp;".$row->fechaFuncion."<div>  <div>Bs.&nbsp; $row->precio</div>";
+                $cadBoleto.="<div>Butaca:".$row->letra."-".$row->columna. "</div><div> Hora: ".substr( $row->horaFuncion,0,5). "</div>";
+                $cadBoleto.="<hr>";
+                $cadBoleto.="<div>Cod:&nbsp;".$row->numboc . "<br>
+                            Trans:&nbsp; ".$idventa."<br>
+                            Usuario: &nbsp;".$row->nombreUser."<br></div></div>";
+
+                echo $cadBoleto;
+      
+}
+
+public function impPromo(){
+            $promo="<div>";
+            $promo.="MULTISALAS S.R.L.<br>";
+            $promo.="<div>NIT:329448023</div><br>";
+            $promo.="<hr>";
+            $promo.="COMBO DUO <br>";
+            $promo.="<hr>";
+            $promo.="Reclame su combo duo <br>";
+            $promo.="1 PIPOCA + 2 REFRESCOS <br>";
+            $promo.="<hr>";
+            $promo.="<div>Cod:".$row->numboc."<br>
+                     Trans: ".$idventa."<br>
+                     Usuario: ".$row->nombreUser."<br></div><div>";
+            echo $promo;
+
+}
+
 public function qr(){
     $filename = 'temp/qr.png';
     $errorCorrectionLevel = 'L';

@@ -128,6 +128,8 @@ class ResumenDia extends CI_Controller {
 
     public function totalBol(){
         $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];      
+        
         $query=$this->db->query("SELECT (select sum(total) from venta 
         WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
         and tipoVenta='FACTURA') AS tfactura,
@@ -222,6 +224,60 @@ GROUP BY p.idPelicula,p.nombre
         $printer -> close();
         header("Location: ".base_url()."ResumenDia");
     }
+
+
+    public function pruebaImpresion(){
+        $fecha1=$_POST['fecha'];
+        $id=$_POST['id'];
+        $cadena='';
+        $cadena .= "
+        <style>.textoimp{ font-size: small; text-align: center;} 
+        .textor{ font-size: small; text-align: right;} 
+        .textmed{ font-size: small; text-align: left;}
+        table{border: 1px solid #000; text-align:center; align:center; } 
+        th,td{font-size: x-small;}
+        hr{border: 2px dashed ;}</style>
+        <div class='textoimp'>
+        <span>MULTISALAS S.R.L.</span><br>
+        <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+        <span>Tel: 591-25281290</span><br>
+        <span>ORURO - BOLIVIA</span><br>
+        <hr>
+        ";
+        
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
+                $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
+                $nomuser=$query01->result()[0]->nombreUser;
+
+        $cadena.="Usuario:$nomuser<br>
+                 <hr><br></div>
+                 <center>
+                 <table class='table'>
+                 <thead>
+                 <tr>
+                <th>PELICULA</th> <th>CANTIDAD</th><th>TOTAL</th></tr>
+                </thead><tbody>";
+                $total=0;
+                $query=$this->db->query("SELECT p.idPelicula,concat(p.nombre,' ',(if(formato=1,'3D','2D'))) as nomb,COUNT(*) 'cantidadb',SUM(b.costo) as total
+        FROM pelicula p 
+        INNER JOIN funcion f ON f.idPelicula=p.idPelicula
+        INNER JOIN boleto b ON b.idFuncion=f.idFuncion
+        INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
+        INNER JOIN usuario u ON u.idUsuario=b.idUsuario
+        WHERE b.idUsuario='$id'
+        AND  date(b.fecha)='$fecha1'
+        GROUP BY p.idPelicula,p.nombre
+                        ");
+                foreach ($query->result() as $row){
+                    $cadena.="<tr><td>".$row->nomb."</td><td>".$row->cantidadb."</td><td>".$row->total."</td></tr>";
+                    $total=$total+$row->total;
+                }
+                $cadena.="</tbody></table></center>";
+                $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+                $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
+        echo $cadena;
+
+} 
 
 
 

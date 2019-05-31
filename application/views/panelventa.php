@@ -281,7 +281,7 @@
          <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="pago">Monto:</label>   
-                <input type="number" step="any" class="form-control" id="pago" name="pago" min=0 step='0.01' requiered>  
+                <input type="number" step="any" class="form-control" id="pago" name="pago" min=0 step='0.01' requiered value=0>  
             </div>
             <div class="form-group col-md-4">
                 <label for="prepago">Monto a Cancelar:</label>   
@@ -289,7 +289,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="resultado">Vuelto:</label>   
-                <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly step='0.01'>  
+                <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly step='0.01' value=0>  
             </div>
         </div>
          <hr>
