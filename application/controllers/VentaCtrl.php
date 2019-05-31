@@ -384,7 +384,8 @@ WHERE idVenta='$idventa'");
         $cadena='';
         $cadena .= "
         <style>.textoimp{ font-size: small; text-align: center;} 
-        .textor{ font-size: small; text-align: right;} 
+        .textor{ font-size: small; text-align: right;}
+        .margen{padding: 0px 15px 0px 15px} 
         .textmed{ font-size: small; text-align: left;}
         table{border: 1px solid #000; text-align:center; align:center; } 
         th,td{font-size: x-small;}
@@ -402,7 +403,7 @@ WHERE idVenta='$idventa'");
         <span>NRO AUTORIZACION: $nroautorizacion</span><br>
         <hr>
         ";
-        $cadena.="<div class='textmed'>Fecha: $fecha<br>
+        $cadena.="<div class='textmed margen '>Fecha: $fecha<br>
         Señor(es): $nombre $apellido <br>
         NIT/CI: $ci <br>
         <hr>
@@ -466,6 +467,123 @@ $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
 $cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
 $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
 $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
+        $cadena.="<div class='textmed'> <span> CAMBIO: ".($cancelado-$total)."</span></div>";
+
+        echo $cadena;
+        exit;
+
+
+    }
+    function reimprimirfactura($idventa){
+        $fecha=date('d/m/Y');
+        $total=0;
+        $hora=date("H:i:s");
+        $query=$this->db->query("SELECT * FROM venta v 
+INNER JOIn cliente c ON v.idCliente=c.idCliente 
+INNER JOIn usuario u ON v.idUsuario=u.idUsuario
+INNER JOIn dosificacion d ON d.idDosif=v.idDosif
+WHERE idVenta='$idventa'");
+        $row=$query->row();
+        $nombre=$row->nombreCl;
+
+        $apellido=$row->apellidoCl;
+        $ci=$row->cinit;
+        $nrocomprobante=$row->nroComprobante;
+
+        $nroautorizacion=$row->nroAutorizacion;
+        $vendero=$row->user;
+        $codigocontrol=$row->codigoControl;
+        $fechahasta=$row->fechaHasta;
+        $leyenda=$row->leyenda;
+        $fecha=$row->fechaVenta;
+        $qr=$row->codigoQR;
+        $cancelado=$row->cancelado;
+        $cadena='';
+        $cadena .= "
+        <style>.textoimp{ font-size: small; text-align: center;} 
+        .textor{ font-size: small; text-align: right;}
+        .margen{padding: 0px 15px 0px 15px} 
+        .textmed{ font-size: small; text-align: left;}
+        table{border: 1px solid #000; text-align:center; align:center; } 
+        th,td{font-size: x-small;}
+        hr{border: 1px dashed ;}</style>
+        <div class='textoimp'>
+        <span>MULTISALAS S.R.L.</span><br>
+        <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+        <span>Tel: 591-25281290</span><br>
+        <span>ORURO - BOLIVIA</span><br>
+        <span>CASA MATRIZ</span><br>
+        <hr>
+        <span>FACTURA</span><br>
+        <span>NIT: 329448023</span><br>
+        <span>NRO FACTURA:$nrocomprobante</span><br>
+        <span>NRO AUTORIZACION: $nroautorizacion</span><br>
+        <hr>
+        ";
+        $cadena.="<div class='textmed margen '>Fecha: $fecha<br>
+        Señor(es): $nombre $apellido <br>
+        NIT/CI: $ci <br>
+        <hr>
+       CANT &nbsp;&nbsp;&nbsp;DESCRIPCION &nbsp;&nbsp;&nbsp;P.U. &nbsp;&nbsp;&nbsp;IMP. <br>";
+
+
+        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad 
+FROM boleto b 
+INNER JOIN funcion f ON f.idFuncion=b.idFuncion
+INNER JOIN tarifa t ON t.idTarifa=b.idTarifa 
+INNER JOIN pelicula p ON p.idPelicula=f.idPelicula 
+WHERE idVenta='$idventa'
+GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
+        foreach ($query->result() as $row){
+            $nombrepelicula=$row->nombre;
+            $formato=$row->formato;
+            $precio=$row->precio;
+            $cantidad=$row->cantidad;
+            $subtotal=$cantidad*$precio;
+            if ($formato==1){
+                $for="3D";
+            }else{
+                $for="2D";
+            }
+            $cadena.=("$nombrepelicula <br>");
+            $cadena.=( "$cantidad  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formato: $for         &nbsp;&nbsp;&nbsp;$precio     &nbsp;&nbsp;&nbsp;$subtotal   <br>");
+            $total=$total+$subtotal;
+        }
+
+
+
+        $total=number_format($total,2);
+        $d = explode('.',$total);
+        $entero=$d[0];
+        $decimal=$d[1];
+        $cadena.=("</div>");
+
+        $cadena.=("<div class='textor'>SUBTOTAL: $total Bs.<br>");
+        //$cadena.=("DESC:   0.00 Bs.<br>");
+        $cadena.=("TOTAL: $total Bs.</div>");
+
+
+        $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.</div> 
+<hr>
+Cod. de Control: $codigocontrol <br> 
+Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br>";
+
+
+//        $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
+//        $PNG_WEB_DIR = 'temp/';
+//        $filename = $PNG_TEMP_DIR.'test.png';
+//        $errorCorrectionLevel = 'L';
+//        $matrixPointSize = 2;
+//        QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+//        QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+        //$cadena.='<img  id="img" src="temp/test.png" /> <br>';
+        $cadena.="<small class='textoimp'><img width='125px' src='".base_url()."barcode.php?s=qrl&d=$qr'><br>";
+        $cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
+</small>";
+        $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
+        $cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
+        $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
+        $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
         $cadena.="<div class='textmed'> <span> CAMBIO: ".($cancelado-$total)."</span></div>";
 
         echo $cadena;

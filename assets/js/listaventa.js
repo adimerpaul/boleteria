@@ -106,30 +106,59 @@ $('#fecini').change(function(){
                   });
           $('#btnImpresion').click(function(){
               id=$('#idVen').val();
-            if ( $('#tipoventa').val()=="FACTURA"){
-                $.ajax({
-                    url:   'VentaCtrl/imprimirfactura/'+id,
-                                    beforeSend: function () {
-                                            //$("#resultado").html("Procesando, espere por favor...");
-                                    },
-                                    success:  function (response) { 
-                                console.log(response);
-                                myWindow = window.open("", "myWindow", "width=200,height=100");
-                                myWindow.document.write(response);
-                                myWindow.document.close();
-                                myWindow.focus();
-                                setTimeout(imprimirfa(),1000);
-                                // myWindow.print();
-                                // myWindow.close();
-                    }
-                })
-            } else{
-                //$('#btnImpresion').prop('href',url+'VentaCtrl/printR/'+datos.idVenta);
-            }
+              console.log(id);
+              var idventa=id;
+              $("#exampleModal").modal('hide');
+              if ($('#tipoventa').html()=='FACTURA'){
+                  $.ajax({
+                      url: 'reimprimirfactura/'+idventa,
+                      success: async function (e) {
+                          var myWindow = window.open("", "myWindow", "width=200,height=100");
+                          var te= await e;
+                          myWindow.document.write(te);
+                          myWindow.document.close();
+                          myWindow.focus();
+                          setTimeout(function(){
+                              myWindow.print();
+                              myWindow.close();
+                              boletos(idventa);
+                          },500);
+                      }
+                  });
+              }else {
+                  boletos(idventa);
+              }
 
           });
 
           
       })
+function boletos(idventa){
+    //console.log(idventa);
+    $.ajax({
+        url: 'imprimirboletos/'+idventa,
+        success: async function (e) {
+            var dato=JSON.parse(e);
+            for (var i=0;i<dato.length;i++){
+                boleto(dato[i].idBoleto);
+            } ;
+
+            window.location.reload();
+        }
+    });
+}
+function boleto(idboleto){
+    $.ajax({
+        url: 'impBoleto/'+idboleto,
+        success: async function (e) {
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(e);
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+        }
+    });
+}
  
 
