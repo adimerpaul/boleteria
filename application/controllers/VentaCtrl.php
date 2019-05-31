@@ -380,6 +380,7 @@ WHERE idVenta='$idventa'");
         $leyenda=$row->leyenda;
         $fecha=$row->fechaVenta;
         $qr=$row->codigoQR;
+        $cancelado=$row->cancelado;
         $cadena='';
         $cadena .= "
         <style>.textoimp{ font-size: small; text-align: center;} 
@@ -450,20 +451,22 @@ Cod. de Control: $codigocontrol <br>
 Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br>";
 
 
-        $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
-        $PNG_WEB_DIR = 'temp/';
-        $filename = $PNG_TEMP_DIR.'test.png';
-        $errorCorrectionLevel = 'L';
-        $matrixPointSize = 2;
-        QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-        $cadena.='<img  id="img" src="temp/test.png" /> <br>';
-        //$cadena.="<small class='textoimp'><img src='barcode.php?s=qrl&d=HELLO WORLD'><br>";
+//        $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
+//        $PNG_WEB_DIR = 'temp/';
+//        $filename = $PNG_TEMP_DIR.'test.png';
+//        $errorCorrectionLevel = 'L';
+//        $matrixPointSize = 2;
+//        QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+//        QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+        //$cadena.='<img  id="img" src="temp/test.png" /> <br>';
+        $cadena.="<small class='textoimp'><img width='125px' src='barcode.php?s=qrl&d=$qr'><br>";
 $cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
 </small>";
 $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
 $cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
 $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
 $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
+        $cadena.="<div class='textmed'> <span> CAMBIO: ".($cancelado-$total)."</span></div>";
 
         echo $cadena;
         exit;

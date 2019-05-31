@@ -741,6 +741,7 @@ $('#registrarVenta').click(function(){
                             },
                             success:  function (response){
                                 console.log(response);
+                                var idventa=response;
                             $("#clienteModal").modal('hide');//ocultamos el modal
                                 // location.reload();
                                 // if(tipo=='RECIBO')
@@ -755,12 +756,10 @@ $('#registrarVenta').click(function(){
                                         myWindow.document.write(te);
                                         myWindow.document.close();
                                         myWindow.focus();
-                                        var img=myWindow.document.getElementById('img');
-                                        img.href='tem/img.png';
                                         setTimeout(function(){
                                             myWindow.print();
                                             myWindow.close();
-                                        },1000); //delay is in milliseconds
+                                        },500); //delay is in milliseconds
                                         //myWindow.print();
                                         //myWindow.close();
                                     }
