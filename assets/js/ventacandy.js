@@ -416,6 +416,7 @@ $(function() {
   
     });
 });
+
 function impDetalle(id){
     $.ajax({
         url: 'FacturaCandy/imprimirinterno/'+id,

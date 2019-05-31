@@ -170,4 +170,9 @@ class UsuarioCtrl extends CI_Controller {
 		$this->db->where('idUsuario',$idU);
 		return $this->db->delete('permiso');
 	} 
+
+	public function delete($id){
+		$this->usuarios_model->delete($id);
+        header("Location: ".base_url()."UsuarioCtrl/usuariover");
+	}
 }

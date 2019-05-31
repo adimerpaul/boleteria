@@ -69,11 +69,6 @@ $('#fecini').change(function(){
                                     } else{
                                         $('#btnImpresion').show();
                                     }
-                                    if (datos.tipoVenta=="FACTURA"){
-                                        $('#btnImpresion').prop('href',url+'FacturaCandy/printF/'+datos.idVenta);
-                                    } else{
-                                        $('#btnImpresion').prop('href',url+'FacturaCandy/printR/'+datos.idVenta);
-                                    }
 
                                 })
                                 cadena+="<tr><td></td><td></td><td></td><td><b>TOTAL:</b></td><td><b>"+total+"</b></td></tr>";
@@ -114,3 +109,43 @@ $('#fecini').change(function(){
           
       })
  
+$('#btnImpresion').click(function(){
+    id=$('#idVenCandy').prop('value');
+    tipo= $('#tipoventa').html(); 
+    if (tipo=="FACTURA"){
+        $.ajax({
+            url: 'FacturaCandy/imprimirfactura/'+id,
+            success: async function (e) {
+                myWindow = window.open("", "myWindow", "width=200,height=100");
+                var te= await e;
+                myWindow.document.write(te);
+                myWindow.document.close();
+                myWindow.focus();
+                setTimeout(function(){
+                    myWindow.print();
+                    myWindow.close();
+                    impDetalle(id);
+            },500); 
+           
+            },
+            
+        });
+        //window.location.href='';
+    }
+        else {
+            impDetalle(id);
+        }
+
+        function impDetalle(id){
+            $.ajax({
+                url: 'FacturaCandy/imprimirinterno/'+id,
+                success: function (e) {
+                    myWindow = window.open("", "myWindow", "width=200,height=100");
+                    myWindow.document.write(e);
+                    myWindow.document.close();
+                    myWindow.focus();
+                    myWindow.print();
+                    myWindow.close();
+                }})
+        };        
+});

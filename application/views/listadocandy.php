@@ -144,7 +144,7 @@
         </table>
         <hr>
                 <?php if($this->usuarios_model->veri($_SESSION['idUs'],'146')):  ?>
-                <a href='' class="btn btn-success text-white" id="btnImpresion">Impresion</a>
+                <a class="btn btn-success text-white" id="btnImpresion">Impresion</a>
                 <?php endif ?>
                 <?php if($this->usuarios_model->veri($_SESSION['idUs'],'145')):  ?>
         <input type="button" class="btn btn-danger" value="Devolucion" id="btnDevolver">

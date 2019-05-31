@@ -311,13 +311,14 @@ class FacturaCandy extends CI_Controller {
             $qr=$row->codigoQR;
             $cancelado=$row->cancelado;
             $cadena = "
-            <style>.textoimp{ font-size: small; text-align: center;} 
+            <style>.margen{padding: 0px 15px 0px 15px;}
+            .textoimp{ font-size: small; text-align: center;} 
             .textor{ font-size: small; text-align: right;} 
             .textmed{ font-size: small; text-align: left;}
             table{border: 0px solid #000; text-align:center; align:center; } 
             th,td{font-size: small;}
             hr{border: 1px dashed ;}</style>
-            <div class='textoimp'>
+            <div class='textoimp margen'>
             <span>MULTISALAS S.R.L.</span><br>
             <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
             <span>Tel: 591-25281290</span><br>
@@ -331,7 +332,8 @@ class FacturaCandy extends CI_Controller {
             <hr>
             ";
             $cadena.="<div class='textmed'>Fecha: $fecha<br>
-            
+            Señor(es): $nombre $apellido <br>
+            NIT/CI: $ci     
             <hr>";
                 
         $query1=$this->db->query("SELECT p.idProducto, nombreProd ,sum(d.cantidad) as cant, precioVenta, (sum(d.cantidad) * precioVenta) as total
@@ -428,7 +430,8 @@ class FacturaCandy extends CI_Controller {
             $qr=$row->codigoQR;
             $cancelado=$row->cancelado;
             $cadena = "
-            <style>.textoimp{ font-size: small; text-align: center;} 
+            <style>.margen{padding: 0px 15px 0px 15px;}
+            .textoimp{ font-size: small; text-align: center;} 
             .textor{ font-size: small; text-align: right;} 
             .textmed{ font-size: small; text-align: left;}
             table{border: 0px solid #000; text-align:center; align:center; } 

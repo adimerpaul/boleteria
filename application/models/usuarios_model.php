@@ -125,4 +125,9 @@ WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
         ];
         return $this->db->insert('controlingreso',$dato);
     }
+
+    public function delete($id){
+        $this->db->where('idUsuario',$id);
+        return $this->db->delete("usuario");
+    }
 }
