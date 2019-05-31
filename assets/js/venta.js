@@ -613,7 +613,7 @@ function validacp(){
 $('#cupon').keyup(function(){
     validacp();
 });
-
+var myWindow;
 $('#registrarVenta').click(function(){
     var idcl=0;
     var varidDosif;
@@ -640,7 +640,7 @@ $('#registrarVenta').click(function(){
     validocupon=true;
 
 
-    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#resultado').prop('value')!=0)
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#resultado').val()>=0)
     {   
     if($('#idcliente').prop('value')==''){
         var parametros = {
@@ -736,10 +736,22 @@ $('#registrarVenta').click(function(){
                                 console.log(response);
                             $("#clienteModal").modal('hide');//ocultamos el modal
                                 // location.reload();
-                                if(tipo=='RECIBO')
-                                    location.href=location.href+'/printR/'+response;
-                                else
-                                    location.href=location.href+'/printF/'+response;
+                                // if(tipo=='RECIBO')
+                                //     location.href=location.href+'/printR/'+response;
+                                // else
+                                //     location.href=location.href+'/printF/'+response;
+                                $.ajax({
+                                    url: 'VentaCtrl/imprimirfactura/'+response,
+                                    success:function (e) {
+                                        myWindow = window.open("", "myWindow", "width=200,height=100");
+                                        myWindow.document.write(e);
+                                        myWindow.document.close();
+                                        myWindow.focus();
+                                        setInterval(imprimirfa(),1000);
+                                        // myWindow.print();
+                                        // myWindow.close();
+                                    }
+                                });
                             }
                         })
                 }
@@ -755,6 +767,10 @@ $('#registrarVenta').click(function(){
     /*codigo de control:  numero de autorizacion; numerode orden; cinit; fecha venta; monto ; keydosificacion/*/
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
 });
+function imprimirfa(){
+myWindow.print();
+    myWindow.close();
+}
 
 function calculo(){
     var total=0.0;
