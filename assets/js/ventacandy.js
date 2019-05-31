@@ -395,11 +395,11 @@ $(function() {
                                     setTimeout(function(){
                                         myWindow.print();
                                         myWindow.close();
-                                    },500); 
-                            impDetalle(response);
-                            //window.location.href='';
-
-                                }
+                                        impDetalle(response);
+                                },500); 
+                               
+                                },
+                                
                             });
                             //window.location.href='';
                         }
@@ -426,6 +426,7 @@ function impDetalle(id){
             myWindow.focus();
             myWindow.print();
             myWindow.close();
+            location.reload();
         }})
 };
 
