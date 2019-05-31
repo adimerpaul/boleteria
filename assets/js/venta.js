@@ -749,14 +749,20 @@ $('#registrarVenta').click(function(){
                                 //     location.href=location.href+'/printF/'+response;
                                 $.ajax({
                                     url: 'VentaCtrl/imprimirfactura/'+response,
-                                    success:function (e) {
+                                    success: async function (e) {
                                         myWindow = window.open("", "myWindow", "width=200,height=100");
-                                        myWindow.document.write(e);
+                                        var te= await e;
+                                        myWindow.document.write(te);
                                         myWindow.document.close();
                                         myWindow.focus();
-                                        setTimeout(imprimirfa(),1000);
-                                        // myWindow.print();
-                                        // myWindow.close();
+                                        var img=myWindow.document.getElementById('img');
+                                        img.href='tem/img.png';
+                                        setTimeout(function(){
+                                            myWindow.print();
+                                            myWindow.close();
+                                        },1000); //delay is in milliseconds
+                                        //myWindow.print();
+                                        //myWindow.close();
                                     }
                                 });
                             }
@@ -775,8 +781,10 @@ $('#registrarVenta').click(function(){
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
 });
 function imprimirfa(){
-// myWindow.print();
-//     myWindow.close();
+    var img=myWindow.document.getElementById('img');
+    img.href='tem/img.png';
+    myWindow.print();
+    myWindow.close();
 }
 
 function calculo(){
