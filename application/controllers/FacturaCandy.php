@@ -285,4 +285,127 @@ class FacturaCandy extends CI_Controller {
             header("Location: ".base_url()."VentaCandyCtrl");
         }
  
+        function imprimirfactura($idventa){
+            $fecha=date('d/m/Y');
+            $total=0;
+            $hora=date("H:i:s");
+            $query=$this->db->query("SELECT * FROM ventacandy v 
+        INNER JOIn cliente c ON v.idCliente=c.idCliente 
+        INNER JOIn usuario u ON v.idUsuario=u.idUsuario
+        INNER JOIn dosificacion d ON d.idDosif=v.idDosif
+        WHERE idVentaCandy='$idventa'");
+            $row=$query->row();
+            $nombre=$row->nombreCl;
+            $tipoVenta=$row->tipoVenta;
+        
+            $apellido=$row->apellidoCl;
+            $ci=$row->cinit;
+            $nrocomprobante=$row->nroComprobante;
+        
+            $nroautorizacion=$row->nroAutorizacion;
+            $vendero=$row->user;
+            $codigocontrol=$row->codigoControl;
+            $fechahasta=$row->fechaHasta;
+            $leyenda=$row->leyenda;
+            $fecha=$row->fechaVenta;
+            $qr=$row->codigoQR;
+            $cadena = "
+            <style>.textoimp{ font-size: small; text-align: center;} 
+            .textor{ font-size: small; text-align: right;} 
+            .textmed{ font-size: small; text-align: left;}
+            table{border: 0px solid #000; text-align:center; align:center; } 
+            th,td{font-size: x-small;}
+            hr{border: 1px dashed ;}</style>
+            <div class='textoimp'>
+            <span>MULTISALAS S.R.L.</span><br>
+            <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+            <span>Tel: 591-25281290</span><br>
+            <span>ORURO - BOLIVIA</span><br>
+            <span>SUCURSAL No 2</span><br>
+            <hr>
+            <span>FACTURA</span><br>
+            <span>NIT: 329448023</span><br>
+            <span>NRO FACTURA:$nrocomprobante</span><br>
+            <span>NRO AUTORIZACION: $nroautorizacion</span><br>
+            <hr>
+            ";
+            $cadena.="<div class='textmed'>Fecha: $fecha<br>
+            Señor(es): $nombre $apellido <br>
+            NIT/CI: $ci <br>
+            <hr>";
+                
+        $query1=$this->db->query("SELECT p.idProducto, nombreProd ,sum(d.cantidad) as cant, precioVenta, (sum(d.cantidad) * precioVenta) as total
+        FROM detalle d
+        INNER JOIN ventacandy v ON d.idVentaCandy=v.idVentaCandy
+        INNER JOIN producto p on d.idProducto=p.idProducto
+        WHERE v.idVentaCandy='$idventa' and esCombo='NO'
+        GROUP BY p.idProducto,nombreProd");
+    
+        $query2=$this->db->query("SELECT c.idCombo, nombreCombo ,sum(d.cantidad) as cant, precioVenta, (sum(d.cantidad) * precioVenta) as total
+            FROM detalle d
+            INNER JOIN ventacandy v ON d.idVentaCandy=v.idVentaCandy
+            INNER JOIN combo c on d.idCombo=c.idCombo
+            WHERE v.idVentaCandy='$idventa' and esCombo='SI'
+            GROUP BY c.idCombo,nombreCombo");
+            $total=0;
+            $cadena.="<table><thead><tr>
+                <th>DESC</th>              <th>CANT</th>     <th>P.U.</th>           <th>IMP</th><tr></thead>
+                <tbody>";
+            foreach ($query1->result() as $row){
+                $nombrep=$row->nombreProd;
+                $precio=$row->precioVenta;
+                $cantidad=$row->cant;
+                $subtotal=$row->total;
+                $cadena.="<tr><td>$nombrep</td><td>$cantidad</td><td>$precio</td><td>$subtotal</td></tr>";
+    
+                $total=$total+$subtotal;
+        
+            }
+            foreach ($query2->result() as $row){
+                $nombrep=$row->nombreCombo;
+                $precio=$row->precioVenta;
+                $cantidad=$row->cant;
+                $subtotal=$row->total;
+                $cadena.="<tr><td>$nombrep</td><td>$cantidad</td><td>$precio</td><td>$subtotal</td></tr>";
+    
+                $total=$total+$subtotal;    
+            }
+    
+            $total=number_format($total,2);
+            $d = explode('.',$total);
+            $entero=$d[0];
+            $decimal=$d[1];
+            $cadena.=("</div>");
+    
+            $cadena.=("<div class='textor'>SUBTOTAL: $total Bs.<br>");
+            //$cadena.=("DESC:   0.00 Bs.<br>");
+            $cadena.=("TOTAL: $total Bs.</div>");
+    
+    
+            $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.</div> 
+    <hr>
+    Cod. de Control: $codigocontrol <br> 
+    Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br>";
+    
+    
+            $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
+            $PNG_WEB_DIR = 'temp/';
+            $filename = $PNG_TEMP_DIR.'test.png';
+            $errorCorrectionLevel = 'L';
+            $matrixPointSize = 2;
+            QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+            $cadena.='<img  id="img" src="temp/test.png" /> <br>';
+            //$cadena.="<small class='textoimp'><img src='barcode.php?s=qrl&d=HELLO WORLD'><br>";
+    $cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
+    </small>";
+    $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
+    $cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
+    $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
+    $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
+    
+            echo $cadena;
+            exit;
+    
+    
+        }
 }
