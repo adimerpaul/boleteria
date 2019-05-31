@@ -227,7 +227,6 @@ class VentaCtrl extends CI_Controller {
         if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
         { $total=0;
           $cupon=$idcupon;
-
         }
         else $cupon='null';
    
@@ -354,6 +353,7 @@ class VentaCtrl extends CI_Controller {
 
         $idUser=$this->session->userdata('idUs');
         $this->temporal_model->deleteAll($idUser);
+
         echo $idVenta;
 
     }
@@ -473,6 +473,7 @@ $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
 
 
     }
+
     public function listaVenta(){
         if($this->session->userdata('login')==1){
 
@@ -914,7 +915,10 @@ Usuario:' . $row->user . '<br>
         header("Location: ".base_url()."VentaCtrl");
         //header();
     }
-
+    public function imprimirboletos($idventa){
+        $query=$this->db->query("SELECT * FROM boleto WHERE idVenta='$idventa'");
+        echo json_encode($query->result_array());
+    }
 public function impBoleto($idboleto){
     $query=$this->db->query("SELECT * FROM boleto b 
     INNER JOIn usuario u ON b.idUsuario=u.idUsuario
@@ -931,18 +935,17 @@ public function impBoleto($idboleto){
                 } else {
                     $for = "2D";
                 }
-                $cadBoleto="<div>";
+                $cadBoleto="<div align='center'>";
                 $cadBoleto.="MULTISALAS S.R.L. <br>"  ;
-                $cadBoleto.="<h6>NIT:329448023</h6><br>";
+                $cadBoleto.="<small >NIT:329448023</small>";
                 $cadBoleto.="<hr>";
-                $cadBoleto.="<div>$row->titulo<br> $row->nombreSala </div>";
-                $cadBoleto.=" <div>Fecha:&nbsp;".$row->fechaFuncion."<div>  <div>Bs.&nbsp; $row->precio</div>";
-                $cadBoleto.="<div>Butaca:".$row->letra."-".$row->columna. "</div><div> Hora: ".substr( $row->horaFuncion,0,5). "</div>";
+                $cadBoleto.="<div style='font-size: 17px'>$row->titulo<br> $row->nombreSala </div>";
+                $cadBoleto.=" <div>Fecha:&nbsp; $row->fechaFuncion &nbsp;&nbsp;&nbsp; Bs.&nbsp; $row->precio</div>";
+                $cadBoleto.="<div style='font-size: 17px'>Butaca:$row->letra $row->columna Hora: ".substr( $row->horaFuncion,0,5). "</div>";
                 $cadBoleto.="<hr>";
-                $cadBoleto.="<div>Cod:&nbsp;".$row->numboc . "<br>
-                            Trans:&nbsp; ".$idventa."<br>
+                $cadBoleto.="<div style='font-size: 12px'>Cod:&nbsp;".$row->numboc . "<br>
+                            Trans:&nbsp; ".$row->idVenta."<br>
                             Usuario: &nbsp;".$row->nombreUser."<br></div></div>";
-
                 echo $cadBoleto;
       
 }

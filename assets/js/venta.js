@@ -620,7 +620,7 @@ function validacp(){
 $('#cupon').keyup(function(){
     validacp();
 });
-var myWindow;
+
 $('#registrarVenta').click(function(){
     var idcl=0;
     var varidDosif;
@@ -740,18 +740,19 @@ $('#registrarVenta').click(function(){
                                 //$("#resultado").html("Procesando, espere por favor...");
                             },
                             success:  function (response){
-                                console.log(response);
+                                //console.log(response+' esta es el id venta');
                                 var idventa=response;
                             $("#clienteModal").modal('hide');//ocultamos el modal
+                                if (tipo=='FACTURA'){
                                 // location.reload();
                                 // if(tipo=='RECIBO')
                                 //     location.href=location.href+'/printR/'+response;
                                 // else
                                 //     location.href=location.href+'/printF/'+response;
                                 $.ajax({
-                                    url: 'VentaCtrl/imprimirfactura/'+response,
+                                    url: 'VentaCtrl/imprimirfactura/'+idventa,
                                     success: async function (e) {
-                                        myWindow = window.open("", "myWindow", "width=200,height=100");
+                                        var myWindow = window.open("", "myWindow", "width=200,height=100");
                                         var te= await e;
                                         myWindow.document.write(te);
                                         myWindow.document.close();
@@ -759,11 +760,15 @@ $('#registrarVenta').click(function(){
                                         setTimeout(function(){
                                             myWindow.print();
                                             myWindow.close();
+                                            boletos(idventa);
                                         },500); //delay is in milliseconds
                                         //myWindow.print();
                                         //myWindow.close();
                                     }
                                 });
+                                }else {
+                                    boletos(idventa);
+                                }
                             }
                         })
                 }
@@ -779,11 +784,30 @@ $('#registrarVenta').click(function(){
     /*codigo de control:  numero de autorizacion; numerode orden; cinit; fecha venta; monto ; keydosificacion/*/
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
 });
-function imprimirfa(){
-    var img=myWindow.document.getElementById('img');
-    img.href='tem/img.png';
-    myWindow.print();
-    myWindow.close();
+function boletos(idventa){
+    //console.log(idventa);
+    $.ajax({
+        url: 'VentaCtrl/imprimirboletos/'+idventa,
+        success: async function (e) {
+            var dato=JSON.parse(e);
+            for (var i=0;i<dato.length;i++){
+               boleto(dato[i].idBoleto);
+            } ;
+        }
+    });
+}
+function boleto(idboleto){
+    $.ajax({
+        url: 'VentaCtrl/impBoleto/'+idboleto,
+        success: async function (e) {
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(e);
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+        }
+    });
 }
 
 function calculo(){

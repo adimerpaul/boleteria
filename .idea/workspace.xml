@@ -40,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="468" column="75" selection-start-line="468" selection-start-column="75" selection-end-line="468" selection-end-column="75" />
+            <state relative-caret-position="140">
+              <caret line="940" column="35" lean-forward="true" selection-start-line="940" selection-start-column="35" selection-end-line="940" selection-end-column="35" />
               <folding>
                 <element signature="e#173#199#0#PHP" expanded="true" />
                 <element signature="e#119#125#0" expanded="true" />
@@ -71,8 +71,14 @@
                 <element signature="e#89#95#0" expanded="true" />
                 <element signature="e#95#101#0" expanded="true" />
                 <element signature="e#101#107#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="e#12#18#0" expanded="true" />
-                <element signature="e#38#44#0" expanded="true" />
+                <element signature="e#25#31#0" expanded="true" />
+                <element signature="e#31#37#0" expanded="true" />
+                <element signature="e#37#43#0" expanded="true" />
+                <element signature="e#27#33#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="e#113#119#0" expanded="true" />
               </folding>
             </state>
@@ -100,11 +106,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="760" column="45" selection-start-line="760" selection-start-column="45" selection-end-line="760" selection-end-column="45" />
+            <state relative-caret-position="-146">
+              <caret line="765" column="59" lean-forward="true" selection-start-line="765" selection-start-column="59" selection-end-line="765" selection-end-column="59" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/print/a.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="41" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -120,8 +135,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>VerificaDosificacion</find>
-      <find>sctualizarCliente</find>
       <find>tipo</find>
       <find>inse</find>
       <find>insert</find>
@@ -144,12 +157,14 @@
       <find>printR</find>
       <find>prefe</find>
       <find>submit</find>
-      <find>echo $id</find>
       <find>validocu</find>
       <find>awa</find>
+      <find>imprimi</find>
+      <find>regven</find>
+      <find>echo $id</find>
       <find>prueba</find>
       <find>size</find>
-      <find>imprimi</find>
+      <find>myWindow</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -257,18 +272,18 @@
       <workItem from="1558561122530" duration="27000000" />
       <workItem from="1559138312586" duration="1133000" />
       <workItem from="1559252411876" duration="1085000" />
-      <workItem from="1559267738749" duration="14401000" />
+      <workItem from="1559267738749" duration="17999000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77216000" />
+    <option name="totallyTimeSpent" value="80814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19693878" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19693878" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -449,13 +464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/print/a.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="33" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="30" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../qr/CodeItNow/BarcodeBundle/Utils/QrCode.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -503,10 +511,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/print/a.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="41" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="760" column="45" selection-start-line="760" selection-start-column="45" selection-end-line="760" selection-end-column="45" />
+        <state relative-caret-position="-146">
+          <caret line="765" column="59" lean-forward="true" selection-start-line="765" selection-start-column="59" selection-end-line="765" selection-end-column="59" />
           <folding>
             <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
           </folding>
@@ -515,8 +530,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="468" column="75" selection-start-line="468" selection-start-column="75" selection-end-line="468" selection-end-column="75" />
+        <state relative-caret-position="140">
+          <caret line="940" column="35" lean-forward="true" selection-start-line="940" selection-start-column="35" selection-end-line="940" selection-end-column="35" />
           <folding>
             <element signature="e#173#199#0#PHP" expanded="true" />
             <element signature="e#119#125#0" expanded="true" />
@@ -546,8 +561,14 @@
             <element signature="e#89#95#0" expanded="true" />
             <element signature="e#95#101#0" expanded="true" />
             <element signature="e#101#107#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="e#12#18#0" expanded="true" />
-            <element signature="e#38#44#0" expanded="true" />
+            <element signature="e#25#31#0" expanded="true" />
+            <element signature="e#31#37#0" expanded="true" />
+            <element signature="e#37#43#0" expanded="true" />
+            <element signature="e#27#33#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="e#113#119#0" expanded="true" />
           </folding>
         </state>
