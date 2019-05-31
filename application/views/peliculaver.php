@@ -25,7 +25,7 @@
 
         <?php foreach($pelicula as $pelicula): ?>
         <tr>
-            <td><?php echo $pelicula['codigoIncaa']; ?></td>
+            <td><?php echo $pelicula['idPelicula']; ?></td>
             <td><?php echo $pelicula['nombre']; ?></td>
             <td><?php echo $pelicula['duracion']; ?></td>
             <td><?php echo $pelicula['paisOrigen']; ?></td>
@@ -79,6 +79,7 @@
     <div class="form-group col-md-6">
       <label for="nom">Nombre : </label>
       <input type="text" class="form-control" id="nom" name="nom" required>
+      <input type="hidden"  id="idpelicula" name="idpelicula" required>
     </div>
   </div>
   <div class="form-row">

@@ -133,9 +133,22 @@ $('#imprimirCandy').click(function(){
         'fecha':fecha,
         'id':id
     };
-    var url='imprimirCandy';
-    
-    $.post(url,param);
+    $.ajax({
+        data:  param,
+        url:   'pruebaCandy',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            console.log(response);
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(response);
+              myWindow.document.close();
+              myWindow.focus();
+              myWindow.print();
+              myWindow.close();
+        }})
 });
 
 function calculototal(){

@@ -25,7 +25,12 @@ $('#btnAceptar').removeClass("disabled");
 
 }
 );
-  
+function datosiniciales(){
+    $('#lblEntradasDisponibles').html(0);
+    $('#lblEntradasVendidas').html(0);
+    $('#lblEntradasDevueltas').html(0);
+    $('#lblCapacidadSala').html(0);  
+} 
 function mostrardatos(varid){
     console.log(varid);
     var parametros = {
@@ -82,7 +87,7 @@ $('#elimVentaTemp').click(function(){
             $('#selecost li:first').addClass('ui-selected');
             $("#lblPrecio").html("0Bs");
             $("#lblCantidadEntradas").html("0");
-            mostrardatos($("#selecfun .ui-selected").prop('value'));
+            //mostrardatos($("#selecfun .ui-selected").prop('value'));
             if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
             bloqueobtn();
             else
@@ -130,7 +135,8 @@ $("#selectable").selectable(
 
                                          $("#selecfun").html(cadenahorario);          
                                          //$('#selecfun li:first').addClass('ui-selected');
-                                         mostrardatos($("#selecfun .ui-selected").prop('value'));
+                                         //mostrardatos($("#selecfun .ui-selected").prop('value'));
+                                         datosiniciales();
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
                                          bloqueobtn();
@@ -174,6 +180,7 @@ $("#selectable").selectable(
                                          $('#selecost li:first').addClass('ui-selected');
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
+                                            mostrardatos($("#selecfun .ui-selected").prop('value'));
                                          if( moment().format('Y-MM-DD') > $('#fecfuncion').prop('value'))
                                          bloqueobtn();
                                          else

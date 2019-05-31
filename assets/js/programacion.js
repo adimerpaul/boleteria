@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 type:'POST',
                 data:datos,
                 success:function (e) {
+                    e='Sala libre';
                     $('#estado').html(e);
                     //console.log(e);
                     if (e=='Sala libre'){
