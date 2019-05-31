@@ -754,7 +754,7 @@ $('#registrarVenta').click(function(){
                                         myWindow.document.write(e);
                                         myWindow.document.close();
                                         myWindow.focus();
-                                        setInterval(imprimirfa(),1000);
+                                        setTimeout(imprimirfa(),1000);
                                         // myWindow.print();
                                         // myWindow.close();
                                     }
@@ -775,8 +775,8 @@ $('#registrarVenta').click(function(){
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
 });
 function imprimirfa(){
-myWindow.print();
-    myWindow.close();
+// myWindow.print();
+//     myWindow.close();
 }
 
 function calculo(){
