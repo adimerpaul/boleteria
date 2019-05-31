@@ -236,7 +236,7 @@ GROUP BY p.idPelicula,p.nombre
         .textmed{ font-size: small; text-align: left;}
         table{border: 1px solid #000; text-align:center; align:center; } 
         th,td{font-size: x-small;}
-        hr{border: 2px dashed ;}</style>
+        hr{border: 1px dashed ;}</style>
         <div class='textoimp'>
         <span>MULTISALAS S.R.L.</span><br>
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>

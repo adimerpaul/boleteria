@@ -833,18 +833,26 @@ public function impBoleto($idboleto){
 }
 
 public function impPromo(){
-            $promo="<div>";
+            $idventa=88;
+            $promo="<style>.textoimp{ font-size: 15px; text-align: center;} 
+            .textp{ font-size: small; text-align: center;} 
+            .textpeq{ font-size: small; text-align: left;}
+            table{border: 1px solid #000; text-align:center; align:center; } 
+            th,td{font-size: x-small;}
+            hr{border: 1px dashed ;}</style>
+            <div class='textoimp'>
+            <div>";
             $promo.="MULTISALAS S.R.L.<br>";
-            $promo.="<div>NIT:329448023</div><br>";
+            $promo.="<div class='textp'>NIT:329448023</div>";
             $promo.="<hr>";
-            $promo.="COMBO DUO <br>";
+            $promo.="COMBO DUO";
             $promo.="<hr>";
-            $promo.="Reclame su combo duo <br>";
+            $promo.="<div class='textp'>Reclame su combo duo <div>";
             $promo.="1 PIPOCA + 2 REFRESCOS <br>";
             $promo.="<hr>";
-            $promo.="<div>Cod:".$row->numboc."<br>
+            $promo.="<div class='textpeq'>
                      Trans: ".$idventa."<br>
-                     Usuario: ".$row->nombreUser."<br></div><div>";
+                     Usuario: prueba<br></div><div>";
             echo $promo;
 
 }
