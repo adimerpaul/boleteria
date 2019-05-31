@@ -742,13 +742,8 @@ $('#registrarVenta').click(function(){
                             success:  function (response){
                                 //console.log(response+' esta es el id venta');
                                 var idventa=response;
-                            $("#clienteModal").modal('hide');//ocultamos el modal
+                            $("#clienteModal").modal('hide');
                                 if (tipo=='FACTURA'){
-                                // location.reload();
-                                // if(tipo=='RECIBO')
-                                //     location.href=location.href+'/printR/'+response;
-                                // else
-                                //     location.href=location.href+'/printF/'+response;
                                 $.ajax({
                                     url: 'VentaCtrl/imprimirfactura/'+idventa,
                                     success: async function (e) {
@@ -761,9 +756,7 @@ $('#registrarVenta').click(function(){
                                             myWindow.print();
                                             myWindow.close();
                                             boletos(idventa);
-                                        },500); //delay is in milliseconds
-                                        //myWindow.print();
-                                        //myWindow.close();
+                                        },500);
                                     }
                                 });
                                 }else {
@@ -793,6 +786,8 @@ function boletos(idventa){
             for (var i=0;i<dato.length;i++){
                boleto(dato[i].idBoleto);
             } ;
+
+            window.location.reload();
         }
     });
 }
