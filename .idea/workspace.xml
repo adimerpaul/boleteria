@@ -24,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/ResumenDia.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="276" column="90" lean-forward="true" selection-start-line="276" selection-start-column="90" selection-end-line="276" selection-end-column="96" />
+            <state relative-caret-position="279">
+              <caret line="267" column="36" lean-forward="true" selection-start-line="267" selection-start-column="36" selection-end-line="267" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="e#63#69#0" expanded="true" />
@@ -37,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="458" column="17" selection-start-line="458" selection-start-column="17" selection-end-line="458" selection-end-column="17" />
+            <state relative-caret-position="17">
+              <caret line="358" column="5" lean-forward="true" selection-start-line="358" selection-start-column="5" selection-end-line="358" selection-end-column="5" />
               <folding>
                 <element signature="e#173#199#0#PHP" expanded="true" />
                 <element signature="e#119#125#0" expanded="true" />
@@ -82,26 +82,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../qr/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="9" selection-end-column="62" />
+            <state relative-caret-position="177">
+              <caret line="47" column="20" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="20" />
+              <folding>
+                <element signature="e#10#893#0#PHP" expanded="true" />
+                <element signature="e#53#59#0" expanded="true" />
+                <element signature="e#94#100#0" expanded="true" />
+                <element signature="e#113#119#0" expanded="true" />
+                <element signature="e#360#366#0" expanded="true" />
+                <element signature="e#380#386#0" expanded="true" />
+                <element signature="e#9#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/barcode-qr-test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="756" column="50" selection-start-line="756" selection-start-column="50" selection-end-line="756" selection-end-column="50" />
+            <state relative-caret-position="68">
+              <caret line="761" column="61" selection-start-line="761" selection-start-column="61" selection-end-line="761" selection-end-column="61" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
               </folding>
@@ -120,8 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ada</find>
-      <find>UpDosificacion</find>
       <find>VerificaDosificacion</find>
       <find>sctualizarCliente</find>
       <find>tipo</find>
@@ -147,9 +145,11 @@
       <find>prefe</find>
       <find>submit</find>
       <find>echo $id</find>
-      <find>prueba</find>
       <find>validocu</find>
+      <find>awa</find>
+      <find>prueba</find>
       <find>imprimi</find>
+      <find>size</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -171,15 +171,15 @@
         <option value="$PROJECT_DIR$/application/config/config.php" />
         <option value="$PROJECT_DIR$/application/controllers/ResumenDia.php" />
         <option value="$PROJECT_DIR$/../qr/index.php" />
-        <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
         <option value="$PROJECT_DIR$/assets/js/venta.js" />
+        <option value="$PROJECT_DIR$/application/controllers/VentaCtrl.php" />
       </list>
     </option>
   </component>
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="7" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
@@ -257,18 +257,18 @@
       <workItem from="1558561122530" duration="27000000" />
       <workItem from="1559138312586" duration="1133000" />
       <workItem from="1559252411876" duration="1085000" />
-      <workItem from="1559267738749" duration="9771000" />
+      <workItem from="1559267738749" duration="12606000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72586000" />
+    <option name="totallyTimeSpent" value="75421000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19693878" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19693878" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -466,10 +466,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/barcode-qr-test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/ResumenDia.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="276" column="90" lean-forward="true" selection-start-line="276" selection-start-column="90" selection-end-line="276" selection-end-column="96" />
+        <state relative-caret-position="279">
+          <caret line="267" column="36" lean-forward="true" selection-start-line="267" selection-start-column="36" selection-end-line="267" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="e#63#69#0" expanded="true" />
@@ -480,24 +487,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/barcode-qr-test.html">
+    <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="50" />
+        <state relative-caret-position="68">
+          <caret line="761" column="61" selection-start-line="761" selection-start-column="61" selection-end-line="761" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../qr/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="9" selection-end-column="62" />
+        <state relative-caret-position="177">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="20" />
+          <folding>
+            <element signature="e#10#893#0#PHP" expanded="true" />
+            <element signature="e#53#59#0" expanded="true" />
+            <element signature="e#94#100#0" expanded="true" />
+            <element signature="e#113#119#0" expanded="true" />
+            <element signature="e#360#366#0" expanded="true" />
+            <element signature="e#380#386#0" expanded="true" />
+            <element signature="e#9#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="458" column="17" selection-start-line="458" selection-start-column="17" selection-end-line="458" selection-end-column="17" />
+        <state relative-caret-position="17">
+          <caret line="358" column="5" lean-forward="true" selection-start-line="358" selection-start-column="5" selection-end-line="358" selection-end-column="5" />
           <folding>
             <element signature="e#173#199#0#PHP" expanded="true" />
             <element signature="e#119#125#0" expanded="true" />
@@ -530,16 +549,6 @@
             <element signature="e#12#18#0" expanded="true" />
             <element signature="e#38#44#0" expanded="true" />
             <element signature="e#113#119#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="756" column="50" selection-start-line="756" selection-start-column="50" selection-end-line="756" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
