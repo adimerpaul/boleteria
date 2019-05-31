@@ -69,11 +69,6 @@ $('#fecini').change(function(){
                                     } else{
                                         $('#btnImpresion').show();
                                     }
-                                    if (datos.tipoVenta=="FACTURA"){
-                                        $('#btnImpresion').prop('href',url+'VentaCtrl/printF/'+datos.idVenta);
-                                    } else{
-                                        $('#btnImpresion').prop('href',url+'VentaCtrl/printR/'+datos.idVenta);
-                                    }
 
                                 })
                                 }
@@ -109,6 +104,32 @@ $('#fecini').change(function(){
 
                           } 
                   });
+          $('#btnImpresion').click(function(){
+              id=$('#idVen').val();
+            if ( $('#tipoventa').val()=="FACTURA"){
+                $.ajax({
+                    url:   'VentaCtrl/imprimirfactura/'+id,
+                                    beforeSend: function () {
+                                            //$("#resultado").html("Procesando, espere por favor...");
+                                    },
+                                    success:  function (response) { 
+                                console.log(response);
+                                myWindow = window.open("", "myWindow", "width=200,height=100");
+                                myWindow.document.write(response);
+                                myWindow.document.close();
+                                myWindow.focus();
+                                setTimeout(imprimirfa(),1000);
+                                // myWindow.print();
+                                // myWindow.close();
+                    }
+                })
+            } else{
+                //$('#btnImpresion').prop('href',url+'VentaCtrl/printR/'+datos.idVenta);
+            }
+
+          });
+
           
       })
  
+
