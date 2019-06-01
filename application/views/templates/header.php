@@ -375,7 +375,7 @@
     <?php endif?>
   <li class="nav-item">
     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'8')):  ?>
-    <a class="nav-link" data-toggle="collapse" href="#item-8" data-parent="#accordion1"><i class="far fa-credit-card"></i> Ventas</a>
+    <a class="nav-link" data-toggle="collapse" href="#item-8" data-parent="#accordion1"><i class="far fa-credit-card"></i> Ventas Boleteria</a>
     <div id="item-8" class="collapse">
       <ul class="nav flex-column ml-3">
         <li class="nav-item">

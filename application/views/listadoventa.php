@@ -130,6 +130,7 @@
                     <th>Hora Funcion</th>
                     <th>Tarifa/Precio</th>
                     <th>Butaca</th>
+                    <th>OP</th>
                 </tr>
             </thead>
             <tbody id="tabbody">

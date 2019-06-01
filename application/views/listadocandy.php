@@ -47,7 +47,8 @@
             <tbody>
        
         <?php 
-        $query=$this->db->query("SELECT * FROM ventacandy v inner join usuario u on u.idUsuario=v.idUsuario
+        $query=$this->db->query("SELECT * FROM ventacandy v 
+        inner join usuario u on u.idUsuario=v.idUsuario
         inner join cliente c on c.idCliente=v.idCliente
         where date(fechaVenta)>='$fecinicio' and date(fechaVenta)<='$fecfinal'");
         foreach($query->result() as $row): ?>
