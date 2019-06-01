@@ -1070,9 +1070,14 @@ public function impBoleto($idboleto){
                 echo $cadBoleto;
       
 }
-
+function tienepromo($idboleto){
+	    $query=$this->db->query("SELECT * FROM boleto WHERE idBoleto='$idboleto'");
+	    $idTarifa=$query->result_array()[0]->idTarifa;
+	    echo ("");
+}
 public function impPromo(){
-            $idventa=88;
+
+            $idventa=
             $promo="<style>.textoimp{ font-size: 15px; text-align: center;} 
             .textp{ font-size: small; text-align: center;} 
             .textpeq{ font-size: small; text-align: left;}

@@ -21,6 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< Updated upstream
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/listadoventa.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,6 +53,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
               <caret line="478" column="17" lean-forward="true" selection-start-line="478" selection-start-column="17" selection-end-line="478" selection-end-column="17" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="1081" column="53" selection-start-line="1081" selection-start-column="44" selection-end-line="1081" selection-end-column="53" />
+>>>>>>> Stashed changes
               <folding>
                 <element signature="e#173#199#0#PHP" expanded="true" />
                 <element signature="e#134#140#0" expanded="true" />
@@ -81,6 +89,15 @@
                 <element signature="e#125#131#0" expanded="true" />
                 <element signature="e#131#137#0" expanded="true" />
                 <element signature="e#137#143#0" expanded="true" />
+                <element signature="e#134#140#0" expanded="true" />
+                <element signature="e#140#146#0" expanded="true" />
+                <element signature="e#146#152#0" expanded="true" />
+                <element signature="e#164#170#0" expanded="true" />
+                <element signature="e#170#176#0" expanded="true" />
+                <element signature="e#176#182#0" expanded="true" />
+                <element signature="e#187#193#0" expanded="true" />
+                <element signature="e#193#199#0" expanded="true" />
+                <element signature="e#199#205#0" expanded="true" />
                 <element signature="e#2#8#0" expanded="true" />
                 <element signature="e#8#14#0" expanded="true" />
                 <element signature="e#14#20#0" expanded="true" />
@@ -308,7 +325,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87452000" />
+    <option name="totallyTimeSpent" value="89570000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
@@ -554,10 +571,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="792" column="13" selection-start-line="792" selection-start-column="13" selection-end-line="792" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/resumendia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="55" column="52" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Reporte.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="242">
           <caret line="478" column="17" lean-forward="true" selection-start-line="478" selection-start-column="17" selection-end-line="478" selection-end-column="17" />
+=======
+        <state relative-caret-position="306">
+          <caret line="1081" column="53" selection-start-line="1081" selection-start-column="44" selection-end-line="1081" selection-end-column="53" />
+>>>>>>> Stashed changes
           <folding>
             <element signature="e#173#199#0#PHP" expanded="true" />
             <element signature="e#134#140#0" expanded="true" />
@@ -587,6 +633,15 @@
             <element signature="e#125#131#0" expanded="true" />
             <element signature="e#131#137#0" expanded="true" />
             <element signature="e#137#143#0" expanded="true" />
+            <element signature="e#134#140#0" expanded="true" />
+            <element signature="e#140#146#0" expanded="true" />
+            <element signature="e#146#152#0" expanded="true" />
+            <element signature="e#164#170#0" expanded="true" />
+            <element signature="e#170#176#0" expanded="true" />
+            <element signature="e#176#182#0" expanded="true" />
+            <element signature="e#187#193#0" expanded="true" />
+            <element signature="e#193#199#0" expanded="true" />
+            <element signature="e#199#205#0" expanded="true" />
             <element signature="e#2#8#0" expanded="true" />
             <element signature="e#8#14#0" expanded="true" />
             <element signature="e#14#20#0" expanded="true" />
@@ -618,6 +673,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< Updated upstream
@@ -633,5 +689,7 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Stashed changes
   </component>
 </project>

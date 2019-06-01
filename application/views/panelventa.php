@@ -7,7 +7,7 @@
         color: white;
     }
     .libre{
-        width: 45px;
+        width: 55px;
         background: #4cae4c;
     }
     .ocupado{
@@ -190,7 +190,11 @@
 </div>
 
 
-
+<style>
+    .modal-lg {
+        max-width: 95%;
+    }
+</style>
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
