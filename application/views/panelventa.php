@@ -259,25 +259,22 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Cliente</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Datos Cliente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body"> 
-          <h5>Datos de Cliente</h5>
-          <hr>
           <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="cinit1">CI / NIT:</label>   
                 <input type="text" class="form-control" id="cinit1" name="cinit1" required>  
             </div>
             <div class="form-group col-md-6">
-                <label for="buscar"></label>  <br> 
-               <a class="btn btn-info" id="buscarCliente"><i class="fas fa-search"></i> BUSCAR</a> 
+                <label for="buscar" ></label>  <br> 
+               <a class="btn btn-info" id="buscarCliente" hidden><i class="fas fa-search"></i> BUSCAR</a> 
             </div>
          </div>
-         <hr>
          <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="pago">Monto:</label>   
@@ -292,7 +289,6 @@
                 <input type="number" step="any" class="form-control" id="resultado" name="resultado" readonly step='0.01' value=0>  
             </div>
         </div>
-         <hr>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="cinit">CI / NIT:</label>   
@@ -324,14 +320,14 @@
   </div>
 
 
-  <div class="form-row">
+  <div class="form-row" hidden>
     <div class="form-group col-md-6">
-      <label for="email">Email:</label>   
-      <input type="text" class="form-control" id="email" name="email">  
+      <label for="email" hidden>Email:</label>   
+      <input type="text" class="form-control" id="email" name="email" hidden>  
     </div>
     <div class="form-group col-md-6">
-      <label for="telef">Telefono:</label>   
-      <input type="text" class="form-control" id="telef" name="telef">  
+      <label for="telef" hidden>Telefono:</label>   
+      <input type="text" class="form-control" id="telef" name="telef" hidden>  
     </div>
   </div>
 
