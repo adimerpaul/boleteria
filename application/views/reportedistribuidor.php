@@ -69,7 +69,10 @@
                  where b6.idFuncion=f6.idFuncion and f6.idPelicula=p.idPelicula
                  and v6.idVenta=b6.idVenta and b6.devuelto='NO' and v6.tipoVenta='FACTURA'
                  and WEEKDAY(date(b6.fecha))+1=$i and date(b6.fecha)>='$fecha1' and (b6.fecha)<='$fecha2') as d$i,
-                 (select if(sum(costo)>0,sum(costo),0) from boleto b6, funcion f6 where b6.idFuncion=f6.idFuncion and f6.idPelicula=p.idPelicula
+                 (select if(sum(costo)>0,sum(costo),0) 
+                 from boleto b6, funcion f6 ,venta v6
+                 where b6.idFuncion=f6.idFuncion and f6.idPelicula=p.idPelicula
+                 and v6.idVenta=b6.idVenta and b6.devuelto='NO' and v6.tipoVenta='FACTURA'
                  and WEEKDAY(date(b6.fecha))+1=$i and date(b6.fecha)>='$fecha1' and (b6.fecha)<='$fecha2') as total$i ";
                  }
                  $consulta.="from funcion f,pelicula p, boleto b, distribuidor d
