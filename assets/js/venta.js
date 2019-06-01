@@ -783,12 +783,12 @@ function boletos(idventa){
         url: 'VentaCtrl/imprimirboletos/'+idventa,
         success: async function (e) {
             var dato=JSON.parse(e);
-            for (var i=0;i<dato.length;i++){
-                var idboleto=dato[i].idBoleto;
-                setTimeout(function(){
-                    boleto(idboleto);
-                    console.log(dato[i]);
-                },200);
+            for (var i=0;i<dato.length;i++) {
+                var idboleto = dato[i].idBoleto;
+                //  setTimeout(function(){
+                boleto(idboleto);
+                //    console.log(dato[i]);
+                //},200);
 
             };
             relleno();
