@@ -467,7 +467,10 @@ $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
 $cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
 $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
 $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
-        $cadena.="<div class='textmed'> <span> CAMBIO: ".($cancelado-$total)."</span></div>";
+if(($cancelado-$total)<0)
+$salida=0;
+else $salida=$cancelado-$total;
+        $cadena.="<div class='textmed'> <span> CAMBIO: ".($salida)."</span></div>";
 
         echo $cadena;
         exit;
