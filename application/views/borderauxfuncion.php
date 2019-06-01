@@ -59,6 +59,7 @@
                 and b.idTarifa=t.idTarifa
                 and v.idVenta=b.idVenta
                 and v.tipoVenta='FACTURA'
+                and devuelto = 'NO'
                 and date(b.fecha)>='$fecha1' and date(b.fecha)<='$fecha2'
                 group by f.idFuncion,serie,precio order by fec");
                 foreach ($query->result() as $row){
