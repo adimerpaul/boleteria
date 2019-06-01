@@ -816,12 +816,12 @@ function boleto(idboleto){
             myWindow.close();
         }
     });
-    $.ajax({
-        url: 'VentaCtrl/tienepromo/'+idboleto,
-        success: async function (e) {
-           console.log(e);
-        }
-    });
+    // $.ajax({
+    //     url: 'VentaCtrl/tienepromo/'+idboleto,
+    //     success: async function (e) {
+    //        console.log(e);
+    //     }
+    // });
 }
 $('#btnAceptar').click(function () {
     $('#cinit1').val('');
