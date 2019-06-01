@@ -35,35 +35,17 @@
                 <tr>
                     <th>Numero</th>
                     <th>Fecha</th>
-                    <th>Estado</th>
+                    <th>Estados</th>
                     <th>Cliente</th>
                     <th>Total</th>
                 </tr>
                 </thead>
                 <tbody id="tabfactura">
-                <?php
-                $total=0;
-                $query=$this->db->query("SELECT * FROM venta v 
-INNER JOIN cliente c ON v.idcliente=c.idcliente
-INNER JOIN usuario u ON u.idUsuario=v.idUsuario
-WHERE u.idUsuario='".$_SESSION['idUs']."'
- AND date(fechaVenta)=date('".date('Y-m-d')."')");
-                foreach ($query->result() as $row){
-                    $total=$total+$row->total;
-                    echo "<tr> 
-                                <td>$row->idVenta</td> 
-                                <td>$row->fechaVenta</td>  
-                                <td>$row->apellidoCl</td> 
-                                <td>$row->apellidoCl</td> 
-                                <td>$row->total</td>
-                            </tr>";
-                }
-                ?>
                 <tr>
                     <th></th>
                     <th></th>
                     <th>Total</th>
-                    <th><?=$total?></th>
+                    <th></th>
                 </tr>
                 </tbody>
             </table>
@@ -77,31 +59,11 @@ WHERE u.idUsuario='".$_SESSION['idUs']."'
                 </tr>
                 </thead>
                 <tbody id="tabPelicula">
-                <?php
-                $total=0;
-                $query=$this->db->query("SELECT p.idPelicula,p.nombre,COUNT(*) 'cantidadb',SUM(b.costo) as total
-FROM pelicula p 
-INNER JOIN funcion f ON f.idPelicula=p.idPelicula
-INNER JOIN boleto b ON b.idFuncion=f.idFuncion
-INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
-INNER JOIN usuario u ON u.idUsuario=b.idUsuario
-WHERE b.idUsuario='".$_SESSION['idUs']."'
-AND  date(b.fecha)=date('".date('Y-m-d')."')
-GROUP BY p.idPelicula,p.nombre
-                ");
-                foreach ($query->result() as $row){
-                    $total=$total+$row->total;
-                    echo "<tr> 
-                                <td>$row->nombre</td> 
-                                <td>$row->cantidadb</td>  
-                                <td>$row->total</td>
-                            </tr>";
-                }
-                ?>
+
                 <tr>
                     <th></th>
                     <th>Total</th>
-                    <th><?=$total?></th>
+                    <th></th>
                 </tr>
                 </tbody>
             </table>
