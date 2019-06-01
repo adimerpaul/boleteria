@@ -57,7 +57,7 @@ function calculaCaja(){
                 resFactura+="</tr>";
                 total=total+parseFloat(row.total);
             });
-            resFactura+="<tr><th></th><th></th><th>Total</th><th>"+total+"</th></tr>";
+            resFactura+="<tr><th></th><th></th><th></th><th>Total</th><th>"+total+"</th></tr>";
             $('#tabfactura').html(resFactura);
             
         }
@@ -86,12 +86,13 @@ function calculaDetalle(){
             console.log(response);
             datos2=JSON.parse(response);
             console.log(param);
-            if (row.format==1){
-                var forma="3D";
-            }else{
-                var forma="3D";
-            }
+
             datos2.forEach(row => {
+                if (row.formato==1){
+                    var forma="3D";
+                }else{
+                    var forma="2D";
+                }
                 resdetalle+="<tr>";
                 resdetalle+="<td>"+row.nombre+" "+forma+"</td>";
                 resdetalle+="<td>"+row.cantidadb+"</td>";                
