@@ -61,9 +61,15 @@ $('#fecini').change(function(){
                                         cadena=cadena+"<td>"+row.horaFuncion+"</td>";
                                         cadena=cadena+"<td>"+row.serieTarifa+"/"+row.costo+"</td>";
                                         cadena=cadena+"<td>"+asiento+"</td>";
+                                        cadena=cadena+"<td><a class='btn btn-success text-white btn-sm impboleto'  data-bol='"+row.idBoleto+"'>Imp</a></td>";
                                         cadena+="</tr>";
                                     
                                     $('#tabbody').html(cadena);
+                                    $('.impboleto').click(function () {
+                                        idboleto=$(this).data("bol");
+                                        boleto(idboleto);
+                                    });
+
                                     if (datos.estado=="ANULADO"){
                                         $('#btnImpresion').hide();
                                     } else{
@@ -104,6 +110,8 @@ $('#fecini').change(function(){
 
                           } 
                   });
+
+    
           $('#btnImpresion').click(function(){
               id=$('#idVen').val();
               console.log(id);
