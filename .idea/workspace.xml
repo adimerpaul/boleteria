@@ -21,14 +21,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/listadoventa.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="382">
               <caret line="792" column="13" selection-start-line="792" selection-start-column="13" selection-end-line="792" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="2363">
+              <caret line="140" column="64" selection-start-line="140" selection-start-column="52" selection-end-line="140" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/listaventa.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1921">
+              <caret line="121" column="45" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -36,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="1055" column="47" selection-start-line="1055" selection-start-column="47" selection-end-line="1055" selection-end-column="47" />
+            <state relative-caret-position="242">
+              <caret line="478" column="17" lean-forward="true" selection-start-line="478" selection-start-column="17" selection-end-line="478" selection-end-column="17" />
               <folding>
                 <element signature="e#173#199#0#PHP" expanded="true" />
                 <element signature="e#134#140#0" expanded="true" />
@@ -95,6 +109,24 @@
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="e#33#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/config/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="13243">
+              <caret line="779" selection-start-line="779" selection-end-line="779" />
             </state>
           </provider>
         </entry>
@@ -196,26 +228,19 @@
               <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
               <item name="boleteria" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
               <item name="boleteria" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
@@ -227,6 +252,11 @@
               <item name="boleteria" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boleteria" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boleteria" type="462c0819:PsiDirectoryNode" />
+              <item name="print" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -281,10 +311,10 @@
     <option name="totallyTimeSpent" value="87452000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19213313" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26632652" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -474,7 +504,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="136">
           <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
         </state>
       </provider>
@@ -512,22 +542,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/listadoventa.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="139" column="64" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="64" />
+        <state relative-caret-position="2363">
+          <caret line="140" column="64" selection-start-line="140" selection-start-column="52" selection-end-line="140" selection-end-column="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/listaventa.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="113" column="45" selection-start-line="113" selection-start-column="45" selection-end-line="113" selection-end-column="45" />
+        <state relative-caret-position="1921">
+          <caret line="121" column="45" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/VentaCtrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="1055" column="47" selection-start-line="1055" selection-start-column="47" selection-end-line="1055" selection-end-column="47" />
+        <state relative-caret-position="242">
+          <caret line="478" column="17" lean-forward="true" selection-start-line="478" selection-start-column="17" selection-end-line="478" selection-end-column="17" />
           <folding>
             <element signature="e#173#199#0#PHP" expanded="true" />
             <element signature="e#134#140#0" expanded="true" />
@@ -590,11 +620,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/venta.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="382">
           <caret line="792" column="13" selection-start-line="792" selection-start-column="13" selection-end-line="792" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="13243">
+          <caret line="779" selection-start-line="779" selection-end-line="779" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
