@@ -647,7 +647,7 @@ $('#registrarVenta').click(function(){
     validocupon=true;
 
 
-    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#resultado').val()>=0)
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon)
     {   
     if($('#idcliente').prop('value')==''){
         var parametros = {
@@ -675,7 +675,11 @@ $('#registrarVenta').click(function(){
     idcl=$('#idcliente').prop('value');
     factCinit=$('#cinit').prop('value');
     var montoTotal=parseFloat($('#totalPre').html());
-    var cancelado=$('#pago').val();
+    var cancelado=0;
+    if ($.isNumeric($('#pago').val())) 
+    cancelado=$('#pago').val();
+    else
+    cancelado=0;
     $.ajax({
         url: 'DosificacionCtrl/ultimaDosificacion', 
         type: 'post',
