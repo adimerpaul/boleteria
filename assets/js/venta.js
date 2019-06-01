@@ -3,7 +3,7 @@ $('#fecfuncion').change(function(){
     if($(this).prop('value') < new Date())
     bloqueobtn();
 }); 
-$(document).ready(listado());  
+$(document).ready(listado());
 $(document).ready(valDosificacion());  
 $(document).ready(calculo());
 $(document).ready(VerificaDosificacion());
@@ -778,19 +778,28 @@ $('#registrarVenta').click(function(){
     /*codigoQR nit empresa|numero fact1 | nroautoriz| fechaemis|total|importe=total| codigo de control|nitci clinet|0|0|0|0.00 */
 });
 function boletos(idventa){
-    //console.log(idventa);
+    //console.log(idventa+'estas en la venta');
     $.ajax({
         url: 'VentaCtrl/imprimirboletos/'+idventa,
         success: async function (e) {
             var dato=JSON.parse(e);
             for (var i=0;i<dato.length;i++){
-               boleto(dato[i].idBoleto);
-            } ;
+                var idboleto=dato[i].idBoleto;
+                setTimeout(function(){
+                    boleto(idboleto);
+                    console.log(dato[i]);
+                },200);
 
-            window.location.reload();
+            };
+            relleno();
+
+
         }
     });
 }
+
+
+
 function boleto(idboleto){
     $.ajax({
         url: 'VentaCtrl/impBoleto/'+idboleto,
@@ -804,7 +813,10 @@ function boleto(idboleto){
         }
     });
 }
-
+$('#btnAceptar').click(function () {
+    $('#cinit1').val('');
+    $('#pago').val('');
+});
 function calculo(){
     var total=0.0;
     $('.costo').each(function(){    
