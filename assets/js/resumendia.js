@@ -106,7 +106,7 @@ function calculaDetalle(){
         }
     })
 };
-
+imptodo
 $('#imprimir').click(function(){
     var fecha=$('#fechadia').val();
     var id=$('#vendedor').val();
@@ -149,6 +149,60 @@ $('#imprimir').click(function(){
             $.ajax({
                 data:  param,
                 url:   'ResumenDia/pruebaFactImpresion',
+                type:  'post',
+                beforeSend: function () {
+                    //$("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response){
+                    console.log(response);
+                    var myWindow = window.open("", "myWindow", "width=200,height=100");
+                    myWindow.document.write(response);
+                      myWindow.document.close();
+                      myWindow.focus();
+                      myWindow.print();
+                      myWindow.close();
+                }})     
+});
+$('#imptodo').click(function(){
+    var fecha=$('#fechadia').val();
+    var param={
+        'fecha':fecha
+    };
+    $.ajax({
+        data:  param,
+        url:   'ResumenDia/todopruebaImpresion',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            console.log(response);
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(response);
+              myWindow.document.close();
+              myWindow.focus();
+              myWindow.print();
+              myWindow.close();
+        }}) 
+        $.ajax({
+            data:  param,
+            url:   'ResumenDia/todopruebaRecImpresion',
+            type:  'post',
+            beforeSend: function () {
+                //$("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response){
+                console.log(response);
+                var myWindow = window.open("", "myWindow", "width=200,height=100");
+                myWindow.document.write(response);
+                  myWindow.document.close();
+                  myWindow.focus();
+                  myWindow.print();
+                  myWindow.close();
+            }})  
+            $.ajax({
+                data:  param,
+                url:   'ResumenDia/todopruebaFactImpresion',
                 type:  'post',
                 beforeSend: function () {
                     //$("#resultado").html("Procesando, espere por favor...");

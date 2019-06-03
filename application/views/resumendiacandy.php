@@ -72,6 +72,9 @@
             </div>
             <br>
             <a class="btn btn-success btn-block" id="imprimirCandy"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
+            <br>
+            <a class="btn btn-success btn-block" id="impCandyTodos"> <i class="fas fa-print"></i> Imprimir ventas del dia Todos Us.</a>
+
         </div>
 
     </div>

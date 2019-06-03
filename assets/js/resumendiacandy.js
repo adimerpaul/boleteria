@@ -183,6 +183,61 @@ $('#imprimirCandy').click(function(){
                 }})
 });
 
+$('#impCandyTodos').click(function(){
+    var fecha=$('#fechacandy').val();
+    var param={
+        'fecha':fecha
+    };
+    $.ajax({
+        data:  param,
+        url:   'todopruebaCandy',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            console.log(response);
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(response);
+              myWindow.document.close();
+              myWindow.focus();
+              myWindow.print();
+              myWindow.close();
+        }})
+        $.ajax({
+            data:  param,
+            url:   'todopruebaFactCandy',
+            type:  'post',
+            beforeSend: function () {
+                //$("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response){
+                console.log(response);
+                var myWindow = window.open("", "myWindow", "width=200,height=100");
+                myWindow.document.write(response);
+                  myWindow.document.close();
+                  myWindow.focus();
+                  myWindow.print();
+                  myWindow.close();
+            }})
+            $.ajax({
+                data:  param,
+                url:   'todopruebaRecCandy',
+                type:  'post',
+                beforeSend: function () {
+                    //$("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response){
+                    console.log(response);
+                    var myWindow = window.open("", "myWindow", "width=200,height=100");
+                    myWindow.document.write(response);
+                      myWindow.document.close();
+                      myWindow.focus();
+                      myWindow.print();
+                      myWindow.close();
+                }})
+});
+
 function calculototal(){
     var fecha=$('#fechacandy').val();
     var id=$('#vendedor').val();
