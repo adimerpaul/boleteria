@@ -38,10 +38,12 @@
             <table id="reporte" class="table" style="width:100%">
                 <thead>
                 <tr>
-                <th>Fecha</th>
+                    <th>ID</th>
+                    <th>Fecha</th>
                 <th>Titulo</th>
                 <th>Sala</th>
-                <th>Hora</th>
+                    <th>Hora</th>
+                    <th>FechaF</th>
                 <th>Serie</th>
                     <th>Precio</th>
                     <th>Cantidad</th>
@@ -50,10 +52,10 @@
                 </thead>
                 <tbody>
                 <?php
-                $query=$this->db->query("SELECT f.idFuncion,date(b.fecha) as fec,
-                 concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
-                 concat('SALA ',nroSala) as nsala, horaInicio, serie, precio, count(*) as cant,
-                  (precio*count(*)) as total
+                $query=$this->db->query("SELECT f.idFuncion,date(b.fechaFuncion) as fec,
+                concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
+                 concat('SALA ',nroSala) as nsala, horaInicio,f.fecha as ff, serie,
+                  precio, count(*) as cant, (precio*count(*)) as total
                 FROM funcion f, pelicula p, tarifa t, boleto b, sala s,venta v
                 WHERE f.idPelicula=p.idPelicula
                 and f.idFuncion=b.idFuncion
@@ -62,14 +64,16 @@
                 and v.idVenta=b.idVenta
                 and v.tipoVenta='FACTURA'
                 and devuelto = 'NO'
-                and date(b.fecha)>='$fecha1' and date(b.fecha)<='$fecha2'
-                group by f.idFuncion order by fec");
+                and date(b.fechaFuncion)>='$fecha1' and date(b.fechaFuncion)<='$fecha2'
+                group by f.idFuncion order by fec asc,horaInicio asc");
                 foreach ($query->result() as $row){
                     echo "<tr>
+                    <td>$row->idFuncion</td>
                     <td>$row->fec</td>
                     <td>$row->titulo</td>
                     <td>$row->nsala</td>
                     <td>$row->horaInicio</td>
+                    <td>$row->ff</td>
                     <td>$row->serie</td>
                     <td>$row->precio</td>
                     <td>$row->cant</td>
