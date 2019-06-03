@@ -242,6 +242,7 @@ GROUP BY p.idPelicula,p.nombre
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
         <span>Tel: 591-25281290</span><br>
         <span>ORURO - BOLIVIA</span><br>
+        <span>TOTAL VENTA BOLETOS</span><br>
         <hr>
         ";
         
@@ -279,8 +280,114 @@ GROUP BY p.idPelicula,p.nombre
 
 } 
 
+public function pruebaRecImpresion(){
+    $fecha1=$_POST['fecha'];
+    $id=$_POST['id'];
+    $cadena='';
+    $cadena .= "
+    <style>.textoimp{ font-size: small; text-align: center;} 
+    .textor{ font-size: small; text-align: right;} 
+    .textmed{ font-size: small; text-align: left;}
+    table{border: 1px solid #000; text-align:center; align:center; } 
+    th,td{font-size: x-small;}
+    hr{border: 1px dashed ;}</style>
+    <div class='textoimp'>
+    <span>MULTISALAS S.R.L.</span><br>
+    <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+    <span>Tel: 591-25281290</span><br>
+    <span>ORURO - BOLIVIA</span><br>
+    <span>TOTAL RECIBO BOLETOS</span><br>
+    <hr>
+    ";
+    
+    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
+            $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
+            $nomuser=$query01->result()[0]->nombreUser;
 
+    $cadena.="Usuario:$nomuser<br>
+             <hr><br></div>
+             <center>
+             <table class='table'>
+             <thead>
+             <tr>
+            <th>PELICULA</th> <th>CANTIDAD</th><th>TOTAL</th></tr>
+            </thead><tbody>";
+            $total=0;
+            $query=$this->db->query("SELECT p.idPelicula,concat(p.nombre,' ',(if(formato=1,'3D','2D'))) as nomb,COUNT(*) 'cantidadb',SUM(b.costo) as total
+    FROM pelicula p 
+    INNER JOIN funcion f ON f.idPelicula=p.idPelicula
+    INNER JOIN boleto b ON b.idFuncion=f.idFuncion
+    INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
+    INNER JOIN usuario u ON u.idUsuario=b.idUsuario
+    WHERE b.idUsuario='$id'
+    AND  date(b.fecha)='$fecha1'
+    and tipoCompra='RECIBO'
+    GROUP BY p.idPelicula,p.nombre
+                    ");
+            foreach ($query->result() as $row){
+                $cadena.="<tr><td>".$row->nomb."</td><td>".$row->cantidadb."</td><td>".$row->total."</td></tr>";
+                $total=$total+$row->total;
+            }
+            $cadena.="</tbody></table></center>";
+            $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+            $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
+    echo $cadena;
 
+} 
+public function pruebaFactImpresion(){
+    $fecha1=$_POST['fecha'];
+    $id=$_POST['id'];
+    $cadena='';
+    $cadena .= "
+    <style>.textoimp{ font-size: small; text-align: center;} 
+    .textor{ font-size: small; text-align: right;} 
+    .textmed{ font-size: small; text-align: left;}
+    table{border: 1px solid #000; text-align:center; align:center; } 
+    th,td{font-size: x-small;}
+    hr{border: 1px dashed ;}</style>
+    <div class='textoimp'>
+    <span>MULTISALAS S.R.L.</span><br>
+    <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+    <span>Tel: 591-25281290</span><br>
+    <span>ORURO - BOLIVIA</span><br>
+    <span>TOTAL FACTURA BOLETOS</span><br>
+    <hr>
+    ";
+    
+    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
+            $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
+            $nomuser=$query01->result()[0]->nombreUser;
+
+    $cadena.="Usuario:$nomuser<br>
+             <hr><br></div>
+             <center>
+             <table class='table'>
+             <thead>
+             <tr>
+            <th>PELICULA</th> <th>CANTIDAD</th><th>TOTAL</th></tr>
+            </thead><tbody>";
+            $total=0;
+            $query=$this->db->query("SELECT p.idPelicula,concat(p.nombre,' ',(if(formato=1,'3D','2D'))) as nomb,COUNT(*) 'cantidadb',SUM(b.costo) as total
+    FROM pelicula p 
+    INNER JOIN funcion f ON f.idPelicula=p.idPelicula
+    INNER JOIN boleto b ON b.idFuncion=f.idFuncion
+    INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
+    INNER JOIN usuario u ON u.idUsuario=b.idUsuario
+    WHERE b.idUsuario='$id'
+    AND  date(b.fecha)='$fecha1'
+    and tipoCompra='FACTURA'
+    GROUP BY p.idPelicula,p.nombre
+                    ");
+            foreach ($query->result() as $row){
+                $cadena.="<tr><td>".$row->nomb."</td><td>".$row->cantidadb."</td><td>".$row->total."</td></tr>";
+                $total=$total+$row->total;
+            }
+            $cadena.="</tbody></table></center>";
+            $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+            $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
+    echo $cadena;
+
+} 
 
 public function imprimirCandy(){
     $fecha1=$_POST['fecha'];
@@ -395,7 +502,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
-        <span>RECIBO</span><br> 
+        <span>TOTAL VENTA</span><br> 
         <hr> 
         "; 
          
@@ -454,7 +561,86 @@ ORURO - BOLIVIA
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
-    } 
+    }
+
+    public function pruebaRecCandy(){ 
+        $fecha1=$_POST['fecha']; 
+        $id=$_POST['id']; 
+             
+        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        .textor{ font-size: small; text-align: right;}  
+        .textmed{ font-size: small; text-align: left;} 
+        table{border: 1px solid #000; text-align:center; align:center; }  
+        th,td{font-size: x-small;} 
+        hr{border: 1px dashed ;}</style> 
+        <div class='textoimp'> 
+        <span>MULTISALAS S.R.L.</span><br> 
+        <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
+        <span>Tel: 591-25281290</span><br> 
+        <span>ORURO - BOLIVIA</span><br> 
+        <span>RECIBO</span><br> 
+        <hr> 
+        "; 
+         
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
+                $query01=$this->db->query("SELECT * from usuario where idUsuario =$id"); 
+                $nomuser=$query01->result()[0]->nombreUser; 
+ 
+        $cadena.="Usuario:$nomuser<br> 
+                 <hr><br></div> 
+                 <center> 
+                 <table class='table'> 
+                 <thead> 
+                 <tr> 
+                <th>DESCRIPCION</th> <th>CANTIDAD</th><th>P.U.</th><th>TOTAL</th></tr> 
+                </thead><tbody>"; 
+        $total=0; 
+        $query2=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total 
+        from detalle d, combo c, ventacandy v 
+        where d.idCombo=c.idCombo 
+        and v.idVentaCandy=d.idVentaCandy 
+        and v.estado ='ACTIVO' 
+        and esCombo='SI' 
+        and tipoVenta='RECIBO' 
+        and date(fecha)='$fecha1' 
+        and d.idUsuario='$id' 
+        group by idCombo,nombreCombo ORDER BY nombreCombo asc"); 
+         
+        foreach ($query2->result() as $row){ 
+            //$printer->text( " $row->nombreCombo  $row->cant    $row->precioVenta    $row->total  \n"); 
+            $cadena.="<tr><td>$row->nombreCombo</td><td>$row->cant</td><td>$row->precioVenta</td><td>$row->total</td></tr>";  
+            $total=$total+$row->total; 
+        } 
+        $query=$this->db->query("SELECT p.idProducto,nombreProd,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total   
+        from detalle d, producto p, ventacandy v 
+        where d.idProducto=p.idProducto 
+        and v.idVentaCandy=d.idVentaCandy     
+        and v.estado ='ACTIVO' 
+        and esCombo='NO' 
+        and tipoVenta='RECIBO' 
+        and d.idUsuario='$id' 
+            and date(fecha)='$fecha1' group by p.idProducto,nombreProd 
+            order by nombreProd "); 
+                 
+        foreach ($query->result() as $row){ 
+             
+            $cadena.="<tr><td>$row->nombreProd</td><td>$row->cant</td><td>$row->precioVenta</td><td>$row->total</td></tr>";  
+            $total=$total+$row->total; 
+        } 
+        $cadena.="</tbody></table></center>"; 
+     
+        $total=number_format($total,2); 
+        $d = explode('.',$total); 
+        $entero=$d[0]; 
+        $decimal=$d[1]; 
+        $cadena.="<hr>"; 
+        $cadena.="<br>TOTAL: $total<br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+     
+        $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
+        echo $cadena; 
+    }
+
     public function pruebaFactCandy(){ 
         $fecha1=$_POST['fecha']; 
         $id=$_POST['id']; 
@@ -493,7 +679,7 @@ ORURO - BOLIVIA
         and v.idVentaCandy=d.idVentaCandy 
         and v.estado ='ACTIVO' 
         and esCombo='SI'
-        and tipoVenta='RECIBO' 
+        and tipoVenta='FACTURA' 
         and date(fecha)='$fecha1' 
         and d.idUsuario='$id' 
         group by idCombo,nombreCombo ORDER BY nombreCombo asc"); 
@@ -509,7 +695,7 @@ ORURO - BOLIVIA
         and v.idVentaCandy=d.idVentaCandy     
         and v.estado ='ACTIVO' 
         and esCombo='NO' 
-        and tipoVenta='RECIBO' 
+        and tipoVenta='FACTURA' 
         and d.idUsuario='$id' 
             and date(fecha)='$fecha1' group by p.idProducto,nombreProd 
             order by nombreProd "); 
