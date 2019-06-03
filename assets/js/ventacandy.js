@@ -352,6 +352,7 @@ $(function() {
             e.preventDefault();
         }
         else{
+            $('#cliente').modal('hide');
             var datos={
                 ci:$('#cinit').val(),
                 apellidos:$('#apellidos').val(),
