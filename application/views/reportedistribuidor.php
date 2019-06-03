@@ -68,19 +68,19 @@
                  $consulta.=", (select count(*) from boleto b6, funcion f6,venta v6 
                  where b6.idFuncion=f6.idFuncion and f6.idPelicula=p.idPelicula
                  and v6.idVenta=b6.idVenta and b6.devuelto='NO' and v6.tipoVenta='FACTURA'
-                 and WEEKDAY(date(b6.fecha))+1=$i and date(b6.fecha)>='$fecha1' and (b6.fecha)<='$fecha2') as d$i,
+                 and WEEKDAY(date(b6.fecha))+1=$i and date(b6.fechaFuncion)>='$fecha1' and (b6.fechaFuncion)<='$fecha2') as d$i,
                  (select if(sum(costo)>0,sum(costo),0) 
                  from boleto b6, funcion f6 ,venta v6
                  where b6.idFuncion=f6.idFuncion and f6.idPelicula=p.idPelicula
                  and v6.idVenta=b6.idVenta and b6.devuelto='NO' and v6.tipoVenta='FACTURA'
-                 and WEEKDAY(date(b6.fecha))+1=$i and date(b6.fecha)>='$fecha1' and (b6.fecha)<='$fecha2') as total$i ";
+                 and WEEKDAY(date(b6.fecha))+1=$i and date(b6.fechaFuncion)>='$fecha1' and (b6.fechaFuncion)<='$fecha2') as total$i ";
                  }
                  $consulta.="from funcion f,pelicula p, boleto b, distribuidor d
                 where f.idPelicula=p.idPelicula
                 and f.idFuncion = b.idFuncion
                 and d.idDistrib=p.idDistrib
                 and b.idCupon is null and b.tipoCompra='FACTURA'
-                and date(b.fecha)>='$fecha1' and (b.fecha)<='$fecha2'
+                and date(b.fechaFuncion)>='$fecha1' and (b.fechaFuncion)<='$fecha2'
                 group by p.idPelicula";
                 $query=$this->db->query($consulta);
                 foreach ($query->result() as $row){

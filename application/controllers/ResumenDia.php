@@ -378,6 +378,8 @@ ORURO - BOLIVIA
     $printer -> close();
     header("Location: ".base_url()."ResumenDia/diacandy");
     }
+
+
     public function pruebaCandy(){ 
         $fecha1=$_POST['fecha']; 
         $id=$_POST['id']; 
@@ -393,6 +395,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
+        <span>RECIBO</span><br> 
         <hr> 
         "; 
          
@@ -452,5 +455,81 @@ ORURO - BOLIVIA
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
     } 
-
+    public function pruebaFactCandy(){ 
+        $fecha1=$_POST['fecha']; 
+        $id=$_POST['id']; 
+             
+        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        .textor{ font-size: small; text-align: right;}  
+        .textmed{ font-size: small; text-align: left;} 
+        table{border: 1px solid #000; text-align:center; align:center; }  
+        th,td{font-size: x-small;} 
+        hr{border: 1px dashed ;}</style> 
+        <div class='textoimp'> 
+        <span>MULTISALAS S.R.L.</span><br> 
+        <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
+        <span>Tel: 591-25281290</span><br> 
+        <span>ORURO - BOLIVIA</span><br> 
+        <span>FACTURA</span><br> 
+        <hr> 
+        "; 
+         
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
+                $query01=$this->db->query("SELECT * from usuario where idUsuario =$id"); 
+                $nomuser=$query01->result()[0]->nombreUser; 
+ 
+        $cadena.="Usuario:$nomuser<br> 
+                 <hr><br></div> 
+                 <center> 
+                 <table class='table'> 
+                 <thead> 
+                 <tr> 
+                <th>DESCRIPCION</th> <th>CANTIDAD</th><th>P.U.</th><th>TOTAL</th></tr> 
+                </thead><tbody>"; 
+        $total=0; 
+        $query2=$this->db->query("SELECT c.idCombo,nombreCombo,precioVenta,sum(d.cantidad) as cant, (sum(cantidad)*c.precioVenta) as total 
+        from detalle d, combo c, ventacandy v 
+        where d.idCombo=c.idCombo 
+        and v.idVentaCandy=d.idVentaCandy 
+        and v.estado ='ACTIVO' 
+        and esCombo='SI'
+        and tipoVenta='RECIBO' 
+        and date(fecha)='$fecha1' 
+        and d.idUsuario='$id' 
+        group by idCombo,nombreCombo ORDER BY nombreCombo asc"); 
+         
+        foreach ($query2->result() as $row){ 
+            //$printer->text( " $row->nombreCombo  $row->cant    $row->precioVenta    $row->total  \n"); 
+            $cadena.="<tr><td>$row->nombreCombo</td><td>$row->cant</td><td>$row->precioVenta</td><td>$row->total</td></tr>";  
+            $total=$total+$row->total; 
+        } 
+        $query=$this->db->query("SELECT p.idProducto,nombreProd,sum(d.cantidad) as cant,precioVenta,(sum(d.cantidad)*precioVenta) as total   
+        from detalle d, producto p, ventacandy v 
+        where d.idProducto=p.idProducto 
+        and v.idVentaCandy=d.idVentaCandy     
+        and v.estado ='ACTIVO' 
+        and esCombo='NO' 
+        and tipoVenta='RECIBO' 
+        and d.idUsuario='$id' 
+            and date(fecha)='$fecha1' group by p.idProducto,nombreProd 
+            order by nombreProd "); 
+                 
+        foreach ($query->result() as $row){ 
+             
+            $cadena.="<tr><td>$row->nombreProd</td><td>$row->cant</td><td>$row->precioVenta</td><td>$row->total</td></tr>";  
+            $total=$total+$row->total; 
+        } 
+        $cadena.="</tbody></table></center>"; 
+     
+        $total=number_format($total,2); 
+        $d = explode('.',$total); 
+        $entero=$d[0]; 
+        $decimal=$d[1]; 
+        $cadena.="<hr>"; 
+        $cadena.="<br>TOTAL: $total<br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+     
+        $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
+        echo $cadena; 
+    } 
 }

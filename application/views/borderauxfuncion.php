@@ -50,8 +50,10 @@
                 </thead>
                 <tbody>
                 <?php
-                $query=$this->db->query("SELECT f.idFuncion,date(b.fecha) as fec,concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
-                 concat('SALA ',nroSala) as nsala, horaInicio, serie, precio, count(*) as cant, (precio*count(*)) as total
+                $query=$this->db->query("SELECT f.idFuncion,date(b.fecha) as fec,
+                 concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
+                 concat('SALA ',nroSala) as nsala, horaInicio, serie, precio, count(*) as cant,
+                  (precio*count(*)) as total
                 FROM funcion f, pelicula p, tarifa t, boleto b, sala s,venta v
                 WHERE f.idPelicula=p.idPelicula
                 and f.idFuncion=b.idFuncion
@@ -61,7 +63,7 @@
                 and v.tipoVenta='FACTURA'
                 and devuelto = 'NO'
                 and date(b.fecha)>='$fecha1' and date(b.fecha)<='$fecha2'
-                group by f.idFuncion,serie,precio order by fec");
+                group by f.idFuncion order by fec");
                 foreach ($query->result() as $row){
                     echo "<tr>
                     <td>$row->fec</td>

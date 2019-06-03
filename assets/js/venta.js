@@ -2,8 +2,11 @@ $('#fecfuncion').change(listado);
 $('#fecfuncion').change(function(){
     if($(this).prop('value') < new Date())
     bloqueobtn();
+    caltotalventa();
 }); 
+
 $(document).ready(listado());
+$(document).ready(caltotalventa());
 $(document).ready(valDosificacion());  
 $(document).ready(calculo());
 $(document).ready(VerificaDosificacion());
@@ -25,6 +28,27 @@ $('#btnAceptar').removeClass("disabled");
 
 }
 );
+function caltotalventa(){
+    param={'fecha':$('#fecfuncion').val() }
+        $.ajax({                        
+                        data:  param,
+                        url:   'VentaCtrl/totalventa',  
+                        type:  'post',
+                        beforeSend: function () {
+                                //$("#selecfun").html("Procesando, espere por favor... "+parametros['idpel']);
+                        },
+                        success:  function (response) {
+                           console.log(response);
+                          var datos=JSON.parse(response)[0];
+                          if($.isNumeric(datos.totalv))
+                          $('#tventa').html('Boletos : '+datos.totalv);
+                          else 
+                          $('#tventa').html('Boletos : 0');
+                      }
+                  }
+              ) 
+};
+
 function datosiniciales(){
     $('#lblEntradasDisponibles').html(0);
     $('#lblEntradasVendidas').html(0);
@@ -787,10 +811,24 @@ function boletos(idventa){
         url: 'VentaCtrl/imprimirboletos/'+idventa,
         success: async function (e) {
             var dato=JSON.parse(e);
+            var contador=0;
             for (var i=0;i<dato.length;i++) {
                 var idboleto = dato[i].idBoleto;
                 //  setTimeout(function(){
                 boleto(idboleto);
+                $.ajax({
+                    url: 'VentaCtrl/tienepromo/'+idboleto,
+                    success: async function (res) {
+                        var dat=JSON.parse(res);
+                        console.log(dat.promo);
+                        if(dat.promo == 'on')
+                        contador++;
+                        if(contador==2){
+                            promo(idventa);
+                            contador=0;
+                        }
+                    }})
+
                 //    console.log(dato[i]);
                 //},200);
 
@@ -816,6 +854,7 @@ function boleto(idboleto){
             myWindow.close();
         }
     });
+
     // $.ajax({
     //     url: 'VentaCtrl/tienepromo/'+idboleto,
     //     success: async function (e) {
@@ -823,6 +862,22 @@ function boleto(idboleto){
     //     }
     // });
 }
+
+function promo(idventa){
+                
+    $.ajax({
+        url: 'VentaCtrl/impPromo/'+idventa,
+        success: async function (resp) {
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(resp);
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+        }
+    });
+}
+
 $('#btnAceptar').click(function () {
     $('#cinit1').val('');
     $('#pago').val('');

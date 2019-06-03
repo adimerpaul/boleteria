@@ -147,14 +147,28 @@ function boletos(idventa){
         url: 'imprimirboletos/'+idventa,
         success: async function (e) {
             var dato=JSON.parse(e);
+            var contador=0;
             for (var i=0;i<dato.length;i++){
                 boleto(dato[i].idBoleto);
+                $.ajax({
+                    url: 'tienepromo/'+dato[i].idBoleto,
+                    success: async function (res) {
+                        var dat=JSON.parse(res);
+                        console.log(dat.promo);
+                        if(dat.promo == 'on')
+                        contador++;
+                        if(contador==2){
+                            promo(idventa);
+                            contador=0;
+                        }
+                    }})
             } ;
 
-            window.location.reload();
+            //window.location.reload();
         }
     });
 }
+
 function boleto(idboleto){
     $.ajax({
         url: 'impBoleto/'+idboleto,
@@ -169,4 +183,18 @@ function boleto(idboleto){
     });
 }
  
+function promo(idventa){
+                
+    $.ajax({
+        url: 'impPromo/'+idventa,
+        success: async function (resp) {
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(resp);
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+        }
+    });
+}
 

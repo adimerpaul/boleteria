@@ -149,6 +149,22 @@ $('#imprimirCandy').click(function(){
               myWindow.print();
               myWindow.close();
         }})
+        $.ajax({
+            data:  param,
+            url:   'pruebaFactCandy',
+            type:  'post',
+            beforeSend: function () {
+                //$("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response){
+                console.log(response);
+                var myWindow = window.open("", "myWindow", "width=200,height=100");
+                myWindow.document.write(response);
+                  myWindow.document.close();
+                  myWindow.focus();
+                  myWindow.print();
+                  myWindow.close();
+            }})
 });
 
 function calculototal(){

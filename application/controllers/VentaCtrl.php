@@ -392,10 +392,10 @@ WHERE idVenta='$idventa'");
         hr{border: 1px dashed ;}</style>
         <div class='textoimp'>
         <span>MULTISALAS S.R.L.</span><br>
+        <span>CASA MATRIZ</span><br>
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
         <span>Tel: 591-25281290</span><br>
         <span>ORURO - BOLIVIA</span><br>
-        <span>CASA MATRIZ</span><br>
         <hr>
         <span>FACTURA</span><br>
         <span>NIT: 329448023</span><br>
@@ -477,6 +477,7 @@ else $salida=$cancelado-$total;
 
 
     }
+
     function reimprimirfactura($idventa){
         $fecha=date('d/m/Y');
         $total=0;
@@ -512,10 +513,10 @@ WHERE idVenta='$idventa'");
         hr{border: 1px dashed ;}</style>
         <div class='textoimp'>
         <span>MULTISALAS S.R.L.</span><br>
+        <span>CASA MATRIZ</span><br>
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
         <span>Tel: 591-25281290</span><br>
         <span>ORURO - BOLIVIA</span><br>
-        <span>CASA MATRIZ</span><br>
         <hr>
         <span>FACTURA</span><br>
         <span>NIT: 329448023</span><br>
@@ -1071,13 +1072,14 @@ public function impBoleto($idboleto){
       
 }
 function tienepromo($idboleto){
-	    $query=$this->db->query("SELECT * FROM boleto WHERE idBoleto='$idboleto'");
-	    $idTarifa=$query->result_array()[0]->idTarifa;
-	    echo ("");
+	    $query=$this->db->query("SELECT * FROM boleto b,tarifa t WHERE idBoleto='$idboleto' and b.idTarifa=t.idTarifa");
+	    echo json_encode($query->result_array()[0]);
 }
-public function impPromo(){
 
-            $idventa=
+public function impPromo($idventa){
+    $query=$this->db->query("SELECT * FROM venta v, usuario u  
+    WHERE idVenta='$idventa' and v.idUsuario=u.idUsuario");
+            $row=$query->result()[0];
             $promo="<style>.textoimp{ font-size: 15px; text-align: center;} 
             .textp{ font-size: small; text-align: center;} 
             .textpeq{ font-size: small; text-align: left;}
@@ -1096,7 +1098,7 @@ public function impPromo(){
             $promo.="<hr>";
             $promo.="<div class='textpeq'>
                      Trans: ".$idventa."<br>
-                     Usuario: prueba<br></div><div>";
+                     Usuario: $row->user <br></div><div>";
             echo $promo;
 
 }
@@ -1282,6 +1284,15 @@ public function verifDosifcacion(){
     $row=$query->row();
     if ($query->num_rows() == 1) echo true;
     else echo false;
+}
+
+public function totalventa(){
+    $fecha=$_POST['fecha'];
+    $query=$this->db->query("SELECT count(*) as totalv FROM boleto b WHERE date(fecha)='$fecha' AND devuelto='NO'");
+    $row=$query->row();
+    $myObj=($query->result_array());
+
+    echo json_encode($myObj); 
 }
 
 }

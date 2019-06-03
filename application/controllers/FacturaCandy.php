@@ -156,7 +156,7 @@ class FacturaCandy extends CI_Controller {
     
         $printer -> setJustification(Printer::JUSTIFY_CENTER);
         $testStr = $qr;
-        $models = array(
+        $models = array(    
             Printer::QR_MODEL_2 => "ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY"
         );
         foreach ($models as $model => $name) {
@@ -320,10 +320,10 @@ class FacturaCandy extends CI_Controller {
             hr{border: 1px dashed ;}</style>
             <div class='textoimp margen'>
             <span>MULTISALAS S.R.L.</span><br>
+            <span>SUCURSAL No 2</span><br>
             <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
             <span>Tel: 591-25281290</span><br>
             <span>ORURO - BOLIVIA</span><br>
-            <span>SUCURSAL No 2</span><br>
             <hr>
             <span>FACTURA</span><br>
             <span>NIT: 329448023</span><br>
@@ -439,10 +439,10 @@ class FacturaCandy extends CI_Controller {
             hr{border: 1px dashed ;}</style>
             <div class='textoimp'>
             <span>MULTISALAS S.R.L.</span><br>
+            <span>SUCURSAL No 2</span><br>
             <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
             <span>Tel: 591-25281290</span><br>
             <span>ORURO - BOLIVIA</span><br>
-            <span>SUCURSAL No 2</span><br>
             <hr>
             ";
             $cadena.="<div class='textmed'>Fecha: $fecha<br>
@@ -498,7 +498,8 @@ class FacturaCandy extends CI_Controller {
     
     
             $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.</div></div>";
-    
+            $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
+            $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
             echo $cadena;
             exit;
     

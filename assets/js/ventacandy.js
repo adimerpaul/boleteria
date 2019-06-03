@@ -347,7 +347,7 @@ $(function() {
     });
 
     $('#cliente').submit(function (e) {
-        if($('#cambio').val()<0){
+        if($('#cambio').val()<0 && $('#temporal').html()==''){
             alert('Controlar el monto');
             e.preventDefault();
         }
@@ -401,7 +401,6 @@ $(function() {
                                 },
                                 
                             });
-                            //window.location.href='';
                         }
                             else {
                                 impDetalle(response);
@@ -410,6 +409,7 @@ $(function() {
                     });
                 }
             });
+            //window.location.href='';
             e.preventDefault();
         }
 
@@ -429,6 +429,7 @@ function impDetalle(id){
             myWindow.close();
             location.reload();
         }})
+    location.reload();
 };
 
 $('#cerrarventa').click(function(){
