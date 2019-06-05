@@ -425,9 +425,9 @@ $(function() {
 function impDetalle(id){
     $.ajax({
         url: 'FacturaCandy/imprimirinterno/'+id,
-        success: function (e) {
+        success: function (detalle) {
             myWindow = window.open("", "myWindow", "width=200,height=100");
-            myWindow.document.write(e);
+            myWindow.document.write(detalle);
             myWindow.document.close();
             myWindow.focus();
             myWindow.print();
