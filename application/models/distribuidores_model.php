@@ -13,13 +13,13 @@ class distribuidores_model extends CI_Model {
     {
         
         $distribuidor= [
-            'nombreDis'=> $this->input->post('nombre'),
-            'direccionDis'=> $this->input->post('direccion'),
-            'localidadDis'=> $this->input->post('localidad'),
+            'nombreDis'=> strtoupper($this->input->post('nombre')),
+            'direccionDis'=> strtoupper($this->input->post('direccion')),
+            'localidadDis'=> strtoupper($this->input->post('localidad')),
             'nit'=> $this->input->post('nit'),
             'telefonoDis'=> $this->input->post('telefono'),
             'email'=> $this->input->post('email'),
-            'responsable'=> $this->input->post('responsable')
+            'responsable'=> strtoupper($this->input->post('responsable'))
 
         ];
         return $this->db->insert("distribuidor",$distribuidor);
@@ -33,13 +33,13 @@ class distribuidores_model extends CI_Model {
     {
         $id=$this->input->post('idDistrib');
         $distribuidor= [
-            'nombreDis'=> $this->input->post('nombre'),
-            'direccionDis'=> $this->input->post('direccion'),
-            'localidadDis'=> $this->input->post('localidad'),
+            'nombreDis'=> strtoupper($this->input->post('nombre')),
+            'direccionDis'=> strtoupper($this->input->post('direccion')),
+            'localidadDis'=> strtoupper($this->input->post('localidad')),
             'nit'=> $this->input->post('nit'),
             'telefonoDis'=> $this->input->post('telefono'),
             'email'=> $this->input->post('email'),
-            'responsable'=> $this->input->post('responsable')
+            'responsable'=> ($this->input->post('responsable'))
 
         ];
         //$this->db->where('idDistrib',$id);

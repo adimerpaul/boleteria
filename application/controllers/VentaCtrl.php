@@ -184,6 +184,23 @@ class VentaCtrl extends CI_Controller {
         //eturn "aaa";
     }
 
+    public function updatecliente(){
+        $idcliente=$_POST['id'];
+        $nombre=strtoupper($_POST['nombre']);
+        $apellido=strtoupper($_POST['apellido']);
+        $email=$_POST['email'];
+        $telefono=$_POST['telefono'];
+        $cliente= [
+            'nombreCl'=> $nombre,
+            'apellidoCl'=> $apellido,
+            'email'=> $email,
+            'telefono'=> $telefono
+        ];
+        $this->db->where('idCliente',$idcliente);
+        $this->db->update("cliente",$cliente);
+        echo true;   
+    }
+    
     public function verdatoventa(){
         
         $idventa=$_POST['idventa'];

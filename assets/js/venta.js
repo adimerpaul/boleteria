@@ -697,8 +697,26 @@ $('#registrarVenta').click(function(){
             }
         })                    
     }
-    else
-    idcl=$('#idcliente').prop('value');
+    else{
+        var parame = {
+                "id":$('#idcliente').prop('value'),            
+                "nombre": $('#nombre').prop('value'),
+                "apellido": $('#apellido').prop('value'),
+                "email": $('#email').prop('value'),
+                "telefono":$('#telef').prop('value')
+            };
+            $.ajax({
+                data:  parame,
+                url:   'VentaCtrl/updatecliente',
+                type:  'post',
+                success:  function (response){
+                    //var datos=JSON.parse(response);
+                    console.log(response);
+                }
+            })                    
+    
+            idcl=$('#idcliente').prop('value');
+        }
     factCinit=$('#cinit').prop('value');
     var montoTotal=parseFloat($('#totalPre').html());
     var cancelado=0;

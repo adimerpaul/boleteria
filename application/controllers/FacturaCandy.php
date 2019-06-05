@@ -498,7 +498,7 @@ class FacturaCandy extends CI_Controller {
     
             $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bolivianos</div></div>";
             $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
-            $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
+            $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div></div>";
             echo $cadena;
             exit;
     

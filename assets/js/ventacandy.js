@@ -378,6 +378,10 @@ $(function() {
                         tipoVenta:tipoventa
                     }
                     //console.log(datos);
+                    $('#cinit').val('');
+                    $('#apellidos').val('');
+                    $('#nombres').val('');
+                    $('#montocliente').val('');
                     $.ajax({
                         type:'POST',
                         url:'VentaCandyCtrl/insertarVenta',
