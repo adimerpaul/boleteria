@@ -1297,4 +1297,11 @@ public function totalventa(){
     echo json_encode($myObj); 
 }
 
+public function datotarifa($id){
+    $query=$this->db->query("SELECT * FROM tarifa WHERE idTarifa = $id");
+    $row=$query->row();
+    $myObj=($query->result_array());
+    echo json_encode($myObj); 
+}
+
 }

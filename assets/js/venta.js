@@ -196,7 +196,8 @@ $("#selectable").selectable(
                                     datos.forEach(row => {
                                         cadenacosto=cadenacosto+'<li class="ui-widget-content" value="'+row.precio+'">'+row.serie+' => ' +row.precio+' Bs';
                                         cadenacosto=cadenacosto+'<input type=hidden value='+ row.serie+'>';
-                                        cadenacosto=cadenacosto+'<label hidden name="tarifa">'+row.idTarifa+'</label';
+                                        cadenacosto=cadenacosto+'<label hidden name="tarifa">'+row.idTarifa+'</label>';
+                                        cadenacosto=cadenacosto+'<span hidden name="tarifa">'+row.precio+'</span>';
                                         cadenacosto=cadenacosto+'</li>';
                                      }),
                
@@ -226,12 +227,11 @@ $("#selectable").selectable(
 $( "#selecfun" ).selectable();
 
 $('#lblCantidadEntradas').bind("DOMSubtreeModified",function(){
-    var tarifa=$('#selecost .ui-selected').prop('value');
+    var tarifa=parseFloat($('#selecost .ui-selected span').html());
     var valor=parseFloat($('#lblCantidadEntradas').html());
-    var total=valor*tarifa;
-    console.log(tarifa);
+    var total=(valor*tarifa);
+    $('#lblPrecio').html(total+'Bs');    
     
-    $('#lblPrecio').html(total+'Bs');
     if ($('#tabPreVenta tr').length > 0 || parseInt($('#lblCantidadEntradas').html())>0)
     
     $('#btnAgregar').removeClass("disabled");
@@ -297,7 +297,8 @@ function listado(){
 
                     },
                 })
-    }  ; 
+    }; 
+
     function bloqueobtn(){
         $('#btnEntradaMenos').addClass("disabled");
         $('#btnEntradaMas').addClass("disabled");
@@ -410,12 +411,13 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                              var total="";
                              var tarSerie=$('#selecost .ui-selected input').prop('value');
                              var idtar=$('#selecost .ui-selected label').html();
-                             var costo=$('#selecost .ui-selected').prop('value');
+                             var costo=$('#selecost .ui-selected span').html();
                              var codSala=$('#selecfun .ui-selected input').prop('value');
                              var fecfun=$('#fecfuncion').prop('value');
                              var idfunreg=$('#selecfun .ui-selected').prop('value');
                              var horafun=$('#selecfun .ui-selected label').html()+":00";
                              var pelicula=$('#selectable .ui-selected input').prop('value');
+                             
                              if(parseInt($('#totalentrada').html())==parseInt($('#numasignada').html())){
 
                              $('.lugar.asignado').each(function(){
@@ -956,4 +958,24 @@ function VerificaDosificacion(){
 
         }
     })
+}
+
+
+function datostarifa(idtarifa){
+    param={'idtarifa':idtarifa};
+    console.log(param);
+    $.ajax({
+        data: parm,
+        url: 'VentaCtrl/datotarifa/'+idtarifa, 
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            console.log(response);
+            var dato=JSON.parse(response)[0];
+            console.log(dato.precio);
+            
+        }
+    })
+
 }
