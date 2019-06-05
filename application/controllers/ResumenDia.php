@@ -231,13 +231,15 @@ public function pruebaImpresion(){
         $id=$_POST['id'];
         $cadena='';
         $cadena .= "
-        <style>.textoimp{ font-size: small; text-align: center;} 
+        <style>
+        .margen{padding: 0px 15px 0px 15px;}
+        .textoimp{ font-size: small; text-align: center;} 
         .textor{ font-size: small; text-align: right;} 
         .textmed{ font-size: small; text-align: left;}
-        table{border: 1px solid #000; text-align:center; align:center; } 
+        table{border: 1px solid #000; text-align:left; align:center; } 
         th,td{font-size: x-small;}
         hr{border: 1px dashed ;}</style>
-        <div class='textoimp'>
+        <div class='textoimp margen'>
         <span>MULTISALAS S.R.L.</span><br>
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
         <span>Tel: 591-25281290</span><br>
@@ -274,7 +276,7 @@ public function pruebaImpresion(){
                     $total=$total+$row->total;
                 }
                 $cadena.="</tbody></table></center>";
-                $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+                $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
                 $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
         echo $cadena;
 
@@ -285,13 +287,15 @@ public function pruebaRecImpresion(){
     $id=$_POST['id'];
     $cadena='';
     $cadena .= "
-    <style>.textoimp{ font-size: small; text-align: center;} 
+    <style>
+    .margen{padding: 0px 15px 0px 15px;}
+    .textoimp{ font-size: small; text-align: center;} 
     .textor{ font-size: small; text-align: right;} 
     .textmed{ font-size: small; text-align: left;}
-    table{border: 1px solid #000; text-align:center; align:center; } 
+    table{border: 1px solid #000; text-align:left; align:center; } 
     th,td{font-size: x-small;}
     hr{border: 1px dashed ;}</style>
-    <div class='textoimp'>
+    <div class='textoimp margen'>
     <span>MULTISALAS S.R.L.</span><br>
     <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
     <span>Tel: 591-25281290</span><br>
@@ -329,7 +333,7 @@ public function pruebaRecImpresion(){
                 $total=$total+$row->total;
             }
             $cadena.="</tbody></table></center>";
-            $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+            $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
             $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
     echo $cadena;
 
@@ -339,13 +343,15 @@ public function pruebaFactImpresion(){
     $id=$_POST['id'];
     $cadena='';
     $cadena .= "
-    <style>.textoimp{ font-size: small; text-align: center;} 
+    <style>
+    .margen{padding: 0px 15px 0px 15px;}
+    .textoimp{ font-size: small; text-align: center;} 
     .textor{ font-size: small; text-align: right;} 
     .textmed{ font-size: small; text-align: left;}
-    table{border: 1px solid #000; text-align:center; align:center; } 
+    table{border: 1px solid #000; text-align:left; align:center; } 
     th,td{font-size: x-small;}
     hr{border: 1px dashed ;}</style>
-    <div class='textoimp'>
+    <div class='textoimp margen'>
     <span>MULTISALAS S.R.L.</span><br>
     <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
     <span>Tel: 591-25281290</span><br>
@@ -383,7 +389,7 @@ public function pruebaFactImpresion(){
                 $total=$total+$row->total;
             }
             $cadena.="</tbody></table></center>";
-            $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+            $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
             $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
     echo $cadena;
 
@@ -393,13 +399,14 @@ public function todopruebaImpresion(){
     $fecha1=$_POST['fecha'];
     $cadena='';
     $cadena .= "
-    <style>.textoimp{ font-size: small; text-align: center;} 
+    <style>    .margen{padding: 0px 15px 0px 15px;}
+    .textoimp{ font-size: small; text-align: center;} 
     .textor{ font-size: small; text-align: right;} 
     .textmed{ font-size: small; text-align: left;}
-    table{border: 1px solid #000; text-align:center; align:center; } 
+    table{border: 1px solid #000; text-align:left; align:center; } 
     th,td{font-size: x-small;}
     hr{border: 1px dashed ;}</style>
-    <div class='textoimp'>
+    <div class='textoimp margen'>
     <span>MULTISALAS S.R.L.</span><br>
     <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
     <span>Tel: 591-25281290</span><br>
@@ -433,7 +440,7 @@ public function todopruebaImpresion(){
                 $total=$total+$row->total;
             }
             $cadena.="</tbody></table></center>";
-            $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+            $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
             $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
     echo $cadena;
 
@@ -443,13 +450,15 @@ public function todopruebaRecImpresion(){
 $fecha1=$_POST['fecha'];
 $cadena='';
 $cadena .= "
-<style>.textoimp{ font-size: small; text-align: center;} 
+<style>
+.margen{padding: 0px 15px 0px 15px;}
+.textoimp{ font-size: small; text-align: center;} 
 .textor{ font-size: small; text-align: right;} 
 .textmed{ font-size: small; text-align: left;}
-table{border: 1px solid #000; text-align:center; align:center; } 
+table{border: 1px solid #000; text-align:left; align:center; } 
 th,td{font-size: x-small;}
 hr{border: 1px dashed ;}</style>
-<div class='textoimp'>
+<div class='textoimp margen'>
 <span>MULTISALAS S.R.L.</span><br>
 <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
 <span>Tel: 591-25281290</span><br>
@@ -484,7 +493,7 @@ GROUP BY p.idPelicula,p.nombre
             $total=$total+$row->total;
         }
         $cadena.="</tbody></table></center>";
-        $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+        $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
 echo $cadena;
 
@@ -493,13 +502,15 @@ public function todopruebaFactImpresion(){
 $fecha1=$_POST['fecha'];
 $cadena='';
 $cadena .= "
-<style>.textoimp{ font-size: small; text-align: center;} 
+<style>
+.margen{padding: 0px 15px 0px 15px;}
+.textoimp{ font-size: small; text-align: center;} 
 .textor{ font-size: small; text-align: right;} 
 .textmed{ font-size: small; text-align: left;}
-table{border: 1px solid #000; text-align:center; align:center; } 
+table{border: 1px solid #000; text-align:left; align:center; } 
 th,td{font-size: x-small;}
 hr{border: 1px dashed ;}</style>
-<div class='textoimp'>
+<div class='textoimp margen'>
 <span>MULTISALAS S.R.L.</span><br>
 <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
 <span>Tel: 591-25281290</span><br>
@@ -534,7 +545,7 @@ GROUP BY p.idPelicula,p.nombre
             $total=$total+$row->total;
         }
         $cadena.="</tbody></table></center>";
-        $cadena.= "<br><div class=''>TOTAL: $total</div><br>";
+        $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
 echo $cadena;
 
@@ -642,13 +653,15 @@ ORURO - BOLIVIA
         $fecha1=$_POST['fecha']; 
         $id=$_POST['id']; 
              
-        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        $cadena="<style>
+        .margen{padding: 0px 15px 0px 15px;}        
+        .textoimp{ font-size: small; text-align: center;}  
         .textor{ font-size: small; text-align: right;}  
         .textmed{ font-size: small; text-align: left;} 
-        table{border: 1px solid #000; text-align:center; align:center; }  
+        table{border: 1px solid #000; text-align:left; align:center; }  
         th,td{font-size: x-small;} 
         hr{border: 1px dashed ;}</style> 
-        <div class='textoimp'> 
+        <div class='textoimp margen'> 
         <span>MULTISALAS S.R.L.</span><br> 
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
@@ -707,8 +720,8 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br>TOTAL: $total<br>"; 
-        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
@@ -718,13 +731,15 @@ ORURO - BOLIVIA
         $fecha1=$_POST['fecha']; 
         $id=$_POST['id']; 
              
-        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        $cadena="<style>
+        .margen{padding: 0px 15px 0px 15px;}        
+        .textoimp{ font-size: small; text-align: center;}  
         .textor{ font-size: small; text-align: right;}  
         .textmed{ font-size: small; text-align: left;} 
-        table{border: 1px solid #000; text-align:center; align:center; }  
+        table{border: 1px solid #000; text-align:left; align:center; }  
         th,td{font-size: x-small;} 
         hr{border: 1px dashed ;}</style> 
-        <div class='textoimp'> 
+        <div class='textoimp margen'> 
         <span>MULTISALAS S.R.L.</span><br> 
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
@@ -785,8 +800,8 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br>TOTAL: $total<br>"; 
-        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
@@ -796,13 +811,15 @@ ORURO - BOLIVIA
         $fecha1=$_POST['fecha']; 
         $id=$_POST['id']; 
              
-        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        $cadena="<style>
+        .margen{padding: 0px 15px 0px 15px;}        
+        .textoimp{ font-size: small; text-align: center;}  
         .textor{ font-size: small; text-align: right;}  
         .textmed{ font-size: small; text-align: left;} 
-        table{border: 1px solid #000; text-align:center; align:center; }  
+        table{border: 1px solid #000; text-align:left; align:center; }  
         th,td{font-size: x-small;} 
         hr{border: 1px dashed ;}</style> 
-        <div class='textoimp'> 
+        <div class='textoimp margen'> 
         <span>MULTISALAS S.R.L.</span><br> 
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
@@ -863,8 +880,8 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br>TOTAL: $total<br>"; 
-        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
@@ -873,13 +890,15 @@ ORURO - BOLIVIA
     public function todopruebaCandy(){ 
         $fecha1=$_POST['fecha']; 
              
-        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        $cadena="<style>
+        .margen{padding: 0px 15px 0px 15px;}
+        .textoimp{ font-size: small; text-align: center;}  
         .textor{ font-size: small; text-align: right;}  
         .textmed{ font-size: small; text-align: left;} 
-        table{border: 1px solid #000; text-align:center; align:center; }  
+        table{border: 1px solid #000; text-align:left; align:center; }  
         th,td{font-size: x-small;} 
         hr{border: 1px dashed ;}</style> 
-        <div class='textoimp'> 
+        <div class='textoimp margen'> 
         <span>MULTISALAS S.R.L.</span><br> 
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
@@ -934,8 +953,8 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br>TOTAL: $total<br>"; 
-        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
@@ -944,13 +963,15 @@ ORURO - BOLIVIA
     public function todopruebaRecCandy(){ 
         $fecha1=$_POST['fecha']; 
              
-        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        $cadena="<style>
+        .margen{padding: 0px 15px 0px 15px;}
+        .textoimp{ font-size: small; text-align: center;}  
         .textor{ font-size: small; text-align: right;}  
         .textmed{ font-size: small; text-align: left;} 
-        table{border: 1px solid #000; text-align:center; align:center; }  
+        table{border: 1px solid #000; text-align:left; align:center; }  
         th,td{font-size: x-small;} 
         hr{border: 1px dashed ;}</style> 
-        <div class='textoimp'> 
+        <div class='textoimp margen'> 
         <span>MULTISALAS S.R.L.</span><br> 
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
@@ -1007,8 +1028,8 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br>TOTAL: $total<br>"; 
-        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos.<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
@@ -1017,13 +1038,15 @@ ORURO - BOLIVIA
     public function todopruebaFactCandy(){ 
         $fecha1=$_POST['fecha']; 
              
-        $cadena="<style>.textoimp{ font-size: small; text-align: center;}  
+        $cadena="<style>
+        .margen{padding: 0px 15px 0px 15px;}
+        .textoimp{ font-size: small; text-align: center;}  
         .textor{ font-size: small; text-align: right;}  
         .textmed{ font-size: small; text-align: left;} 
-        table{border: 1px solid #000; text-align:center; align:center; }  
+        table{border: 1px solid #000; text-align:left; align:center; }  
         th,td{font-size: x-small;} 
         hr{border: 1px dashed ;}</style> 
-        <div class='textoimp'> 
+        <div class='textoimp margen'> 
         <span>MULTISALAS S.R.L.</span><br> 
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
@@ -1080,8 +1103,8 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br>TOTAL: $total<br>"; 
-        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bs.<br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 

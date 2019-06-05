@@ -119,7 +119,7 @@ $('#fecini').change(function(){
               $("#exampleModal").modal('hide');
               if ($('#tipoventa').html()=='FACTURA'){
                   $.ajax({
-                      url: 'reimprimirfactura/'+idventa,
+                      url: 'imprimirfactura/'+idventa,
                       success: async function (e) {
                           var myWindow = window.open("", "myWindow", "width=200,height=100");
                           var te= await e;

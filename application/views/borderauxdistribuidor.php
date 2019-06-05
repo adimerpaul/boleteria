@@ -90,7 +90,7 @@
                                 where t.idTarifa = b.idTarifa
                                 and b.idFuncion=f.idFuncion
                                 and f.idPelicula = $pelicula
-                                and date(b.fecha) ='$fecconsulta' 
+                                and date(b.fecha) ='$fecconsulta' and b.tipoCompra='FACTURA'
                                 and devuelto = 'NO' and idCupon is null and t.idTarifa=".$series[$j].") as t".$j;
                                }
                                $consulta.=" from dual ";

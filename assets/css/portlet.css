@@ -30,7 +30,7 @@
 }
 
 .pnumero{  
-  position: absolute;
+  position: relative;
   bottom: 0;
   right: 0;
   margin-bottom: 0;
@@ -45,11 +45,11 @@
 }
 
 .ptipo{  
-  position: absolute;
-
-  bottom: 0px;
-  left: 10px;
-  font-size: 15px;
+  position: relative;
+  text-align: left;
+  top: 10px;
+  right: 0px;
+  font-size: 20px;
   color: #ffffff;
 }
 .detalle
@@ -57,11 +57,10 @@
   position: relative;
   bottom: 0px;
   width: 100%;
-  height: 70%;
 
 }
 .titulo{
-  position: absolute;
+  position: relative;
   width: 150px; height: 120px; 
 }
 

@@ -189,8 +189,11 @@
                     <th>Lunes</th>
                     <th>Martes</th>
                     <th>Miercoles</th>
-                    <th>Total</th>
-                    <th>Ingreso</th>
+                    <th>TotalF</th>
+                    <th>IngresoF</th>
+                    <th>TotalR</th>
+                    <th>IngresoR</th>
+                    
                 </tr>
             </thead>
             <tbody id="tabPelicula">

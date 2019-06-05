@@ -52,7 +52,7 @@
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
                             WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
                             AND WEEKDAY(date(b1.fecha))+1=4
-                            AND p1.idPelicula=p.idPelicula
+                            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as jueves,
                 (SELECT count(*)
                             FROM boleto b1  
@@ -60,7 +60,7 @@
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
                             WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
                             AND WEEKDAY(date(b1.fecha))+1=5
-                            AND p1.idPelicula=p.idPelicula
+                            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as viernes,
                 (SELECT count(*)
                             FROM boleto b1  
@@ -68,7 +68,7 @@
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
                             WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
                             AND WEEKDAY(date(b1.fecha))+1=6
-                            AND p1.idPelicula=p.idPelicula
+                            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as sabado,
                 (SELECT count(*)
                             FROM boleto b1  
@@ -76,7 +76,7 @@
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
                             WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
                             AND WEEKDAY(date(b1.fecha))+1=7
-                            AND p1.idPelicula=p.idPelicula
+                            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as domingo,
                 (SELECT count(*)
                             FROM boleto b1  
@@ -84,7 +84,7 @@
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
                             WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
                             AND WEEKDAY(date(b1.fecha))+1=1
-                            AND p1.idPelicula=p.idPelicula
+                            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as lunes,
                 (SELECT count(*)
                             FROM boleto b1  
@@ -92,7 +92,7 @@
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
                             WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
                             AND WEEKDAY(date(b1.fecha))+1=2
-                            AND p1.idPelicula=p.idPelicula
+                            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as martes,
                 (SELECT count(*)
                             FROM boleto b1  
@@ -100,7 +100,7 @@
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
                             WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
                             AND WEEKDAY(date(b1.fecha))+1=3
-                            AND p1.idPelicula=p.idPelicula
+                            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as miercoles,
                 (select sum(precio)
                 from funcion f1, boleto b1, tarifa t
@@ -114,7 +114,7 @@
                 WHERE f.idPelicula = p.idPelicula
                 and b.idFuncion = f.idFuncion
                 and b.fecha>='$fecha1' and b.fecha<='$fecha2'
-                and devuelto ='NO'
+                and devuelto ='NO' and b.idCupon is null
                 group by p.idPelicula order by total desc ");
                  $i=0;
                 $jueves=0;

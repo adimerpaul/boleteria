@@ -79,7 +79,7 @@
                 where f.idPelicula=p.idPelicula
                 and f.idFuncion = b.idFuncion
                 and d.idDistrib=p.idDistrib
-                and b.idCupon is null and b.tipoCompra='FACTURA'
+                and b.idCupon is null and b.tipoCompra='FACTURA' and b.devuelto='NO'
                 and date(b.fechaFuncion)>='$fecha1' and (b.fechaFuncion)<='$fecha2'
                 group by p.idPelicula";
                 $query=$this->db->query($consulta);

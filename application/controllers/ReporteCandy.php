@@ -136,7 +136,7 @@ class ReporteCandy extends CI_Controller {
     public function detalleventa(){
         $idventa=$_POST['idventacandy'];
         $query=$this->db->query("SELECT nombreP,cantidad,pUnitario,(cantidad * pUnitario) as subtotal 
-                                 from detalle where idVentaCandy=$idventa");  
+                                 from detalle d, ventacandy v where v.idVentaCandy=$idventa and v.idVentaCandy=d.idVentaCandy");  
                                        $row=$query->row();
                          $myObj=($query->result_array());
                          echo json_encode($myObj);  

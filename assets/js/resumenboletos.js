@@ -184,8 +184,10 @@ function llenartabla(){
                 semana+="<td>"+row.lunes+"</td>";
                 semana+="<td>"+row.martes+"</td>";
                 semana+="<td>"+row.miercoles+"</td>";
-                semana+="<td>"+row.total+"</td>";
-                semana+="<td>"+row.ingreso+"</td>";
+                semana+="<td>"+row.totalF+"</td>";
+                semana+="<td>"+row.ingresoF+"</td>";
+                semana+="<td>"+row.totalR+"</td>";
+                semana+="<td>"+row.ingresoR+"</td>";
                 semana+="</tr>";
                 arraySerie.push({
                     name: row.titulo,

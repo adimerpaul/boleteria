@@ -390,7 +390,8 @@ WHERE idVenta='$idventa'");
         table{border: 1px solid #000; text-align:center; align:center; } 
         th,td{font-size: x-small;}
         hr{border: 1px dashed ;}</style>
-        <div class='textoimp'>
+
+        <div class='textoimp margen'>
         <span>MULTISALAS S.R.L.</span><br>
         <span>CASA MATRIZ</span><br>
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
@@ -399,11 +400,11 @@ WHERE idVenta='$idventa'");
         <hr>
         <span>FACTURA</span><br>
         <span>NIT: 329448023</span><br>
-        <span>NRO FACTURA:$nrocomprobante</span><br>
-        <span>NRO AUTORIZACION: $nroautorizacion</span><br>
+        <span>Nro FACTURA:$nrocomprobante</span><br>
+        <span>Nro AUTORIZACION: $nroautorizacion</span><br>
         <hr>
         ";
-        $cadena.="<div class='textmed margen '>Fecha: $fecha<br>
+        $cadena.="<div class='textmed'>Fecha: $fecha<br>
         Señor(es): $nombre $apellido <br>
         NIT/CI: $ci <br>
         <hr>
@@ -446,10 +447,10 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
         $cadena.=("TOTAL: $total Bs.</div>");
 
 
-        $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.</div> 
+        $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bolivianos 
 <hr>
 Cod. de Control: $codigocontrol <br> 
-Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br>";
+Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
 
 
 //        $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
@@ -470,7 +471,7 @@ $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
 if(($cancelado-$total)<0)
 $salida=0;
 else $salida=$cancelado-$total;
-        $cadena.="<div class='textmed'> <span> CAMBIO: ".($salida)."</span></div>";
+        $cadena.="<div class='textmed'> <span> VUELTO: ".($salida)."</span></div>";
 
         echo $cadena;
         exit;
@@ -1057,15 +1058,15 @@ public function impBoleto($idboleto){
                 } else {
                     $for = "2D";
                 }
-                $cadBoleto="<div align='center'>";
+                $cadBoleto="<div align='center' style='padding: 0px 15px 0px 15px;'>";
                 $cadBoleto.="MULTISALAS S.R.L. <br>"  ;
                 $cadBoleto.="<small >NIT:329448023</small>";
                 $cadBoleto.="<hr>";
-                $cadBoleto.="<div style='font-size: 17px'>$row->titulo<br> $row->nombreSala </div>";
-                $cadBoleto.=" <div>Fecha:&nbsp; $row->fechaFuncion &nbsp;&nbsp;&nbsp; Bs.&nbsp; $row->precio</div>";
-                $cadBoleto.="<div style='font-size: 17px'>Butaca:$row->letra $row->columna Hora: ".substr( $row->horaFuncion,0,5). "</div>";
+                $cadBoleto.="<div style='font-size: 22px'>$row->titulo<br> $row->nombreSala </div>";
+                $cadBoleto.=" <div>Fecha:&nbsp; <span style='font-size: 22px;'>$row->fechaFuncion</span> &nbsp;&nbsp;&nbsp; Bs.&nbsp; $row->precio</div>";
+                $cadBoleto.="<div style='font-size: 17px'>Butaca:<span style='font-size:22px;'>$row->letra - $row->columna</span> Hora: <span style='font-size:22px;'>".substr( $row->horaFuncion,0,5). "</span></div>";
                 $cadBoleto.="<hr>";
-                $cadBoleto.="<div style='font-size: 12px'>Cod:&nbsp;".$row->numboc . "<br>
+                $cadBoleto.="<div style='font-size: 12px' align='left'>Cod:&nbsp;".$row->numboc . "<br>
                             Trans:&nbsp; ".$row->idVenta."<br>
                             Usuario: &nbsp;".$row->nombreUser."<br></div></div>";
                 echo $cadBoleto;
@@ -1080,13 +1081,14 @@ public function impPromo($idventa){
     $query=$this->db->query("SELECT * FROM venta v, usuario u  
     WHERE idVenta='$idventa' and v.idUsuario=u.idUsuario");
             $row=$query->result()[0];
-            $promo="<style>.textoimp{ font-size: 15px; text-align: center;} 
+            $promo="<style>.margen{padding: 0px 15px 0px 15px;}
+            .textoimp{ font-size: 15px; text-align: center;} 
             .textp{ font-size: small; text-align: center;} 
             .textpeq{ font-size: small; text-align: left;}
             table{border: 1px solid #000; text-align:center; align:center; } 
             th,td{font-size: x-small;}
             hr{border: 1px dashed ;}</style>
-            <div class='textoimp'>
+            <div class='textoimp margen'>
             <div>";
             $promo.="MULTISALAS S.R.L.<br>";
             $promo.="<div class='textp'>NIT:329448023</div>";

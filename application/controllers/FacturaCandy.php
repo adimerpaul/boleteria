@@ -327,8 +327,8 @@ class FacturaCandy extends CI_Controller {
             <hr>
             <span>FACTURA</span><br>
             <span>NIT: 329448023</span><br>
-            <span>NRO FACTURA:$nrocomprobante</span><br>
-            <span>NRO AUTORIZACION: $nroautorizacion</span><br>
+            <span>Nro FACTURA:$nrocomprobante</span><br>
+            <span>Nro AUTORIZACION: $nroautorizacion</span><br>
             <hr>
             ";
             $cadena.="<div class='textmed'>Fecha: $fecha<br>
@@ -384,8 +384,9 @@ class FacturaCandy extends CI_Controller {
             $cadena.=("TOTAL: $total Bs.</div>");
     
     
-            $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs. 
+            $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bolivianos</div> 
     <hr>
+    <div class='textmed'>
     Cod. de Control: $codigocontrol <br> 
     Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
     
@@ -437,16 +438,14 @@ class FacturaCandy extends CI_Controller {
             table{border: 0px solid #000; text-align:center; align:center; } 
             th,td{font-size: small;}
             hr{border: 1px dashed ;}</style>
-            <div class='textoimp'>
+            <div class='textoimp margen'>
             <span>MULTISALAS S.R.L.</span><br>
             <span>SUCURSAL No 2</span><br>
-            <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
-            <span>Tel: 591-25281290</span><br>
             <span>ORURO - BOLIVIA</span><br>
             <hr>
             ";
             $cadena.="<div class='textmed'>Fecha: $fecha<br>
-                  Usuario: ".$_SESSION['nombre']."<br>;
+                  Usuario: ".$_SESSION['nombre']."
             <hr>";
                 
         $query1=$this->db->query("SELECT p.idProducto, nombreProd ,sum(d.cantidad) as cant, precioVenta, (sum(d.cantidad) * precioVenta) as total
@@ -497,7 +496,7 @@ class FacturaCandy extends CI_Controller {
             $cadena.=("TOTAL: $total Bs.</div>");
     
     
-            $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.</div></div>";
+            $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bolivianos</div></div>";
             $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
             $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
             echo $cadena;
