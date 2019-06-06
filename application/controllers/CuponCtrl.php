@@ -83,8 +83,8 @@ class CuponCtrl extends CI_Controller{
         $html= '<table>';
         foreach($query->result() as $row){
             $html=$html. '<tr>
-                    <td width="50"> Id='.$row->idsubcupon.'</td>
-                    <td width="120" >Fecha= '.substr($row->fecha,0,10).'</td>
+                    <td width="120" >FecV= '.substr($row->fechaFin,0,10).'</td>
+                    <td width="120" >Cod= '.date('Ymd',strtotime($row->fecha)).'-'.$row->idsubcupon.'</td>
                 </tr><tr><td></td><td></td></tr>';
         }
         $html=$html.'</table>';
