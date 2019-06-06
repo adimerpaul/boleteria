@@ -398,7 +398,7 @@ class FacturaCandy extends CI_Controller {
     $cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
     $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
     $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
-            $cadena.="<div class='textmed'> <span> CAMBIO: ".($cancelado-$total)."</span></div></div>";
+            $cadena.="<div class='textmed'> <span> VUELTO: ".($cancelado-$total)."</span></div></div>";
     
             echo $cadena;
             exit;
