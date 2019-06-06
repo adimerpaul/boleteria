@@ -13,7 +13,7 @@ class sala_model extends CI_Model {
     {
         $sala= [
             'nroSala'=> $this->input->post('nroSala'),
-            'nombreSala'=> $this->input->post('nombreSala'),
+            'nombreSala'=>  strtoupper($this->input->post('nombreSala')),
             'nroFila'=> $this->input->post('nroFila'),
             'nroColumna'=> $this->input->post('nroColumna'),
             'capacidad'=> $this->input->post('capacidad')
@@ -41,7 +41,7 @@ class sala_model extends CI_Model {
     public function update(){
         $sala= [
             'nroSala'=> $this->input->post('nroSala'),
-            'nombreSala'=> $this->input->post('nombreSala'),
+            'nombreSala'=>  strtoupper($this->input->post('nombreSala')),
             'capacidad'=> $this->input->post('capacidad')
         ];
         $idsala=$this->input->post('idSala');

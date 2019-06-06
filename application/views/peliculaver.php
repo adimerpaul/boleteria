@@ -78,7 +78,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nom">Nombre : </label>
-      <input type="text" class="form-control" id="nom" name="nom" required>
+      <input type="text" class="form-control text-uppercase" id="nom" name="nom" required>
       <input type="hidden"  id="idpelicula" name="idpelicula" required>
     </div>
   </div>
@@ -89,7 +89,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="origen">Pais Origen: </label>
-      <input type="text" class="form-control" id="origen" name="origen">
+      <input type="text" class="form-control text-uppercase" id="origen" name="origen">
     </div>
   </div>
 

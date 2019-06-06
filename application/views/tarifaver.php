@@ -81,7 +81,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Pelicula</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Tarifa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -91,7 +91,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="serie">Serie:</label>   
-      <input type="text" class="form-control" id="serie" name="serie"  required>  
+      <input type="text" class="form-control text-uppercase" id="serie" name="serie"  required>  
       <input type="hidden" id="idtarifa" name="idtarifa">
     </div>
     <div class="form-group col-md-6">
@@ -102,7 +102,7 @@
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="descrip">Descripcion:</label>   
-      <input type="text" class="form-control" id="descrip" name="descrip">  
+      <input type="text" class="form-control text-uppercase" id="descrip" name="descrip">  
     </div>
 
   </div>

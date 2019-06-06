@@ -71,8 +71,8 @@ WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
 
     public function store(){
         $usuario= [
-            'nombreUser'=> $this->input->post('nombre'),
-            'user'=> $this->input->post('textuser'),
+            'nombreUser'=>  strtoupper($this->input->post('nombre')),
+            'user'=>  strtoupper($this->input->post('textuser')),
             'password'=> $this->input->post('pass')
             
         ];
@@ -101,7 +101,7 @@ WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
     public function updateUS(){
         $id=$this->input->post('idusuario1');
         $usuario= [
-            'nombreUser'=> $this->input->post('nombre')            
+            'nombreUser'=>  strtoupper($this->input->post('nombre'))
         ];
         $this->db->where('idUsuario',$id);
         return $this->db->update("usuario",$usuario);

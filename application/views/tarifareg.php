@@ -13,7 +13,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="serie">Serie:</label>   
-      <input type="text" class="form-control" id="serie" name="serie"  required>  
+      <input type="text" class="form-control text-uppercase" id="serie" name="serie"  required>  
     </div>
     <div class="form-group col-md-6">
       <label for="precio">Precio: </label>
@@ -23,7 +23,7 @@
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="descrip">Descripcion:</label>   
-      <input type="text" class="form-control" id="descrip" name="descrip">  
+      <input type="text" class="form-control text-uppercase" id="descrip" name="descrip">  
     </div>
 
   </div>

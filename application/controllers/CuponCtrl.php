@@ -32,7 +32,7 @@ class CuponCtrl extends CI_Controller{
     }
     public  function store(){
         $fechafin=$_POST['fechafin'];
-        $motivo=$_POST['motivo'];
+        $motivo= strtoupper($_POST['motivo']);
 
         $this->db->query("INSERT INTO cupon(fechafin,motivo,idusuario) VALUES('$fechafin','$motivo','".$_SESSION['idUs']."')");
         $idcupon=$this->db->insert_id();

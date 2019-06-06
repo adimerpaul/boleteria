@@ -66,7 +66,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Registrar Producto</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Registro Producto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -77,13 +77,13 @@
 <div class="form-row">
   <div class="form-group col-md-6">
     <label for="nombre">Nombre : </label>
-    <input type="text" class="form-control" id="nombre" name="nombre" required>
+    <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>
     <input type="hidden" id="burl" value="<?php echo base_url();?>">      
   </div>
 
   <div class="form-group col-md-6">
     <label for="desc">Descripcion : </label>
-    <textarea class="form-control" rows="3" cols="" id="desc" name="desc"></textarea>      
+    <textarea class="form-control text-uppercase" rows="3" cols="" id="desc" name="desc"></textarea>      
     
   </div>
 </div>
@@ -197,7 +197,7 @@
   <div class="modal-dialog  modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Preferencia</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Producto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -209,14 +209,14 @@
 <div class="form-row">
   <div class="form-group col-md-6">
     <label for="upnombre">Nombre : </label>
-    <input type="text" class="form-control" id="upnombre" name="upnombre" required>
+    <input type="text" class="form-control text-uppercase" id="upnombre" name="upnombre" required>
     <input type="hidden" id="idproducto" name="idproducto" required>
     <input type="hidden" id="burl" value="<?php echo base_url();?>">      
   </div>
 
   <div class="form-group col-md-6">
     <label for="updesc">Descripcion : </label>
-    <textarea class="form-control" rows="3" cols="" id="updesc" name="updesc"></textarea>      
+    <textarea class="form-control text-uppercase" rows="3" cols="" id="updesc" name="updesc"></textarea>      
     
   </div>
 </div>

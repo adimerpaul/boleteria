@@ -73,7 +73,7 @@
                     <div class="form-group row">
                         <label for="motivo" class="col-sm-2 col-form-label">Motivo</label>
                         <div class="col-sm-10">
-                            <input type="text" name="motivo" required class="form-control" id="motivo" placeholder="Motivo">
+                            <input type="text" name="motivo" required class="form-control text-uppercase" id="motivo" placeholder="Motivo">
                         </div>
                     </div>
                     <div class="form-group row">

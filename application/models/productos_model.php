@@ -17,8 +17,8 @@ class productos_model extends CI_Model {
         else
         $activo="off";
         $producto= [
-            'nombreProd'=> $this->input->post('nombre'),
-            'descripcion'=> $this->input->post('desc'),
+            'nombreProd'=> strtoupper($this->input->post('nombre')),
+            'descripcion'=> strtoupper($this->input->post('desc')),
             'precioCosto'=> $this->input->post('pcosto'),            
             'precioVenta'=> $this->input->post('pventa'),            
             'utilidad'=> $this->input->post('utl'),
@@ -52,8 +52,8 @@ class productos_model extends CI_Model {
         else
         $activo="off";
         $producto= [
-            'nombreProd'=> $this->input->post('upnombre'),
-            'descripcion'=> $this->input->post('updesc'),
+            'nombreProd'=>  strtoupper($this->input->post('upnombre')),
+            'descripcion'=>  strtoupper($this->input->post('updesc')),
             'precioCosto'=> $this->input->post('uppcosto'),            
             'precioVenta'=> $this->input->post('uppventa'),            
             'utilidad'=> $this->input->post('uputl'),

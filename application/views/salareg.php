@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="nombreSala">nombreSala:</label>
-                        <input type="text" class="form-control" id="nombreSala" name="nombreSala" required>
+                        <input type="text" class="form-control text-uppercase" id="nombreSala" name="nombreSala" required>
                     </div>
                 </div>
                 <div class="form-row">

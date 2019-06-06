@@ -14,13 +14,13 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre : </label>
-      <input type="text" class="form-control" id="nombre" name="nombre" required>
+      <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>
       <input type="hidden" id="burl" value="<?php echo base_url();?>">      
     </div>
 
     <div class="form-group col-md-6">
       <label for="desc">Descripcion : </label>
-      <textarea class="form-control" rows="3" cols="" id="desc" name="desc"></textarea>      
+      <textarea class="form-control text-uppercase" rows="3" cols="" id="desc" name="desc"></textarea>      
       
     </div>
   </div>

@@ -13,11 +13,11 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>
-      <input type="text" class="form-control" id="nombre" name="nombre" required>  
+      <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>  
     </div>
     <div class="form-group col-md-6">
       <label for="textuser">User: </label>
-      <input type="text" class="form-control" id="textuser" name="textuser" required>
+      <input type="text" class="form-control text-uppercase" id="textuser" name="textuser" required>
       <label id="user_error" class="control-label col-md-6 text-danger" style="display: block;"></label>
     </div>
   </div>

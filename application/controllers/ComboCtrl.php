@@ -31,8 +31,8 @@ class ComboCtrl extends CI_Controller{
         } else redirect('');
     }
     public  function store(){
-        $nombre=$_POST['nombre'];
-        $descripcion=$_POST['descripcion'];
+        $nombre= strtoupper($_POST['nombre']);
+        $descripcion= strtoupper($_POST['descripcion']);
         $precioCosto=$_POST['precioCosto'];
         $precioVenta=$_POST['precioVenta'];
         $imagen=$_POST['imagen'];
@@ -69,8 +69,8 @@ VALUES(
         header("Location: ".base_url()."ComboCtrl");
     }
     public  function update(){
-        $nombre=$_POST['nombre'];
-        $descripcion=$_POST['descripcion'];
+        $nombre= strtoupper($_POST['nombre']);
+        $descripcion= strtoupper($_POST['descripcion']);
         $precioCosto=$_POST['precioCosto'];
         $precioVenta=$_POST['precioVenta'];
         $imagen=$_POST['imagen'];

@@ -76,18 +76,18 @@
   <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>
       <input type="text" id="iddistrib" name="idDistrib" hidden>
-      <input type="text" class="form-control" id="nombre" name="nombre" required>  
+      <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>  
     </div>
 
   </div>
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="direccion">Direccion:</label>   
-      <input type="text" class="form-control" id="direccion" name="direccion" required>  
+      <input type="text" class="form-control text-uppercase" id="direccion" name="direccion" required>  
     </div>
     <div class="form-group col-md-6">
       <label for="localidad">Localidad: </label>
-      <input type="text" class="form-control" id="localidad" name="localidad" required>
+      <input type="text" class="form-control text-uppercase" id="localidad" name="localidad" required>
     </div>
   </div>
   <div class="form-row">
@@ -107,7 +107,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="responsable">Responsable: </label>
-      <input type="text" class="form-control" id="responsable" name="responsable">
+      <input type="text" class="form-control text-uppercase" id="responsable" name="responsable">
     </div>
   </div>
 

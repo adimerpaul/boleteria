@@ -84,11 +84,11 @@ ORDER BY c.idCombo DESC ");
                     <div class="form-group row">
                         <label for="nombre" class="col-sm-1 col-form-label">Nombre</label>
                         <div class="col-sm-4">
-                            <input type="text" name="nombre" required class="form-control" id="nombre" placeholder="Nombre">
+                            <input type="text" name="nombre" required class="form-control text-uppercase" id="nombre" placeholder="Nombre">
                         </div>
                         <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
                         <div class="col-sm-5">
-                            <input type="text" name="descripcion"  class="form-control" id="descripcion" placeholder="Descripcion ">
+                            <input type="text" name="descripcion"  class="form-control text-uppercase" id="descripcion" placeholder="Descripcion ">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -207,11 +207,11 @@ ORDER BY c.idCombo DESC ");
                         <label for="nombre2" class="col-sm-1 col-form-label">Nombre</label>
                         <div class="col-sm-4">
                             <input type="text" name="idcombo" id="idcombo2" hidden>
-                            <input type="text" name="nombre" required class="form-control" id="nombre2" placeholder="Nombre">
+                            <input type="text" name="nombre" required class="form-control text-uppercase" id="nombre2" placeholder="Nombre">
                         </div>
                         <label for="descripcion2" class="col-sm-2 col-form-label">Descripcion</label>
                         <div class="col-sm-5">
-                            <input type="text" name="descripcion"  class="form-control" id="descripcion2" placeholder="Descripcion ">
+                            <input type="text" name="descripcion"  class="form-control text-uppercase" id="descripcion2" placeholder="Descripcion ">
                         </div>
                     </div>
                     <div class="form-group row">

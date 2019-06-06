@@ -66,7 +66,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>   
-      <input type="text" class="form-control" id="nombre" name="nombre"  required>  
+      <input type="text" class="form-control text-uppercase" id="nombre" name="nombre"  required>  
       <input type="hidden" id="idusuario1" name="idusuario1">
     </div>
   </div>

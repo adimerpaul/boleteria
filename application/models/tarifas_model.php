@@ -86,8 +86,8 @@ class tarifas_model extends CI_Model {
         else
         $promo='off';
         $tarifa= [
-            'serie'=> $this->input->post('serie'),
-            'descripcion'=> $this->input->post('descrip'),
+            'serie'=>  strtoupper($this->input->post('serie')),
+            'descripcion'=>  strtoupper($this->input->post('descrip')),
             'precio'=> $this->input->post('precio'),
             'tv'=> $tv,
             'defecto'=> $defecto,            
@@ -177,8 +177,8 @@ class tarifas_model extends CI_Model {
         else
         $promo='off';
         $tarifa= [
-            'serie'=> $this->input->post('serie'),
-            'descripcion'=> $this->input->post('descrip'),
+            'serie'=>  strtoupper($this->input->post('serie')),
+            'descripcion'=>  strtoupper($this->input->post('descrip')),
             'precio'=> $this->input->post('precio'),
             'tv'=> $tv,
             'defecto'=> $defecto,            

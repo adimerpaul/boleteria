@@ -22,8 +22,8 @@ class rubros_model extends CI_Model {
         else
             $rpadre=$this->input->post('rPadre');
         $rubro= [
-            'nombreRubro'=> $this->input->post('nombre'),
-            'descripcion'=> $this->input->post('desc'),
+            'nombreRubro'=>  strtoupper($this->input->post('nombre')),
+            'descripcion'=>  strtoupper($this->input->post('desc')),
             'rubroPadre'=> $rpadre,
             'activo'=> $activo,
             'imagen'=>$this->input->post('icono'),
@@ -45,8 +45,8 @@ class rubros_model extends CI_Model {
         else
             $rpadre=$this->input->post('rPadre2');
         $rubro= [
-            'nombreRubro'=> $this->input->post('nombre2'),
-            'descripcion'=> $this->input->post('desc2'),
+            'nombreRubro'=>  strtoupper($this->input->post('nombre2')),
+            'descripcion'=>  strtoupper($this->input->post('desc2')),
             'rubroPadre'=> $rpadre,
             'activo'=> $activo,
             'imagen'=>$this->input->post('icono2'),

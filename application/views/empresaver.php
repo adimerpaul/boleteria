@@ -81,17 +81,17 @@
     </div>
     <div class="form-group col-md-6">
       <label for="razonsocial">Razon Social: </label>
-      <input type="text" class="form-control" id="razonsocial" name="razonsocial">
+      <input type="text" class="form-control text-uppercase" id="razonsocial" name="razonsocial">
     </div>
   </div>
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="nomfant">Nombre Fantasia:</label>   
-      <input type="text" class="form-control" id="nomfant" name="nomfant">  
+      <input type="text" class="form-control text-uppercase" id="nomfant" name="nomfant">  
     </div>
     <div class="form-group col-md-6">
       <label for="nomsuc">Nombre Sucursal: </label>
-      <input type="text" class="form-control" id="nomsuc" name="nomsuc">
+      <input type="text" class="form-control text-uppercase" id="nomsuc" name="nomsuc">
     </div>
   </div>
   <div class="form-row">
@@ -101,12 +101,12 @@
     </div>
     <div class="form-group col-md-6">
       <label for="localidad">Localidad: </label>
-      <input type="text" class="form-control" id="localidad" name="localidad">
+      <input type="text" class="form-control text-uppercase" id="localidad" name="localidad">
     </div>
   </div>
   <div class="form-group">
     <label for="direccion">Direccion: </label>
-    <input type="text" class="form-control" id="direccion" name="direccion">
+    <input type="text" class="form-control text-uppercase" id="direccion" name="direccion">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">

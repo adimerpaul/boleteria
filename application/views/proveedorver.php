@@ -76,7 +76,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="razonsocial2">Razon Social : </label>
-      <input type="text" class="form-control" id="razonsocial2" name="razonsocial2" required>
+      <input type="text" class="form-control text-uppercase" id="razonsocial2" name="razonsocial2" required>
       <input type="hidden"  id="idproveedor" name="idproveedor" required>
     </div>
 
@@ -98,7 +98,7 @@
   <div class="form-row">
   <div class="form-group col-md-12">
       <label for="direccion2">Direccion :</label>
-      <input type="text" class="form-control" id="direccion2" name="direccion2" required>  
+      <input type="text" class="form-control text-uppercase" id="direccion2" name="direccion2" required>  
     </div>
   </div>
   <div class="form-row">
@@ -134,7 +134,7 @@
 <div class="form-row">
   <div class="form-group col-md-6">
     <label for="razonsocial">Razon Social : </label>
-    <input type="text" class="form-control" id="razonsocial" name="razonsocial" required>
+    <input type="text" class="form-control text-uppercase" id="razonsocial" name="razonsocial" required>
   </div>
 
   <div class="form-group col-md-6">
@@ -155,7 +155,7 @@
 <div class="form-row">
 <div class="form-group col-md-12">
     <label for="direccion">Direccion :</label>
-    <input type="text" class="form-control" id="direccion" name="direccion" >  
+    <input type="text" class="form-control text-uppercase" id="direccion" name="direccion" >  
   </div>
 </div>
 <div class="form-row">

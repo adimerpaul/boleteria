@@ -75,13 +75,13 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre2">Nombre : </label>
-      <input type="text" class="form-control" id="nombre2" name="nombre2" required>
+      <input type="text" class="form-control text-uppercase" id="nombre2" name="nombre2" required>
       <input type="hidden"  id="idrubro" name="idrubro" required>
     </div>
 
     <div class="form-group col-md-6">
       <label for="desc2">Descripcion : </label>
-      <textarea class="form-control" rows="3" cols="" id="desc2" name="desc2"></textarea>      
+      <textarea class="form-control text-uppercase" rows="3" cols="" id="desc2" name="desc2"></textarea>      
       
     </div>
   </div>
@@ -175,12 +175,12 @@
 <div class="form-row">
   <div class="form-group col-md-6">
     <label for="nombre">Nombre : </label>
-    <input type="text" class="form-control" id="nombre" name="nombre" required>
+    <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>
   </div>
 
   <div class="form-group col-md-6">
     <label for="desc">Descripcion : </label>
-    <textarea class="form-control" rows="3" cols="" id="desc" name="desc"></textarea>      
+    <textarea class="form-control text-uppercase" rows="3" cols="" id="desc" name="desc"></textarea>      
     
   </div>
 </div>

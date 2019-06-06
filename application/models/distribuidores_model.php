@@ -39,7 +39,7 @@ class distribuidores_model extends CI_Model {
             'nit'=> $this->input->post('nit'),
             'telefonoDis'=> $this->input->post('telefono'),
             'email'=> $this->input->post('email'),
-            'responsable'=> ($this->input->post('responsable'))
+            'responsable'=> strtoupper($this->input->post('responsable'))
 
         ];
         //$this->db->where('idDistrib',$id);

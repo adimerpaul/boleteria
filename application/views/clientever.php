@@ -77,11 +77,11 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>   
-      <input type="text" class="form-control" id="nombre" name="nombre">  
+      <input type="text" class="form-control text-uppercase" id="nombre" name="nombre">  
     </div>
     <div class="form-group col-md-6">
       <label for="apellido">Apellido:</label>   
-      <input type="text" class="form-control" id="apellido" name="apellido">  
+      <input type="text" class="form-control text-uppercase" id="apellido" name="apellido">  
     </div>
   </div>
 
@@ -105,7 +105,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="direccion">Direccion:</label>   
-      <input type="text" class="form-control" id="direccion" name="direccion">  
+      <input type="text" class="form-control text-uppercase" id="direccion" name="direccion">  
     </div>
   </div>
 

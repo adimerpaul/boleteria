@@ -19,12 +19,12 @@ class proveedores_model extends CI_Model {
         $activo="off";
 
         $proveedor= [
-            'razonSocial'=> $this->input->post('razonsocial'),
+            'razonSocial'=>  strtoupper($this->input->post('razonsocial')),
             'nitProv'=> $this->input->post('nit'),
             'email'=> $this->input->post('email'),
             'telefono'=> $this->input->post('telefono'),            
             'activo'=> $activo,
-            'direccion'=>$this->input->post('direccion')
+            'direccion'=> strtoupper($this->input->post('direccion'))
 
         ];
         return $this->db->insert("proveedor",$proveedor);
@@ -40,12 +40,12 @@ class proveedores_model extends CI_Model {
         $activo="on";
         
         $proveedor= [
-            'razonSocial'=> $this->input->post('razonsocial'),
+            'razonSocial'=>  strtoupper($this->input->post('razonsocial')),
             'nitProv'=> $this->input->post('nit'),
             'email'=> $this->input->post('email'),
             'telefono'=> $this->input->post('telefono'),            
             'activo'=> $activo,
-            'direccion'=>$this->input->post('direccion')
+            'direccion'=> strtoupper($this->input->post('direccion'))
         ];
 
         $this->db->where('idProveedor',$id);

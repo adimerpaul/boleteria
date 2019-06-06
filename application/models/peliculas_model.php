@@ -28,9 +28,9 @@ class peliculas_model extends CI_Model {
         else
         $formato=0;
         $pelicula= [
-            'nombre'=> $this->input->post('nom'),
+            'nombre'=> strtoupper($this->input->post('nom')),
             'duracion'=> $this->input->post('duracion'),
-            'paisOrigen'=> $this->input->post('origen'),
+            'paisOrigen'=> strtoupper($this->input->post('origen')),
             'genero'=> $this->input->post('genero'),            
             'clasificacion'=> $this->input->post('clasificacion'),            
             'cartelera'=> $cartelara,
@@ -56,9 +56,9 @@ class peliculas_model extends CI_Model {
         else
         $formato=0;
         $pelicula= [
-            'nombre'=> $this->input->post('nom'),
+            'nombre'=> strtoupper($this->input->post('nom')),
             'duracion'=> $this->input->post('duracion'),
-            'paisOrigen'=> $this->input->post('origen'),
+            'paisOrigen'=> strtoupper($this->input->post('origen')),
             'genero'=> $this->input->post('genero'),            
             'clasificacion'=> $this->input->post('clasificacion'),            
             'cartelera'=> $cartelara,
