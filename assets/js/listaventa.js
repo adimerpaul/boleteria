@@ -70,10 +70,12 @@ $('#fecini').change(function(){
                                         boleto(idboleto);
                                     });
 
-                                    if (datos.estado=="ANULADO"){
+                                    if (dev=="ANULADO"){
                                         $('#btnImpresion').hide();
+                                         $('#btnDevolver').hide();
                                     } else{
                                         $('#btnImpresion').show();
+                                        $('#btnDevolver').show();
                                     }
 
                                 })

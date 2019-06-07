@@ -64,10 +64,12 @@ $('#fecini').change(function(){
                                         cadena=cadena+"<td>"+subt+"</td>";
                                         cadena+="</tr>";
                                     
-                                    if (datos.estado=="ANULADO"){
+                                    if (dev=="ANULADO"){
                                         $('#btnImpresion').hide();
+                                        $('#btnDevolver').hide();
                                     } else{
                                         $('#btnImpresion').show();
+                                        $('#btnDevolver').show();
                                     }
 
                                 })
