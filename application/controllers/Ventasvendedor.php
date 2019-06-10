@@ -314,28 +314,32 @@ class Ventasvendedor extends CI_Controller
             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
             WHERE WEEKDAY(date(b1.fechaFuncion))+1=4
-            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' 
+            and date(b1.fechaFuncion)>=date('$fecini') AND date(b1.fechaFuncion)<=date('$fecfin')
+            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and  b1.tipoCompra='FACTURA'
             ) as jueves,(
             SELECT count(*)
             FROM boleto b1  
             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
             WHERE WEEKDAY(date(b1.fechaFuncion))+1=5
-            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' 
+            and date(b1.fechaFuncion)>=date('$fecini') AND date(b1.fechaFuncion)<=date('$fecfin')
+            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and  b1.tipoCompra='FACTURA'
             ) as viernes,(
             SELECT count(*)
             FROM boleto b1  
             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
             WHERE WEEKDAY(date(b1.fechaFuncion))+1=6
-            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' 
+            and date(b1.fechaFuncion)>=date('$fecini') AND date(b1.fechaFuncion)<=date('$fecfin')
+            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and  b1.tipoCompra='FACTURA'
             ) as sabado,(
             SELECT count(*)
             FROM boleto b1  
             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
             WHERE WEEKDAY(date(b1.fechaFuncion))+1=7
-            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' 
+            and date(b1.fechaFuncion)>=date('$fecini') AND date(b1.fechaFuncion)<=date('$fecfin')
+            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and  b1.tipoCompra='FACTURA'
             ) as domingo,
             (
             SELECT count(*)
@@ -343,7 +347,8 @@ class Ventasvendedor extends CI_Controller
             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
             WHERE WEEKDAY(date(b1.fechaFuncion))+1=1
-            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' 
+            and date(b1.fechaFuncion)>=date('$fecini') AND date(b1.fechaFuncion)<=date('$fecfin')
+            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and  b1.tipoCompra='FACTURA'
             ) as lunes,
             (
             SELECT count(*)
@@ -351,7 +356,8 @@ class Ventasvendedor extends CI_Controller
             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
             WHERE WEEKDAY(date(b1.fechaFuncion))+1=2
-            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' 
+            and date(b1.fechaFuncion)>=date('$fecini') AND date(b1.fechaFuncion)<=date('$fecfin')
+            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and  b1.tipoCompra='FACTURA'
             ) as martes,
             (
             SELECT count(*)
@@ -359,7 +365,8 @@ class Ventasvendedor extends CI_Controller
             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
             WHERE WEEKDAY(date(b1.fechaFuncion))+1=3
-            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' 
+            and date(b1.fechaFuncion)>=date('$fecini') AND date(b1.fechaFuncion)<=date('$fecfin')
+            AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and  b1.tipoCompra='FACTURA'
             ) as miercoles,
             (SELECT sum(precio)
              FROM boleto b1  

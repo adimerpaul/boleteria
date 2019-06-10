@@ -30,10 +30,22 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     });
 
 })
+function ltrim(stringToTrim) {
 
-$('#cinit').keyup(verifiCl);
+    return stringToTrim.replace(/^\s+/g,"");
+   
+   }
+
+
+$('#cinit').keyup(function (){verifiCl();});
+
     function verifiCl(e){
-    var button = $(event.relatedTarget) // Button that triggered the modal
+        cadena=$('#cinit').val();
+        console.log(cadena.charAt(0));
+        if(cadena.charAt(0) == ' '){
+            cadena=ltrim($('#cinit').prop('value'));
+            $('#cinit').prop('value',cadena);
+            }
     var cinit = $('#cinit').prop('value'); // Extract info from data-* attributes
     var parametros = {
                       "cinit" : cinit,
@@ -52,13 +64,13 @@ $('#cinit').keyup(verifiCl);
                           if (datos.cinit==''){
                             $('#cinit_error').html("");
                             $('#cinit_error').hide();
-                            $('#formcliente').attr('action', store);
+                            $('#btnCliente').prop('enabled', true);
                         }
                             else
                            {
                             $('#cinit_error').html("el cliente existe");
                             $('#cinit_error').show();
-                            $('#formcliente').attr('action', '');
+                            $('#btnCliente').prop('disabled', true);
                            
                           }                    
                       } 

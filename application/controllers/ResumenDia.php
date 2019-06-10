@@ -85,6 +85,7 @@ class ResumenDia extends CI_Controller {
         INNER JOIN usuario u ON u.idUsuario=b.idUsuario
         WHERE b.idUsuario='$id'
         AND  date(b.fecha)='$fecha1'
+        and b.devuelto='NO' and b.idCupon is null
         GROUP BY p.idPelicula,p.nombre,p.formato");
             $row=$query->row();
                          $myObj=($query->result_array());
@@ -269,6 +270,7 @@ public function pruebaImpresion(){
         INNER JOIN usuario u ON u.idUsuario=b.idUsuario
         WHERE b.idUsuario='$id'
         AND  date(b.fecha)='$fecha1'
+        and b.devuelto='NO' and b.idCupon is null
         GROUP BY p.idPelicula,p.nombre
                         ");
                 foreach ($query->result() as $row){
@@ -325,7 +327,7 @@ public function pruebaRecImpresion(){
     INNER JOIN usuario u ON u.idUsuario=b.idUsuario
     WHERE b.idUsuario='$id'
     AND  date(b.fecha)='$fecha1'
-    and tipoCompra='RECIBO'
+    and tipoCompra='RECIBO' and b.devuelto='NO' and b.idCupon is null
     GROUP BY p.idPelicula,p.nombre
                     ");
             foreach ($query->result() as $row){
@@ -381,7 +383,7 @@ public function pruebaFactImpresion(){
     INNER JOIN usuario u ON u.idUsuario=b.idUsuario
     WHERE b.idUsuario='$id'
     AND  date(b.fecha)='$fecha1'
-    and tipoCompra='FACTURA'
+    and tipoCompra='FACTURA' and b.devuelto = 'NO'
     GROUP BY p.idPelicula,p.nombre
                     ");
             foreach ($query->result() as $row){
@@ -426,13 +428,13 @@ public function todopruebaImpresion(){
             <th>PELICULA</th> <th>CANTIDAD</th><th>TOTAL</th></tr>
             </thead><tbody>";
             $total=0;
-            $query=$this->db->query("SELECT p.idPelicula,concat(p.nombre,' ',(if(formato=1,'3D','2D'))) as nomb,COUNT(*) 'cantidadb',SUM(b.costo) as total
+            $query=$this->db->query("SELECT p.idPelicula,concat(p.nombre,' ',(if(formato=1,'3D','2D'))) as nomb,
+            COUNT(*) 'cantidadb',SUM(b.costo) as total
     FROM pelicula p 
     INNER JOIN funcion f ON f.idPelicula=p.idPelicula
     INNER JOIN boleto b ON b.idFuncion=f.idFuncion
     INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
-    INNER JOIN usuario u ON u.idUsuario=b.idUsuario
-    AND  date(b.fecha)='$fecha1'
+    where date(b.fecha)='$fecha1' and b.devuelto='NO' and b.idCupon is null
     GROUP BY p.idPelicula,p.nombre
                     ");
             foreach ($query->result() as $row){
@@ -483,9 +485,8 @@ FROM pelicula p
 INNER JOIN funcion f ON f.idPelicula=p.idPelicula
 INNER JOIN boleto b ON b.idFuncion=f.idFuncion
 INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
-INNER JOIN usuario u ON u.idUsuario=b.idUsuario
-AND  date(b.fecha)='$fecha1'
-and tipoCompra='RECIBO'
+where  date(b.fecha)='$fecha1'
+and tipoCompra='RECIBO' and b.devuelto='NO' and b.idCupon is null
 GROUP BY p.idPelicula,p.nombre
                 ");
         foreach ($query->result() as $row){
@@ -535,8 +536,7 @@ FROM pelicula p
 INNER JOIN funcion f ON f.idPelicula=p.idPelicula
 INNER JOIN boleto b ON b.idFuncion=f.idFuncion
 INNER JOIN tarifa t ON b.idTarifa=t.idTarifa
-INNER JOIN usuario u ON u.idUsuario=b.idUsuario
-AND  date(b.fecha)='$fecha1'
+where  date(b.fecha)='$fecha1' and b.devuelto='NO' and b.idCupon is null
 and tipoCompra='FACTURA'
 GROUP BY p.idPelicula,p.nombre
                 ");

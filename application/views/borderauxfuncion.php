@@ -65,7 +65,7 @@
                 and v.tipoVenta='FACTURA'
                 and devuelto = 'NO'
                 and date(b.fechaFuncion)>='$fecha1' and date(b.fechaFuncion)<='$fecha2'
-                group by f.idFuncion order by fec asc,horaInicio asc");
+                group by f.idFuncion order by fec asc,nSala asc,horaInicio asc");
                 foreach ($query->result() as $row){
                     echo "<tr>
                     <td>$row->idFuncion</td>
