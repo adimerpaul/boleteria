@@ -101,7 +101,7 @@ function calculaDetalle(){
                 resdetalle+="</tr>";
                 total=total+parseInt(row.total);
             });
-            resdetalle+="<tr><th></th><th>Total</th><th>"+total+"</th></tr>";
+            resdetalle+="<tr><th></th><th></th><th>Total</th><th>"+total+"</th></tr>";
             $('#tabPelicula').html(resdetalle);
             
         }
