@@ -289,7 +289,7 @@ function listado(){
                             else dd="2D";   
                             cadenapelicula=cadenapelicula+'<li class="ui-widget-content" value="'+row.idPelicula+'" > ';
                             cadenapelicula=cadenapelicula+'<input type="hidden" value="'+row.nombre+' '+dd+'">';
-                            cadenapelicula=cadenapelicula+''+row.nombre+' <br><div class="ptipo">&nbsp;&nbsp;'+ dd+'</div> ';
+                            cadenapelicula=cadenapelicula+''+row.nombre+' <br><div class="row detalle"><p class="ptipo">'+ dd +'</p><p class="pnum"> '+ row.totalp+'</p></div> ';
                             cadenapelicula=cadenapelicula+'</li>'; 
                         }),
                          $("#selectable").html(cadenapelicula)

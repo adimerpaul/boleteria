@@ -56,16 +56,15 @@
                 concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
                  concat('SALA ',nroSala) as nsala, horaInicio,f.fecha as ff, serie,
                   precio, count(*) as cant, (precio*count(*)) as total
-                FROM funcion f, pelicula p, tarifa t, boleto b, sala s,venta v
+                FROM funcion f, pelicula p, tarifa t, boleto b, sala s
                 WHERE f.idPelicula=p.idPelicula
                 and f.idFuncion=b.idFuncion
                 and f.idSala=s.idSala
                 and b.idTarifa=t.idTarifa
-                and v.idVenta=b.idVenta
-                and v.tipoVenta='FACTURA'
-                and devuelto = 'NO'
+                and tipoCompra='FACTURA'
+                and devuelto = 'NO' and b.idCupon is null
                 and date(b.fechaFuncion)>='$fecha1' and date(b.fechaFuncion)<='$fecha2'
-                group by f.idFuncion order by fec asc,nSala asc,horaInicio asc");
+                group by b.idFuncion order by fec asc,nsala asc,horaInicio asc");
                 foreach ($query->result() as $row){
                     echo "<tr>
                     <td>$row->idFuncion</td>

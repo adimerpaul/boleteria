@@ -67,7 +67,7 @@ class ResumenDia extends CI_Controller {
         INNER JOIN cliente c ON v.idCliente=c.idCliente
         INNER JOIN usuario u ON u.idUsuario=v.idUsuario
             WHERE u.idUsuario='$id'
-            AND date(fechaVenta)='$fecha1'");
+            AND date(fechaVenta)='$fecha1' and idCupon is null");
             $row=$query->row();
                          $myObj=($query->result_array());
                          echo json_encode($myObj);  
@@ -116,10 +116,10 @@ class ResumenDia extends CI_Controller {
         
         $query=$this->db->query("SELECT (select sum(total) from ventacandy 
         WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
-        and tipoVenta='FACTURA') AS tfactura,
+        and tipoVenta='FACTURA' and estado='ACTIVO') AS tfactura,
         (select sum(total) from ventacandy 
         WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
-        and tipoVenta='RECIBO') as trecibo
+        and tipoVenta='RECIBO' and estado='ACTIVO') as trecibo
         from dual ");
             $row=$query->row();
                          $myObj=($query->result_array())[0];
@@ -133,10 +133,10 @@ class ResumenDia extends CI_Controller {
         
         $query=$this->db->query("SELECT (select sum(total) from venta 
         WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
-        and tipoVenta='FACTURA') AS tfactura,
+        and tipoVenta='FACTURA' and estado='ACTIVO') AS tfactura,
         (select sum(total) from venta 
         WHERE date(fechaVenta)='$fecha1' and idUsuario='$id'
-        and tipoVenta='RECIBO') as trecibo
+        and tipoVenta='RECIBO' and estado='ACTIVO' and idCupon is null) as trecibo
         from dual ");
             $row=$query->row();
                          $myObj=($query->result_array())[0];
