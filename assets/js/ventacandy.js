@@ -397,11 +397,9 @@ $(function() {
                                     myWindow.document.write(te);
                                     myWindow.document.close();
                                     myWindow.focus();
-                                    setTimeout(function(){
                                         myWindow.print();
                                         myWindow.close();
                                         impDetalle(response);
-                                },500); 
                                
                                 },
                                 
