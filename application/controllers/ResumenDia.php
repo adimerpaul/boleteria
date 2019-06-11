@@ -77,7 +77,7 @@ class ResumenDia extends CI_Controller {
     public function detallePelicula(){
         $fecha1=$_POST['fecha'];
         $id=$_POST['id'];        
-        $query=$this->db->query("SELECT p.idPelicula,p.nombre ,p.formato,COUNT(*) 'cantidadb',SUM(b.costo) as total
+        $query=$this->db->query("SELECT p.idPelicula,f.fecha,p.nombre ,p.formato,COUNT(*) 'cantidadb',SUM(b.costo) as total
         FROM pelicula p 
         INNER JOIN funcion f ON f.idPelicula=p.idPelicula
         INNER JOIN boleto b ON b.idFuncion=f.idFuncion
@@ -86,7 +86,7 @@ class ResumenDia extends CI_Controller {
         WHERE b.idUsuario='$id'
         AND  date(b.fecha)='$fecha1'
         and b.devuelto='NO' and b.idCupon is null
-        GROUP BY p.idPelicula,p.nombre,p.formato");
+        GROUP BY p.idPelicula,f.fecha,p.nombre,p.formato");
             $row=$query->row();
                          $myObj=($query->result_array());
                          echo json_encode($myObj);  

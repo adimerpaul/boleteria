@@ -55,12 +55,14 @@
                 <tr>
                     <th>Nombre</th>
                     <th>cantidad de boletos</th>
+                    <th>Fecha Funcion</th>
                     <th>Total</th>
                 </tr>
                 </thead>
                 <tbody id="tabPelicula">
 
                 <tr>
+                    <th></th>
                     <th></th>
                     <th>Total</th>
                     <th></th>

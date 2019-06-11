@@ -96,6 +96,7 @@ function calculaDetalle(){
                 resdetalle+="<tr>";
                 resdetalle+="<td>"+row.nombre+" "+forma+"</td>";
                 resdetalle+="<td>"+row.cantidadb+"</td>";                
+                resdetalle+="<td>"+row.fecha+"</td>";                
                 resdetalle+="<td>"+row.total+"</td>";                
                 resdetalle+="</tr>";
                 total=total+parseInt(row.total);
