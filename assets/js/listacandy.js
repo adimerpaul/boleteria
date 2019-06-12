@@ -123,18 +123,23 @@ $('#btnImpresion').click(function(){
                 myWindow.document.write(te);
                 myWindow.document.close();
                 myWindow.focus();
+                setTimeout(function()  {
                     myWindow.print();
                     myWindow.close();
                     impDetalle(id);
            
+                }, 500);
+                    
             },
             
         });
         //window.location.href='';
     }
         else {
-            impDetalle(id);
-        }
+                setTimeout(function()  {
+                    impDetalle(id);
+                }, 500);
+            }
 
         function impDetalle(id){
             $.ajax({

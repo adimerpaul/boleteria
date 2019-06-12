@@ -393,20 +393,25 @@ $(function() {
                                 url: 'FacturaCandy/imprimirfactura/'+response,
                                 success: async function (e) {
                                     myWindow = window.open("", "myWindow", "width=200,height=100");
-                                    myWindow.document.write(e);
+                                    var te= await e;
+                                    myWindow.document.write(te);
                                     myWindow.document.close();
                                     myWindow.focus();
+                                    setTimeout(function(){
                                         myWindow.print();
                                         myWindow.close();
                                         impDetalle(response);
+                                },500); 
                                
                                 },
                                 
                             });
                         }
                             else {
-                                impDetalle(response);
-                            }
+                                    setTimeout(function(){
+                                        impDetalle(response);
+                                    },500); 
+                                }
                         }
                     });
                 }

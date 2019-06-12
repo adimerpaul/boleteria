@@ -391,7 +391,7 @@ class FacturaCandy extends CI_Controller {
     Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
     
     
-    $cadena.="<small class='textoimp'><img width='125px' src='barcode.php?s=qrl&d=$qr'><br>";
+    $cadena.="<small class='textoimp'><img width='125px' src='barcode.php?s=qrl&d=$qr'></small><br>";
     $cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
     </small>";
     $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
