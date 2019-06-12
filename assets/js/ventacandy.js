@@ -393,8 +393,7 @@ $(function() {
                                 url: 'FacturaCandy/imprimirfactura/'+response,
                                 success: async function (e) {
                                     myWindow = window.open("", "myWindow", "width=200,height=100");
-                                    var te= await e;
-                                    myWindow.document.write(te);
+                                    myWindow.document.write(e);
                                     myWindow.document.close();
                                     myWindow.focus();
                                         myWindow.print();
@@ -430,7 +429,6 @@ function impDetalle(id){
             myWindow.focus();
             myWindow.print();
             myWindow.close();
-            location.reload();
         }})
     location.reload();
 };
