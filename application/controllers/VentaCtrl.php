@@ -78,7 +78,7 @@ class VentaCtrl extends CI_Controller {
         $consulta="SELECT DISTINCT p.idPelicula,nombre,formato,
         (select count(*) from pelicula p1,funcion f1,boleto b1
         where p1.idPelicula=f1.idPelicula and b1.idFuncion=f1.idFuncion
-        and date(b1.fecha)='$fecha' and f1.idPelicula=f.idPelicula) as totalp  
+        and date(b1.fechaFuncion)='$fecha' and f1.idPelicula=f.idPelicula) as totalp  
         from pelicula p inner join funcion f on p.idPelicula = f.idPelicula 
         where fecha ='$fecha' and activa='ACTIVADO'" ;
 
