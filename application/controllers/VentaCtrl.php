@@ -7,6 +7,8 @@ require 'autoload.php';
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\CapabilityProfile;
 
 class VentaCtrl extends CI_Controller {
     
@@ -379,6 +381,8 @@ class VentaCtrl extends CI_Controller {
         echo $idVenta;
 
     }
+
+
     function imprimirfactura($idventa){
         $fecha=date('d/m/Y');
         $total=0;
@@ -402,9 +406,9 @@ WHERE idVenta='$idventa'");
         $leyenda=$row->leyenda;
         $fecha=$row->fechaVenta;
         $qr=$row->codigoQR;
+    
         $cancelado=$row->cancelado;
-        $cadena='';
-        $cadena .= "
+        $cadena = "
         <style>.textoimp{ font-size: small; text-align: center;} 
         .textor{ font-size: small; text-align: right;}
         .margen{padding: 0px 15px 0px 15px} 
@@ -416,7 +420,7 @@ WHERE idVenta='$idventa'");
         <div class='textoimp margen'>
         <span>MULTISALAS S.R.L.</span><br>
         <span>CASA MATRIZ</span><br>
-        <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+        <span>Av. Tacna y Jaen - Oruro - Bolivia</span><br>
         <span>Tel: 591-25281290</span><br>
         <span>ORURO - BOLIVIA</span><br>
         <hr>
@@ -483,7 +487,8 @@ Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
 //        QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 //        QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         //$cadena.='<img  id="img" src="temp/test.png" /> <br>';
-        $cadena.="<small class='textoimp'><img width='125px' src='barcode.php?s=qrl&d=$qr'></small><br>";
+    $cadena.="<small class='textoimp'><img width='125px' src='barcode.php?s=qrl&d=$qr'></small><br>";
+        
 $cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
 </small>";
 $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
@@ -493,7 +498,7 @@ $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
 if(($cancelado-$total)<0)
 $salida=0;
 else $salida=$cancelado-$total;
-        $cadena.="<div class='textmed'> <span> VUELTO: ".($salida)."</span></div>";
+        $cadena.="<div class='textmed'> <span> VUELTO: ".($salida)."</span></div></div>";
 
         echo $cadena;
         exit;

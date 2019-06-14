@@ -321,7 +321,7 @@ class FacturaCandy extends CI_Controller {
             <div class='textoimp margen'>
             <span>MULTISALAS S.R.L.</span><br>
             <span>SUCURSAL No 2</span><br>
-            <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+            <span>Av. Tacna y Jaen - Oruro - Bolivia</span><br>
             <span>Tel: 591-25281290</span><br>
             <span>ORURO - BOLIVIA</span><br>
             <hr>
@@ -405,6 +405,7 @@ class FacturaCandy extends CI_Controller {
     
     
         }
+        
         function imprimirinterno($idventa){
             $fecha=date('d/m/Y');
             $total=0;
