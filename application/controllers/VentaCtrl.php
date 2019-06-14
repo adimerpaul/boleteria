@@ -1312,7 +1312,7 @@ public function verifDosifcacion(){
 
 public function totalventa(){
     $fecha=$_POST['fecha'];
-    $query=$this->db->query("SELECT count(*) as totalv FROM boleto b WHERE date(fecha)='$fecha' AND devuelto='NO'");
+    $query=$this->db->query("SELECT count(*) as totalv FROM boleto b WHERE date(fechaFuncion)='$fecha' AND devuelto='NO'");
     $row=$query->row();
     $myObj=($query->result_array());
 
