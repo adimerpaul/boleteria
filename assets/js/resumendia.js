@@ -107,7 +107,7 @@ function calculaDetalle(){
         }
     })
 };
-imptodo
+
 $('#imprimir').click(function(){
     var fecha=$('#fechadia').val();
     var id=$('#vendedor').val();
@@ -240,6 +240,34 @@ function calculototal(){
             datos2=JSON.parse(response);
             $('#totalrecibo').html(' '+datos2.trecibo+' Bs');
             $('#totalfactura').html(' '+datos2.tfactura+' Bs');
+            
+        }})
+}
+
+function totalpromo(){
+    var fecha=$('#fechadia').val();
+    var param={
+        'fecha':fecha
+    };
+    $.ajax({
+        data:  param,
+        url:   'ResumenDia/totalpromo',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            $('#promot').html('');
+            console.log(response);
+            datos2=JSON.parse(response);
+            var total=0;
+            datos2.forEach(row => {
+                total+=parseInt(row.ticket);
+            });
+            if(total>0)
+            $('#promot').html('<b><label>Total Ticket Promo: </label></b> '+total);
+            else
+            $('#promot').html('');
             
         }})
 }

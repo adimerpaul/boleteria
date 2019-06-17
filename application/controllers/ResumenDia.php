@@ -249,7 +249,8 @@ public function pruebaImpresion(){
         <hr>
         ";
         
-        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+                Fecha Caja: ".$fecha1."<br>";
                 $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
                 $nomuser=$query01->result()[0]->nombreUser;
 
@@ -306,8 +307,9 @@ public function pruebaRecImpresion(){
     <hr>
     ";
     
-    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
-            $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
+    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+                Fecha Caja: ".$fecha1."<br>";
+                $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
             $nomuser=$query01->result()[0]->nombreUser;
 
     $cadena.="Usuario:$nomuser<br>
@@ -362,8 +364,9 @@ public function pruebaFactImpresion(){
     <hr>
     ";
     
-    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
-            $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
+    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+                Fecha Caja: ".$fecha1."<br>";
+                $query01=$this->db->query("SELECT * from usuario where idUsuario =$id");
             $nomuser=$query01->result()[0]->nombreUser;
 
     $cadena.="Usuario:$nomuser<br>
@@ -417,7 +420,9 @@ public function todopruebaImpresion(){
     <hr>
     ";
     
-    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
+    $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+                Fecha Caja: ".$fecha1."<br>";
+    
 
     $cadena.="
              <hr><br></div>
@@ -469,7 +474,8 @@ hr{border: 1px dashed ;}</style>
 <hr>
 ";
 
-$cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
+$cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+            Fecha Caja: ".$fecha1."<br>";
 
 $cadena.="
          <hr><br></div>
@@ -520,7 +526,8 @@ hr{border: 1px dashed ;}</style>
 <hr>
 ";
 
-$cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>";
+$cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+            Fecha Caja: ".$fecha1."<br>";
 
 $cadena.="
          <hr><br></div>
@@ -670,7 +677,9 @@ ORURO - BOLIVIA
         <hr> 
         "; 
          
-        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+                Fecha Caja: ".$fecha1."<br>";
+        
                 $query01=$this->db->query("SELECT * from usuario where idUsuario =$id"); 
                 $nomuser=$query01->result()[0]->nombreUser; 
  
@@ -748,7 +757,9 @@ ORURO - BOLIVIA
         <hr> 
         "; 
          
-        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br> 
+                Fecha Caja: ".$fecha1."<br>";
+        
                 $query01=$this->db->query("SELECT * from usuario where idUsuario =$id"); 
                 $nomuser=$query01->result()[0]->nombreUser; 
  
@@ -828,8 +839,10 @@ ORURO - BOLIVIA
         <hr> 
         "; 
          
-        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
-                $query01=$this->db->query("SELECT * from usuario where idUsuario =$id"); 
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+        Fecha Caja: ".$fecha1."<br>";
+                
+        $query01=$this->db->query("SELECT * from usuario where idUsuario =$id"); 
                 $nomuser=$query01->result()[0]->nombreUser; 
  
         $cadena.="Usuario:$nomuser<br> 
@@ -907,7 +920,9 @@ ORURO - BOLIVIA
         <hr> 
         "; 
          
-        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+        Fecha Caja: ".$fecha1."<br>";
+        
  
         $cadena.="
                  <hr><br></div> 
@@ -980,7 +995,8 @@ ORURO - BOLIVIA
         <hr> 
         "; 
          
-        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+        Fecha Caja: ".$fecha1."<br>";
  
         $cadena.="
                  <hr><br></div> 
@@ -1055,7 +1071,8 @@ ORURO - BOLIVIA
         <hr> 
         "; 
          
-        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>"; 
+        $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
+        Fecha Caja: ".$fecha1."<br>";
  
         $cadena.=" 
                  <hr><br></div> 
@@ -1109,4 +1126,14 @@ ORURO - BOLIVIA
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
         echo $cadena; 
     } 
+
+    public function totalpromo(){
+        $fecha1=$_POST['fecha']; 
+        $query=$this->db->query("SELECT IF(mod(count(*),2)!=0,count(*)-1,count(*))/2 as ticket from boleto b,tarifa t
+        where b.idTarifa=t.idTarifa and date(b.fechaFuncion)='$fecha1' and promo='on' and devuelto='NO'
+        group by idVenta ");
+                    $row=$query->row();
+                    $myObj=($query->result_array());
+                    echo json_encode($myObj); 
+    }
 }
