@@ -795,6 +795,7 @@ $('#registrarVenta').click(function(){
                                 $.ajax({
                                     url: 'VentaCtrl/imprimirfactura/'+idventa,
                                     success: async function (e) {
+                                        console.log(e);
                                         var myWindow = window.open("", "myWindow", "width=200,height=100");
                                         var te= await e;
                                         myWindow.document.write(te);

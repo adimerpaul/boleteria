@@ -487,7 +487,7 @@ Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
 //        QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 //        QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         //$cadena.='<img  id="img" src="temp/test.png" /> <br>';
-    $cadena.="<small class='textoimp'><img width='125px' src='barcode.php?s=qrl&d=$qr'></small><br>";
+    $cadena.="<small class='textoimp'><img width='125px' src='".base_url()."barcode.php?s=qrl&d=$qr'></small><br>";
         
 $cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
 </small>";
@@ -501,7 +501,6 @@ else $salida=$cancelado-$total;
         $cadena.="<div class='textmed'> <span> VUELTO: ".($salida)."</span></div></div>";
 
         echo $cadena;
-        exit;
 
 
     }
@@ -529,9 +528,9 @@ WHERE idVenta='$idventa'");
         $leyenda=$row->leyenda;
         $fecha=$row->fechaVenta;
         $qr=$row->codigoQR;
+    
         $cancelado=$row->cancelado;
-        $cadena='';
-        $cadena .= "
+        $cadena = "
         <style>.textoimp{ font-size: small; text-align: center;} 
         .textor{ font-size: small; text-align: right;}
         .margen{padding: 0px 15px 0px 15px} 
@@ -539,20 +538,21 @@ WHERE idVenta='$idventa'");
         table{border: 1px solid #000; text-align:center; align:center; } 
         th,td{font-size: x-small;}
         hr{border: 1px dashed ;}</style>
-        <div class='textoimp'>
+
+        <div class='textoimp margen'>
         <span>MULTISALAS S.R.L.</span><br>
         <span>CASA MATRIZ</span><br>
-        <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
+        <span>Av. Tacna y Jaen - Oruro - Bolivia</span><br>
         <span>Tel: 591-25281290</span><br>
         <span>ORURO - BOLIVIA</span><br>
         <hr>
         <span>FACTURA</span><br>
         <span>NIT: 329448023</span><br>
-        <span>NRO FACTURA:$nrocomprobante</span><br>
-        <span>NRO AUTORIZACION: $nroautorizacion</span><br>
+        <span>Nro FACTURA:$nrocomprobante</span><br>
+        <span>Nro AUTORIZACION: $nroautorizacion</span><br>
         <hr>
         ";
-        $cadena.="<div class='textmed margen '>Fecha: $fecha<br>
+        $cadena.="<div class='textmed'>Fecha: $fecha<br>
         Señor(es): $nombre $apellido <br>
         NIT/CI: $ci <br>
         <hr>
@@ -595,10 +595,10 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
         $cadena.=("TOTAL: $total Bs.</div>");
 
 
-        $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bs.</div> 
+        $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bolivianos 
 <hr>
 Cod. de Control: $codigocontrol <br> 
-Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br>";
+Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
 
 
 //        $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
@@ -609,14 +609,18 @@ Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br>";
 //        QRcode::png($qr, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 //        QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         //$cadena.='<img  id="img" src="temp/test.png" /> <br>';
-        $cadena.="<small class='textoimp'><img width='125px' src='".base_url()."barcode.php?s=qrl&d=$qr'><br>";
-        $cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
+    $cadena.="<small class='textoimp'><img width='125px' src='".base_url()."barcode.php?s=qrl&d=$qr'></small><br>";
+        
+$cadena.="<small> ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS. EL USO ILICITO DE ESTA SERA SANCIONADO DE ACUERDO A LEY <br>
 </small>";
-        $cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
-        $cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
-        $cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
-        $cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
-        $cadena.="<div class='textmed'> <span> CAMBIO: ".($cancelado-$total)."</span></div>";
+$cadena.="<div class='textoimp'> <span>$leyenda</span></div>";
+$cadena.="<div class='textmed'> <span> PUNTO: ".gethostname()."</span></div>";
+$cadena.="<div class='textmed'> <span> USUARIO: $vendero</span></div>";
+$cadena.="<div class='textmed'> <span> NUMERO: $idventa</span></div>";
+if(($cancelado-$total)<0)
+$salida=0;
+else $salida=$cancelado-$total;
+        $cadena.="<div class='textmed'> <span> VUELTO: ".($salida)."</span></div></div>";
 
         echo $cadena;
         exit;
