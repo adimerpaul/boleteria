@@ -2,12 +2,14 @@ $(document).ready(function(){
     calculaCaja();
     calculaDetalle();
     calculototal();
+    totalpromo();
 });  
 
 $('#fechadia').change(function(){ 
     calculaCaja();
     calculaDetalle();
     calculototal();
+    totalpromo();
 });
 $('#vendedor').change(function(){
     calculaCaja();
