@@ -68,24 +68,24 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=4 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=4 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as jueves,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=4 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=4 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='FACTURA'
                             ) as jf,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=4 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=4 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='RECIBO'
                             ) as jr,
 
@@ -93,8 +93,8 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=5 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=5 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as viernes,
 
@@ -103,8 +103,8 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=5 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=5 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='RECIBO'
                             ) as vr,
 
@@ -112,8 +112,8 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=5 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=5 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='FACTURA'
                             ) as vf,
 
@@ -121,24 +121,24 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=6 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=6 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as sabado,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=6 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=6 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='RECIBO'
                             ) as sr,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=6 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=6 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='FACTURA'
                             ) as sf,
                             
@@ -146,24 +146,24 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=7 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=7 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as domingo,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=7 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=7 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='RECIBO'
                             ) as dr,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=7 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=7 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='FACTURA'
                             ) as df,
 
@@ -171,24 +171,24 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=1 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=1 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as lunes,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=1 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=1 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='RECIBO'
                             ) as lr,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=1 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=1 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='FACTURA'
                             ) as lf,
 
@@ -196,24 +196,24 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=2 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=2 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as martes,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=2 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=2 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='RECIBO'
                             ) as mr,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=2 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=2 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='FACTURA'
                             ) as mf,
 
@@ -221,24 +221,24 @@
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=3 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=3 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO'
                             ) as miercoles,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=3 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=3 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='RECIBO'
                             ) as xr,
                             (SELECT count(*)
                             FROM boleto b1  
                             INNER JOIN funcion f1 ON b1.idFuncion=f1.idFuncion
                             INNER JOIN pelicula p1 ON p1.idPelicula=f1.idPelicula
-                            WHERE date(b1.fecha)>=date('$fecha1') AND date(b1.fecha)<=date('$fecha2')
-                            AND WEEKDAY(date(b1.fecha))+1=3 and b1.idCupon is null
+                            WHERE date(b1.fechaFuncion)>=date('$fecha1') AND date(b1.fechaFuncion)<=date('$fecha2')
+                            AND WEEKDAY(date(b1.fechaFuncion))+1=3 and b1.idCupon is null
                             AND p1.idPelicula=p.idPelicula and b1.devuelto='NO' and b1.tipoCompra='FACTURA'
                             ) as xf,
 
@@ -247,21 +247,21 @@
                 WHERE b1.idFuncion = f1.idFuncion
                 and f1.idPelicula = p.idPelicula
                 and b1.idTarifa = t.idTarifa
-                and b1.fecha>='$fecha1' and b1.fecha<='$fecha2'
+                and b1.fechaFuncion>='$fecha1' and b1.fechaFuncion<='$fecha2'
                 and b1.devuelto='NO' and b1.idCupon is null) as ingresot,
                     (select sum(precio)
                 from funcion f1, boleto b1, tarifa t
                 WHERE b1.idFuncion = f1.idFuncion
                 and f1.idPelicula = p.idPelicula
                 and b1.idTarifa = t.idTarifa
-                and b1.fecha>='$fecha1' and b1.fecha<='$fecha2' and b1.tipoCompra='RECIBO'
+                and b1.fechaFuncion>='$fecha1' and b1.fechaFuncion<='$fecha2' and b1.tipoCompra='RECIBO'
                 and b1.devuelto='NO' and b1.idCupon is null) as ingresor,
                     (select sum(precio)
                 from funcion f1, boleto b1, tarifa t
                 WHERE b1.idFuncion = f1.idFuncion
                 and f1.idPelicula = p.idPelicula
                 and b1.idTarifa = t.idTarifa
-                and b1.fecha>='$fecha1' and b1.fecha<='$fecha2' and b1.tipoCompra='FACTURA'
+                and b1.fechaFuncion>='$fecha1' and b1.fechaFuncion<='$fecha2' and b1.tipoCompra='FACTURA'
                 and b1.devuelto='NO' and b1.idCupon is null) as ingresof,
                 
                 (select count(*)
@@ -269,20 +269,20 @@
                 WHERE b1.idFuncion = f1.idFuncion
                 and f1.idPelicula = p.idPelicula
                 and b1.idTarifa = t.idTarifa
-                and b1.fecha>='$fecha1' and b1.fecha<='$fecha2' and b1.tipoCompra='RECIBO'
+                and b1.fechaFuncion>='$fecha1' and b1.fechaFuncion<='$fecha2' and b1.tipoCompra='RECIBO'
                 and b1.devuelto='NO' and b1.idCupon is null) as totalr,
                 (select count(*)
                 from funcion f1, boleto b1, tarifa t
                 WHERE b1.idFuncion = f1.idFuncion
                 and f1.idPelicula = p.idPelicula
                 and b1.idTarifa = t.idTarifa
-                and b1.fecha>='$fecha1' and b1.fecha<='$fecha2' and b1.tipoCompra='FACTURA'
+                and b1.fechaFuncion>='$fecha1' and b1.fechaFuncion<='$fecha2' and b1.tipoCompra='FACTURA'
                 and b1.devuelto='NO' and b1.idCupon is null) as totalf
 
                 from pelicula p, funcion f, boleto b
                 WHERE f.idPelicula = p.idPelicula
                 and b.idFuncion = f.idFuncion
-                and b.fecha>='$fecha1' and b.fecha<='$fecha2'
+                and b.fechaFuncion>='$fecha1' and b.fechaFuncion<='$fecha2'
                 and devuelto ='NO' and b.idCupon is null
                 group by p.idPelicula order by total desc ");
                  $i=0;
