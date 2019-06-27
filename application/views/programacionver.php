@@ -84,7 +84,7 @@
                             <select name="idpelicula" id="idpelicula" required class="form-control">
                                 <option value="">Seleccionar..</option>
                                 <?php
-                                $query=$this->db->query("SELECT * FROM pelicula ORDER BY idPelicula DESC ");
+                                $query=$this->db->query("SELECT * FROM pelicula ORDER BY nombre ASC ");
                                 foreach ($query->result() as $row){
                                     if ($row->formato=="1"){
                                         $formato="3D";
@@ -213,7 +213,7 @@
                                 <option value="">Seleccionar..</option>
                                 <?php
 
-                                $query=$this->db->query("SELECT * FROM pelicula ORDER BY idPelicula DESC ");
+                                $query=$this->db->query("SELECT * FROM pelicula ORDER BY nombre ASC ");
                                 foreach ($query->result() as $row){
                                     if ($row->formato=="1"){
                                         $formato="3D";
@@ -257,7 +257,7 @@
                             <i class="fas fa-stop"></i> Cancelar
                         </button>
                         <?php if($this->usuarios_model->veri($_SESSION['idUs'],'43')):?>
-                        <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Modificar</button>
+                        <button type="submit" class="btn btn-success" id="mfuncion"> <i class="fas fa-check"></i> Modificar</button>
                         <?php endif?>
                         <?php if($this->usuarios_model->veri($_SESSION['idUs'],'44')):?>
                         <a href="ProgramacionCtrl/delete/" id="eliminar2" class="btn btn-danger text-white" > <i class="fas fa-trash"></i> Eliminar</a>

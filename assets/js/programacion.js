@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#contenedor').html('cargando...');
                 }
             });
-            $('#calendarModal').modal();
+            $('#calendarModal').modal(
+            );
             //console.log(url);
 
 
@@ -160,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 type:'POST',
                 data:datos,
                 success:function (e) {
-                    e='Sala libre';
                     $('#estado').html(e);
                     //console.log(e);
                     if (e=='Sala libre'){
@@ -178,4 +178,26 @@ document.addEventListener('DOMContentLoaded', function() {
         //$('#aceptar').attr('disabled');
         $('#aceptar').hide();
     })
+    $('#calendarModal').on('show.bs.modal', function (e) {
+        var parametros = {
+                            "idf" : $('#idfuncion2').val()
+                    };
+                    $.ajax({
+                            data:  parametros,
+                            url:   'ProgramacionCtrl/boletovendido',
+                            type:  'post',
+                       
+                            success:  function (response) {
+                                console.log(response);
+                                if(response){
+                                $('#mfuncion').hide();
+                                $('#eliminar2').hide();
+                                }
+                                else{
+                                $('#mfuncion').show();
+                                $('#eliminar2').show();
+                                }
+                            }})
+    })
+
 });

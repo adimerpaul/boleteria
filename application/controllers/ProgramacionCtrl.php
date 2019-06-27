@@ -140,6 +140,20 @@ OR (time('$horafin')>=ADDTIME(horaInicio, '-00:05:00') AND time('$horafin')<=hor
         }
     }
 
+    public function boletovendido()
+    {
+        $idfuncion=$_POST['idf'];
+        $query=$this->db->query("
+        SELECT * FROM boleto 
+        WHERE idFuncion = $idfuncion
+        ");
+        if ($query->num_rows()>=1){
+            echo true;
+        }else{
+            echo false;
+        }
+    }
+
     public function delete($idfuncion)
     {
 

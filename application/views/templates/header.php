@@ -299,7 +299,7 @@
                 <?php endif ?>
                     <?php if($this->usuarios_model->veri($_SESSION['idUs'],'136')):  ?>
                     <li class='nav-item'>
-                        <a class='nav-link' href=''><i class='fas fa-plus'></i> Imagenes Productos</a>
+                        <a class='nav-link' href='Imagen'><i class='fas fa-plus'></i> Imagenes Productos</a>
                         
                     </li>
                 <?php endif ?>
