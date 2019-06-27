@@ -465,14 +465,14 @@ class FacturaCandy extends CI_Controller {
             $total=0;
             $cadena.=("</div>");
             $cadena.="<table><thead><tr>
-                <th>DESC</th>              <th>CANT</th>     <th>P.U.</th>           <th>IMP</th><tr></thead>
+                <th>CANT</th>       <th>DESC</th>                   <th>P.U.</th>           <th>IMP</th><tr></thead>
                 <tbody>";
             foreach ($query1->result() as $row){
                 $nombrep=$row->nombreProd;
                 $precio=$row->precioVenta;
                 $cantidad=$row->cant;
                 $subtotal=$row->total;
-                $cadena.="<tr><td>$nombrep</td><td>$cantidad</td><td>$precio</td><td>$subtotal</td></tr>";
+                $cadena.="<tr><td>$cantidad</td><td>$nombrep</td><td>$precio</td><td>$subtotal</td></tr>";
     
                 $total=$total+$subtotal;
         
@@ -482,7 +482,7 @@ class FacturaCandy extends CI_Controller {
                 $precio=$row->precioVenta;
                 $cantidad=$row->cant;
                 $subtotal=$row->total;
-                $cadena.="<tr><td>$nombrep</td><td>$cantidad</td><td>$precio</td><td>$subtotal</td></tr>";
+                $cadena.="<tr><td>$cantidad</td><td>$nombrep</td><td>$precio</td><td>$subtotal</td></tr>";
     
                 $total=$total+$subtotal;    
             }

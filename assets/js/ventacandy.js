@@ -408,8 +408,10 @@ $(function() {
                             });
                         }
                             else {
+                                    setTimeout(function(){
                                         impDetalle(response);
-                                }
+                                },500); 
+                            }
                         }
                     });
                 }
