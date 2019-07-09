@@ -18,7 +18,12 @@ class BoletoCtrl extends CI_Controller {
             $user = $this->session->userdata('idUs');
 
             $dato=$this->usuarios_model->validaIngreso($user);
-            $boleto['boleto'] = $this->boletos_model->listaBoletos();
+            if( empty($_POST['fechaboleto']) ) 
+            {
+                $boleto['fecha1']= date('Y-m-d'); }
+       
+        else {
+            $boleto['fecha1']=$_POST['fechaboleto'];}
             $this->load->view('templates/header', $dato);
                 $this->load->view('entradasvendidas',$boleto);
                 $dato['js']="<script></script>";    

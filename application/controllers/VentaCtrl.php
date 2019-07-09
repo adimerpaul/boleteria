@@ -43,7 +43,7 @@ class VentaCtrl extends CI_Controller {
         $idpelicula=$_POST['idpel'];
         $fecha=$_POST['fecha1'];
 
-        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, capacidad FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala where fecha ='$fecha' and  p.idPelicula = ".$idpelicula." order by nroSala asc,horaIn asc";
+        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, capacidad FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala where fecha ='$fecha' and  p.idPelicula = ".$idpelicula." order by horaIn asc,nroSala asc";
         $query=$this->db->query($consulta);
         $row=$query->row();
         $myObj=($query->result_array());
@@ -234,6 +234,11 @@ class VentaCtrl extends CI_Controller {
         //echo $nautorizacion.$nroFact.$cinit.$fecVenta.$monto.$kDosif;
        echo $this->ventas_model->generate($nautorizacion,$nroFact,$cinit,$fecVenta,$monto,$kDosif);  // This calls the creation of ajax methods
        //echo "aa";
+    }
+
+    public function cControlprueba($nautorizacion,$nroFact,$cinit,$fecVenta,$monto,$kDosif){
+
+       echo $this->ventas_model->generate($nautorizacion,$nroFact,$cinit,$fecVenta,$monto,$kDosif);  // This calls the creation of ajax methods
     }
 
     public function regVenta(){

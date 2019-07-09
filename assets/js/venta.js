@@ -718,6 +718,8 @@ $('#registrarVenta').click(function(){
             idcl=$('#idcliente').prop('value');
         }
     factCinit=$('#cinit').prop('value');
+    $('#cinit').prop('value','');
+    $('#apellido').prop('value','');
     var montoTotal=parseFloat($('#totalPre').html());
     var cancelado=0;
     if ($.isNumeric($('#pago').val())) 

@@ -401,6 +401,8 @@ $(function() {
                                         myWindow.print();
                                         myWindow.close();
                                         impDetalle(response);
+                         window.location.href='';
+                                        
                                 },500); 
                                
                                 },
@@ -410,8 +412,11 @@ $(function() {
                             else {
                                     setTimeout(function(){
                                         impDetalle(response);
+                         window.location.href='';
+                                        
                                 },500); 
                             }
+                            
                         }
                     });
                 }
@@ -427,7 +432,7 @@ $(function() {
 function impDetalle(id){
     $.ajax({
         url: 'FacturaCandy/imprimirinterno/'+id,
-        success: async function (detalle) {
+        success: function (detalle) {
             myWindow = window.open("", "myWindow", "width=200,height=100");
             myWindow.document.write(detalle);
             myWindow.document.close();
@@ -435,7 +440,6 @@ function impDetalle(id){
             myWindow.print();
             myWindow.close();
         }})
-    location.reload();
 };
 
 $('#cerrarventa').click(function(){
