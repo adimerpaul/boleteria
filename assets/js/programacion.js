@@ -45,12 +45,13 @@ var id = parseInt( split[split.length-1]);
 
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
-
+console.log(id);
     if (isNaN(id)){
-        var datos="ProgramacionCtrl/datos";
+        var datos=BASE_URL+"ProgramacionCtrl/datos";
     }else{
-        var datos="../../ProgramacionCtrl/dato/"+id;
+        var datos=BASE_URL+"ProgramacionCtrl/dato/"+id;
     }
+    console.log(datos);
     var calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: [ 'dayGrid', 'timeGrid' ],
         header: {
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $.ajax({
                 data: 'idfuncion='+id2,
                 type: 'POST',
-                url: 'ProgramacionCtrl/verifi',
+                url: BASE_URL+'ProgramacionCtrl/verifi',
                 success:function (e) {
                     $('#contenedor').html(e);
                 },
@@ -157,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'horafin':horafin
             }
             $.ajax({
-                url:'ProgramacionCtrl/verificar',
+                url: BASE_URL+'ProgramacionCtrl/verificar',
                 type:'POST',
                 data:datos,
                 success:function (e) {
@@ -184,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     };
                     $.ajax({
                             data:  parametros,
-                            url:   'ProgramacionCtrl/boletovendido',
+                            url:   BASE_URL+'ProgramacionCtrl/boletovendido',
                             type:  'post',
                        
                             success:  function (response) {

@@ -360,7 +360,7 @@ public function pruebaFactImpresion(){
     <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
     <span>Tel: 591-25281290</span><br>
     <span>ORURO - BOLIVIA</span><br>
-    <span>TOTAL FACTURA BOLETOS</span><br>
+    <span>TOTAL FACTURADO BOLETOS</span><br>
     <hr>
     ";
     
@@ -522,7 +522,7 @@ hr{border: 1px dashed ;}</style>
 <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br>
 <span>Tel: 591-25281290</span><br>
 <span>ORURO - BOLIVIA</span><br>
-<span>TOTAL FACTURA BOLETOS</span><br>
+<span>TOTAL FACTURADO BOLETOS</span><br>
 <hr>
 ";
 
@@ -673,7 +673,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
-        <span>TOTAL VENTA</span><br> 
+        <span>TOTAL VENTA CANDY</span><br> 
         <hr> 
         "; 
          
@@ -753,7 +753,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
-        <span>RECIBO</span><br> 
+        <span>TOTAL RECIBO CANDY</span><br> 
         <hr> 
         "; 
          
@@ -835,7 +835,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
-        <span>FACTURA</span><br> 
+        <span>TOTAL FACTURADO CANDY</span><br> 
         <hr> 
         "; 
          
@@ -916,7 +916,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
-        <span>TOTAL VENTA</span><br> 
+        <span>TOTAL VENTA CANDY</span><br> 
         <hr> 
         "; 
          
@@ -991,7 +991,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
-        <span>RECIBO</span><br> 
+        <span>TOTAL RECIBO CANDY</span><br> 
         <hr> 
         "; 
          
@@ -1067,7 +1067,7 @@ ORURO - BOLIVIA
         <span>Av. Tacna y Jaen - Oruro -Bolivia</span><br> 
         <span>Tel: 591-25281290</span><br> 
         <span>ORURO - BOLIVIA</span><br> 
-        <span>FACTURA</span><br> 
+        <span>TOTAL FACTURADO CANDY</span><br> 
         <hr> 
         "; 
          

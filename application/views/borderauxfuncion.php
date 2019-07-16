@@ -46,7 +46,9 @@
                     <th>FechaF</th>
                 <th>Serie</th>
                     <th>Precio</th>
-                    <th>Cantidad</th>
+                    <th>CantidadR</th>
+                    <th>CantidadC</th>
+                    <th>CantidadF</th>
                     <th>Total</th>
                 </tr>
                 </thead>
@@ -55,7 +57,11 @@
                 $query=$this->db->query("SELECT f.idFuncion,date(b.fechaFuncion) as fec,
                 concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
                  concat('SALA ',nroSala) as nsala, horaInicio,f.fecha as ff, serie,
-                  precio, count(*) as cant, (precio*count(*)) as total
+                  precio, count(*) as cant, (precio*count(*)) as total,
+                  (select count(*) from boleto b1 
+                  where b1.idFuncion=f.idFuncion and tipoCompra='RECIBO' and b1.idCupon is null and devuelto='NO') as cantr,
+                  (select count(*) from boleto b1 
+                  where b1.idFuncion=f.idFuncion and tipoCompra='RECIBO' and b1.idCupon is not null and devuelto='NO') as cantc
                 FROM funcion f, pelicula p, tarifa t, boleto b, sala s
                 WHERE f.idPelicula=p.idPelicula
                 and f.idFuncion=b.idFuncion
@@ -75,6 +81,8 @@
                     <td>$row->ff</td>
                     <td>$row->serie</td>
                     <td>$row->precio</td>
+                    <td>$row->cantr</td>
+                    <td>$row->cantc</td>
                     <td>$row->cant</td>
                     <td>$row->total</td>
                     </tr>";

@@ -287,6 +287,11 @@ class VentaCtrl extends CI_Controller {
                     $cupon,
                     $cancelado)";
         $this->db->query($query);
+        if($this->db->affected_rows()==0){
+            $this->dosificaciones_model->errorenfactura($idd);
+            $idVenta=0;}
+        else 
+        $idVenta=$this->db->insert_id();
        // $query.= ",'".$codControl."','".$codqr."',(SELECT nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1)";
 
     }
@@ -316,10 +321,13 @@ class VentaCtrl extends CI_Controller {
                     $cupon,
                     $cancelado)";
         $this->db->query($query);
-        }
+        if($this->db->affected_rows()>0)
         $idVenta=$this->db->insert_id();
-
-
+        else 
+        $idVenta=0;
+        
+        }
+        if($idVenta!=0){
         $query=$this->db->query("SELECT * FROM `temporal` WHERE `idUser`='$idu'");
         // echo $idVenta;
    
@@ -382,7 +390,7 @@ class VentaCtrl extends CI_Controller {
 
         $idUser=$this->session->userdata('idUs');
         $this->temporal_model->deleteAll($idUser);
-
+    }
         echo $idVenta;
 
     }
@@ -1136,6 +1144,7 @@ public function impPromo($idventa){
             $promo.="<hr>";
             $promo.="<div class='textpeq'>
                      Trans: ".$idventa."<br>
+                     Fecha: $row->fechaVenta <br>
                      Usuario: $row->user <br></div><div>";
             echo $promo;
 

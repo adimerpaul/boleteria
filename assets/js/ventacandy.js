@@ -400,9 +400,7 @@ $(function() {
                                     setTimeout(function(){
                                         myWindow.print();
                                         myWindow.close();
-                                        impDetalle(response);
-                         window.location.href='';
-                                        
+                                        impDetalle(response);                                        
                                 },500); 
                                
                                 },
@@ -412,8 +410,6 @@ $(function() {
                             else {
                                     setTimeout(function(){
                                         impDetalle(response);
-                         window.location.href='';
-                                        
                                 },500); 
                             }
                             
@@ -421,7 +417,6 @@ $(function() {
                     });
                 }
             });
-            //window.location.href='';
             e.preventDefault();
         }
 
@@ -439,6 +434,7 @@ function impDetalle(id){
             myWindow.focus();
             myWindow.print();
             myWindow.close();
+            window.location.href='';
         }})
 };
 

@@ -56,7 +56,7 @@ function calculaCaja(){
                 resFactura+="</tr>";
                 total=total+parseFloat(row.total);
             });
-            resFactura+="<tr><th></th><th></th><th>Total</th><th>"+total+"</th></tr>";
+            resFactura+="<tr><th></th><th></th><th></th><th>Total</th><th>"+total+"</th></tr>";
             $('#rfactura').html(resFactura);
             
         }

@@ -504,6 +504,7 @@ function relleno(){
             });
             $('#totalPre').html(total);
             $('#prepago').prop('value',total);
+            
         }
     });
 }
@@ -673,7 +674,7 @@ $('#registrarVenta').click(function(){
     validocupon=true;
 
 
-    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon)
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#tabPreVenta tr').length > 0)
     {   
     if($('#idcliente').prop('value')==''){
         var parametros = {
@@ -765,8 +766,6 @@ $('#registrarVenta').click(function(){
                     console.log(response);
                     codControl=response;
 
-
-
                     codqr= '329448023|'+varnroFactura+'|'+varnroAutorizacion+'|'+varfechaqr+'|'+montoTotal+'|'+montoTotal+'|'+codControl+'|'+factCinit+'|0|0|0|0.00';
                     if($('#vtipo').is(':checked'))
                         tipo='FACTURA';
@@ -808,12 +807,20 @@ $('#registrarVenta').click(function(){
                                             myWindow.close();
                                             boletos(idventa);
                                         },500);
+                                        window.setTimeout('location.reload()',8000);                                        
                                     }
                                 });
+                                
                                 }else {
                                     boletos(idventa);
+                                    setTimeout(function(){
+                                        recarga();
+                                    },500); 
                                 }
+                            
+                                
                             }
+                            
                         })
                 }
             })
@@ -821,7 +828,6 @@ $('#registrarVenta').click(function(){
 
     })
     
-
     }
     else
     alert('Verifique monto y los campos esten llenados');
@@ -852,18 +858,17 @@ function boletos(idventa){
                         }
                     }})
 
-                //    console.log(dato[i]);
-                //},200);
-
             };
             relleno();
-
-
+            
         }
     });
+    
 }
 
 
+async function recarga(){
+    location.reload();}
 
 function boleto(idboleto){
     $.ajax({

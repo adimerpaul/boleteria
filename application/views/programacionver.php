@@ -12,7 +12,7 @@
         $query=$this->db->query("SELECT * FROM sala");
         $con=0;
         foreach ($query->result() as $row){
-            echo "<a  href='".base_url()."ProgramacionCtrl/index/$row->idSala' style='width: 110px;font-size: 12px; background: ".$color[$con]."' type='button' class='btn mb-1 text-white'>
+            echo "<a  href='".base_url()."ProgramacionCtrl/index/$row->nroSala' style='width: 110px;font-size: 12px; background: ".$color[$con]."' type='button' class='btn mb-1 text-white'>
                $row->nombreSala <i class='fas fa-film'></i>
                      </a>";
             $con++;
@@ -277,4 +277,6 @@
             e.preventDefault();
         }
     })
+    var BASE_URL = "<?php echo base_url();?>";
+   
 </script>

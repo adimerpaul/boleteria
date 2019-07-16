@@ -48,6 +48,7 @@ $('#fecini').change(function(){
                                     var asiento;
                                     var datos2=JSON.parse(response);
                                     console.log(datos2);
+                                    $('#tabbody').html('');
                                     datos2.forEach(row => {
                                         if(row.devuelto=='SI')
                                             asiento = '-'

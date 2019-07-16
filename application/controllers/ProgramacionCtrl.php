@@ -10,7 +10,7 @@ class ProgramacionCtrl extends CI_Controller {
         $this->load->model('funcion_model');
     }
 
-    public function index($idsala="")
+    public function index($nrosala="")
     {
         if($this->session->userdata('login')==1){
             $user = $this->session->userdata('idUs');
@@ -59,29 +59,27 @@ END)as 'color'
 ,subtitulada
 ,numerada
 FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
-AND fecha>=date_add(NOW(), INTERVAL -1 DAY)");
+where fecha>=date_add(NOW(), INTERVAL -1 DAY)");
         $arr = array();
         foreach ($query->result() as $row){
             $arr[] = $row;
            }
         echo json_encode($arr);
-        exit;
 
     }
-    public function dato($idsala){
+    public function dato($nrosala){
 
         //header('Content-Type: application/json');
 
         $query=$this->db->query("SELECT (CASE
-    WHEN s.idSala='1' THEN '#01579b'
-    WHEN s.idSala='2' THEN '#006064'
-    WHEN s.idSala='3' THEN '#1b5e20'
-    WHEN s.idSala='4' THEN '#ff5722'
-    WHEN s.idSala='5' THEN '#795548'
-    WHEN s.idSala='6' THEN '#e65100'
-    WHEN s.idSala='7' THEN '#827717'
-    
-END)as 'color'
+    WHEN s.nroSala='1' THEN '#01579b'
+    WHEN s.nroSala='2' THEN '#006064'
+    WHEN s.nroSala='3' THEN '#1b5e20'
+    WHEN s.nroSala='4' THEN '#ff5722'
+    WHEN s.nroSala='5' THEN '#795548'
+    WHEN s.nroSala='6' THEN '#e65100'
+    WHEN s.nroSala='7' THEN '#827717'
+    END)as 'color'
 ,  idFuncion as id
 , CONCAT(fecha,' ',horaInicio) as 'start' 
 ,CONCAT(fecha,' ',horaFin) as 'end'
@@ -92,16 +90,14 @@ END)as 'color'
 ,horaInicio
 ,subtitulada
 ,numerada
-,idTarifa 
 FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
-WHERE
-s.idSala='$idsala'");
+where s.nroSala = '$nrosala' and 
+ fecha>=date_add(NOW(), INTERVAL -1 DAY)");
         $arr = array();
         foreach ($query->result() as $row){
             $arr[] = $row;
         }
         echo json_encode($arr);
-        exit;
 
     }
     public function update()

@@ -69,7 +69,7 @@
 INNER JOIN dosificacion d ON v.idDosif=d.idDosif
 INNER JOIN cliente c ON c.idCliente=v.idCliente
 WHERE MONTH(v.fechaVenta)='$mes' AND YEAR(v.fechaVenta)='$anio' AND v.tipoVEnta='FACTURA'
-ORDER BY v.fechaVenta");
+ORDER BY v.nroComprobante asc");
                 $c=0;
                 foreach ($query->result() as $row){
                     $c++;
