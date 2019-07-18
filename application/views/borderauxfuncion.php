@@ -35,7 +35,7 @@
             </button>
  
         </nav>
-            <table id="reporte" class="table" style="width:100%">
+            <table id="reporte" class="display nowrap" style="width:100%">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -46,10 +46,11 @@
                     <th>FechaF</th>
                 <th>Serie</th>
                     <th>Precio</th>
-                    <th>CantidadR</th>
                     <th>CantidadC</th>
+                    <th>CantidadR</th>
                     <th>CantidadF</th>
-                    <th>Total</th>
+                    <th>CantidadTotal</th>
+                    <th>TotalF</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,7 +62,9 @@
                   (select count(*) from boleto b1 
                   where b1.idFuncion=f.idFuncion and tipoCompra='RECIBO' and b1.idCupon is null and devuelto='NO') as cantr,
                   (select count(*) from boleto b1 
-                  where b1.idFuncion=f.idFuncion and tipoCompra='RECIBO' and b1.idCupon is not null and devuelto='NO') as cantc
+                  where b1.idFuncion=f.idFuncion and tipoCompra='RECIBO' and b1.idCupon is not null and devuelto='NO') as cantc,
+                  (select count(*) from boleto b1 
+                  where b1.idFuncion=f.idFuncion and devuelto='NO') as canttotal
                 FROM funcion f, pelicula p, tarifa t, boleto b, sala s
                 WHERE f.idPelicula=p.idPelicula
                 and f.idFuncion=b.idFuncion
@@ -81,9 +84,10 @@
                     <td>$row->ff</td>
                     <td>$row->serie</td>
                     <td>$row->precio</td>
-                    <td>$row->cantr</td>
                     <td>$row->cantc</td>
+                    <td>$row->cantr</td>
                     <td>$row->cant</td>
+                    <td>$row->canttotal</td>                    
                     <td>$row->total</td>
                     </tr>";
                 }
@@ -96,4 +100,13 @@
     </div>
 </div>
 
-
+<script !src="">
+    document.addEventListener('DOMContentLoaded', function() {
+        $('#reporte').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+    });
+</script>

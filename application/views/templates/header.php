@@ -60,7 +60,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   
-  <a class="navbar-brand" href="#"><img id="imgmulti" src="<?=base_url('assets/imgs');?>/LogoCine2.jpg" alt=""> Sistema Boleteria Multicines Plaza</a>
+  <a class="navbar-brand" href="#"><img id="imgmulti" src="<?=base_url('assets/imgs');?>/LogoCine4.png" alt=""> Sistema Boleteria Multicines Plaza</a>
 
   <div class="collapse navbar-collapse  " id="navbarText">
   <ul class="navbar-nav mr-auto">

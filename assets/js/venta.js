@@ -807,7 +807,6 @@ $('#registrarVenta').click(function(){
                                             myWindow.close();
                                             boletos(idventa);
                                         },500);
-                                        window.setTimeout('location.reload()',8000);                                        
                                     }
                                 });
                                 
