@@ -74,14 +74,16 @@ ORDER BY v.nroComprobante asc");
                 foreach ($query->result() as $row){
                     $c++;
                     if ($row->estado=="ACTIVO")
-                        $e="V";
+                        {$e="V";
+                        $nom="$row->apellidoCl $row->nombreCl";
+                        $ccontrol=$row->codigoControl;
+                        $cinit=$row->cinit;
+                    }
                     else{
                         $e="A";
-                    }
-                    if ($row->cinit=="0")
                         $nom="ANULADO";
-                    else{
-                        $nom="$row->apellidoCl $row->nombreCl";
+                        $ccontrol='0';
+                        $cinit='0';                        
                     }
                     $fecha2=date("d/m/Y", strtotime($row->fechaVenta));
                     echo "<tr>
@@ -90,7 +92,7 @@ ORDER BY v.nroComprobante asc");
                             <td>$row->nroComprobante</td>
                             <td>$row->nroAutorizacion</td>
                             <td>$e</td>
-                            <td>$row->cinit</td>
+                            <td>$cinit</td>
                             <td>$nom</td>
                             <td>$row->total</td>
                             <td>0</td>
@@ -100,7 +102,7 @@ ORDER BY v.nroComprobante asc");
                             <td>0</td>
                             <td>$row->total</td>
                             <td>".number_format($row->total*0.13,2)."</td>
-                            <td>$row->codigoControl</td>
+                            <td>$ccontrol</td>
                         </tr>";
                 }
                 ?>
