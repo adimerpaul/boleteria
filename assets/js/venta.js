@@ -812,9 +812,6 @@ $('#registrarVenta').click(function(){
                                 
                                 }else {
                                     boletos(idventa);
-                                    setTimeout(function(){
-                                        recarga();
-                                    },500); 
                                 }
                             
                                 

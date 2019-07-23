@@ -104,6 +104,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         $('#reporte').DataTable( {
             dom: 'Bfrtip',
+            paging: false,
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
             ]
