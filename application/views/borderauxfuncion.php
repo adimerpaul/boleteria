@@ -58,7 +58,11 @@
                 $query=$this->db->query("SELECT f.idFuncion,date(b.fechaFuncion) as fec,
                 concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
                  concat('SALA ',nroSala) as nsala, horaInicio,f.fecha as ff, serie,
-                  precio, count(*) as cant, (precio*count(*)) as total,
+                  precio, 
+                  (select count(*) from boleto b1 
+                  where b1.idFuncion=f.idFuncion and tipoCompra='FACTURA' and b1.idCupon is null and devuelto='NO') as cant,
+                  (select sum(precio) from boleto b1, tarifa t1 where b1.idTarifa=t1.idTarifa and b1.idFuncion=f.idFuncion
+                  and tipoCompra='FACTURA' and b1.idCupon is null and devuelto='NO') as total,
                   (select count(*) from boleto b1 
                   where b1.idFuncion=f.idFuncion and tipoCompra='RECIBO' and b1.idCupon is null and devuelto='NO') as cantr,
                   (select count(*) from boleto b1 
@@ -70,7 +74,6 @@
                 and f.idFuncion=b.idFuncion
                 and f.idSala=s.idSala
                 and b.idTarifa=t.idTarifa
-                and tipoCompra='FACTURA'
                 and devuelto = 'NO' and b.idCupon is null
                 and date(b.fechaFuncion)>='$fecha1' and date(b.fechaFuncion)<='$fecha2'
                 group by b.idFuncion order by fec asc,nsala asc,horaInicio asc");
