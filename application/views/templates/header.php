@@ -476,7 +476,8 @@
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'65')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>Reporte/porfuncion"><i class="fas fa-plus"></i> Borderaux Funcion</a>
-        </li>       
+        </li>
+               
         <?php endif ?>
 
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'67')):  ?>
@@ -492,6 +493,9 @@
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'71')):  ?>
         <li class="nav-item">
             <a class="nav-link" href="<?=base_url()?>Reporte/repsemana"><i class="fas fa-plus"></i> Borderaux semana</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=base_url()?>Reporte/informeboleteria"><i class="fas fa-plus"></i>Informe Funcion</a>
         </li>
         <?php endif ?>
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'139')):  ?>

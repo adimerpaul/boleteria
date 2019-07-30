@@ -81,6 +81,9 @@
             <div class='row'>
                 <label for="" id="promot"></label>
             </div>
+            <div class='row'>
+                <label for="" id="cortesiat"></label>
+            </div>
             <br>
             <a  class="btn btn-success btn-block" id="imprimir"> <i class="fas fa-print"></i> Imprimir ventas del dia</a>
             <a  class="btn btn-success btn-block" id="imptodo"> <i class="fas fa-print"></i> Imprimir ventas del dia Todos Us.</a>

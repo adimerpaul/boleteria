@@ -93,6 +93,26 @@ class Reporte extends CI_Controller {
         }
         else redirect('');
     }
+
+    public function informeBoleteria(){
+        if($this->session->userdata('login')==1){
+
+            $user = $this->session->userdata('idUs');
+            if (isset($_POST['fecha1']) ) {
+                $data['fecha1']=$_POST['fecha1'];
+            }
+            else
+                {
+                $data['fecha1']=date('Y-m-d');               
+            }
+            $dato=$this->usuarios_model->validaIngreso($user);
+            $this->load->view('templates/header', $dato);
+            $this->load->view('informeboleteria',$data);
+            $dato['js']="<script src=''></script>";
+            $this->load->view('templates/footer',$dato);
+        }
+        else redirect('');
+    }
     
     public function semanadistrib(){
         if($this->session->userdata('login')==1){

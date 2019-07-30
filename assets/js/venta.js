@@ -41,9 +41,9 @@ function caltotalventa(){
                            console.log(response);
                           var datos=JSON.parse(response)[0];
                           if($.isNumeric(datos.totalv))
-                          $('#tventa').html('Boletos : '+datos.totalv);
+                          $('#tventa').html('Venta Boletos Dia: '+datos.totalv);
                           else 
-                          $('#tventa').html('Boletos : 0');
+                          $('#tventa').html('Venta Boletos Dia: 0');
                       }
                   }
               ) 
@@ -149,9 +149,23 @@ $("#selectable").selectable(
                                  console.log(response);
                                 var datos=JSON.parse(response);
                                     datos.forEach(row => {
-                                        cadenahorario=cadenahorario+'<li class="ui-widget-content" value="'+row.idFuncion+'"><span>S'+row.nroSala+'     </span> '+row.horaIn+' ('+row.horaF+')';
+                                        row.porcentaje=100-row.porcentaje;
+                                       /* if(row.porcentaje>=0 && row.porcentaje<=5)
+                                        var fondo=" style='background:red;'";
+                                        else{
+                                            if(row.porcentaje>5 && row.porcentaje<=50)
+                                                var fondo=" style='background:yellow;'";
+                                            else{
+                                                if(row.porcentaje>50 && row.porcentaje<=100)
+                                                var fondo=" style='background:green;'";
+                                                else 
+                                                var fondo=" style='background:gray;'";
+                                            }
+                                        }*/
+                                        cadenahorario=cadenahorario+'<li class="ui-widget-content" style="" value="'+row.idFuncion+'"><span>S'+row.nroSala+'     </span> '+row.horaIn+' ('+row.horaF+')';
                                         cadenahorario=cadenahorario+'<input type=hidden value='+ row.idSala+'>';
                                         cadenahorario=cadenahorario+'<label hidden>'+ row.horaIn+'</label>';
+                                        cadenahorario=cadenahorario+'<h6 hidden>'+ row.porcentaje+'</h6>';
                                         cadenahorario=cadenahorario+'</li>';
  
                                      }),
@@ -161,6 +175,7 @@ $("#selectable").selectable(
                                          //$('#selecfun li:first').addClass('ui-selected');
                                          //mostrardatos($("#selecfun .ui-selected").prop('value'));
                                          datosiniciales();
+                                         colorfuncion();
                                          $("#lblPrecio").html("0Bs");
                                          $("#lblCantidadEntradas").html("0");
                                          bloqueobtn();
@@ -172,11 +187,49 @@ $("#selectable").selectable(
     }
   });
   
-
+function colorfuncion(){
+    $('#selecfun li').each(function(){
+        var por=$("h6",this).html();
+        console.log(por);
+        if(por>=0 && por<=5)
+        var fondo=" background:red";
+        else{
+            if(por>5 && por<=50)
+                var fondo=" background:yellow";
+            else{
+                if(por>50 && por<=100)
+                var fondo=" background:green";
+                else 
+                var fondo=" background:gray";
+            }
+        }
+        $(this).attr('style',fondo);
+    })
+}
     $( "#selecfun").selectable(    {
         stop: function(){
             console.log($("#selecfun .ui-selected").prop('value'));
+          /* $(this).each(function() {
+               if(!$(this).hasClass("ui-selected")){
+                   var aaa=$(this,"li span").html();
+                if(aaa>=0 && aaa<=5)
+                var fondo=" background:red";
+                else{
+                    if(aaa>5 && aaa<=50)
+                        var fondo=" background:yellow";
+                    else{
+                        if(aaa>50 && aaa<=100)
+                        var fondo=" background:green";
+                        else 
+                        var fondo=" background:gray";
+                    }
+                }
+                $(this,"li span").attr('style',fondo);
+               }
+           }),   */        
             $( ".ui-selected", this ).each(function() {
+                colorfuncion();
+                $("#selecfun .ui-selected").attr('style','');
               var cadenacosto="";
               var param = {
                                 "idfun":  $("#selecfun .ui-selected").prop('value')
@@ -417,46 +470,59 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                              var idfunreg=$('#selecfun .ui-selected').prop('value');
                              var horafun=$('#selecfun .ui-selected label').html()+":00";
                              var pelicula=$('#selectable .ui-selected input').prop('value');
-                             
+                             var validar=0;
                              if(parseInt($('#totalentrada').html())==parseInt($('#numasignada').html())){
-
+                                validar=0;
                              $('.lugar.asignado').each(function(){
                                  var idsien=$(this).data('idasiento');
                                  var col=$(this).data('numero');
                                  var fil=$(this).data('fila');
-                                 var ptemporal = {
-                                                   "idasiento" : idsien,
-                                                   "numerofuncion" :numerofuncion,
-                                                   "serietarifa":tarSerie,
-                                                   "codigosala":codSala,
-                                                   "numerosala":nunSala,
-                                                   "fechafun": fecfun,
-                                                   "horafun":horafun,
-                                                   "precio":costo,
-                                                   "columna":col,
-                                                   "fila":fil,
-                                                   "idfuncion":idfunreg,
-                                                   "idtarifa":idtar,
-                                                   "titulo":pelicula
-                                                   
-                                            };
-                                            $.ajax({
-                                                    data:  ptemporal,
-                                                    url:   'VentaCtrl/insertTemporal',
-                                                    type:  'post',
-                                                    beforeSend: function () {
-                                                            //$("#resultado").html("Procesando, espere por favor...");
-                                                    },
-                                                    success:  function (response) {
-                                        $('#btnAceptar').removeClass("disabled");
-             
-                                                    }
-                                                })
+                                         var ptemporal = {
+                                                           "idasiento" : idsien,
+                                                           "numerofuncion" :numerofuncion,
+                                                           "serietarifa":tarSerie,
+                                                           "codigosala":codSala,
+                                                           "numerosala":nunSala,
+                                                           "fechafun": fecfun,
+                                                           "horafun":horafun,
+                                                           "precio":costo,
+                                                           "columna":col,
+                                                           "fila":fil,
+                                                           "idfuncion":idfunreg,
+                                                           "idtarifa":idtar,
+                                                           "titulo":pelicula
+                                                           
+                                                    };
+                                                    $.ajax({
+                                                            data:  ptemporal,
+                                                            url:   'VentaCtrl/insertTemporal',
+                                                            type:  'post',
+                                                            beforeSend: function () {
+                                                                    //$("#resultado").html("Procesando, espere por favor...");
+                                                            },
+                                                            success:  function (response) {
+                                                                $('#btnAceptar').removeClass("disabled");
+                                                                relleno();
+                                                                calculo();
+                                                                if(response==1){
+                                                                    alert('Ticket registrado');
+                                                                    validar=1;
+                                                                    $.ajax({
+                                                                        data:{},
+                                                                        url:'VentaCtrl/pruebadeleteTempAll',
+                                                                        type:'post',
+                                                                        success:function(r){}
+                                                                    })
+                                                                }
+                                                    
+                                                            }
+                                                        })
+                                            
+                                     
+                                 
                                 //console.log(idsien+' '+idfunreg+' '+numerofuncion+' '+tarSerie+' '+nunSala+' '+codSala+' '+fecfun+' '+costo+' '+col+' '+fil+' '+pelicula+' '+horafun);
-                            }                                
-                           )
+                            })
 
-                   
                             $("#exampleModal").modal('hide');//ocultamos el modal
                             $('#lblCantidadEntradas').html("0");
                             $('#lblPrecio').html('0Bs');
@@ -465,10 +531,12 @@ $('#exampleModal').on('show.bs.modal', function (event) {
                                  relleno();
                                  calculo();
                                  $('#body').html('');
+                                 console.log(validar);
 
                              }
-
-                        });
+                         
+                            }
+                    );
                    
                 }
             });
@@ -674,7 +742,7 @@ $('#registrarVenta').click(function(){
     validocupon=true;
 
 
-    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && validocupon && $('#tabPreVenta tr').length > 0)
+    if($('#cinit').prop('value')!='' && $('#apellido').prop('value')!='' && $('#apellido').val().length>=2 && validocupon && $('#tabPreVenta tr').length > 0)
     {   
     if($('#idcliente').prop('value')==''){
         var parametros = {
@@ -770,7 +838,10 @@ $('#registrarVenta').click(function(){
                     if($('#vtipo').is(':checked'))
                         tipo='FACTURA';
                     else
-                        tipo='RECIBO';
+                        {tipo='RECIBO';
+                            codControl='';
+                            codqr='';
+                        }
                         var parventa = {
                             'total':montoTotal,
                             'ccontrol':codControl ,

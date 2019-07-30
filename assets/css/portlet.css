@@ -21,9 +21,23 @@
   background: slategrey;
   transition: 0.3s;
   pointer-events: auto;
-  color: white;
-  
+  color: white;  
 }
+
+.gris{
+  background-color: slategrey;
+}
+
+.rojo{
+  background-color: red;
+}
+.amarillo{
+  background-color: yellow;
+}
+.verde{
+  background-color: green;
+}
+
 
 .ui-widget-content :hover {
   box-shadow: 0 8px 15px 0 rgba(0,0,0,0.2);

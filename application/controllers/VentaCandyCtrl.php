@@ -218,9 +218,12 @@ WHERE  cinit='$ci'");
             nroComprobante='$invoiceNumber',
             cancelado=$cancelado
             ");
-
+            if($this->db->affected_rows()==0){
+                $this->dosificaciones_model->errorenfacturacandy($iddosif);
+                $idventa=0;}
+                else
         $idventa= $this->db->insert_id();
-
+                if($idventa!=0){
         $query=$this->db->query("SELECT * FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
         foreach ($query->result() as $row){
             $idproducto=$row->idProducto;
@@ -244,7 +247,7 @@ nombreP='$nombreP'
         }
 
         $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
-
+    }
             echo $idventa;
             exit;
     }

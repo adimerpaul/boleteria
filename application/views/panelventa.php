@@ -45,7 +45,29 @@
             <div class="row">
             <div class="col-sm-4"><h4><i class="fas fa-film"></i> PELICULAS</h4></div>
             <div class="col-sm-6">
-            <ul class="breadcrumb " id="ul-cabecera">
+
+                </div>
+                <div class='col-sm-2'><label for="" id='tventa'>prueba</label></div>
+            </div>
+            <hr/>
+
+            <div class="row">
+            <div id="listapelicula">
+                <ol id="selectable">
+                    <li class="ui-widget-content">
+                        <div class="titulo"><h4>Architect & Engineer</h4></div>
+                        <div class="tipo">d3</div>
+                        <div class="vendido">33</div>
+                    </li>
+                </ol>
+                </div>
+            </div>
+            
+            <hr>
+            <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8">
+                <ul class="breadcrumb " id="ul-cabecera">
                                         <li>
                                             <i class="far fa-credit-card"></i>
                                             Disponibles: <strong id="lblEntradasDisponibles"></strong>
@@ -63,23 +85,9 @@
                                             Capacidad: <strong id="lblCapacidadSala"></strong>
                                         </li>		
                                     </ul>
-                </div>
-                <div class='col-sm-2'><label for="" id='tventa'>prueba</label></div>
+            </div>
             </div>
             <hr/>
-            <div class="row">
-            <div id="listapelicula">
-                <ol id="selectable">
-                    <li class="ui-widget-content">
-                        <div class="titulo"><h4>Architect & Engineer</h4></div>
-                        <div class="tipo">d3</div>
-                        <div class="vendido">33</div>
-                    </li>
-                </ol>
-                </div>
-            </div>
-            
-            <hr>
         <div class="row">
             <div class="col-md-2">
             <h6><i class="far fa-clock"></i> Funciones</h6><br>
@@ -317,11 +325,11 @@
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="apellido">Apellido:</label>   
-      <input type="text" class="form-control" id="apellido" name="apellido" Required style="text-transform: uppercase;">  
+      <input type="text" class="form-control" id="apellido" name="apellido" Required style="text-transform: uppercase;" minlength=3>  
     </div>
     <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>   
-      <input type="text" class="form-control" id="nombre" name="nombre"  style="text-transform: uppercase;">  
+      <input type="text" class="form-control" id="nombre" name="nombre"  style="text-transform: uppercase;" minlength=3>  
       <input type="hidden" id="idcliente" name="idcliente">  
     </div>
   </div>

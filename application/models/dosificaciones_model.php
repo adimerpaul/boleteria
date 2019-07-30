@@ -71,4 +71,8 @@ class dosificaciones_model extends CI_Model {
         $this->db->query("UPDATE dosificacion set nroFactura= nroFactura - 1 where tipo='BOLETERIA' AND activo=1 AND idDosif='$id'");
     }
 
+    public function errorenfacturacandy($id){
+        $this->db->query("UPDATE dosificacion set nroFactura= nroFactura - 1 where tipo='CANDY' AND activo=1 AND idDosif='$id'");
+    }
+
 }

@@ -144,6 +144,19 @@ class ResumenDia extends CI_Controller {
     
     }
 
+    
+    public function totalCortesia(){
+        $fecha1=$_POST['fecha'];
+        
+        $query=$this->db->query("SELECT count(*) as cortesia from venta
+        WHERE date(fechaVenta)='$fecha1' 
+        and tipoVenta='RECIBO' and estado='ACTIVO' and idCupon is not null");
+            $row=$query->row();
+                         $myObj=($query->result_array());
+                         echo json_encode($myObj);  
+    
+    }
+
     public function detalleCombo(){
         $fecha1=$_POST['fecha'];
         $id=$_POST['id'];        
@@ -279,7 +292,7 @@ public function pruebaImpresion(){
                     $total=$total+$row->total;
                 }
                 $cadena.="</tbody></table></center>";
-                $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
+                $cadena.= "<br><div class='textor'>TOTAL: $total Bs.</div><br>";
                 $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
         echo $cadena;
 
@@ -337,7 +350,7 @@ public function pruebaRecImpresion(){
                 $total=$total+$row->total;
             }
             $cadena.="</tbody></table></center>";
-            $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
+            $cadena.= "<br><div class='textor'>TOTAL: $total Bs.</div><br>";
             $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
     echo $cadena;
 
@@ -394,7 +407,7 @@ public function pruebaFactImpresion(){
                 $total=$total+$row->total;
             }
             $cadena.="</tbody></table></center>";
-            $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
+            $cadena.= "<br><div class='textor'>TOTAL: $total Bs.</div><br>";
             $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
     echo $cadena;
 
@@ -422,8 +435,6 @@ public function todopruebaImpresion(){
     
     $cadena.="<div class='textmed'>Fecha: ".date('Y-m-d H:m:s')."<br>
                 Fecha Caja: ".$fecha1."<br>";
-    
-
     $cadena.="
              <hr><br></div>
              <center>
@@ -447,7 +458,13 @@ public function todopruebaImpresion(){
                 $total=$total+$row->total;
             }
             $cadena.="</tbody></table></center>";
-            $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
+            $cadena.= "<br><div class='textor'>TOTAL: $total Bs.</div><br>";
+            $query3=$this->db->query("SELECT count(*) as cortesia from venta 
+            where date(fechaVenta)='$fecha1' and tipoVenta='RECIBO' and idCupon is not null  ");
+            if($query3->num_rows()>=1)
+             $cort=$query3->result()[0]->cortesia;
+            else $cort=0;
+            $cadena.="<div class='textmed'><label>Total cortesia: </label> $cort</div>";
             $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
     echo $cadena;
 
@@ -500,7 +517,7 @@ GROUP BY p.idPelicula,p.nombre
             $total=$total+$row->total;
         }
         $cadena.="</tbody></table></center>";
-        $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
+        $cadena.= "<br><div class='textor'>TOTAL: $total Bs.</div><br>";
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
 echo $cadena;
 
@@ -552,7 +569,7 @@ GROUP BY p.idPelicula,p.nombre
             $total=$total+$row->total;
         }
         $cadena.="</tbody></table></center>";
-        $cadena.= "<br><div class='textor'>TOTAL: $total Bolivianos</div><br>";
+        $cadena.= "<br><div class='textor'>TOTAL: $total Bs.</div><br>";
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>";
 echo $cadena;
 
@@ -729,7 +746,7 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bs.</div><br>"; 
         $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
@@ -811,7 +828,7 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bs.</div><br>"; 
         $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
@@ -893,7 +910,7 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bs.</div><br>"; 
         $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
@@ -968,7 +985,7 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bs.</div><br>"; 
         $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
@@ -1044,7 +1061,7 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bs.</div><br>"; 
         $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos.<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 
@@ -1120,7 +1137,7 @@ ORURO - BOLIVIA
         $entero=$d[0]; 
         $decimal=$d[1]; 
         $cadena.="<hr>"; 
-        $cadena.="<br><div class='textor'>TOTAL: $total Bolivianos</div><br>"; 
+        $cadena.="<br><div class='textor'>TOTAL: $total Bs.</div><br>"; 
         $cadena.="  SON: ".NumerosEnLetras::convertir($entero)."$decimal/100 Bolivianos<br>"; 
      
         $cadena.= "<br><br><br><span style='font-size: x-small;'>ENTREGE CONFORME &nbsp; &nbsp; &nbsp; &nbsp;  RECIBI CONFORME<span></div>"; 

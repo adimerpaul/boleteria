@@ -273,3 +273,31 @@ function totalpromo(){
             
         }})
 }
+
+function totalcortesia(){
+    var fecha=$('#fechadia').val();
+    var param={
+        'fecha':fecha
+    };
+    $.ajax({
+        data:  param,
+        url:   'ResumenDia/totalCortesia',
+        type:  'post',
+        beforeSend: function () {
+            //$("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response){
+            $('#cortesiat').html('');
+            console.log(response);
+            datos2=JSON.parse(response);
+            var total=0;
+            datos2.forEach(row => {
+                total+=parseInt(row.cortesia);
+            });
+            if(total>0)
+            $('#cortesiat').html('<b><label>Total cortesia: </label></b> '+total);
+            else
+            $('#cortesiat').html('');
+            
+        }})
+}

@@ -36,6 +36,7 @@ $('#fecini').change(function(){
                               $('#codControl').html(datos.codigoControl);
                               $('#tipoventa').html(datos.tipoVenta);
                               dev=datos.estado;
+                              var tipo=datos.tipoVenta;
                               $.ajax({
                                 data:  parametros,
                                 url:   'listaBoletos',
@@ -77,6 +78,11 @@ $('#fecini').change(function(){
                                         $('#btnDevolver').show();
                                     }
 
+                                    if (tipo=="FACTURA"){
+                                        $('#btnImpresion').show();
+                                   } else{
+                                       $('#btnImpresion').hide();
+                                   }
                                 })
                                 }
 
@@ -128,15 +134,8 @@ $('#fecini').change(function(){
                           myWindow.document.write(te);
                           myWindow.document.close();
                           myWindow.focus();
-                          setTimeout(function(){
-                              myWindow.print();
-                              myWindow.close();
-                              boletos(idventa);
-                          },500);
                       }
                   });
-              }else {
-                  boletos(idventa);
               }
 
           });

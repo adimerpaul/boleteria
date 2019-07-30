@@ -43,7 +43,12 @@ class VentaCtrl extends CI_Controller {
         $idpelicula=$_POST['idpel'];
         $fecha=$_POST['fecha1'];
 
-        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF, capacidad FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula inner join sala s on s.idSala = f.idSala where fecha ='$fecha' and  p.idPelicula = ".$idpelicula." order by horaIn asc,nroSala asc";
+        $consulta="SELECT p.idPelicula,nombre,formato, s.idSala, nroSala, f.idFuncion,
+        time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF,
+        capacidad,((select count(*) from boleto b1 where f.idFuncion=b1.idFuncion and devuelto='NO')*100)/capacidad as porcentaje
+         FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula
+         inner join sala s on s.idSala = f.idSala where fecha ='$fecha' 
+         and  p.idPelicula = ".$idpelicula." order by horaIn asc,nroSala asc";
         $query=$this->db->query($consulta);
         $row=$query->row();
         $myObj=($query->result_array());
@@ -155,9 +160,29 @@ class VentaCtrl extends CI_Controller {
         $fila=$_POST["fila"];
         $titulo=$_POST["titulo"];
         $horaFuncion=$_POST["horafun"];
+        if($this->verifTemporal($idfuncion,$idAsiento))
+            echo 1;
+        else{
         $insertar=" INSERT INTO temporal (idAsiento, idFuncion, numeroFuncion, numeroSala, serieTarifa, codSala, fechaFuncion, idUser, fila, columna, costo, titulo, horaFuncion, idTarifa) VALUES ";
         $insertar=$insertar." (".$idAsiento.",".$idfuncion.",".$numeroFuncion.",".$numeroSala.",'".$serieTarifa."',".$codSala.",'".$fechaFuncion."',".$idUser.",".$fila.",".$columna.",".$precio.",'".$titulo."','".$horaFuncion."','".$idtarifa."')";
         $this->db->query($insertar);
+            echo 0;
+        }
+    }
+    
+    public function verifTemporal($idf,$ida)
+    {   
+        $verif=$this->db->query("SELECT * FROM temporal where idAsiento=$ida and idFuncion=$idf");
+        if ($verif->num_rows()>=1)
+            return true;
+        else {
+            $verif2=$this->db->query("SELECT * FROM boleto where idAsiento=$ida and idFuncion=$idf");
+            if($verif2->num_rows()>=1)
+                return true;
+                else
+                return false;     
+                } 
+                
     }
 
     public function deleteTemporal($id){
@@ -171,6 +196,12 @@ class VentaCtrl extends CI_Controller {
 
 
      header("Location: ".base_url()."VentaCtrl");
+    }
+
+    public function pruebadeleteTempAll(){
+        $idUser=$this->session->userdata('idUs');
+        $this->temporal_model->deleteAll($idUser);
+        echo "ok";
     }
 
     public function registrarVenta(){
@@ -258,7 +289,8 @@ class VentaCtrl extends CI_Controller {
           $cupon=$idcupon;
         }
         else $cupon='null';
-   
+        if($codControl!='' && $codqr!='' && $tipo=='RECIBO')
+            $tipo='FACTURA';
         if($tipo=='FACTURA'){
 
             $this->dosificaciones_model->updatenfactura($idd);
