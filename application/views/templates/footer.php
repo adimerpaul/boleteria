@@ -3,7 +3,7 @@
 </body>
 <footer style="background-color: #161616;color:white;text-align: right; padding: 10px; font-size:10px;" >
 	Realizado por: Chambi Ajata Adimer Paul <br>Lopez Gutierrez Alejandro Fernando <br>
-  Cel: 69603027 - 738822069
+  Cel: 69603027 - 73822069
 </footer>
   <script src="<?=base_url('assets/js');?>/jquery.min.js"></script>
   <script src="<?=base_url('assets/js');?>/jquery-ui.js"></script>

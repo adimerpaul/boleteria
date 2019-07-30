@@ -192,10 +192,10 @@ function colorfuncion(){
         var por=$("h6",this).html();
         console.log(por);
         if(por>=0 && por<=5)
-        var fondo=" background:red";
+        var fondo=" background:red;color:black";
         else{
             if(por>5 && por<=50)
-                var fondo=" background:yellow";
+                var fondo=" background:yellow;color:black";
             else{
                 if(por>50 && por<=100)
                 var fondo=" background:green";
