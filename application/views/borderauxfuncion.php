@@ -74,7 +74,7 @@
                 and f.idFuncion=b.idFuncion
                 and f.idSala=s.idSala
                 and b.idTarifa=t.idTarifa
-                and devuelto = 'NO' and b.idCupon is null
+                and devuelto = 'NO' 
                 and date(b.fechaFuncion)>='$fecha1' and date(b.fechaFuncion)<='$fecha2'
                 group by b.idFuncion order by fec asc,nsala asc,horaInicio asc");
                 foreach ($query->result() as $row){
