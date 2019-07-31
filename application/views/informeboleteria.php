@@ -52,15 +52,16 @@
                 $query=$this->db->query("SELECT f.idFuncion,date(b.fechaFuncion) as fec,
                 concat(nombre,' ',if(formato=1,'3D','2D')) as titulo,
                  concat('SALA ',nroSala) as nsala, horaInicio,f.fecha as ff, serie,
-                  (select max(precio) from tarifa t1, boleto b1 where t1.idTarifa=b1.idTarifa and b1.idFuncion=f.idFuncion)
-                  as tprecio, count(*) as cant, (select sum(precio) from boleto b1, tarifa t1 where b1.idTarifa=t1.idTarifa
-                  and b1.idFuncion=f.idFuncion and devuelto='NO' group by b1.idFuncion) as total
+                  (select max(precio) from tarifa t1, boleto b1 where t1.idTarifa=b1.idTarifa 
+                    and b1.idFuncion=f.idFuncion) as tprecio,
+                   (select count(*) from boleto b1 where b1.idFuncion=f.idFuncion and b1.devuelto='NO' and b1.idCupon is null) as cant, (select sum(precio) from boleto b1, tarifa t1 
+                   where b1.idTarifa=t1.idTarifa
+                  and b1.idFuncion=f.idFuncion and b1.devuelto='NO' and b1.idCupon is null) as total
                 FROM funcion f, pelicula p, tarifa t, boleto b, sala s
                 WHERE f.idPelicula=p.idPelicula
                 and f.idFuncion=b.idFuncion
                 and f.idSala=s.idSala
                 and b.idTarifa=t.idTarifa
-                and devuelto = 'NO' and b.idCupon is null
                 and date(b.fechaFuncion)='$fecha1' 
                 group by b.idFuncion order by nsala asc,horaInicio asc");
                 foreach ($query->result() as $row){
