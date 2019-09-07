@@ -154,9 +154,9 @@ esCombo='$esCombo'
         $query=$this->db->query("SELECT * FROM cliente WHERE cinit='$ci'");
         if ($query->num_rows()>=1){
             $this->db->query("UPDATE cliente SET 
-nombreCl='$nombres',
-apellidoCl='$apellidos'
-WHERE  cinit='$ci'");
+            nombreCl='$nombres',
+            apellidoCl='$apellidos'
+            WHERE  cinit='$ci'");
         }else{
             $this->db->query("INSERT INTO cliente SET cinit='$ci',nombreCl='$nombres',apellidoCl='$apellidos'");
         }
@@ -198,56 +198,60 @@ WHERE  cinit='$ci'");
                 $row=$query->row();
                 $invoiceNumber=$row->nroFactura;
                 $codigo=$this->ventas_model->generate($authorizationNumber, $invoiceNumber, $cinit, date('Ymd'), $total, $llaveDosif);
-
                 $codqr= '329448023|'.$invoiceNumber.'|'.$authorizationNumber.'|'.date('Ymd').'|'.$total.'|'.$total.'|'.$codigo.'|'.$cinit.'|0|0|0|0.00';
+                $anterior=$invoiceNumber - 1;
 
             }
             else{
             $codigo='';
             $codqr='';
             $invoiceNumber='';
+            $tipoVenta='RECIBO';
             }
+            $query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior");
+            if($query8->num_rows()==1){
             $this->db->query("INSERT INTO ventacandy SET
-            total='$total',
-            tipoVenta='$tipoVenta',
-            codigoControl='$codigo',
-            codigoQR='$codqr',
-            idCliente='$idcliente',
-            idDosif='$iddosif',
-            idUsuario='".$_SESSION['idUs']."',
-            nroComprobante='$invoiceNumber',
-            cancelado=$cancelado
+                total='$total',
+                tipoVenta='$tipoVenta',
+                codigoControl='$codigo',
+                codigoQR='$codqr',
+                idCliente='$idcliente',
+                idDosif='$iddosif',
+                idUsuario='".$_SESSION['idUs']."',
+                nroComprobante='$invoiceNumber',
+                cancelado=$cancelado
             ");
             if($this->db->affected_rows()==0){
                 $this->dosificaciones_model->errorenfacturacandy($iddosif);
                 $idventa=0;}
                 else
-        $idventa= $this->db->insert_id();
+                    $idventa= $this->db->insert_id();
                 if($idventa!=0){
-        $query=$this->db->query("SELECT * FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
-        foreach ($query->result() as $row){
-            $idproducto=$row->idProducto;
-            $pUnitario=$row->pUnitario;
-            $tCantidad=$row->tCantidad;
-            $nombreP=$row->nombreP;
-            $idCombo=$row->idCombo;
-            $esCombo=$row->esCombo;
-            $this->db->query("INSERT INTO detalle SET 
-idVentaCandy='$idventa',
-idProducto='$idproducto',
-idCombo='$idCombo',
-esCombo='$esCombo',
-cantidad='$tCantidad',
-pUnitario='$pUnitario',
-idUsuario='".$_SESSION['idUs']."',
-nombreP='$nombreP'
-");
-
-
-        }
-
+                    $query=$this->db->query("SELECT * FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
+                foreach ($query->result() as $row){
+                    $idproducto=$row->idProducto;
+                    $pUnitario=$row->pUnitario;
+                    $tCantidad=$row->tCantidad;
+                    $nombreP=$row->nombreP;
+                    $idCombo=$row->idCombo;
+                    $esCombo=$row->esCombo;
+                    $this->db->query("INSERT INTO detalle SET 
+                        idVentaCandy='$idventa',
+                        idProducto='$idproducto',
+                        idCombo='$idCombo',
+                        esCombo='$esCombo',
+                        cantidad='$tCantidad',
+                        pUnitario='$pUnitario',
+                        idUsuario='".$_SESSION['idUs']."',
+                        nombreP='$nombreP'
+                    ");
+            }
         $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
+        }
     }
+    else{ 
+        $this->dosificaciones_model->errorenfacturacandy($iddosif);
+        $idventa=0;}
             echo $idventa;
             exit;
     }

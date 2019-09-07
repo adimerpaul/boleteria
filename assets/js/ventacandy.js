@@ -388,7 +388,7 @@ $(function() {
                         data:datos,
                         success:function (response) {
                             //console.log(e);
-                            if(response!=0){
+                            if (response!=0){
                             if (tipoventa=="FACTURA"){
                             $.ajax({
                                 url: 'FacturaCandy/imprimirfactura/'+response,
@@ -414,15 +414,14 @@ $(function() {
                                 },500); 
                             }
                         }
-                            
+                        else
+                            alert("problema de registro");
                         }
                     });
                 }
             });
             e.preventDefault();
-        }
-
-  
+        }  
     });
 });
 

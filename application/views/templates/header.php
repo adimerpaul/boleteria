@@ -642,7 +642,7 @@
                 <ul class="nav flex-column ml-3">
           <?php if($this->usuarios_model->veri($_SESSION['idUs'],'89')):  ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-list-ul"></i> Ver Controles Ingreso</a>
+                        <a class="nav-link" href="<?=base_url()?>UsuarioCtrl/backupbase"><i class="fas fa-list-ul"></i> BackUp-BdD</a>
                     </li>
             <?php endif?>
                  </ul>
