@@ -1366,7 +1366,7 @@ public function UpDosificacion(){
 
 public function verifDosifcacion(){
     $fecha=$_POST['fdosif'];
-    $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta > '$fecha'");
+    $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='BOLETERIA' and activo=1 and fechaHasta >= '$fecha'");
     $row=$query->row();
     if ($query->num_rows() == 1) echo true;
     else echo false;
