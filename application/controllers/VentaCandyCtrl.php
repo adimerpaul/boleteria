@@ -199,20 +199,22 @@ esCombo='$esCombo'
                 $invoiceNumber=$row->nroFactura;
                 $codigo=$this->ventas_model->generate($authorizationNumber, $invoiceNumber, $cinit, date('Ymd'), $total, $llaveDosif);
                 $codqr= '329448023|'.$invoiceNumber.'|'.$authorizationNumber.'|'.date('Ymd').'|'.$total.'|'.$total.'|'.$codigo.'|'.$cinit.'|0|0|0|0.00';
-                $anterior=$invoiceNumber - 1;
+                
 
             }
             else{
             $codigo='';
             $codqr='';
-            $invoiceNumber='';
+            $invoiceNumber=1;
             $tipoVenta='RECIBO';
             }
+            $anterior=$invoiceNumber - 1;
             if($anterior>0){
-            $query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior");
-            $nfact=$query8->num_rows();}
-            else $nfact=1;
-            if($nfact==1){
+                $query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior");
+                $nfact=$query8->num_rows();}
+            else 
+                $nfact=1;
+            if($nfact == 1){
 
             $this->db->query("INSERT INTO ventacandy SET
                 total='$total',
@@ -228,9 +230,10 @@ esCombo='$esCombo'
             if($this->db->affected_rows()==0){
                 $this->dosificaciones_model->errorenfacturacandy($iddosif);
                 $idventa=0;}
-                else
-                    $idventa= $this->db->insert_id();
-                if($idventa!=0){
+            else
+                $idventa= $this->db->insert_id();
+            
+            if($idventa!=0){
                     $query=$this->db->query("SELECT * FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
                 foreach ($query->result() as $row){
                     $idproducto=$row->idProducto;
@@ -249,13 +252,13 @@ esCombo='$esCombo'
                         idUsuario='".$_SESSION['idUs']."',
                         nombreP='$nombreP'
                     ");
+                }
+                $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
             }
-        $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
         }
-    }
-    else{ 
-        $this->dosificaciones_model->errorenfacturacandy($iddosif);
-        $idventa=0;}
+        else{ 
+            $this->dosificaciones_model->errorenfacturacandy($iddosif);
+            $idventa=0;}
             echo $idventa;
             exit;
     }
