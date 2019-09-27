@@ -298,8 +298,12 @@ class VentaCtrl extends CI_Controller {
         $row=$query->row();
         $nroComprobante=$row->nroFactura;
         $anterior=$nroComprobante - 1;
-        //$query8=$this->db->query("SELECT * FROM venta where tipoVenta='FACTURA' and nroComprobante=$anterior");
-        //if($query8->num_rows() == 1){
+        if($anterior>0){
+            $query8=$this->db->query("SELECT * FROM venta where tipoVenta='FACTURA' and nroComprobante=$anterior");
+            $nfact=$query8->num_rows();
+        }
+        else $nfact=1;
+        if($nfact == 1){
             $query="INSERT INTO venta(
                 total,
                 codigoControl,
@@ -324,13 +328,14 @@ class VentaCtrl extends CI_Controller {
         $this->db->query($query);
         if($this->db->affected_rows()==0){
             $this->dosificaciones_model->errorenfactura($idd);
-            $idVenta=0;}
+            $idVenta=0;}            
         else 
         $idVenta=$this->db->insert_id();
-        //else{
-          //  $this->dosificaciones_model->errorenfactura($idd);
-           // $idVenta=0;
-        //}
+        }
+        else{
+            $this->dosificaciones_model->errorenfactura($idd);
+            $idVenta=0;
+        }
        // $query.= ",'".$codControl."','".$codqr."',(SELECT nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1)";
 
     }
