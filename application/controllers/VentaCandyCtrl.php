@@ -208,8 +208,12 @@ esCombo='$esCombo'
             $invoiceNumber='';
             $tipoVenta='RECIBO';
             }
-            //$query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior");
-            //if($query8->num_rows()==1){
+            if($anterior>0){
+            $query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior");
+            $nfact=$query8->num_rows();}
+            else $nfact=1;
+            if($nfact==1){
+
             $this->db->query("INSERT INTO ventacandy SET
                 total='$total',
                 tipoVenta='$tipoVenta',
@@ -248,10 +252,10 @@ esCombo='$esCombo'
             }
         $this->db->query("DELETE FROM detalletemporal WHERE idUsuario='".$_SESSION['idUs']."'");
         }
-    //}
-    //else{ 
-      //  $this->dosificaciones_model->errorenfacturacandy($iddosif);
-        //$idventa=0;}
+    }
+    else{ 
+        $this->dosificaciones_model->errorenfacturacandy($iddosif);
+        $idventa=0;}
             echo $idventa;
             exit;
     }
@@ -1066,7 +1070,7 @@ s.idSala='$idsala'");
 
     public function verifDosifcacion(){
         $fecha=$_POST['fdosif'];
-        $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' and activo=1 and fechaHasta > '$fecha'");
+        $query=$this->db->query("SELECT * FROM dosificacion WHERE tipo='CANDY' and activo=1 and fechaHasta >= '$fecha'");
         $row=$query->row();
         if ($query->num_rows() == 1) echo true;
         else echo false;

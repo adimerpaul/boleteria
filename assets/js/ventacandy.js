@@ -414,8 +414,8 @@ $(function() {
                                 },500); 
                             }
                         }
-                        //else
-                          //  alert("problema de registro");
+                        else
+                           alert("problema de registro");
                         }
                     });
                 }
