@@ -205,7 +205,7 @@ esCombo='$esCombo'
             else{
             $codigo='';
             $codqr='';
-            $invoiceNumber=1;
+            $invoiceNumber=0;
             $tipoVenta='RECIBO';
             }
             $anterior=$invoiceNumber - 1;
