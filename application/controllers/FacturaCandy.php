@@ -388,7 +388,7 @@ class FacturaCandy extends CI_Controller {
     <hr>
     <div class='textmed'>
     Cod. de Control: $codigocontrol <br> 
-    Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
+    Fecha Lim. de Emision: ". date("d/m/Y", strtotime($fechahasta)) ."<br></div>";
     
     
     $cadena.="<small class='textoimp'><img width='125px' src='".base_url()."barcode.php?s=qrl&d=$qr'></small><br>";

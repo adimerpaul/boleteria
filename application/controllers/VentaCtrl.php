@@ -533,7 +533,7 @@ GROUP BY b.idFuncion,p.nombre,p.formato,t.precio");
         $cadena.="<div class='textmed'>SON: ".NumerosEnLetras::convertir($entero)." $decimal/100 Bolivianos 
 <hr>
 Cod. de Control: $codigocontrol <br> 
-Fecha Lim. de Emision: ". substr($fechahasta,0,10) ."<br></div>";
+Fecha Lim. de Emision: ". date("d/m/Y", strtotime($fechahasta)) ."<br></div>";
 
 
 //        $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
