@@ -211,7 +211,8 @@ esCombo='$esCombo'
             $anterior=$invoiceNumber - 1;
             if($anterior>0){
                 $query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior");
-                $nfact=$query8->num_rows();}
+                $nfact=$query8->num_rows();
+                $num=$invoiceNumber;}
             else 
                 $nfact=1;
             if($nfact == 1){
@@ -228,8 +229,8 @@ esCombo='$esCombo'
                 cancelado=$cancelado
             ");
             if($this->db->affected_rows()==0){
-                $this->dosificaciones_model->errorenfacturacandy($iddosif);
-                $idventa=0;}
+                $idventa=$this->dosificaciones_model->errorenfacturacandy($iddosif);
+                }
             else
                 $idventa= $this->db->insert_id();
             
@@ -257,8 +258,10 @@ esCombo='$esCombo'
             }
         }
         else{ 
-            $this->dosificaciones_model->errorenfacturacandy($iddosif);
-            $idventa=0;}
+            //$this->dosificaciones_model->errorenfacturacandy($iddosif);
+            //$this->db->query("UPDATE dosificacion SET nroFactura=nroFactura-1 WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
+            $idventa=$this->dosificaciones_model->errorenfacturacandy($iddosif);
+        }
             echo $idventa;
             exit;
     }

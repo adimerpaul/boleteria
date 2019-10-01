@@ -387,7 +387,7 @@ $(function() {
                         url:'VentaCandyCtrl/insertarVenta',
                         data:datos,
                         success:function (response) {
-                            //console.log(e);
+                            console.log(response);
                             if (response!=0){
                                 console.log(response);
                             
@@ -416,8 +416,8 @@ $(function() {
                                 },500); 
                             }
                         }
-                        //else
-                          // alert("problema de registro");
+                        else
+                          alert("problema de registro");
                         }
                     });
                 }

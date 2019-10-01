@@ -327,14 +327,14 @@ class VentaCtrl extends CI_Controller {
                     $cancelado)";
         $this->db->query($query);
         if($this->db->affected_rows()==0){
-            $this->dosificaciones_model->errorenfactura($idd);
-            $idVenta=0;}            
+            $idVenta=$this->dosificaciones_model->errorenfactura($idd);
+            }            
         else 
         $idVenta=$this->db->insert_id();
         }
         else{
-            $this->dosificaciones_model->errorenfactura($idd);
-            $idVenta=0;
+            $idVenta=$this->dosificaciones_model->errorenfactura($idd);
+            
         }
        // $query.= ",'".$codControl."','".$codqr."',(SELECT nroFactura from dosificacion where tipo='BOLETERIA' AND activo=1)";
 

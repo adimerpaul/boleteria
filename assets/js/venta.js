@@ -860,10 +860,12 @@ $('#registrarVenta').click(function(){
                                 //$("#resultado").html("Procesando, espere por favor...");
                             },
                             success:  function (response){
-                                //console.log(response+' esta es el id venta');
+                                console.log(response);
                                 var idventa=response;
                             $("#clienteModal").modal('hide');
-                                if (tipo=='FACTURA'){
+                            if(idventa==0) alert('error al Registrar intente nuevamente');
+                            else{
+                            if (tipo=='FACTURA'){
                                 $.ajax({
                                     url: 'VentaCtrl/imprimirfactura/'+idventa,
                                     success: async function (e) {
@@ -884,7 +886,7 @@ $('#registrarVenta').click(function(){
                                 }else {
                                     boletos(idventa);
                                 }
-                            
+                            }
                                 
                             }
                             
