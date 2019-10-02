@@ -403,7 +403,8 @@ $(function() {
                                     setTimeout(function(){
                                         myWindow.print();
                                         myWindow.close();
-                                        impDetalle(response);                                        
+                                        impDetalle(response); 
+                                        //impAniv(response);                                                                               
                                 },500); 
                                
                                 },
@@ -413,6 +414,7 @@ $(function() {
                             else {
                                     setTimeout(function(){
                                         impDetalle(response);
+                                        //impAniv(response);
                                 },500); 
                             }
                         }
@@ -433,6 +435,20 @@ function impDetalle(id){
         success: function (detalle) {
             myWindow = window.open("", "myWindow", "width=200,height=100");
             myWindow.document.write(detalle);
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+            window.location.href='';
+        }})
+};
+
+function impAniv(id){
+    $.ajax({
+        url: 'FacturaCandy/aniversario/'+id,
+        success: function (detalle2) {
+            myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(detalle2);
             myWindow.document.close();
             myWindow.focus();
             myWindow.print();

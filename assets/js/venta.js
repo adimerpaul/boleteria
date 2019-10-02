@@ -879,12 +879,15 @@ $('#registrarVenta').click(function(){
                                             myWindow.print();
                                             myWindow.close();
                                             boletos(idventa);
+                                           //aniversario(idventa);
+
                                         },500);
                                     }
                                 });
                                 
                                 }else {
                                     boletos(idventa);
+                                    //aniversario(idventa);
                                 }
                             }
                                 
@@ -958,6 +961,19 @@ function boleto(idboleto){
     //        console.log(e);
     //     }
     // });
+}
+function aniversario(idventa){
+    $.ajax({
+        url: 'VentaCtrl/impAniv/'+idventa,
+        success: async function (e) {
+            var myWindow = window.open("", "myWindow", "width=200,height=100");
+            myWindow.document.write(e);
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+        }
+    });
 }
 
 function promo(idventa){

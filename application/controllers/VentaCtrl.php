@@ -1194,6 +1194,34 @@ public function impPromo($idventa){
 
 }
 
+public function impAniv($id){
+           $fecha=date('d/m/Y');            
+            $hora=date("H:i:s");
+            $aniv="<style>.margen{padding: 0px 15px 0px 15px;}
+            .textoimp{ font-size: 15px; text-align: center;} 
+            .textp{ font-size: small; text-align: center;} 
+            .textpeq{ font-size: small; text-align: left;}
+            table{border: 1px solid #000; text-align:center; align:center; } 
+            th,td{font-size: x-small;}
+            hr{border: 1px dashed ;}</style>
+            ";
+            $aniv.="<div class='textoimp margen'>
+            <span>MULTISALAS S.R.L.</span><br>
+            <span>SUCURSAL No 1</span><br>
+            <span>ORURO - BOLIVIA</span><br>
+            <hr>
+            ";
+            $aniv.="<div class='textpeq'>Fecha: $fecha - $hora - Id:$id</div> <br><hr>"; 
+
+        $aniv.="<div class='textpeq'>Nombre Completo:................</div><br>";
+        $aniv.="<div class='textpeq'>CI:................</div><br>";
+        $aniv.="<div class='textpeq'>Telf/Cel:................</div><br>";
+      
+           $aniv.="<hr></div>";
+            echo $aniv;
+
+}
+
 public function qr(){
     $filename = 'temp/qr.png';
     $errorCorrectionLevel = 'L';

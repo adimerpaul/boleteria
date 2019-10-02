@@ -505,4 +505,34 @@ class FacturaCandy extends CI_Controller {
     
     
         }
+
+        function aniversario($id){
+            $fecha=date('d/m/Y');            
+            $hora=date("H:i:s");
+            $cadena = "
+            <style>.margen{padding: 0px 15px 0px 15px;}
+            .textoimp{ font-size: small; text-align: center;} 
+            .textor{ font-size: small; text-align: right;} 
+            .textmed{ font-size: small; text-align: left;}
+            table{border: 0px solid #000; text-align:center; align:center; } 
+            th,td{font-size: small;}
+            hr{border: 1px dashed ;}</style>
+            <div class='textoimp margen'>
+            <span>MULTISALAS S.R.L.</span><br>
+            <span>SUCURSAL No 2</span><br>
+            <span>ORURO - BOLIVIA</span><br>
+            <hr>
+            ";
+            $cadena.="<div class='textmed'>Fecha: $fecha - $hora - Id:$id</div> <br><hr>";                
+
+
+        $cadena.="<div class='textmed'>Nombre Completo:................</div><br>";
+        $cadena.="<div class='textmed'>CI:................</div><br>";
+        $cadena.="<div class='textmed'>Telf/Cel:................</div><br>";
+      
+           $cadena.="<hr></div>";
+            echo $cadena;
+            exit;   
+    
+        }
 }
