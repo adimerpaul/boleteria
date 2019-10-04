@@ -404,7 +404,7 @@ $(function() {
                                         myWindow.print();
                                         myWindow.close();
                                         impDetalle(response); 
-                                        //impAniv(response);                                                                               
+                                        impAniv(response);                                                                               
                                 },500); 
                                
                                 },
@@ -414,7 +414,7 @@ $(function() {
                             else {
                                     setTimeout(function(){
                                         impDetalle(response);
-                                        //impAniv(response);
+                                        impAniv(response);
                                 },500); 
                             }
                         }
