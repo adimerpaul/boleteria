@@ -188,7 +188,7 @@ esCombo='$esCombo'
         $nroFactIni=$row->nroFactIni;
         $llaveDosif=$row->llaveDosif;
         $nroFactura=$row->nroFactura;
-            if ($cinit!=0){
+            if ($tipoVenta == 'FACTURA'){
                 if ($nroFactura==0){
                     $this->db->query("UPDATE dosificacion SET nroFactura='$nroFactIni' WHERE idDosif='$iddosif' AND tipo='CANDY' AND activo='1'");
                 }else{
@@ -209,13 +209,13 @@ esCombo='$esCombo'
             $tipoVenta='RECIBO';
             }
             $anterior=$invoiceNumber - 1;
-            if($anterior>0){
-                $query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior");
+            if($anterior>0 && $tipoVenta='FACTURA'){
+                $query8=$this->db->query("SELECT * FROM ventacandy where tipoVenta='FACTURA' and nroComprobante=$anterior AND idDosif=$iddosif");
                 $nfact=$query8->num_rows();
                 $num=$invoiceNumber;}
             else 
                 $nfact=1;
-            if($nfact == 1){
+            if($nfact >= 1){
 
             $this->db->query("INSERT INTO ventacandy SET
                 total='$total',
@@ -228,6 +228,7 @@ esCombo='$esCombo'
                 nroComprobante='$invoiceNumber',
                 cancelado=$cancelado
             ");
+            
             if($this->db->affected_rows()==0){
                 $idventa=$this->dosificaciones_model->errorenfacturacandy($iddosif);
                 }

@@ -299,11 +299,11 @@ class VentaCtrl extends CI_Controller {
         $nroComprobante=$row->nroFactura;
         $anterior=$nroComprobante - 1;
         if($anterior>0){
-            $query8=$this->db->query("SELECT * FROM venta where tipoVenta='FACTURA' and nroComprobante=$anterior");
+            $query8=$this->db->query("SELECT * FROM venta where tipoVenta='FACTURA' and nroComprobante=$anterior and idDosif=$idd");
             $nfact=$query8->num_rows();
         }
         else $nfact=1;
-        if($nfact == 1){
+        if($nfact >= 1){
             $query="INSERT INTO venta(
                 total,
                 codigoControl,
