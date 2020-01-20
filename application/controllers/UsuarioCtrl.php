@@ -179,7 +179,7 @@ class UsuarioCtrl extends CI_Controller {
 	public function backupbase(){
 		$prefs = array(
 			'format'        => 'zip',                       // gzip, zip, txt
-			'filename'      => 'mybackup.sql',              // File name - NEEDED ONLY WITH ZIP FILES
+			'filename'      => 'backupmulticine.sql',              // File name - NEEDED ONLY WITH ZIP FILES
 				);
 	
 	//$this->dbutil->backup($prefs);

@@ -72,6 +72,11 @@ class funcion_model extends CI_Model{
         }else{
             $subtitulada='off';
         }
+        if (isset($_POST['activa2'])) {
+            $activa='on';
+        }else{
+            $activa='off';
+        }
         if (isset($_POST['numerada'])) {
             $numerada='on';
         }else{
@@ -86,6 +91,7 @@ class funcion_model extends CI_Model{
             'idSala'=> $this->input->post('idsala'),
             'idPelicula'=> $this->input->post('idpelicula'),
             'subtitulada'=> $subtitulada,
+            'activa'=>$activa,
             'numerada'=> $numerada
         ];
         $this->db->where('idFuncion',$idfuncion);
@@ -93,7 +99,11 @@ class funcion_model extends CI_Model{
         //exit;
     }
     function delete($idempresa){
-        return $this->db->delete('funcion', array('idFuncion' => $idempresa));
+        $funcion= [
+            'activa'=> 'INACTIVA'
+        ];
+        $this->db->where('idFuncion',$idempresa);
+        return $this->db->update('funcion',$funcion);
     }
 
 

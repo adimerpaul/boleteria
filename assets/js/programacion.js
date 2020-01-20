@@ -88,6 +88,7 @@ console.log(id);
             hora2=info.event._def.extendedProps.horaInicio;
             subtitulada2=info.event._def.extendedProps.subtitulada;
             numerada2=info.event._def.extendedProps.numerada;
+            activa2=info.event._def.extendedProps.activa;
             idtarifa2=info.event._def.extendedProps.idTarifa;
             id2=info.event.id;
 
@@ -96,9 +97,11 @@ console.log(id);
             $('#idpelicula2').val(idpelicula2);
             $('#fecha12').html(fecha12);
             $('#hora2').val(hora2);
+
+            $('#activa2').bootstrapToggle(activa2);
             $('#subtitulada2').bootstrapToggle(subtitulada2);
             $('#numerada2').bootstrapToggle(numerada2);
-            //console.log(idtarifa2);
+            console.log(activa2);
             //$('#idtarifa2').val(idtarifa2);
             //console.log(id2);
             $('#idfuncion2').val(id2);

@@ -12,7 +12,7 @@ class usuarios_model extends CI_Model {
 	public function verificalogin($usu,$con)
 	{
 		$this->db->where('user',$usu);
-		$this->db->where('password',$con);
+		$this->db->where('password',md5($con));
 		$resultado=$this->db->get('usuario');
 		if ($resultado->num_rows()>0)
 			return $resultado->result();
@@ -73,7 +73,7 @@ WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
         $usuario= [
             'nombreUser'=>  strtoupper($this->input->post('nombre')),
             'user'=>  strtoupper($this->input->post('textuser')),
-            'password'=> $this->input->post('pass')
+            'password'=> md5($this->input->post('pass'))
             
         ];
         $this->db->insert("usuario",$usuario);
@@ -111,7 +111,7 @@ WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
     public function updatepassword(){
         $id=$this->input->post('idusuario2');
         $usuario= [
-            'password'=> $this->input->post('pass')            
+            'password'=> md5($this->input->post('pass'))
         ];
         $this->db->where('idUsuario',$id);
         return $this->db->update("usuario",$usuario);

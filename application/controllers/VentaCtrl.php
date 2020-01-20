@@ -47,7 +47,8 @@ class VentaCtrl extends CI_Controller {
         time_format(horaInicio, '%H:%i') as horaIn,time_format(horaFin, '%H:%i') as horaF,
         capacidad,((select count(*) from boleto b1 where f.idFuncion=b1.idFuncion and devuelto='NO')*100)/capacidad as porcentaje
          FROM pelicula p inner join funcion f on p.idPelicula = f.idPelicula
-         inner join sala s on s.idSala = f.idSala where fecha ='$fecha' 
+         inner join sala s on s.idSala = f.idSala where fecha ='$fecha'
+         and f.activa='ACTIVADO' 
          and  p.idPelicula = ".$idpelicula." order by horaIn asc,nroSala asc";
         $query=$this->db->query($consulta);
         $row=$query->row();

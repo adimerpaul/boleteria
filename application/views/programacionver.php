@@ -140,6 +140,7 @@
                                 ?>
                             </select>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -250,6 +251,9 @@
                     <div class="form-group row">
                         <label for="idtarifa2" class="col-sm-1 col-form-label">Tarifa</label>
                         <div class="col-sm-5" id="contenedor">
+                        </div>
+                        <div class="col-sm-5">
+                            <input class="form-control" id="activa2" name="activa2" type="checkbox" data-toggle="toggle" data-on="ACTIVA" data-off="INACTIVA" data-onstyle="primary" data-offstyle="danger" checked>
                         </div>
                     </div>
                     <div class="modal-footer">

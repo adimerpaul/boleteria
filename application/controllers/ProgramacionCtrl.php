@@ -57,7 +57,7 @@ END)as 'color'
 ,fecha 
 ,horaInicio
 ,subtitulada
-,numerada
+,numerada,f.activa
 FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
 where fecha>=date_add(NOW(), INTERVAL -1 DAY)");
         $arr = array();
@@ -89,7 +89,7 @@ where fecha>=date_add(NOW(), INTERVAL -1 DAY)");
 ,fecha 
 ,horaInicio
 ,subtitulada
-,numerada
+,numerada,f.activa
 FROM funcion f INNER JOIN sala s ON s.idSala=f.idSala INNER JOIN pelicula p ON p.idPelicula=f.idPelicula
 where s.nroSala = '$nrosala' and 
  fecha>=date_add(NOW(), INTERVAL -1 DAY)");
@@ -126,6 +126,7 @@ where s.nroSala = '$nrosala' and
         SELECT * FROM funcion 
 WHERE fecha=date('$fecha') 
 AND idSala='$idsala'
+AND activa='ACTIVADA'
 AND ((time('$horainicio')>=horaInicio AND time('$horainicio')<=ADDTIME(horaFin, '00:05:00'))
 OR (time('$horafin')>=ADDTIME(horaInicio, '-00:05:00') AND time('$horafin')<=horaFin))
 ");
