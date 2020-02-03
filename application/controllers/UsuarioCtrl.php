@@ -31,7 +31,8 @@ class UsuarioCtrl extends CI_Controller {
     	{ 
     		$datosusr = array(
     		'nombre' =>$respuesta[0]->nombreUser,
-    		'cuenta' =>$respuesta[0]->user,
+			'cuenta' =>$respuesta[0]->user,
+			'fecha'=>$respuesta[0]->fechapass,
     		'idUs'=>$respuesta[0]->idUsuario,
     		'login'=>1
 		  );
@@ -43,12 +44,19 @@ class UsuarioCtrl extends CI_Controller {
 		  	$dato=$this->usuarios_model->validaIngreso($user);
 			  $this->load->view('templates/header',$dato);
 			  $this->load->view('inicio');
-			  $dato2['js']="<script src=''></script>";    
+			  $dato2['js']="<script>
+			  			  var fechap=moment();
+			  var fecha2=moment('".$this->session->userdata('fecha')."').format('Y-MM-DD');
+			  var dias=fechap.diff(fecha2,'days');
+			  //alert(dias);
+			  if(dias > 90) alert('Actualice su contraseña con el Administrador');
+			  </script>";    
 			  $this->load->view('templates/footer',$dato2);
 		 }
 		 else
     		redirect('');
 	}
+
 	public function salir()
     {
 	    $this->session->sess_destroy();
@@ -169,6 +177,12 @@ class UsuarioCtrl extends CI_Controller {
 	public function eliminarPermiso($idU){
 		$this->db->where('idUsuario',$idU);
 		return $this->db->delete('permiso');
+	}
+	
+	public function validapass($idU){
+		$this->db->where('idUsuario',$idU);
+		$resultado=$this->db->get('usuario');
+		return $resultado->result();
 	} 
 
 	public function delete($id){

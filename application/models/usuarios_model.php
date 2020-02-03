@@ -110,8 +110,10 @@ WHERE idUsuario='$idusuario' AND idSeccion='$idseccion'");
 
     public function updatepassword(){
         $id=$this->input->post('idusuario2');
+        $dt = new DateTime();
         $usuario= [
-            'password'=> md5($this->input->post('pass'))
+            'password'=> md5($this->input->post('pass')),
+            'fechapass'=>$dt->format('Y-m-d H:i:s')
         ];
         $this->db->where('idUsuario',$id);
         return $this->db->update("usuario",$usuario);
