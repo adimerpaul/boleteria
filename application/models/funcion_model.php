@@ -73,7 +73,7 @@ class funcion_model extends CI_Model{
             $subtitulada='off';
         }
         if (isset($_POST['activa2'])) {
-            $activa='ACTIVADA';
+            $activa='ACTIVADO';
         }else{
             $activa='INACTIVA';
         }

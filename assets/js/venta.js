@@ -879,7 +879,7 @@ $('#registrarVenta').click(function(){
                                             myWindow.print();
                                             myWindow.close();
                                             boletos(idventa);
-                                           aniversario(idventa);
+                                          // aniversario(idventa);
 
                                         },500);
                                     }
@@ -887,7 +887,7 @@ $('#registrarVenta').click(function(){
                                 
                                 }else {
                                     boletos(idventa);
-                                    aniversario(idventa);
+                                    //aniversario(idventa);
                                 }
                             }
                                 
