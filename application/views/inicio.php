@@ -16,9 +16,9 @@ background-img: url();
          ,Lo puede cambiar con el adminitrador</div>
         <div class="alert alert-warning">No olvidar cerrar su cuenta al finalizar su turno</div>
         <div class="alert alert-warning">No Compartir su cuenta o password </div>
-        <div class="alert alert-warning">Cada Usuario debe Ingresar con su cuenta y password  si no tiene cuenta contante con el adminitrador</div>
-        <div class="alert alert-warning">Para mejorar el rendimiento evite descargas inecesarias o el uso indebido de la red </div>
-        <div class="alert alert-warning">Si existe algun problema con el sistema (retraso de respuesta) refrescar la pagina, si persiste el error conctacte con sistemas</div>
+        <div class="alert alert-warning">Cada Usuario debe Ingresar con su cuenta y password si no tiene cuenta contacte con el administrador</div>
+        <div class="alert alert-warning">Para mejorar el rendimiento evite descargas innecesarias o el uso indebido de la red </div>
+        <div class="alert alert-warning">Si existe algún problema con el sistema (retraso de respuesta) refrescar la página, si persiste el error contacte  con sistemas</div>
         <div class="alert alert-warning">Se aceptan sugerencias para mejorar el sistema, contacte a los encargados de Sistemas</div>
     </div>
 </div>
