@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?=base_url('assets/css');?>/jquery.dataTables.min.css">
     <link href = "<?=base_url('assets/css');?>/tableexport.css" rel = "stylesheet" type = "text / css" >
     <link rel="stylesheet" href="<?=base_url('assets/css');?>/all.css">
-    
+    <link rel="stylesheet" href="croppie.css" />
     <title>Sistema Multicines</title>
 
 
