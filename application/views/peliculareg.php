@@ -9,7 +9,7 @@
       <h3>INFORMACION DE LA Pelicula</h3>
 <hr />
  
-  <form method="POST" action="<?php echo base_url();?>PeliculaCtrl/store" enctype="multipart/form-data">
+  <form method="POST" action="<?php echo base_url();?>PeliculaCtrl/store" >
 
 
   <div class="form-row">
