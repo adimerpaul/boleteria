@@ -40,7 +40,26 @@ class peliculas_model extends CI_Model {
             'idDistrib'=> $this->input->post('distribuidor')
 
         ];
-        return $this->db->insert("pelicula",$pelicula);
+        $this->db->insert("pelicula",$pelicula);
+        $mi_archivo = 'imagen';
+        $config['upload_path'] = "img/";
+        $config['file_name'] = $this->db->insert_id();
+        $config['allowed_types'] = "*";
+        $config['max_size'] = "50000";
+        $config['max_width'] = "2000";
+        $config['max_height'] = "2000";
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload($mi_archivo)) {
+            //*** ocurrio un error
+            $data['uploadError'] = $this->upload->display_errors();
+            echo $this->upload->display_errors();
+            return;
+        }
+
+        $data['uploadSuccess'] = $this->upload->data();
+
     } 
 
     public function update()
