@@ -4,6 +4,7 @@ require_once('tcpdf.php');
 include "qrlib.php";
 include "NumerosEnLetras.php";
 require 'autoload.php';
+include 'barcode.php';
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
@@ -253,6 +254,49 @@ class VentaCtrl extends CI_Controller {
         echo json_encode($myObj); 
 
     }
+
+    public function generaqr($idventa){
+        
+        $cadena='';
+        $query=$this->db->query("SELECT * FROM venta v
+        INNER JOIn cliente c ON c.idCliente=v.idCliente
+        WHERE v.idVenta=$idventa
+        ");
+
+        $row=$query->result()[0];
+        $cadena=$row->idVenta.'|'.$row->cinit.'|'.$row->apellidoCl.' '.$row->nombreCl; 
+        $query2=$this->db->query("SELECT * FROM boleto b 
+        INNER JOIn usuario u ON b.idUsuario=u.idUsuario
+        INNER JOIn funcion f ON f.idFuncion=b.idFuncion
+        INNER JOIn pelicula p ON p.idPelicula=f.idPelicula
+        INNER JOIn sala s ON s.idSala=f.idSala
+        INNER JOIn tarifa t ON t.idTarifa=b.idTarifa
+        INNER JOIn asiento a ON a.idAsiento=b.idAsiento
+        WHERE b.idVenta=$idventa and devuelto='NO'");
+        $funcion='';
+        foreach ($query2->result() as $res){
+            if($funcion==$res->idFuncion)
+            {    
+                
+                $cadena.='|'.$res->letra.'-'.$res->columna;  
+            }
+            else{
+                $cadena.='|';
+                $cadena.=$res->titulo.'|'.$res->fechaFuncion.'|'.$res->horaFuncion.'|';
+                $cadena.=$res->letra.'-'.$res->columna;
+            
+            }
+            $funcion=$res->idFuncion;
+        }
+        $generator = new barcode_generator();
+        
+        ($generator->output_image('png', 'qrl', $cadena,'bc'));
+        //echo '';
+        
+
+    }
+
+
 
     public function cControl(){
 

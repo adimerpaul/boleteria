@@ -53,6 +53,7 @@
             <td>                
                 <?php if($this->usuarios_model->veri($_SESSION['idUs'],'62')):  ?>
                     <a class="btn btn-outline-warning  btn-sm" data-toggle="modal" data-target="#exampleModal" data-idventa="<?php echo $row->idVenta; ?>">Ver Detalle</a>
+                    <a class="btn btn-outline-info  btn-sm"  href="<?php echo base_url().'VentaCtrl/generaqr/'.$row->idVenta;?>" download="<?php echo $row->idVenta; ?>">QR</a>                    
                 <?php endif ?>
             </td>
         </tr>
