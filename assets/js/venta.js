@@ -28,6 +28,7 @@ $('#btnAceptar').removeClass("disabled");
 
 }
 );
+
 function caltotalventa(){
     param={'fecha':$('#fecfuncion').val() }
         $.ajax({                        
@@ -715,7 +716,51 @@ function validacp(){
 $('#cupon').keyup(function(){
     validacp();
 });
+$('#codigo').keyup(function (e) {
+    console.log($('#codigo').val());
+    
+    $.ajax({
+        type:'POST',
+        url:'VentaCtrl/valtarjeta',
+        data:{codigo:$('#codigo').val()},
+        success:function (response) {
+            console.log(response)
+            var datos=JSON.parse(response);
 
+            $('#saldo').val(datos.saldo);
+            console.log(parseFloat($('#saldo').val()) >= parseFloat ($('#prepago').val()))
+            if(parseFloat($('#saldo').val()) >= parseFloat($('#prepago').val()))
+            {$('#registrarVenta').removeAttr("disabled"); console.log('val');}
+            else    
+            $('#registrarVenta').prop('disabled', true);
+        }
+    })
+});
+
+$('#clienteModal').on('show.bs.modal', function (e) {
+    $('#booltarjeta').hide();
+var totaltarj= $('#prepago').val();
+var totaltemp=$('#totalPre').html();
+
+$('#tarjeta').change(function(){
+
+    console.log($('#tarjeta').prop('checked'));
+    if($('#tarjeta').prop('checked')) 
+    {$('#booltarjeta').show();
+    $('#prepago').val((totaltarj*0.8).toFixed(2));
+    $('#totalPre').html((totaltemp*.8).toFixed(2));
+    }
+    else {
+    $('#booltarjeta').hide();
+    $('#codigo').val('');
+    $('#saldo').val('');
+    $('#prepago').val(totaltarj.toFixed(2));
+    $('#totalPre').html(totaltemp.toFixed(2));
+}
+
+});
+
+})
 $('#registrarVenta').click(function(){
     var idcl=0;
     var varidDosif;
@@ -819,10 +864,12 @@ $('#registrarVenta').click(function(){
                 "nroFact":varnroFactura,
                 "cinit":factCinit,
                 "fecha":varfechaqr,
-                "total":montoTotal,
-                "llave":varllaveDosif
+                "total":Math.round(montoTotal),
+                "llave":varllaveDosif,
+                
 
             };
+            console.log(parametro)
             $.ajax({
                 data:  parametro,                
                 url: 'VentaCtrl/cControl', 
@@ -834,7 +881,7 @@ $('#registrarVenta').click(function(){
                     console.log(response);
                     codControl=response;
 
-                    codqr= '329448023|'+varnroFactura+'|'+varnroAutorizacion+'|'+varfechaqr+'|'+montoTotal+'|'+montoTotal+'|'+codControl+'|'+factCinit+'|0|0|0|0.00';
+                    codqr= '329448023|'+varnroFactura+'|'+varnroAutorizacion+'|'+varfechaqr+'|'+Math.round(montoTotal)+'|'+Math.round(montoTotal)+'|'+codControl+'|'+factCinit+'|0|0|0|0.00';
                     if($('#vtipo').is(':checked'))
                         tipo='FACTURA';
                     else
@@ -850,7 +897,8 @@ $('#registrarVenta').click(function(){
                             'idCliente': idcl,
                             'iddosif':varidDosif,
                              "cancelado":cancelado,                            
-                            'cupon': $('#cupon').prop('value')
+                            'cupon': $('#cupon').prop('value'),
+                            'codigotarjeta':$('#codigo').prop('value'),
                         };
                         $.ajax({
                             data:  parventa,

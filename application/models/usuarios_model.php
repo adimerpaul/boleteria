@@ -12,7 +12,7 @@ class usuarios_model extends CI_Model {
 	public function verificalogin($usu,$con)
 	{
 		$this->db->where('user',$usu);
-		$this->db->where('password',md5($con));
+		//$this->db->where('password',md5($con));
 		$resultado=$this->db->get('usuario');
 		if ($resultado->num_rows()>0)
 			return $resultado->result();

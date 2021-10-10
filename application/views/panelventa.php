@@ -333,6 +333,24 @@
       <input type="hidden" id="idcliente" name="idcliente">  
     </div>
   </div>
+  <div class="form-group row">
+        <div class="form-check ">
+            <input class="form-control" type="checkbox" value="" id="tarjeta" name="tarjeta" >
+            <label class="form-check-label" for="tarjeta">
+                Tarjeta
+            </label>
+        </div>
+        <div id="booltarjeta" name="booltarjeta"  class="row"  >
+            <div class="col-sm-4">
+                <label for="codigo">Codigo</label>
+                <input type="text" class="form-control" id="codigo" name="codigo" >
+            </div>
+            <div class="col-sm-4">
+                <label for="saldo">Saldo</label>
+                <input type="text" class="form-control" id="saldo" name="saldo" disabled>
+            </div>
+        </div>
+    </div>
 
 
   <div class="form-row" hidden>

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once('tcpdf.php');
+//require_once('tcpdf.php');
 include "qrlib.php";
 include "NumerosEnLetras.php";
 require 'autoload.php';
@@ -328,6 +328,8 @@ class VentaCtrl extends CI_Controller {
         $idcupon=$_POST['cupon'];
         $cupon='null';
         $cancelado=$_POST['cancelado'];
+        $codigotarjeta=$_POST['codigotarjeta'];
+        if($codigotarjeta!='' && strlen($codigotarjeta)>0) $descuento=0.8; else $descuento=1;
         $costo2=0;
         if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
         { $total=0;
@@ -424,7 +426,7 @@ class VentaCtrl extends CI_Controller {
         foreach($query->result() as $row){
             if(is_numeric($idcupon) && $idcupon != 0 && $idcupon !='')
                 $costo2=0;
-              else $costo2=$row->costo;
+              else $costo2=$row->costo * $descuento;
   
             $numsala = $row->numeroSala;
             $codigosala = $row->codSala;
@@ -479,6 +481,26 @@ class VentaCtrl extends CI_Controller {
 
         $idUser=$this->session->userdata('idUs');
         $this->temporal_model->deleteAll($idUser);
+        $conn = mysqli_connect("165.227.143.191", "myuser", "mypass", "tarjetaplaza");
+        // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                $result = $conn->query("SELECT * from cliente where codigo='$codigotarjeta'");
+                if ($result->num_rows > 0) {
+        
+                    while($row = $result->fetch_assoc()) {
+        //                echo $row["nombre"];
+        //                return json_encode($row);
+                        $conn->query("UPDATE cliente SET saldo=saldo-$total where codigo='$codigotarjeta'");
+                        $conn->query("INSERT INTO historial SET fecha='".date('Y-m-d')."',lugar='BOLETERIA',monto='$total',numero='$idVenta',cliente_id='".$row["id"]."'");
+                    }
+                    // output data of each row
+        
+                } else {
+                    echo "0";
+                }
+                $conn->close();
     }
         echo $idVenta;
 
@@ -539,7 +561,7 @@ WHERE idVenta='$idventa'");
        CANT &nbsp;&nbsp;&nbsp;DESCRIPCION &nbsp;&nbsp;&nbsp;P.U. &nbsp;&nbsp;&nbsp;IMP. <br>";
 
 
-        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad 
+        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,b.costo as precio,COUNT(*) as cantidad 
 FROM boleto b 
 INNER JOIN funcion f ON f.idFuncion=b.idFuncion
 INNER JOIN tarifa t ON t.idTarifa=b.idTarifa 
@@ -661,7 +683,7 @@ WHERE idVenta='$idventa'");
        CANT &nbsp;&nbsp;&nbsp;DESCRIPCION &nbsp;&nbsp;&nbsp;P.U. &nbsp;&nbsp;&nbsp;IMP. <br>";
 
 
-        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,t.precio,COUNT(*) as cantidad 
+        $query=$this->db->query("SELECT b.idFuncion, p.nombre,p.formato,b.costo as precio,COUNT(*) as cantidad 
 FROM boleto b 
 INNER JOIN funcion f ON f.idFuncion=b.idFuncion
 INNER JOIN tarifa t ON t.idTarifa=b.idTarifa 
@@ -1196,7 +1218,7 @@ public function impBoleto($idboleto){
                 $cadBoleto.="<small >NIT:329448023</small>";
                 $cadBoleto.="<hr>";
                 $cadBoleto.="<div style='font-size: 22px'>$row->titulo<br> $row->nombreSala </div>";
-                $cadBoleto.=" <div>Fecha:&nbsp; <span style='font-size: 22px;'>$row->fechaFuncion</span> &nbsp;&nbsp;&nbsp; Bs.&nbsp; $row->precio</div>";
+                $cadBoleto.=" <div>Fecha:&nbsp; <span style='font-size: 22px;'>$row->fechaFuncion</span> &nbsp;&nbsp;&nbsp; Bs.&nbsp; $row->costo</div>";
                 $cadBoleto.="<div style='font-size: 17px'>Butaca:<span style='font-size:22px;'>$row->letra - $row->columna</span> Hora: <span style='font-size:22px;'>".substr( $row->horaFuncion,0,5). "</span></div>";
                 $cadBoleto.="<hr>";
                 $cadBoleto.="<div style='font-size: 12px' align='left'>Cod:&nbsp;".$row->numboc . "<br>
@@ -1466,4 +1488,25 @@ public function datotarifa($id){
     echo json_encode($myObj); 
 }
 
+public function valtarjeta()
+{ 
+    $codigo=$_POST['codigo'];
+//        return "a";
+    $conn = mysqli_connect("165.227.143.191", "myuser", "mypass", "tarjetaplaza");
+// Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $result = $conn->query("SELECT * from cliente where codigo='$codigo'");
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+//                echo $row["nombre"];
+            echo json_encode( $row);
+        }
+    } else {
+        echo "0";
+    }
+    $conn->close();
+}
 }
