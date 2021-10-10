@@ -436,7 +436,7 @@ $(function() {
                         data:datos,
                         success:function (response) {
                             console.log(response);
-                            $('#tarjeta')
+                            $('#tarjeta').removeAttr('checked');
                             if (response!=0){
                                 console.log(response);
                             

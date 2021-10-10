@@ -857,7 +857,7 @@ $('#registrarVenta').click(function(){
             varnroFactura=parseInt(vardosif.nroFactura) + 1;//incrementar 1!!!!!!!
             varfechaqr=moment().format('YMMDD');
             varfechaventa=moment().format('Y-MM-DD H:i:s');
-            
+            $('#tarjeta').removeAttr('checked');
             //console.log(codControl);
             parametro={
                 "numeroa": varnroAutorizacion,
@@ -908,7 +908,8 @@ $('#registrarVenta').click(function(){
                                 //$("#resultado").html("Procesando, espere por favor...");
                             },
                             success:  function (response){
-                                console.log(response);
+                            
+                            console.log(response);
                                 var idventa=response;
                             $("#clienteModal").modal('hide');
                             if(idventa==0) alert('error al Registrar intente nuevamente');
